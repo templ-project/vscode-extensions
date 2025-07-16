@@ -1,0 +1,24 @@
+# Change Log
+
+## [{{version}}] - {{date}}
+
+### Added
+- Initial release of {{language}} extension pack for {{ide}}
+- {{requiredExtensions.length}} required extensions
+- {{optionalExtensions.length}} optional extensions
+
+### Extensions Included
+
+{{#if requiredExtensions}}
+#### Required Extensions
+{{#each requiredExtensions}}
+- [{{name}}]({{marketplace_url}}) - {{description}}
+{{/each}}
+{{/if}}
+
+{{#if optionalExtensions}}
+#### Optional Extensions  
+{{#each optionalExtensions}}
+- [{{name}}]({{marketplace_url}}) - {{description}}
+{{/each}}
+{{/if}}

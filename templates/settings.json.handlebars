@@ -1,0 +1,5 @@
+{
+{{#each settings}}
+  "{{@key}}": {{{json this.value}}}{{#unless @last}},{{/unless}}
+{{/each}}
+}

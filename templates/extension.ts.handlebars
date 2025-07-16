@@ -1,0 +1,57 @@
+import * as vscode from 'vscode';
+
+/**
+ * This method is called when your extension is activated
+ * Your extension is activated the very first time the command is executed
+ */
+export function activate(context: vscode.ExtensionContext) {
+    console.log('{{displayName}} extension is now active!');
+
+    // Apply settings when extension activates
+    applySettings();
+
+    // Register commands
+    const applySettingsCommand = vscode.commands.registerCommand('{{organization}}.{{language}}-{{ide}}.applySettings', () => {
+        applySettings();
+        vscode.window.showInformationMessage('{{displayName}} settings applied!');
+    });
+
+    const resetSettingsCommand = vscode.commands.registerCommand('{{organization}}.{{language}}-{{ide}}.resetSettings', () => {
+        resetSettings();
+        vscode.window.showInformationMessage('{{displayName}} settings reset!');
+    });
+
+    context.subscriptions.push(applySettingsCommand);
+    context.subscriptions.push(resetSettingsCommand);
+}
+
+/**
+ * Apply all configured settings
+ */
+function applySettings() {
+    const config = vscode.workspace.getConfiguration();
+    
+    // Apply settings from YAML configuration
+{{#each settings}}
+    config.update('{{@key}}', {{#if (isString this)}}'{{{this}}}'{{else}}{{{json this}}}{{/if}}, vscode.ConfigurationTarget.Global);
+{{/each}}
+}
+
+/**
+ * Reset settings to default values
+ */
+function resetSettings() {
+    const config = vscode.workspace.getConfiguration();
+    
+    // Reset settings to default (undefined)
+{{#each settings}}
+    config.update('{{@key}}', undefined, vscode.ConfigurationTarget.Global);
+{{/each}}
+}
+
+/**
+ * This method is called when your extension is deactivated
+ */
+export function deactivate() {
+    console.log('{{displayName}} extension is now deactivated!');
+}

@@ -1,0 +1,85 @@
+{
+  "name": "{{language}}-{{ide}}-extension-pack",
+  "displayName": "{{displayName}}",
+  "description": "{{description}}",
+  "version": "{{version}}",
+  "publisher": "{{publisher}}",
+  "repository": {
+    "type": "git",
+    "url": "{{repositoryUrl}}",
+    "directory": "packages/{{ide}}/{{language}}"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "icon": "logo.png",
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "dark"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "keywords": [
+{{#each keywords}}
+    "{{this}}"{{#unless @last}},{{/unless}}
+{{/each}}
+  ],
+  "extensionPack": [
+{{#each allExtensions}}
+    "{{this.id}}"{{#unless @last}},{{/unless}}
+{{/each}}
+  ]{{#if requiredExtensions}},
+  "extensionDependencies": [
+{{#each requiredExtensions}}
+    "{{this.id}}"{{#unless @last}},{{/unless}}
+{{/each}}
+  ]{{/if}},
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+{{#if snippets}}
+    "snippets": [
+      {
+        "language": "{{language}}",
+        "path": "./snippets/{{language}}.json"
+      }
+    ]{{#if keybindings}},{{/if}}{{#if hasCommands}}{{#unless keybindings}},{{/unless}}{{/if}}
+{{/if}}
+{{#if keybindings}}
+    "keybindings": [
+{{#each keybindings}}
+      {
+        "key": "{{key}}",
+        "command": "{{command}}"{{#if when}},
+        "when": "{{when}}"{{/if}}
+      }{{#unless @last}},{{/unless}}
+{{/each}}
+    ]{{#if hasCommands}},{{/if}}
+{{/if}}
+{{#if hasCommands}}
+    "commands": [
+      {
+        "command": "{{organization}}.{{language}}-{{ide}}.applySettings",
+        "title": "Apply {{displayName}} Settings"
+      },
+      {
+        "command": "{{organization}}.{{language}}-{{ide}}.resetSettings",
+        "title": "Reset {{displayName}} Settings"
+      }
+    ]
+{{/if}}
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.0"
+  }
+}

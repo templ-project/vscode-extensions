@@ -1,0 +1,60 @@
+{
+  "name": "vscode-extensions",
+  "version": "1.0.0",
+  "description": "VSCode Extension Packs for different development environments",
+  "main": "scripts/generate-all.js",
+  "scripts": {
+    "generate": "npx ts-node scripts/generate-all.ts",
+    "generate:vscode": "npx ts-node scripts/generate-all.ts vscode",
+    "generate:vscodium": "npx ts-node scripts/generate-all.ts vscodium",
+    "clean": "rimraf packages dist",
+    "compile:all": "npm run compile --workspaces --if-present",
+    "compile:vscode-js": "npm run compile --workspace=packages/vscode/javascript",
+    "compile:vscodium-js": "npm run compile --workspace=packages/vscodium/javascript",
+    "watch:all": "npm run watch --workspaces --if-present",
+    "package": "node scripts/package-all.js",
+    "package:vscode": "node scripts/package-all.js vscode",
+    "package:vscodium": "node scripts/package-all.js vscodium",
+    "package:javascript": "node scripts/package-all.js '' javascript",
+    "move-packages": "node scripts/move-packages.js",
+    "build": "run-s version:store clean generate compile:all package",
+    "test:workflow": "run-s version:store clean generate compile:all",
+    "test:validate": "node scripts/validate-generated.js",
+    "version:store": "node scripts/version-manager.js store",
+    "version:restore": "node scripts/version-manager.js restore",
+    "version:set": "node scripts/version-manager.js set",
+    "version:get": "node scripts/version-manager.js get",
+    "version:list": "node scripts/version-manager.js list",
+    "version:cleanup": "node scripts/version-manager.js cleanup",
+    "version:remove": "node scripts/version-manager.js remove",
+    "help": "echo 'Available scripts: generate, generate:vscode, generate:vscodium, generate:javascript, clean, compile:all, watch:all, package, package:vscode, package:vscodium, package:javascript, move-packages, build, test:workflow, test:validate, version:store, version:restore, version:set, version:get, version:list, version:cleanup, version:remove'"
+  },
+  "keywords": [
+    "vscode",
+    "vscodium",
+    "extension-pack",
+    "development",
+    "tools"
+  ],
+  "author": "templ-project",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*/*"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/templ-project/vscode-extensions"
+  },
+  "devDependencies": {
+    "handlebars": "^4.7.8",
+    "npm-run-all2": "^8.0.4",
+    "rimraf": "^6.0.1",
+    "yaml": "^2.3.4",
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.2",
+    "@types/node": "^20.10.6"
+  }
+}
