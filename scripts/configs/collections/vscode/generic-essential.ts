@@ -8,7 +8,6 @@ import {
   trailingSpaces,
   yamlSupport,
   tomlSupport,
-  jsoncSupport,
   json5Support,
   markdownAllInOne,
   markdownlint,
@@ -40,7 +39,6 @@ export const genericEssential: Collection = {
     versionLens,
     // Editing
     json5Support,
-    jsoncSupport,
     markdownAllInOne,
     markdownlint,
     markdownTablePrettify,
@@ -83,6 +81,28 @@ export const genericEssential: Collection = {
       value: 'tree',
       description: 'Default Git view mode',
       scope: 'user'
+    },
+    
+    // JSON and JSONC formatting settings
+    '[json]': {
+      value: {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true
+      },
+      description: "JSON file formatting settings using built-in formatter",
+      scope: "workspace"
+    },
+    '[jsonc]': {
+      value: {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true
+      },
+      description: "JSON with Comments file formatting settings using built-in formatter",
+      scope: "workspace"
     }
   },
   
@@ -126,8 +146,8 @@ export const genericEssential: Collection = {
 - **DotENV**: Syntax highlighting and IntelliSense for .env files
 - **Path Intellisense**: Autocomplete for file paths and imports to improve productivity
 - **YAML Support**: Essential YAML editing and validation
-- **TOML Support**: TOML configuration file support
-- **JSON Support**: JSON language support with schema validation (includes JSONC)
+- **TOML Support**: Advanced TOML editing with validation, formatting, and JSON schema support
+- **JSON Support**: JSON language support with schema validation (includes JSONC formatting)
 - **JSON5 Support**: JSON5 syntax support for configuration files
 - **Markdown All in One**: Comprehensive Markdown editing with table of contents, shortcuts, and preview
 - **markdownlint**: Markdown linting and style checking for consistent documentation

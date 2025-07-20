@@ -19,15 +19,6 @@ const basePrettier: Omit<Extension, 'marketplace_url'> = {
   why_required: "Automatic code formatting for consistent style across the project"
 };
 
-const baseJsSnippets: Omit<Extension, 'marketplace_url'> = {
-  id: "xabikos.JavaScriptSnippets",
-  name: "JavaScript (ES6) code snippets",
-  description: "Code snippets for JavaScript in ES6 syntax",
-  publisher: "charalampos karypidis",
-  license: "MIT",
-  why_required: "Essential ES6+ snippets for faster JavaScript development"
-};
-
 const baseJsDebugger: Omit<Extension, 'marketplace_url'> = {
   id: "ms-vscode.js-debug",
   name: "JavaScript Debugger",
@@ -85,11 +76,6 @@ export const prettier: Extension = {
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode"
 };
 
-export const jsSnippets: Extension = {
-  ...baseJsSnippets,
-  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets"
-};
-
 export const intelliCode: Extension = {
   ...baseIntelliCode,
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode"
@@ -124,11 +110,6 @@ export const vscodiumEslint: Extension = {
 export const vscodiumPrettier: Extension = {
   ...basePrettier,
   marketplace_url: "https://open-vsx.org/extension/esbenp/prettier-vscode"
-};
-
-export const vscodiumJsSnippets: Extension = {
-  ...baseJsSnippets,
-  marketplace_url: "https://open-vsx.org/extension/xabikos/JavaScriptSnippets"
 };
 
 // Note: IntelliCode is Microsoft proprietary and not available on Open VSX

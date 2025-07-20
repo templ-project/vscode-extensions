@@ -6,7 +6,7 @@ import {
   codeSpellChecker, 
   betterComments,
   yamlSupport,
-  tomlSupport,
+  tomlSupportVSCodium,
   markdownAllInOne,
   markdownlint,
   markdownTablePrettify,
@@ -40,7 +40,7 @@ export const genericEssential: Collection = {
     versionLensVSCodium,
     // Editing
     yamlSupport,
-    tomlSupport,
+    tomlSupportVSCodium,
     betterJson5,
     markdownAllInOne,
     markdownlint,
@@ -96,8 +96,8 @@ export const genericEssential: Collection = {
 - **Version Lens**: Version information for package dependencies in package.json files
 
 ## Built-in Support
-- **JSON**: Basic JSON editing and validation (built into VSCodium)
-- **JSONC**: JSON with Comments support (built into VSCodium)
+- **JSON**: JSON editing, validation, and formatting (built into VSCodium)
+- **JSONC**: JSON with Comments support and formatting (built into VSCodium)
 
 ## Git Configuration
 \`\`\`bash

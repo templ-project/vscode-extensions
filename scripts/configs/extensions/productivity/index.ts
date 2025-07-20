@@ -66,13 +66,18 @@ export const yamlSupport: Extension = {
 };
 
 export const tomlSupport: Extension = {
-  id: "be5invis.toml",
-  name: "Better TOML",
-  description: "Better TOML language support",
-  publisher: "be5invis",
+  id: "tamasfe.even-better-toml",
+  name: "Even Better TOML",
+  description: "Fully-featured TOML support with syntax highlighting, validation, formatting, and schema support",
+  publisher: "tamasfe",
   license: "MIT",
-  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=be5invis.toml",
-  why_required: "TOML configuration file support"
+  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml",
+  why_required: "Advanced TOML editing with validation, formatting, and JSON schema support"
+};
+
+export const tomlSupportVSCodium: Extension = {
+  ...tomlSupport,
+  marketplace_url: "https://open-vsx.org/extension/tamasfe/even-better-toml"
 };
 
 export const markdownAllInOne: Extension = {
@@ -173,16 +178,6 @@ export const json5Support: Extension = {
   license: "MIT",
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-json5",
   why_required: "JSON5 configuration file support"
-};
-
-export const jsoncSupport: Extension = {
-  id: "ms-vscode.vscode-json",
-  name: "JSON Language Support",
-  description: "JSON language support with schema validation (includes JSONC)",
-  publisher: "Microsoft",
-  license: "MIT",
-  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-json",
-  why_required: "JSONC (JSON with Comments) support"
 };
 
 // Multi-language development tools

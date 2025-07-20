@@ -4,7 +4,6 @@ import {
   goOutliner,
   goTestExplorer,
   goFillStruct,
-  betterToml,
   errorLens,
   goTemplateHighlighter
 } from '../../extensions/golang';
@@ -15,7 +14,6 @@ export const golang: Collection = {
   
   required_extensions: [
     goExtension,
-    betterToml,
     errorLens
   ],
   

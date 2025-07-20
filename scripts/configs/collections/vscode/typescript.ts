@@ -3,8 +3,7 @@ import {
   tsSnippets,
   tsDebugger,
   typescriptLanguage,
-  json2ts,
-  typescriptHero
+  json2ts
 } from '../../extensions/typescript';
 
 export const typescript: Collection = {
@@ -15,8 +14,7 @@ export const typescript: Collection = {
     typescriptLanguage,
     tsSnippets,
     tsDebugger,
-    json2ts,
-    typescriptHero
+    json2ts
   ],
   
   optional_extensions: [

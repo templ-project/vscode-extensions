@@ -4,7 +4,6 @@ import {
   goOutlinerVSCodium as goOutliner,
   goTestExplorerVSCodium as goTestExplorer,
   goFillStructVSCodium as goFillStruct,
-  betterTomlVSCodium as betterToml,
   errorLensVSCodium as errorLens,
   goTemplateHighlighterVSCodium as goTemplateHighlighter
 } from '../../extensions/golang';
@@ -15,6 +14,18 @@ export const golang: Collection = {
   ...golangVSCode,
   description: "Essential Go development environment for VSCodium - comprehensive tooling for modern Go development using open-source alternatives",
   
+  required_extensions: [
+    goExtension,
+    errorLens
+  ],
+  
+  optional_extensions: [
+    goOutliner,
+    goTestExplorer,
+    goFillStruct,
+    goTemplateHighlighter
+  ],
+
   documentation: {
     setup_guide: `# Go Extension Pack Setup (VSCodium)
 

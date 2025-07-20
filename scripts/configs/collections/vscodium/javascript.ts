@@ -2,7 +2,6 @@ import { Collection } from '../../shared/types';
 import {
   vscodiumEslint as eslint,
   vscodiumPrettier as prettier,
-  vscodiumJsSnippets as jsSnippets,
   vscodiumJsDebugger as jsDebugger,
   vscodiumImportCost as importCost,
   vscodiumQuokka as quokka,
@@ -16,6 +15,13 @@ import {javascript as javascriptVSCode} from '../vscode/javascript';
 export const javascript: Collection = {
 ...javascriptVSCode,
   description: "Essential JavaScript development environment for VSCodium - runtime-agnostic tools using open-source alternatives",
+
+  required_extensions: [
+    eslint,
+    prettier,
+    jsDebugger,
+    babelSyntax
+  ],
   
   optional_extensions: [
     importCost,

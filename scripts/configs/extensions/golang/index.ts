@@ -37,15 +37,6 @@ const baseGoFillStruct: Omit<Extension, 'marketplace_url'> = {
   why_required: "Automatically fill Go struct literals with zero values"
 };
 
-const baseGoModifytags: Omit<Extension, 'marketplace_url'> = {
-  id: "bungcip.better-toml",
-  name: "Better TOML",
-  description: "Better TOML language support",
-  publisher: "bungcip",
-  license: "MIT",
-  why_required: "TOML support for Go module files and configuration"
-};
-
 const baseGoErrorLens: Omit<Extension, 'marketplace_url'> = {
   id: "usernamehw.errorlens",
   name: "Error Lens",
@@ -85,11 +76,6 @@ export const goFillStruct: Extension = {
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=davidbarratt.go-fill-struct"
 };
 
-export const betterToml: Extension = {
-  ...baseGoModifytags,
-  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml"
-};
-
 export const errorLens: Extension = {
   ...baseGoErrorLens,
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens"
@@ -119,11 +105,6 @@ export const goTestExplorerVSCodium: Extension = {
 export const goFillStructVSCodium: Extension = {
   ...baseGoFillStruct,
   marketplace_url: "https://open-vsx.org/extension/davidbarratt/go-fill-struct"
-};
-
-export const betterTomlVSCodium: Extension = {
-  ...baseGoModifytags,
-  marketplace_url: "https://open-vsx.org/extension/bungcip/better-toml"
 };
 
 export const errorLensVSCodium: Extension = {

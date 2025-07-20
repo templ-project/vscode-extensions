@@ -70,13 +70,3 @@ export const json2ts: Extension = {
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=GregorBiswanger.json2ts",
   why_required: "Convert JSON to TypeScript interfaces for rapid development"
 };
-
-export const typescriptHero: Extension = {
-  id: "rbbit.typescript-hero",
-  name: "TypeScript Hero",
-  description: "Additional tooling for TypeScript",
-  publisher: "Christoph Bühler",
-  license: "MIT",
-  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=rbbit.typescript-hero",
-  why_required: "Enhanced TypeScript tooling with auto-import organization and code completion"
-};

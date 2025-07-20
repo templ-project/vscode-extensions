@@ -2,7 +2,6 @@ import { Collection } from '../../shared/types';
 import {
   eslint,
   prettier,
-  jsSnippets,
   intelliCode,
   jsDebugger,
   importCost,
@@ -19,7 +18,6 @@ export const javascript: Collection = {
   required_extensions: [
     eslint,
     prettier,
-    jsSnippets,
     jsDebugger,
     babelSyntax
   ],
