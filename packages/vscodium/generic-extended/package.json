@@ -1,0 +1,131 @@
+{
+  "name": "generic-extended-vscodium-extension-pack",
+  "displayName": "[templ-project] Generic Extended Extension Pack",
+  "description": "Extended developer tools for API development, containerization, and Git forge integration in VSCodium (Open VSX compatible)",
+  "version": "1.0.0",
+  "publisher": "templ-project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/templ-project/vscode-extensions",
+    "directory": "packages/vscodium/generic-extended"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "icon": "logo.png",
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "dark"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "keywords": [
+    "api",
+    "swagger",
+    "openapi",
+    "rest",
+    "docker",
+    "kubernetes",
+    "github",
+    "gitlab",
+    "bitbucket",
+    "forge",
+    "extended",
+    "vscodium",
+    "generic-extended",
+    "extension-pack"
+  ],
+  "extensionPack": [
+    "42crunch.vscode-openapi",
+    "humao.rest-client",
+    "ms-azuretools.vscode-docker",
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "tim-koehler.helm-intellisense",
+    "github.vscode-pull-request-github",
+    "github.vscode-github-actions",
+    "formulahendry.code-runner",
+    "jeff-hykin.better-dockerfile-syntax",
+    "ipedrazas.kubernetes-snippets",
+    "mhutchie.git-graph",
+    "SonarSource.sonarlint-vscode"
+  ],
+  "extensionDependencies": [
+    "42crunch.vscode-openapi",
+    "humao.rest-client",
+    "ms-azuretools.vscode-docker",
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "tim-koehler.helm-intellisense",
+    "github.vscode-pull-request-github",
+    "github.vscode-github-actions",
+    "formulahendry.code-runner"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "keybindings": [
+      {
+        "key": "ctrl+alt+r",
+        "command": "rest-client.request",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; &#x27;http&#x27;"
+      },
+      {
+        "key": "ctrl+alt+e",
+        "command": "rest-client.request-last",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+shift+d ctrl+shift+b",
+        "command": "docker.images.build",
+        "when": "resourceExtname &#x3D;&#x3D; &#x27;.dockerfile&#x27; || resourceFilename &#x3D;&#x3D; &#x27;Dockerfile&#x27;"
+      },
+      {
+        "key": "ctrl+shift+d ctrl+shift+r",
+        "command": "docker.containers.run",
+        "when": "focusedView &#x3D;&#x3D; &#x27;dockerContainers&#x27;"
+      },
+      {
+        "key": "ctrl+shift+k ctrl+shift+a",
+        "command": "kubernetes.portForward",
+        "when": "focusedView &#x3D;&#x3D; &#x27;extension.vsKubernetesExplorer&#x27;"
+      },
+      {
+        "key": "ctrl+shift+k ctrl+shift+l",
+        "command": "kubernetes.logs",
+        "when": "focusedView &#x3D;&#x3D; &#x27;extension.vsKubernetesExplorer&#x27;"
+      },
+      {
+        "key": "ctrl+shift+g ctrl+shift+p",
+        "command": "github.pullRequests.refresh",
+        "when": "focusedView &#x3D;&#x3D; &#x27;github:pullRequests&#x27;"
+      },
+      {
+        "key": "ctrl+shift+g ctrl+shift+i",
+        "command": "github.pullRequests.openQuery",
+        "when": "focusedView &#x3D;&#x3D; &#x27;github:pullRequests&#x27;"
+      }
+    ],
+    "commands": [
+      {
+        "command": "templ-project.generic-extended-vscodium.applySettings",
+        "title": "Apply [templ-project] Generic Extended Extension Pack Settings"
+      },
+      {
+        "command": "templ-project.generic-extended-vscodium.resetSettings",
+        "title": "Reset [templ-project] Generic Extended Extension Pack Settings"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.0"
+  }
+}

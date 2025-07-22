@@ -1,0 +1,31 @@
+{
+  "0": {
+    "prefix": "pymain",
+    "body": [
+      "def main():",
+      "    \"\"\"Main function.\"\"\"",
+      "    ${1:pass}",
+      "",
+      "",
+      "if __name__ == \"__main__\":",
+      "    main()"
+    ],
+    "description": "Basic Python main function structure"
+  },
+  "1": {
+    "prefix": "pyclass",
+    "body": [
+      "class ${1:ClassName}:",
+      "    \"\"\"${2:Class description}.\"\"\"",
+      "    ",
+      "    def __init__(self, ${3:parameters}):",
+      "        \"\"\"Initialize ${1:ClassName}.",
+      "        ",
+      "        Args:",
+      "            ${4:parameter_description}",
+      "        \"\"\"",
+      "        ${5:pass}"
+    ],
+    "description": "Basic Python class with init"
+  }
+}

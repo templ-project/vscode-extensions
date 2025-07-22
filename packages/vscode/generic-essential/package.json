@@ -1,0 +1,110 @@
+{
+  "name": "generic-essential-vscode-extension-pack",
+  "displayName": "[templ-project] Generic Essential Extension Pack",
+  "description": "Essential productivity extensions for general development in VSCode",
+  "version": "1.0.0",
+  "publisher": "templ-project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/templ-project/vscode-extensions",
+    "directory": "packages/vscode/generic-essential"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "icon": "logo.png",
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "dark"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "keywords": [
+    "productivity",
+    "general",
+    "essential",
+    "git",
+    "debugging",
+    "editing",
+    "vscode",
+    "generic-essential",
+    "extension-pack"
+  ],
+  "extensionPack": [
+    "github.copilot",
+    "eamodio.gitlens",
+    "aaron-bond.better-comments",
+    "alefragnani.bookmarks",
+    "streetsidesoftware.code-spell-checker",
+    "mikestead.dotenv",
+    "christian-kohler.path-intellisense",
+    "gruntfuggly.todo-tree",
+    "pflannery.vscode-versionlens",
+    "mrmlnc.vscode-json5",
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+    "darkriszty.markdown-table-prettify",
+    "tamasfe.even-better-toml",
+    "redhat.vscode-yaml",
+    "shardulm94.trailing-spaces"
+  ],
+  "extensionDependencies": [
+    "github.copilot",
+    "eamodio.gitlens",
+    "aaron-bond.better-comments",
+    "alefragnani.bookmarks",
+    "streetsidesoftware.code-spell-checker",
+    "mikestead.dotenv",
+    "christian-kohler.path-intellisense",
+    "gruntfuggly.todo-tree",
+    "pflannery.vscode-versionlens",
+    "mrmlnc.vscode-json5",
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+    "darkriszty.markdown-table-prettify",
+    "tamasfe.even-better-toml",
+    "redhat.vscode-yaml"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "keybindings": [
+      {
+        "key": "ctrl+shift+b",
+        "command": "bookmarks.toggle",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+shift+j",
+        "command": "bookmarks.jumpToNext"
+      },
+      {
+        "key": "ctrl+shift+k",
+        "command": "bookmarks.jumpToPrevious"
+      }
+    ],
+    "commands": [
+      {
+        "command": "templ-project.generic-essential-vscode.applySettings",
+        "title": "Apply [templ-project] Generic Essential Extension Pack Settings"
+      },
+      {
+        "command": "templ-project.generic-essential-vscode.resetSettings",
+        "title": "Reset [templ-project] Generic Essential Extension Pack Settings"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.0"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "go.useLanguageServer": true,
+  "go.formatTool": "goimports",
+  "go.lintTool": "golangci-lint",
+  "go.lintOnSave": "workspace",
+  "go.vetOnSave": "workspace",
+  "go.buildOnSave": "workspace",
+  "go.testOnSave": false,
+  "go.coverOnSave": false,
+  "go.gocodeAutoBuild": true,
+  "[go]": {
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "editor.tabSize": 4,
+  "editor.insertSpaces": false,
+  "editor.detectIndentation": false
+},
+  "[go.mod]": {
+  "editor.formatOnSave": true,
+  "editor.tabSize": 4,
+  "editor.insertSpaces": false
+},
+  "[go.sum]": {
+  "editor.formatOnSave": false,
+  "editor.tabSize": 4,
+  "editor.insertSpaces": false
+},
+  "go.testFlags": [
+  "-v",
+  "-race"
+],
+  "go.testTimeout": "30s",
+  "go.coverageDecorator": {
+  "type": "gutter",
+  "coveredHighlightColor": "rgba(64,128,128,0.5)",
+  "uncoveredHighlightColor": "rgba(128,64,64,0.25)"
+}
+}

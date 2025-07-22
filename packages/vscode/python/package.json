@@ -1,0 +1,124 @@
+{
+  "name": "python-vscode-extension-pack",
+  "displayName": "[templ-project] Python Extension Pack",
+  "description": "Essential Python development environment for VSCode - comprehensive tooling for modern Python development, data science, and web applications",
+  "version": "1.0.0",
+  "publisher": "templ-project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/templ-project/vscode-extensions",
+    "directory": "packages/vscode/python"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "icon": "logo.png",
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "dark"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "keywords": [
+    "python",
+    "data-science",
+    "web",
+    "development",
+    "testing",
+    "jupyter",
+    "machine-learning",
+    "vscode",
+    "python",
+    "extension-pack"
+  ],
+  "extensionPack": [
+    "ms-python.python",
+    "ms-python.black-formatter",
+    "ms-python.isort",
+    "ms-toolsai.jupyter",
+    "ms-python.pylint",
+    "ms-python.flake8",
+    "njpwerner.autodocstring",
+    "littlefoxteam.vscode-python-test-adapter"
+  ],
+  "extensionDependencies": [
+    "ms-python.python",
+    "ms-python.black-formatter",
+    "ms-python.isort"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "python",
+        "path": "./snippets/python.json"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "ctrl+shift+p",
+        "command": "python.execInTerminal",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
+      },
+      {
+        "key": "f5",
+        "command": "python.debugInTerminal",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
+      },
+      {
+        "key": "ctrl+shift+&#x60;",
+        "command": "python.createTerminal",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
+      },
+      {
+        "key": "ctrl+shift+i",
+        "command": "python.sortImports",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
+      },
+      {
+        "key": "ctrl+shift+f",
+        "command": "editor.action.formatDocument",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
+      },
+      {
+        "key": "ctrl+shift+t",
+        "command": "python.runAllTests",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
+      },
+      {
+        "key": "ctrl+shift+r",
+        "command": "python.runCurrentFile",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
+      },
+      {
+        "key": "shift+enter",
+        "command": "jupyter.execSelectionInteractive",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
+      }
+    ],
+    "commands": [
+      {
+        "command": "templ-project.python-vscode.applySettings",
+        "title": "Apply [templ-project] Python Extension Pack Settings"
+      },
+      {
+        "command": "templ-project.python-vscode.resetSettings",
+        "title": "Reset [templ-project] Python Extension Pack Settings"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.0"
+  }
+}

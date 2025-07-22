@@ -1,0 +1,105 @@
+{
+  "name": "golang-vscodium-extension-pack",
+  "displayName": "[templ-project] Golang Extension Pack",
+  "description": "Essential Go development environment for VSCodium - comprehensive tooling for modern Go development using open-source alternatives",
+  "version": "1.0.0",
+  "publisher": "templ-project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/templ-project/vscode-extensions",
+    "directory": "packages/vscodium/golang"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "icon": "logo.png",
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "dark"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "keywords": [
+    "golang",
+    "go",
+    "backend",
+    "development",
+    "testing",
+    "microservices",
+    "vscodium",
+    "golang",
+    "extension-pack"
+  ],
+  "extensionPack": [
+    "golang.go",
+    "usernamehw.errorlens",
+    "766b.go-outliner",
+    "premparihar.gotestexplorer",
+    "davidbarratt.go-fill-struct",
+    "karyan40024.gotmpl-syntax-highlighter"
+  ],
+  "extensionDependencies": [
+    "golang.go",
+    "usernamehw.errorlens"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "golang",
+        "path": "./snippets/golang.json"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "ctrl+shift+t",
+        "command": "go.test.package",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; go"
+      },
+      {
+        "key": "ctrl+shift+f",
+        "command": "editor.action.formatDocument",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; go"
+      },
+      {
+        "key": "ctrl+shift+r",
+        "command": "go.test.file",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; go"
+      },
+      {
+        "key": "f12",
+        "command": "editor.action.revealDefinition",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; go"
+      },
+      {
+        "key": "shift+f12",
+        "command": "editor.action.goToReferences",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; go"
+      }
+    ],
+    "commands": [
+      {
+        "command": "templ-project.golang-vscodium.applySettings",
+        "title": "Apply [templ-project] Golang Extension Pack Settings"
+      },
+      {
+        "command": "templ-project.golang-vscodium.resetSettings",
+        "title": "Reset [templ-project] Golang Extension Pack Settings"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.0"
+  }
+}

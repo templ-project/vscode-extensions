@@ -1,0 +1,15 @@
+[
+  {
+    "key": "ctrl+shift+b",
+    "command": "bookmarks.toggle",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+j",
+    "command": "bookmarks.jumpToNext"
+  },
+  {
+    "key": "ctrl+shift+k",
+    "command": "bookmarks.jumpToPrevious"
+  }
+]

@@ -1,0 +1,93 @@
+{
+  "name": "typescript-vscodium-extension-pack",
+  "displayName": "[templ-project] Typescript Extension Pack",
+  "description": "Essential TypeScript development environment for VSCodium - comprehensive tooling for type-safe development using open-source alternatives",
+  "version": "1.0.0",
+  "publisher": "templ-project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/templ-project/vscode-extensions",
+    "directory": "packages/vscodium/typescript"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "icon": "logo.png",
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "dark"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "keywords": [
+    "typescript",
+    "types",
+    "development",
+    "linting",
+    "formatting",
+    "intellisense",
+    "vscodium",
+    "typescript",
+    "extension-pack"
+  ],
+  "extensionPack": [
+    "ms-vscode.vscode-typescript-next",
+    "ms-vscode.vscode-typescript-next",
+    "ms-vscode.js-debug"
+  ],
+  "extensionDependencies": [
+    "ms-vscode.vscode-typescript-next",
+    "ms-vscode.vscode-typescript-next",
+    "ms-vscode.js-debug"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "typescript",
+        "path": "./snippets/typescript.json"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "ctrl+shift+f",
+        "command": "prettier.forceFormatDocument",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+shift+e",
+        "command": "eslint.executeAutofix",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "f12",
+        "command": "editor.action.revealDefinition",
+        "when": "editorHasDefinitionProvider &amp;&amp; editorTextFocus"
+      }
+    ],
+    "commands": [
+      {
+        "command": "templ-project.typescript-vscodium.applySettings",
+        "title": "Apply [templ-project] Typescript Extension Pack Settings"
+      },
+      {
+        "command": "templ-project.typescript-vscodium.resetSettings",
+        "title": "Reset [templ-project] Typescript Extension Pack Settings"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.0"
+  }
+}

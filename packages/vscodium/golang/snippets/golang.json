@@ -1,0 +1,211 @@
+{
+  "0": {
+    "prefix": "fn",
+    "body": [
+      "func ${1:functionName}(${2:params}) ${3:returnType} {",
+      "\t${4:// function body}",
+      "}"
+    ],
+    "description": "Go function declaration"
+  },
+  "1": {
+    "prefix": "cm",
+    "body": [
+      "func (${1:receiver} ${2:Type}) ${3:methodName}(${4:params}) ${5:returnType} {",
+      "\t${6:// method body}",
+      "}"
+    ],
+    "description": "Go method declaration"
+  },
+  "2": {
+    "prefix": "cl",
+    "body": [
+      "type ${1:StructName} struct {",
+      "\t${2:Field} ${3:Type}",
+      "}"
+    ],
+    "description": "Go struct definition"
+  },
+  "3": {
+    "prefix": "inf",
+    "body": [
+      "type ${1:InterfaceName} interface {",
+      "\t${2:MethodName}(${3:params}) ${4:returnType}",
+      "}"
+    ],
+    "description": "Go interface definition"
+  },
+  "4": {
+    "prefix": "if",
+    "body": [
+      "if ${1:condition} {",
+      "\t${2:// if body}",
+      "}"
+    ],
+    "description": "Simple if statement"
+  },
+  "5": {
+    "prefix": "ifel",
+    "body": [
+      "if ${1:condition} {",
+      "\t${2:// if body}",
+      "} else {",
+      "\t${3:// else body}",
+      "}"
+    ],
+    "description": "If-else statement"
+  },
+  "6": {
+    "prefix": "for",
+    "body": [
+      "for ${1:i} := 0; ${1:i} < ${2:length}; ${1:i}++ {",
+      "\t${3:// loop body}",
+      "}"
+    ],
+    "description": "Standard for loop"
+  },
+  "7": {
+    "prefix": "forr",
+    "body": [
+      "for ${1:index}, ${2:value} := range ${3:slice} {",
+      "\t${4:// loop body}",
+      "}"
+    ],
+    "description": "Range loop for slices/maps"
+  },
+  "8": {
+    "prefix": "sw",
+    "body": [
+      "switch ${1:expression} {",
+      "case ${2:value1}:",
+      "\t${3:// case 1}",
+      "case ${4:value2}:",
+      "\t${5:// case 2}",
+      "default:",
+      "\t${6:// default case}",
+      "}"
+    ],
+    "description": "Switch statement"
+  },
+  "9": {
+    "prefix": "err",
+    "body": [
+      "if err != nil {",
+      "\t${1:return err}",
+      "}"
+    ],
+    "description": "Standard Go error checking"
+  },
+  "10": {
+    "prefix": "errl",
+    "body": [
+      "if err != nil {",
+      "\tlog.Printf(\"${1:error message}: %v\", err)",
+      "\t${2:return err}",
+      "}"
+    ],
+    "description": "Error checking with logging"
+  },
+  "11": {
+    "prefix": "pkg",
+    "body": [
+      "package ${1:main}"
+    ],
+    "description": "Package declaration"
+  },
+  "12": {
+    "prefix": "im",
+    "body": [
+      "import \"${1:package}\""
+    ],
+    "description": "Import statement"
+  },
+  "13": {
+    "prefix": "imb",
+    "body": [
+      "import (",
+      "\t\"${1:package1}\"",
+      "\t\"${2:package2}\"",
+      ")"
+    ],
+    "description": "Import block with multiple packages"
+  },
+  "14": {
+    "prefix": "test",
+    "body": [
+      "func Test${1:FunctionName}(t *testing.T) {",
+      "\t${2:// test body}",
+      "}"
+    ],
+    "description": "Go test function"
+  },
+  "15": {
+    "prefix": "bench",
+    "body": [
+      "func Benchmark${1:FunctionName}(b *testing.B) {",
+      "\tfor i := 0; i < b.N; i++ {",
+      "\t\t${2:// benchmark body}",
+      "\t}",
+      "}"
+    ],
+    "description": "Go benchmark function"
+  },
+  "16": {
+    "prefix": "log",
+    "body": [
+      "fmt.Println(${1:value})"
+    ],
+    "description": "Print statement"
+  },
+  "17": {
+    "prefix": "logf",
+    "body": [
+      "fmt.Printf(\"${1:format}\\n\", ${2:args})"
+    ],
+    "description": "Printf statement with formatting"
+  },
+  "18": {
+    "prefix": "logl",
+    "body": [
+      "log.Println(${1:value})"
+    ],
+    "description": "Log statement"
+  },
+  "19": {
+    "prefix": "debug",
+    "body": [
+      "log.Printf(\"DEBUG ${1:context}: %+v\", ${2:variable})"
+    ],
+    "description": "Debug logging with context"
+  },
+  "20": {
+    "prefix": "todo",
+    "body": [
+      "// TODO: ${1:description}"
+    ],
+    "description": "TODO comment marker"
+  },
+  "21": {
+    "prefix": "handler",
+    "body": [
+      "func ${1:handlerName}(w http.ResponseWriter, r *http.Request) {",
+      "\t${2:// handler body}",
+      "}"
+    ],
+    "description": "HTTP handler function"
+  },
+  "22": {
+    "prefix": "go",
+    "body": [
+      "go ${1:functionCall}(${2:args})"
+    ],
+    "description": "Go routine call"
+  },
+  "23": {
+    "prefix": "ch",
+    "body": [
+      "${1:ch} := make(chan ${2:type}${3:, buffer})"
+    ],
+    "description": "Channel declaration"
+  }
+}
