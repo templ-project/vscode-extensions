@@ -23,7 +23,7 @@ jobs:
       - name: Generate extensions
         run: |
           npx run-s version:store clean generate
-      
+
       - name: Workspaces List
         id: workspaces
         run: |
@@ -42,7 +42,6 @@ jobs:
         with:
           github_token: ${{ secrets.GH_TOKEN }}
           workspaces: ${{ steps.workspaces.outputs.workspaces }}
-          pr: false
 
       - name: Build Extensions
         if: steps.version_update.outputs.tag != ''
