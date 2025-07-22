@@ -49,22 +49,46 @@ jobs:
         run: |
           npx run-s compile:all package
 
+      - name: Create GitHub Release
+        id: create_release
+        if: steps.version_update.outputs.tag != ''
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.version_update.outputs.tag }}
+          release_name: Release ${{ steps.version_update.outputs.tag }}
+          draft: false
+          prerelease: false
+
       - name: List dist files
         id: dist_files
         if: steps.version_update.outputs.tag != ''
         run: |
           echo "files=$(ls dist | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
 
-      - name: Upload each file in dist/ as release asset
-        if: steps.dist_files.outputs.files != ''
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+      dist_files: ${{ steps.dist_files.outputs.files }}
+      tag: ${{ steps.version_update.outputs.tag }}
+
+  upload-assets:
+    needs: build-version-publish
+    runs-on: ubuntu-latest
+    if: needs.build-version-publish.outputs.tag != ''
+    strategy:
+      matrix:
+        file: ${{ fromJson(needs.build-version-publish.outputs.dist_files) }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Upload release asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ needs.build-version-publish.outputs.upload_url }}
           asset_path: dist/${{ matrix.file }}
           asset_name: ${{ matrix.file }}
           asset_content_type: application/octet-stream
-        strategy:
-          matrix:
-            file: ${{ fromJson(steps.dist_files.outputs.files) }}
