@@ -5,7 +5,7 @@ import * as vscode from 'vscode';
  * Your extension is activated the very first time the command is executed
  */
 export function activate(context: vscode.ExtensionContext) {
-    console.log('[templ-project-1753222226491] Generic Extended Extension Pack extension is now active!');
+    console.log('[templ-project-1753302000739] Generic Extended Extension Pack extension is now active!');
 
     // Apply settings when extension activates
     applySettings();
@@ -13,12 +13,12 @@ export function activate(context: vscode.ExtensionContext) {
     // Register commands
     const applySettingsCommand = vscode.commands.registerCommand('templ-project.generic-extended-vscode.applySettings', () => {
         applySettings();
-        vscode.window.showInformationMessage('[templ-project-1753222226491] Generic Extended Extension Pack settings applied!');
+        vscode.window.showInformationMessage('[templ-project-1753302000739] Generic Extended Extension Pack settings applied!');
     });
 
     const resetSettingsCommand = vscode.commands.registerCommand('templ-project.generic-extended-vscode.resetSettings', () => {
         resetSettings();
-        vscode.window.showInformationMessage('[templ-project-1753222226491] Generic Extended Extension Pack settings reset!');
+        vscode.window.showInformationMessage('[templ-project-1753302000739] Generic Extended Extension Pack settings reset!');
     });
 
     context.subscriptions.push(applySettingsCommand);
@@ -32,153 +32,49 @@ function applySettings() {
     const config = vscode.workspace.getConfiguration();
     
     // Apply settings from YAML configuration
-    config.update('openapi.completion.enable', {
-  "value": true,
-  "description": "Enable OpenAPI completion suggestions",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('openapi.validation.enable', {
-  "value": true,
-  "description": "Enable OpenAPI validation",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('openapi.preview.enable', {
-  "value": true,
-  "description": "Enable OpenAPI preview",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('rest-client.enableTelemetry', {
-  "value": false,
-  "description": "Disable REST Client telemetry",
-  "scope": "user"
-}, vscode.ConfigurationTarget.Global);
-    config.update('rest-client.showResponseInDifferentTab', {
-  "value": true,
-  "description": "Show REST Client response in separate tab",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('docker.attachShellCommand.linuxContainer', {
-  "value": "/bin/bash",
-  "description": "Default shell command for Linux containers",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('docker.attachShellCommand.windowsContainer', {
-  "value": "cmd.exe",
-  "description": "Default shell command for Windows containers",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('docker.showStartPage', {
-  "value": false,
-  "description": "Hide Docker start page",
-  "scope": "user"
-}, vscode.ConfigurationTarget.Global);
-    config.update('vs-kubernetes.vs-kubernetes.namespace', {
-  "value": "",
-  "description": "Default Kubernetes namespace",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('vs-kubernetes.outputFormat', {
-  "value": "yaml",
-  "description": "Default output format for Kubernetes resources",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('vs-kubernetes.autoCleanupOnDebugTerminate', {
-  "value": true,
-  "description": "Auto cleanup Kubernetes debug resources",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('github.pullRequests.createOnPublishBranch', {
-  "value": "never",
-  "description": "Never create pull requests on publish branch",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('github.pullRequests.pullBranch', {
-  "value": "never",
-  "description": "Never pull branch on pull request",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('github.pullRequests.showInTimeline', {
-  "value": true,
-  "description": "Show pull requests in timeline view",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('githubActions.workflows.pinned.workflows', {
-  "value": [],
-  "description": "Pinned GitHub Actions workflows",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('githubActions.workflows.pinned.refresh.enabled', {
-  "value": true,
-  "description": "Enable automatic refresh of pinned workflows",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('git.enableSmartCommit', {
-  "value": true,
-  "description": "Enable smart commit (stage all changes when committing)",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('git.autofetch', {
-  "value": true,
-  "description": "Enable automatic git fetch",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('git.autofetchPeriod', {
-  "value": 180,
-  "description": "Auto fetch period in seconds (3 minutes)",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('git.confirmSync', {
-  "value": false,
-  "description": "Disable confirmation for git sync",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('git.enableStatusBarSync', {
-  "value": true,
-  "description": "Enable git sync status in status bar",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
+    config.update('openapi.completion.enable', true, vscode.ConfigurationTarget.Global);
+    config.update('openapi.validation.enable', true, vscode.ConfigurationTarget.Global);
+    config.update('openapi.preview.enable', true, vscode.ConfigurationTarget.Global);
+    config.update('rest-client.enableTelemetry', false, vscode.ConfigurationTarget.Global);
+    config.update('rest-client.showResponseInDifferentTab', true, vscode.ConfigurationTarget.Global);
+    config.update('docker.attachShellCommand.linuxContainer', '/bin/bash', vscode.ConfigurationTarget.Global);
+    config.update('docker.attachShellCommand.windowsContainer', 'cmd.exe', vscode.ConfigurationTarget.Global);
+    config.update('docker.showStartPage', false, vscode.ConfigurationTarget.Global);
+    config.update('vs-kubernetes.vs-kubernetes.namespace', '', vscode.ConfigurationTarget.Global);
+    config.update('vs-kubernetes.outputFormat', 'yaml', vscode.ConfigurationTarget.Global);
+    config.update('vs-kubernetes.autoCleanupOnDebugTerminate', true, vscode.ConfigurationTarget.Global);
+    config.update('github.pullRequests.createOnPublishBranch', 'never', vscode.ConfigurationTarget.Global);
+    config.update('github.pullRequests.pullBranch', 'never', vscode.ConfigurationTarget.Global);
+    config.update('github.pullRequests.showInTimeline', true, vscode.ConfigurationTarget.Global);
+    config.update('githubActions.workflows.pinned.workflows', [], vscode.ConfigurationTarget.Global);
+    config.update('githubActions.workflows.pinned.refresh.enabled', true, vscode.ConfigurationTarget.Global);
+    config.update('git.enableSmartCommit', true, vscode.ConfigurationTarget.Global);
+    config.update('git.autofetch', true, vscode.ConfigurationTarget.Global);
+    config.update('git.autofetchPeriod', 180, vscode.ConfigurationTarget.Global);
+    config.update('git.confirmSync', false, vscode.ConfigurationTarget.Global);
+    config.update('git.enableStatusBarSync', true, vscode.ConfigurationTarget.Global);
     config.update('yaml.schemas', {
-  "value": {
-    "https://json.schemastore.org/github-workflow.json": ".github/workflows/*",
-    "https://json.schemastore.org/github-action.json": ".github/actions/*/action.yml",
-    "https://json.schemastore.org/docker-compose.json": [
-      "docker-compose.yml",
-      "docker-compose.yaml"
-    ],
-    "https://json.schemastore.org/kustomization.json": [
-      "kustomization.yaml",
-      "kustomization.yml"
-    ],
-    "https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json": [
-      "k8s/**/*.yaml",
-      "k8s/**/*.yml",
-      "kubernetes/**/*.yaml",
-      "kubernetes/**/*.yml"
-    ]
-  },
-  "description": "YAML schema mappings for various file types",
-  "scope": "workspace"
+  "https://json.schemastore.org/github-workflow.json": ".github/workflows/*",
+  "https://json.schemastore.org/github-action.json": ".github/actions/*/action.yml",
+  "https://json.schemastore.org/docker-compose.json": [
+    "docker-compose.yml",
+    "docker-compose.yaml"
+  ],
+  "https://json.schemastore.org/kustomization.json": [
+    "kustomization.yaml",
+    "kustomization.yml"
+  ],
+  "https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json": [
+    "k8s/**/*.yaml",
+    "k8s/**/*.yml",
+    "kubernetes/**/*.yaml",
+    "kubernetes/**/*.yml"
+  ]
 }, vscode.ConfigurationTarget.Global);
-    config.update('yaml.format.enable', {
-  "value": true,
-  "description": "Enable YAML formatting",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('yaml.validate', {
-  "value": true,
-  "description": "Enable YAML validation",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('yaml.hover', {
-  "value": true,
-  "description": "Enable YAML hover information",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
-    config.update('yaml.completion', {
-  "value": true,
-  "description": "Enable YAML completion",
-  "scope": "workspace"
-}, vscode.ConfigurationTarget.Global);
+    config.update('yaml.format.enable', true, vscode.ConfigurationTarget.Global);
+    config.update('yaml.validate', true, vscode.ConfigurationTarget.Global);
+    config.update('yaml.hover', true, vscode.ConfigurationTarget.Global);
+    config.update('yaml.completion', true, vscode.ConfigurationTarget.Global);
 }
 
 /**
@@ -220,5 +116,5 @@ function resetSettings() {
  * This method is called when your extension is deactivated
  */
 export function deactivate() {
-    console.log('[templ-project-1753222226491] Generic Extended Extension Pack extension is now deactivated!');
+    console.log('[templ-project-1753302000739] Generic Extended Extension Pack extension is now deactivated!');
 }

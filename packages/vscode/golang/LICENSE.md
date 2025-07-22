@@ -56,6 +56,21 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Publisher: karyan40024
   - License: MIT
   - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;karyan40024.gotmpl-syntax-highlighter)
+- **Go Doc** (`msyrus.go-doc`)
+  - Description: Show documentation of go symbols and packages
+  - Publisher: msyrus
+  - License: MIT
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;msyrus.go-doc)
+- **Go Critic** (`neverik.go-critic`)
+  - Description: Integration for the go-critic golang linter
+  - Publisher: neverik
+  - License: MIT
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;neverik.go-critic)
+- **Go Asm** (`quillaja.goasm`)
+  - Description: Syntax highlighting &amp; autocomplete for Go assembly
+  - Publisher: quillaja
+  - License: MIT
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;quillaja.goasm)
 
 ## Disclaimer
 

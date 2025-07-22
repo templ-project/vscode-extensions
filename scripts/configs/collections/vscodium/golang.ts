@@ -40,12 +40,17 @@ export const golang: Collection = {
 
 ### Core Go Support
 - **Go**: Official Go language support with IntelliSense, debugging, and testing
-- **Better TOML**: TOML support for Go module files and configuration
 - **Error Lens**: Enhanced error visibility for Go development
 
 ### Productivity Tools (Optional)
+- **Go Outliner**: Navigate Go code structure with enhanced outline view
 - **Go Test Explorer**: Visual test runner and explorer for Go tests
 - **Go Fill Struct**: Automatically fill Go struct literals with zero values
+- **Go Template Highlighter**: Enhanced syntax highlighting for Go template files
+- **Go Coverage Viewer**: View Go code coverage results directly in the editor
+- **Go Doc**: Quick access to Go documentation for symbols and packages
+- **Go Critic**: Advanced Go linting with go-critic integration
+- **Go Asm**: Syntax highlighting and autocomplete for Go assembly language
 
 ## VSCodium Specific Notes
 

@@ -33,7 +33,7 @@ function applySettings() {
     
     // Apply settings from YAML configuration
 {{#each settings}}
-    config.update('{{@key}}', {{#if (isString this)}}'{{{this}}}'{{else}}{{{json this}}}{{/if}}, vscode.ConfigurationTarget.Global);
+    config.update('{{@key}}', {{#if (isString this.value)}}'{{{this.value}}}'{{else}}{{{json this.value}}}{{/if}}, vscode.ConfigurationTarget.Global);
 {{/each}}
 }
 

@@ -1,6 +1,6 @@
 # Change Log
 
-## [1.0.0] - 2025-07-22
+## [1.0.0] - 2025-07-23
 
 ### Added
 - Initial release of typescript extension pack for vscode

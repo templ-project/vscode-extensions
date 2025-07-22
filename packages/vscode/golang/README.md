@@ -1,10 +1,10 @@
-# [templ-project-1753222227401] Golang Extension Pack
+# [templ-project-1753302001716] Golang Extension Pack
 
 Essential Go development environment for VSCode - comprehensive tooling for modern Go development
 
 ## 📦 What's Included
 
-This extension pack includes **6 carefully selected extensions** to enhance your golang development experience in vscode.
+This extension pack includes **9 carefully selected extensions** to enhance your golang development experience in vscode.
 
 ### ✅ Core Extensions (2)
 
@@ -13,7 +13,7 @@ These extensions are essential for golang development:
 - **[Go](https://marketplace.visualstudio.com/items?itemName&#x3D;golang.go)** - Rich Go language support for Visual Studio Code
 - **[Error Lens](https://marketplace.visualstudio.com/items?itemName&#x3D;usernamehw.errorlens)** - Improve highlighting of errors, warnings and other language diagnostics
 
-### 💡 Additional Extensions (4)
+### 💡 Additional Extensions (7)
 
 These extensions provide extra functionality and convenience:
 
@@ -21,13 +21,16 @@ These extensions provide extra functionality and convenience:
 - **[Go Test Explorer](https://marketplace.visualstudio.com/items?itemName&#x3D;premparihar.gotestexplorer)** - Go Test Explorer for Visual Studio Code
 - **[Go Fill Struct](https://marketplace.visualstudio.com/items?itemName&#x3D;davidbarratt.go-fill-struct)** - Fill struct literals with default values
 - **[Go Template Syntax Highlighter](https://marketplace.visualstudio.com/items?itemName&#x3D;karyan40024.gotmpl-syntax-highlighter)** - Go Template Syntax Highlighter for Reply
+- **[Go Doc](https://marketplace.visualstudio.com/items?itemName&#x3D;msyrus.go-doc)** - Show documentation of go symbols and packages
+- **[Go Critic](https://marketplace.visualstudio.com/items?itemName&#x3D;neverik.go-critic)** - Integration for the go-critic golang linter
+- **[Go Asm](https://marketplace.visualstudio.com/items?itemName&#x3D;quillaja.goasm)** - Syntax highlighting &amp; autocomplete for Go assembly
 
 ## 🚀 Installation
 
 ### Method 1: Install from Marketplace
 1. Open Vscode
 2. Go to Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-3. Search for "[templ-project-1753222227401] Golang Extension Pack"
+3. Search for "[templ-project-1753302001716] Golang Extension Pack"
 4. Click "Install"
 
 ### Method 2: Install via Command Line
@@ -177,6 +180,9 @@ After installation, you may want to configure some settings for optimal golang d
 | [Go Test Explorer](https://marketplace.visualstudio.com/items?itemName&#x3D;premparihar.gotestexplorer) | Prem Parihar | Go Test Explorer for Visual Studio Code |
 | [Go Fill Struct](https://marketplace.visualstudio.com/items?itemName&#x3D;davidbarratt.go-fill-struct) | David Barratt | Fill struct literals with default values |
 | [Go Template Syntax Highlighter](https://marketplace.visualstudio.com/items?itemName&#x3D;karyan40024.gotmpl-syntax-highlighter) | karyan40024 | Go Template Syntax Highlighter for Reply |
+| [Go Doc](https://marketplace.visualstudio.com/items?itemName&#x3D;msyrus.go-doc) | msyrus | Show documentation of go symbols and packages |
+| [Go Critic](https://marketplace.visualstudio.com/items?itemName&#x3D;neverik.go-critic) | neverik | Integration for the go-critic golang linter |
+| [Go Asm](https://marketplace.visualstudio.com/items?itemName&#x3D;quillaja.goasm) | quillaja | Syntax highlighting &amp; autocomplete for Go assembly |
 
 ## 🏷️ Categories
 
@@ -198,6 +204,9 @@ This extension pack is licensed under the **MIT License** - see [LICENSE.md](htt
 | [Go Test Explorer](https://marketplace.visualstudio.com/items?itemName&#x3D;premparihar.gotestexplorer) | Prem Parihar | MIT | Go Test Explorer for Visual Studio Code |
 | [Go Fill Struct](https://marketplace.visualstudio.com/items?itemName&#x3D;davidbarratt.go-fill-struct) | David Barratt | MIT | Fill struct literals with default values |
 | [Go Template Syntax Highlighter](https://marketplace.visualstudio.com/items?itemName&#x3D;karyan40024.gotmpl-syntax-highlighter) | karyan40024 | MIT | Go Template Syntax Highlighter for Reply |
+| [Go Doc](https://marketplace.visualstudio.com/items?itemName&#x3D;msyrus.go-doc) | msyrus | MIT | Show documentation of go symbols and packages |
+| [Go Critic](https://marketplace.visualstudio.com/items?itemName&#x3D;neverik.go-critic) | neverik | MIT | Integration for the go-critic golang linter |
+| [Go Asm](https://marketplace.visualstudio.com/items?itemName&#x3D;quillaja.goasm) | quillaja | MIT | Syntax highlighting &amp; autocomplete for Go assembly |
 
 ### Disclaimer
 - We **do not guarantee** the functionality, security, or compatibility of included extensions
@@ -211,9 +220,9 @@ Found an issue or want to suggest an extension? Please [open an issue](https://g
 
 ## 📊 Extension Pack Stats
 
-- **Total Extensions**: 6
+- **Total Extensions**: 9
 - **Required Extensions**: 2
-- **Optional Extensions**: 4
+- **Optional Extensions**: 7
 - **Target IDE**: vscode
 - **Language Focus**: golang
 

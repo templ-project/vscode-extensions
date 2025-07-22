@@ -55,6 +55,33 @@ const baseGoTemplateHighlighter: Omit<Extension, 'marketplace_url'> = {
   why_required: "Enhanced syntax highlighting for Go template files (.gotmpl, .tmpl)"
 };
 
+const baseGoDoc: Omit<Extension, 'marketplace_url'> = {
+  id: "msyrus.go-doc",
+  name: "Go Doc",
+  description: "Show documentation of go symbols and packages",
+  publisher: "msyrus",
+  license: "MIT",
+  why_required: "Quick access to Go documentation for symbols and packages"
+};
+
+const baseGoCritic: Omit<Extension, 'marketplace_url'> = {
+  id: "neverik.go-critic",
+  name: "Go Critic",
+  description: "Integration for the go-critic golang linter",
+  publisher: "neverik",
+  license: "MIT",
+  why_required: "Advanced Go linting with go-critic integration"
+};
+
+const baseGoAsm: Omit<Extension, 'marketplace_url'> = {
+  id: "quillaja.goasm",
+  name: "Go Asm",
+  description: "Syntax highlighting & autocomplete for Go assembly",
+  publisher: "quillaja",
+  license: "MIT",
+  why_required: "Syntax highlighting and autocomplete for Go assembly language"
+};
+
 // VSCode Extensions (Microsoft Marketplace URLs)
 export const goExtension: Extension = {
   ...baseGoExtension,
@@ -84,6 +111,21 @@ export const errorLens: Extension = {
 export const goTemplateHighlighter: Extension = {
   ...baseGoTemplateHighlighter,
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=karyan40024.gotmpl-syntax-highlighter"
+};
+
+export const goDoc: Extension = {
+  ...baseGoDoc,
+  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=msyrus.go-doc"
+};
+
+export const goCritic: Extension = {
+  ...baseGoCritic,
+  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=neverik.go-critic"
+};
+
+export const goAsm: Extension = {
+  ...baseGoAsm,
+  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=quillaja.goasm"
 };
 
 // VSCodium Extensions (Open VSX Registry URLs)
