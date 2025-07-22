@@ -1,0 +1,70 @@
+name: Build, Version, and Publish Extensions
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-version-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate extensions
+        run: |
+          npx run-s version:store clean generate
+      
+      - name: Workspaces List
+        id: workspaces
+        run: |
+          workspaces=(".:node")
+          for ide in vscode vscodium; do
+            for extension in generic-essential generic-extended javascript typescript golang python; do
+              workspaces+=("packages/$ide/$extension:node")
+            done
+          done
+          workspaces_string=$(IFS=','; echo "${workspaces[*]}")
+          echo "workspaces=$workspaces_string" | tee -a $GITHUB_OUTPUT
+
+      - name: Version Update
+        id: versuion_update
+        uses: dragoscops/version-update@v2
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          workspaces: ${{ steps.workspaces.outputs.workspaces }}
+          pr: false
+
+      - name: Build Extensions
+        if: steps.version_update.outputs.tag != ''
+        run: |
+          npx run-s compile:all package
+
+      - name: List dist files
+        id: dist_files
+        if: steps.version_update.outputs.tag != ''
+        run: |
+          echo "files=$(ls dist | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+
+      - name: Upload each file in dist/ as release asset
+        if: steps.dist_files.outputs.files != ''
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: dist/${{ matrix.file }}
+          asset_name: ${{ matrix.file }}
+          asset_content_type: application/octet-stream
+        strategy:
+          matrix:
+            file: ${{ fromJson(steps.dist_files.outputs.files) }}
