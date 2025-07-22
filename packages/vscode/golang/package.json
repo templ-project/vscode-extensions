@@ -1,6 +1,6 @@
 {
   "name": "golang-vscode-extension-pack",
-  "displayName": "Golang Extension Pack",
+  "displayName": "[templ-project-1753222059326] Golang Extension Pack",
   "description": "Essential Go development environment for VSCode - comprehensive tooling for modern Go development",
   "version": "1.0.0",
   "publisher": "templ-project",
@@ -84,11 +84,11 @@
     "commands": [
       {
         "command": "templ-project.golang-vscode.applySettings",
-        "title": "Apply Golang Extension Pack Settings"
+        "title": "Apply [templ-project-1753222059326] Golang Extension Pack Settings"
       },
       {
         "command": "templ-project.golang-vscode.resetSettings",
-        "title": "Reset Golang Extension Pack Settings"
+        "title": "Reset [templ-project-1753222059326] Golang Extension Pack Settings"
       }
     ]
   },

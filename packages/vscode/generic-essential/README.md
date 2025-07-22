@@ -1,4 +1,4 @@
-# Generic Essential Extension Pack
+# [templ-project-1753222057437] Generic Essential Extension Pack
 
 Essential productivity extensions for general development in VSCode
 
@@ -37,7 +37,7 @@ These extensions provide extra functionality and convenience:
 ### Method 1: Install from Marketplace
 1. Open Vscode
 2. Go to Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-3. Search for "Generic Essential Extension Pack"
+3. Search for "[templ-project-1753222057437] Generic Essential Extension Pack"
 4. Click "Install"
 
 ### Method 2: Install via Command Line

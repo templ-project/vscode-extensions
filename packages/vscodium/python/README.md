@@ -1,4 +1,4 @@
-# Python Extension Pack
+# [templ-project-1753222066656] Python Extension Pack
 
 Essential Python development extensions for VSCodium, including language support, debugging, formatting, and testing tools
 
@@ -34,7 +34,7 @@ These extensions provide extra functionality and convenience:
 ### Method 1: Install from Marketplace
 1. Open Vscodium
 2. Go to Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-3. Search for "Python Extension Pack"
+3. Search for "[templ-project-1753222066656] Python Extension Pack"
 4. Click "Install"
 
 ### Method 2: Install via Command Line
