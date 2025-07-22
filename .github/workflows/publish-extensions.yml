@@ -44,13 +44,13 @@ jobs:
           workspaces: ${{ steps.workspaces.outputs.workspaces }}
 
       - name: Build Extensions
-        if: steps.version_update.outputs.tag != ''
+        if: ${{ steps.version_update.outputs.tag != '' }}
         run: |
           npx run-s compile:all package
 
       - name: Create GitHub Release
         id: create_release
-        if: steps.version_update.outputs.tag != ''
+        if: ${{ steps.version_update.outputs.tag != '' }}
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -62,7 +62,7 @@ jobs:
 
       - name: List dist files
         id: dist_files
-        if: steps.version_update.outputs.tag != ''
+        if: ${{ steps.version_update.outputs.tag != '' }}
         run: |
           echo "files=$(ls dist | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
 

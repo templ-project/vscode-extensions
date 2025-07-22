@@ -107,7 +107,7 @@ function prepareTemplateContext(config: any, ide: string, language: string): any
     organization: 'templ-project',
 
     // Package metadata
-    displayName: `[templ-project] ${language.split('-').map(l => l.charAt(0).toUpperCase() + l.slice(1)).join(' ')} Extension Pack`,
+    displayName: `${language.split('-').map(l => l.charAt(0).toUpperCase() + l.slice(1)).join(' ')} Extension Pack`,
     description: collection.description,
     version: "1.0.0",
     publisher: "templ-project",
