@@ -37,7 +37,7 @@ jobs:
           echo "workspaces=$workspaces_string" | tee -a $GITHUB_OUTPUT
 
       - name: Version Update
-        id: versuion_update
+        id: version_update
         uses: dragoscops/version-update@v2
         with:
           github_token: ${{ secrets.GH_TOKEN }}
