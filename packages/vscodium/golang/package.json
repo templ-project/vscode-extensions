@@ -1,6 +1,6 @@
 {
   "name": "golang-vscodium-extension-pack",
-  "displayName": "[templ-project-1753304902606] Golang Extension Pack",
+  "displayName": "[templ-project-1753306959749] Golang Extension Pack",
   "description": "Essential Go development environment for VSCodium - comprehensive tooling for modern Go development using open-source alternatives",
   "version": "1.0.5",
   "publisher": "templ-project",
@@ -84,11 +84,11 @@
     "commands": [
       {
         "command": "templ-project.golang-vscodium.applySettings",
-        "title": "Apply [templ-project-1753304902606] Golang Extension Pack Settings"
+        "title": "Apply [templ-project-1753306959749] Golang Extension Pack Settings"
       },
       {
         "command": "templ-project.golang-vscodium.resetSettings",
-        "title": "Reset [templ-project-1753304902606] Golang Extension Pack Settings"
+        "title": "Reset [templ-project-1753306959749] Golang Extension Pack Settings"
       }
     ]
   },

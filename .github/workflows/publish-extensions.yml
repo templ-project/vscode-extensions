@@ -48,6 +48,101 @@ jobs:
         run: |
           npx run-s compile:all package
 
+      - name: Install publishing tools
+        if: ${{ steps.version_update.outputs.tag != '' }}
+        run: |
+          npm install -g @vscode/vsce ovsx
+
+      - name: Publish to VS Code Marketplace
+        if: ${{ steps.version_update.outputs.tag != '' }}
+        run: |
+          echo "::group::🚀 Publishing to VS Code Marketplace"
+          
+          PUBLISHED_COUNT=0
+          SKIPPED_COUNT=0
+          
+          for extension_dir in packages/vscode/*/; do
+            if [ -d "$extension_dir" ]; then
+              EXTENSION_NAME=$(basename "$extension_dir")
+              PACKAGE_PATH="$extension_dir/package.json"
+              
+              echo "::group::🔍 Checking VS Code Marketplace for $EXTENSION_NAME"
+              
+              # Read extension info from source package.json
+              PUBLISHER=$(jq -r '.publisher' "$PACKAGE_PATH")
+              NAME=$(jq -r '.name' "$PACKAGE_PATH")
+              VERSION=$(jq -r '.version' "$PACKAGE_PATH")
+              
+              echo "📦 Extension: $PUBLISHER.$NAME v$VERSION"
+              
+              # Check current published version
+              CURRENT_VERSION=$(vsce show "$PUBLISHER.$NAME" --json 2>/dev/null | jq -r '.versions[0].version' || echo "none")
+              
+              if [ "$CURRENT_VERSION" != "$VERSION" ]; then
+                echo "::notice::✅ Publishing $PUBLISHER.$NAME v$VERSION to VS Code Marketplace (current: $CURRENT_VERSION)"
+                VSIX_FILE="dist/$PUBLISHER-vscode-$EXTENSION_NAME-$VERSION.vsix"
+                vsce publish --packagePath "$VSIX_FILE"
+                echo "::notice::🎉 Successfully published $PUBLISHER.$NAME v$VERSION to VS Code Marketplace"
+                ((PUBLISHED_COUNT++))
+              else
+                echo "::warning::⏭️ Skipping $PUBLISHER.$NAME - version $VERSION already published on VS Code Marketplace"
+                ((SKIPPED_COUNT++))
+              fi
+              
+              echo "::endgroup::"
+            fi
+          done
+          
+          echo "::endgroup::"
+          echo "::notice::📊 VS Code Marketplace Summary: $PUBLISHED_COUNT extensions published, $SKIPPED_COUNT skipped"
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+      - name: Publish to Open VSX Registry
+        if: ${{ steps.version_update.outputs.tag != '' }}
+        run: |
+          echo "::group::� Publishing to Open VSX Registry"
+          
+          PUBLISHED_COUNT=0
+          SKIPPED_COUNT=0
+          
+          for extension_dir in packages/vscodium/*/; do
+            if [ -d "$extension_dir" ]; then
+              EXTENSION_NAME=$(basename "$extension_dir")
+              PACKAGE_PATH="$extension_dir/package.json"
+              
+              echo "::group::🔍 Checking Open VSX Registry for $EXTENSION_NAME"
+              
+              # Read extension info from source package.json
+              PUBLISHER=$(jq -r '.publisher' "$PACKAGE_PATH")
+              NAME=$(jq -r '.name' "$PACKAGE_PATH")
+              VERSION=$(jq -r '.version' "$PACKAGE_PATH")
+              
+              echo "📦 Extension: $PUBLISHER.$NAME v$VERSION"
+              
+              # Check current published version on Open VSX
+              CURRENT_VERSION=$(curl -s "https://open-vsx.org/api/$PUBLISHER/$NAME" | jq -r '.version' 2>/dev/null || echo "none")
+              
+              if [ "$CURRENT_VERSION" != "$VERSION" ]; then
+                echo "::notice::✅ Publishing $PUBLISHER.$NAME v$VERSION to Open VSX Registry (current: $CURRENT_VERSION)"
+                VSIX_FILE="dist/$PUBLISHER-vscodium-$EXTENSION_NAME-$VERSION.vsix"
+                ovsx publish "$VSIX_FILE"
+                echo "::notice::🎉 Successfully published $PUBLISHER.$NAME v$VERSION to Open VSX Registry"
+                ((PUBLISHED_COUNT++))
+              else
+                echo "::warning::⏭️ Skipping $PUBLISHER.$NAME - version $VERSION already published on Open VSX Registry"
+                ((SKIPPED_COUNT++))
+              fi
+              
+              echo "::endgroup::"
+            fi
+          done
+          
+          echo "::endgroup::"
+          echo "::notice::📊 Open VSX Registry Summary: $PUBLISHED_COUNT extensions published, $SKIPPED_COUNT skipped"
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+
       - name: Create GitHub Release
         id: create_release
         if: ${{ steps.version_update.outputs.tag != '' }}
@@ -114,3 +209,7 @@ jobs:
           asset_path: dist/${{ matrix.file }}
           asset_name: ${{ matrix.file }}
           asset_content_type: application/octet-stream
+
+      - name: Confirm upload
+        run: |
+          echo "::notice::📎 Successfully uploaded ${{ matrix.file }} to GitHub release"
