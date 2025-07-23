@@ -5,7 +5,7 @@ import * as vscode from 'vscode';
  * Your extension is activated the very first time the command is executed
  */
 export function activate(context: vscode.ExtensionContext) {
-    console.log('[templ-project-1753304780472] Golang Extension Pack extension is now active!');
+    console.log('[templ-project-1753304898228] Golang Extension Pack extension is now active!');
 
     // Apply settings when extension activates
     applySettings();
@@ -13,12 +13,12 @@ export function activate(context: vscode.ExtensionContext) {
     // Register commands
     const applySettingsCommand = vscode.commands.registerCommand('templ-project.golang-vscode.applySettings', () => {
         applySettings();
-        vscode.window.showInformationMessage('[templ-project-1753304780472] Golang Extension Pack settings applied!');
+        vscode.window.showInformationMessage('[templ-project-1753304898228] Golang Extension Pack settings applied!');
     });
 
     const resetSettingsCommand = vscode.commands.registerCommand('templ-project.golang-vscode.resetSettings', () => {
         resetSettings();
-        vscode.window.showInformationMessage('[templ-project-1753304780472] Golang Extension Pack settings reset!');
+        vscode.window.showInformationMessage('[templ-project-1753304898228] Golang Extension Pack settings reset!');
     });
 
     context.subscriptions.push(applySettingsCommand);
@@ -100,5 +100,5 @@ function resetSettings() {
  * This method is called when your extension is deactivated
  */
 export function deactivate() {
-    console.log('[templ-project-1753304780472] Golang Extension Pack extension is now deactivated!');
+    console.log('[templ-project-1753304898228] Golang Extension Pack extension is now deactivated!');
 }

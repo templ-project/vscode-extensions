@@ -1,4 +1,4 @@
-# [templ-project-1753304783359] Typescript Extension Pack
+# [templ-project-1753304900378] Typescript Extension Pack
 
 Essential TypeScript development environment for VSCode - comprehensive tooling for type-safe development
 
@@ -21,7 +21,7 @@ These extensions are essential for typescript development:
 ### Method 1: Install from Marketplace
 1. Open Vscode
 2. Go to Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-3. Search for "[templ-project-1753304783359] Typescript Extension Pack"
+3. Search for "[templ-project-1753304900378] Typescript Extension Pack"
 4. Click "Install"
 
 ### Method 2: Install via Command Line

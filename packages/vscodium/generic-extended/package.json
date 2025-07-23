@@ -1,8 +1,8 @@
 {
   "name": "generic-extended-vscodium-extension-pack",
-  "displayName": "[templ-project-1753304785116] Generic Extended Extension Pack",
+  "displayName": "[templ-project-1753304901915] Generic Extended Extension Pack",
   "description": "Extended developer tools for API development, containerization, and Git forge integration in VSCodium (Open VSX compatible)",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -110,11 +110,11 @@
     "commands": [
       {
         "command": "templ-project.generic-extended-vscodium.applySettings",
-        "title": "Apply [templ-project-1753304785116] Generic Extended Extension Pack Settings"
+        "title": "Apply [templ-project-1753304901915] Generic Extended Extension Pack Settings"
       },
       {
         "command": "templ-project.generic-extended-vscodium.resetSettings",
-        "title": "Reset [templ-project-1753304785116] Generic Extended Extension Pack Settings"
+        "title": "Reset [templ-project-1753304901915] Generic Extended Extension Pack Settings"
       }
     ]
   },
