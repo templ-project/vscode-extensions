@@ -1,8 +1,8 @@
 {
   "name": "generic-essential-vscodium-extension-pack",
-  "displayName": "[templ-project-1753308525930] Generic Essential Extension Pack",
+  "displayName": "[templ-project-1753308559073] Generic Essential Extension Pack",
   "description": "Essential productivity extensions for general development in VSCodium (JSON support built-in)",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -89,11 +89,11 @@
     "commands": [
       {
         "command": "templ-project.generic-essential-vscodium.applySettings",
-        "title": "Apply [templ-project-1753308525930] Generic Essential Extension Pack Settings"
+        "title": "Apply [templ-project-1753308559073] Generic Essential Extension Pack Settings"
       },
       {
         "command": "templ-project.generic-essential-vscodium.resetSettings",
-        "title": "Reset [templ-project-1753308525930] Generic Essential Extension Pack Settings"
+        "title": "Reset [templ-project-1753308559073] Generic Essential Extension Pack Settings"
       }
     ]
   },
