@@ -1,8 +1,8 @@
 {
   "name": "generic-extended-vscode-extension-pack",
-  "displayName": "[templ-project-1753303598888] Generic Extended Extension Pack",
+  "displayName": "[templ-project-1753303790413] Generic Extended Extension Pack",
   "description": "Extended developer tools for API development, containerization, and Git forge integration in VSCode",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -111,11 +111,11 @@
     "commands": [
       {
         "command": "templ-project.generic-extended-vscode.applySettings",
-        "title": "Apply [templ-project-1753303598888] Generic Extended Extension Pack Settings"
+        "title": "Apply [templ-project-1753303790413] Generic Extended Extension Pack Settings"
       },
       {
         "command": "templ-project.generic-extended-vscode.resetSettings",
-        "title": "Reset [templ-project-1753303598888] Generic Extended Extension Pack Settings"
+        "title": "Reset [templ-project-1753303790413] Generic Extended Extension Pack Settings"
       }
     ]
   },
