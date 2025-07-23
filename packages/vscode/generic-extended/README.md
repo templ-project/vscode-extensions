@@ -1,4 +1,4 @@
-# [templ-project-1753309652332] Generic Extended Extension Pack
+# [templ-project-1753309682239] Generic Extended Extension Pack
 
 Extended developer tools for API development, containerization, and Git forge integration in VSCode
 
@@ -35,7 +35,7 @@ These extensions provide extra functionality and convenience:
 ### Method 1: Install from Marketplace
 1. Open Vscode
 2. Go to Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-3. Search for "[templ-project-1753309652332] Generic Extended Extension Pack"
+3. Search for "[templ-project-1753309682239] Generic Extended Extension Pack"
 4. Click "Install"
 
 ### Method 2: Install via Command Line

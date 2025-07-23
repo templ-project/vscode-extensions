@@ -1,4 +1,4 @@
-# [templ-project-1753309659752] Javascript Extension Pack
+# [templ-project-1753309687745] Javascript Extension Pack
 
 Essential JavaScript development environment for VSCodium - runtime-agnostic tools using open-source alternatives
 
@@ -29,7 +29,7 @@ These extensions provide extra functionality and convenience:
 ### Method 1: Install from Marketplace
 1. Open Vscodium
 2. Go to Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-3. Search for "[templ-project-1753309659752] Javascript Extension Pack"
+3. Search for "[templ-project-1753309687745] Javascript Extension Pack"
 4. Click "Install"
 
 ### Method 2: Install via Command Line

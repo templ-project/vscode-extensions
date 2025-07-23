@@ -1,8 +1,8 @@
 {
   "name": "typescript-vscodium-extension-pack",
-  "displayName": "[templ-project-1753309661588] Typescript Extension Pack",
+  "displayName": "[templ-project-1753309689171] Typescript Extension Pack",
   "description": "Essential TypeScript development environment for VSCodium - comprehensive tooling for type-safe development using open-source alternatives",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -72,11 +72,11 @@
     "commands": [
       {
         "command": "templ-project.typescript-vscodium.applySettings",
-        "title": "Apply [templ-project-1753309661588] Typescript Extension Pack Settings"
+        "title": "Apply [templ-project-1753309689171] Typescript Extension Pack Settings"
       },
       {
         "command": "templ-project.typescript-vscodium.resetSettings",
-        "title": "Reset [templ-project-1753309661588] Typescript Extension Pack Settings"
+        "title": "Reset [templ-project-1753309689171] Typescript Extension Pack Settings"
       }
     ]
   },

@@ -1,8 +1,8 @@
 {
   "name": "javascript-vscode-extension-pack",
-  "displayName": "[templ-project-1753309654286] Javascript Extension Pack",
+  "displayName": "[templ-project-1753309683591] Javascript Extension Pack",
   "description": "Essential JavaScript development environment for VSCode - runtime-agnostic tools for modern JavaScript development",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -75,11 +75,11 @@
     "commands": [
       {
         "command": "templ-project.javascript-vscode.applySettings",
-        "title": "Apply [templ-project-1753309654286] Javascript Extension Pack Settings"
+        "title": "Apply [templ-project-1753309683591] Javascript Extension Pack Settings"
       },
       {
         "command": "templ-project.javascript-vscode.resetSettings",
-        "title": "Reset [templ-project-1753309654286] Javascript Extension Pack Settings"
+        "title": "Reset [templ-project-1753309683591] Javascript Extension Pack Settings"
       }
     ]
   },
