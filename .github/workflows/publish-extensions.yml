@@ -64,7 +64,7 @@ jobs:
         id: dist_files
         if: ${{ steps.version_update.outputs.tag != '' }}
         run: |
-          echo "files=$(ls dist | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+          echo "files=$(ls dist | jq -R -s -c 'split("\n")[:-1]')" | tee -a $GITHUB_OUTPUT
 
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
