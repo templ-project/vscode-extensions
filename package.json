@@ -1,6 +1,6 @@
 {
   "name": "vscode-extensions",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "VSCode Extension Packs for different development environments",
   "main": "scripts/generate-all.js",
   "scripts": {
