@@ -1,4 +1,4 @@
-# [templ-project-1753308330736] Generic Essential Extension Pack
+# [templ-project-1753308525930] Generic Essential Extension Pack
 
 Essential productivity extensions for general development in VSCodium (JSON support built-in)
 
@@ -37,7 +37,7 @@ These extensions provide extra functionality and convenience:
 ### Method 1: Install from Marketplace
 1. Open Vscodium
 2. Go to Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-3. Search for "[templ-project-1753308330736] Generic Essential Extension Pack"
+3. Search for "[templ-project-1753308525930] Generic Essential Extension Pack"
 4. Click "Install"
 
 ### Method 2: Install via Command Line

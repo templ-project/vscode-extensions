@@ -1,6 +1,6 @@
 {
   "name": "python-vscode-extension-pack",
-  "displayName": "[templ-project-1753308329381] Python Extension Pack",
+  "displayName": "[templ-project-1753308524053] Python Extension Pack",
   "description": "Essential Python development environment for VSCode - comprehensive tooling for modern Python development, data science, and web applications",
   "version": "1.0.9",
   "publisher": "templ-project",
@@ -103,11 +103,11 @@
     "commands": [
       {
         "command": "templ-project.python-vscode.applySettings",
-        "title": "Apply [templ-project-1753308329381] Python Extension Pack Settings"
+        "title": "Apply [templ-project-1753308524053] Python Extension Pack Settings"
       },
       {
         "command": "templ-project.python-vscode.resetSettings",
-        "title": "Reset [templ-project-1753308329381] Python Extension Pack Settings"
+        "title": "Reset [templ-project-1753308524053] Python Extension Pack Settings"
       }
     ]
   },

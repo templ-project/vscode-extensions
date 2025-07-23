@@ -93,7 +93,7 @@ jobs:
               
               if [ "$CURRENT_VERSION" != "$VERSION" ]; then
                 echo "::notice::✅ Publishing $PUBLISHER.$NAME v$VERSION to VS Code Marketplace (current: $CURRENT_VERSION)"
-                VSIX_FILE="dist/$EXTENSION_NAME-vscode-$VERSION.vsix"
+                VSIX_FILE="dist/$EXTENSION_NAME-vscode-extension-pack-$VERSION.vsix"
                 vsce publish --packagePath "$VSIX_FILE"
                 echo "::notice::🎉 Successfully published $PUBLISHER.$NAME v$VERSION to VS Code Marketplace"
                 ((PUBLISHED_COUNT++))
@@ -147,7 +147,7 @@ jobs:
               
               if [ "$CURRENT_VERSION" != "$VERSION" ]; then
                 echo "::notice::✅ Publishing $PUBLISHER.$NAME v$VERSION to Open VSX Registry (current: $CURRENT_VERSION)"
-                VSIX_FILE="dist/$EXTENSION_NAME-vscodium-$VERSION.vsix"
+                VSIX_FILE="dist/$EXTENSION_NAME-vscode-extension-pack-$VERSION.vsix"
                 ovsx publish "$VSIX_FILE"
                 echo "::notice::🎉 Successfully published $PUBLISHER.$NAME v$VERSION to Open VSX Registry"
                 ((PUBLISHED_COUNT++))
