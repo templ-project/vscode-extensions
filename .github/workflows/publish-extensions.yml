@@ -60,11 +60,30 @@ jobs:
           draft: false
           prerelease: false
 
+      - name: Generate SHA files
+        if: ${{ steps.version_update.outputs.tag != '' }}
+        run: |
+          cd dist
+          for file in *; do
+            if [ -f "$file" ]; then
+              sha256sum "$file" > "$file.sha256"
+            fi
+          done
+          cd ..
+
       - name: List dist files
         id: dist_files
         if: ${{ steps.version_update.outputs.tag != '' }}
         run: |
-          echo "files=$(ls dist | jq -R -s -c 'split("\n")[:-1]')" | tee -a $GITHUB_OUTPUT
+          echo "files=$(ls dist | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+
+      - name: Upload dist artifacts
+        if: ${{ steps.version_update.outputs.tag != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-files
+          path: dist/
+          retention-days: 1
 
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
@@ -79,8 +98,12 @@ jobs:
       matrix:
         file: ${{ fromJson(needs.build-version-publish.outputs.dist_files) }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Download specific file
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-files
+          path: dist/
+          pattern: ${{ matrix.file }}
 
       - name: Upload release asset
         uses: actions/upload-release-asset@v1
