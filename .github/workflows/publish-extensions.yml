@@ -75,8 +75,15 @@ jobs:
               
               echo "📦 Extension: $PUBLISHER.$NAME v$VERSION"
               
-              # Check current published version
-              CURRENT_VERSION=$(vsce show "$PUBLISHER.$NAME" --json 2>/dev/null | jq -r '.versions[0].version' || echo "none")
+              # Check current published version (handle first-time publishing)
+              echo "🔍 Checking if extension exists on VS Code Marketplace..."
+              if vsce show "$PUBLISHER.$NAME" --json >/dev/null 2>&1; then
+                CURRENT_VERSION=$(vsce show "$PUBLISHER.$NAME" --json | jq -r '.versions[0].version')
+                echo "✅ Found existing version: $CURRENT_VERSION"
+              else
+                CURRENT_VERSION="none"
+                echo "🆕 Extension not found - this will be the first publication"
+              fi
               
               if [ "$CURRENT_VERSION" != "$VERSION" ]; then
                 echo "::notice::✅ Publishing $PUBLISHER.$NAME v$VERSION to VS Code Marketplace (current: $CURRENT_VERSION)"
@@ -120,8 +127,17 @@ jobs:
               
               echo "📦 Extension: $PUBLISHER.$NAME v$VERSION"
               
-              # Check current published version on Open VSX
-              CURRENT_VERSION=$(curl -s "https://open-vsx.org/api/$PUBLISHER/$NAME" | jq -r '.version' 2>/dev/null || echo "none")
+              # Check current published version on Open VSX (handle first-time publishing)
+              echo "🔍 Checking if extension exists on Open VSX Registry..."
+              HTTP_STATUS=$(curl -s -o /tmp/ovsx_response.json -w "%{http_code}" "https://open-vsx.org/api/$PUBLISHER/$NAME")
+              if [ "$HTTP_STATUS" = "200" ]; then
+                CURRENT_VERSION=$(jq -r '.version' /tmp/ovsx_response.json)
+                echo "✅ Found existing version: $CURRENT_VERSION"
+              else
+                CURRENT_VERSION="none"
+                echo "🆕 Extension not found - this will be the first publication"
+              fi
+              rm -f /tmp/ovsx_response.json
               
               if [ "$CURRENT_VERSION" != "$VERSION" ]; then
                 echo "::notice::✅ Publishing $PUBLISHER.$NAME v$VERSION to Open VSX Registry (current: $CURRENT_VERSION)"
