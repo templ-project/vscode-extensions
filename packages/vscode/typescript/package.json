@@ -1,8 +1,8 @@
 {
   "name": "typescript-vscode-extension-pack",
-  "displayName": "[templ-project-1753307915621] Typescript Extension Pack",
+  "displayName": "[templ-project-1753307986473] Typescript Extension Pack",
   "description": "Essential TypeScript development environment for VSCode - comprehensive tooling for type-safe development",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -74,11 +74,11 @@
     "commands": [
       {
         "command": "templ-project.typescript-vscode.applySettings",
-        "title": "Apply [templ-project-1753307915621] Typescript Extension Pack Settings"
+        "title": "Apply [templ-project-1753307986473] Typescript Extension Pack Settings"
       },
       {
         "command": "templ-project.typescript-vscode.resetSettings",
-        "title": "Reset [templ-project-1753307915621] Typescript Extension Pack Settings"
+        "title": "Reset [templ-project-1753307986473] Typescript Extension Pack Settings"
       }
     ]
   },
