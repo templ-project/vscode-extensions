@@ -1,4 +1,4 @@
-# [templ-project-1753303254021] Python Extension Pack
+# [templ-project-1753303362950] Python Extension Pack
 
 Essential Python development environment for VSCode - comprehensive tooling for modern Python development, data science, and web applications
 
@@ -29,7 +29,7 @@ These extensions provide extra functionality and convenience:
 ### Method 1: Install from Marketplace
 1. Open Vscode
 2. Go to Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-3. Search for "[templ-project-1753303254021] Python Extension Pack"
+3. Search for "[templ-project-1753303362950] Python Extension Pack"
 4. Click "Install"
 
 ### Method 2: Install via Command Line
