@@ -1,8 +1,8 @@
 {
   "name": "python-vscodium-extension-pack",
-  "displayName": "[templ-project-1753308304358] Python Extension Pack",
+  "displayName": "[templ-project-1753308333612] Python Extension Pack",
   "description": "Essential Python development extensions for VSCodium, including language support, debugging, formatting, and testing tools",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -106,11 +106,11 @@
     "commands": [
       {
         "command": "templ-project.python-vscodium.applySettings",
-        "title": "Apply [templ-project-1753308304358] Python Extension Pack Settings"
+        "title": "Apply [templ-project-1753308333612] Python Extension Pack Settings"
       },
       {
         "command": "templ-project.python-vscodium.resetSettings",
-        "title": "Reset [templ-project-1753308304358] Python Extension Pack Settings"
+        "title": "Reset [templ-project-1753308333612] Python Extension Pack Settings"
       }
     ]
   },
