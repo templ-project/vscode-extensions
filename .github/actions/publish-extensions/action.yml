@@ -1,0 +1,199 @@
+name: 'Publish VS Code Extensions'
+description: 'Publishes VS Code extensions to marketplace with version checking and robust error handling'
+inputs:
+  marketplace:
+    description: 'Target marketplace (vscode or vscodium)'
+    required: true
+  packages-path:
+    description: 'Path to packages directory (e.g., packages/vscode or packages/vscodium)'
+    required: true
+  dist-path:
+    description: 'Path to dist directory containing .vsix files'
+    required: true
+    default: 'dist'
+  vsce-token:
+    description: 'VS Code Marketplace Personal Access Token'
+    required: false
+  ovsx-token:
+    description: 'Open VSX Registry Personal Access Token'
+    required: false
+
+outputs:
+  published-count:
+    description: 'Number of extensions successfully published'
+    value: ${{ steps.publish.outputs.published-count }}
+  skipped-count:
+    description: 'Number of extensions skipped'
+    value: ${{ steps.publish.outputs.skipped-count }}
+  summary:
+    description: 'Publishing summary message'
+    value: ${{ steps.publish.outputs.summary }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Validate inputs
+      shell: bash
+      run: |
+        if [ "${{ inputs.marketplace }}" != "vscode" ] && [ "${{ inputs.marketplace }}" != "vscodium" ]; then
+          echo "::error::Invalid marketplace. Must be 'vscode' or 'vscodium'"
+          exit 1
+        fi
+        
+        if [ "${{ inputs.marketplace }}" == "vscode" ] && [ -z "${{ inputs.vsce-token }}" ]; then
+          echo "::error::vsce-token is required for VS Code Marketplace"
+          exit 1
+        fi
+        
+        if [ "${{ inputs.marketplace }}" == "vscodium" ] && [ -z "${{ inputs.ovsx-token }}" ]; then
+          echo "::error::ovsx-token is required for Open VSX Registry"
+          exit 1
+        fi
+
+    - name: Publish extensions
+      id: publish
+      shell: bash
+      env:
+        VSCE_PAT: ${{ inputs.vsce-token }}
+        OVSX_PAT: ${{ inputs.ovsx-token }}
+      run: |
+        MARKETPLACE="${{ inputs.marketplace }}"
+        PACKAGES_PATH="${{ inputs.packages-path }}"
+        DIST_PATH="${{ inputs.dist-path }}"
+        
+        if [ "$MARKETPLACE" == "vscode" ]; then
+          MARKETPLACE_NAME="VS Code Marketplace"
+          MARKETPLACE_EMOJI="🟦"
+        else
+          MARKETPLACE_NAME="Open VSX Registry"
+          MARKETPLACE_EMOJI="🟨"
+        fi
+        
+        echo "::group::🚀 Publishing to $MARKETPLACE_NAME"
+        
+        PUBLISHED_COUNT=0
+        SKIPPED_COUNT=0
+        
+        # Check if packages directory exists
+        if [ ! -d "$PACKAGES_PATH" ]; then
+          echo "::error::📁 Packages directory not found: $PACKAGES_PATH"
+          exit 1
+        fi
+        
+        for extension_dir in "$PACKAGES_PATH"/*/; do
+          if [ -d "$extension_dir" ]; then
+            EXTENSION_NAME=$(basename "$extension_dir")
+            PACKAGE_PATH="$extension_dir/package.json"
+            
+            echo "::group::🔍 Checking $MARKETPLACE_NAME for $EXTENSION_NAME"
+            
+            # Read extension info from source package.json
+            if ! PUBLISHER=$(jq -r '.publisher' "$PACKAGE_PATH" 2>/dev/null); then
+              echo "::error::❌ Could not read publisher from $PACKAGE_PATH"
+              echo "::endgroup::"
+              continue
+            fi
+            if ! NAME=$(jq -r '.name' "$PACKAGE_PATH" 2>/dev/null); then
+              echo "::error::❌ Could not read name from $PACKAGE_PATH"
+              echo "::endgroup::"
+              continue
+            fi
+            if ! VERSION=$(jq -r '.version' "$PACKAGE_PATH" 2>/dev/null); then
+              echo "::error::❌ Could not read version from $PACKAGE_PATH"
+              echo "::endgroup::"
+              continue
+            fi
+            
+            echo "📦 Extension: $PUBLISHER.$NAME v$VERSION"
+            
+            # Check current published version
+            echo "🔍 Checking if extension exists on $MARKETPLACE_NAME..."
+            
+            if [ "$MARKETPLACE" == "vscode" ]; then
+              # VS Code Marketplace check
+              VSCE_OUTPUT=$(vsce show "$PUBLISHER.$NAME" --json 2>&1)
+              VSCE_EXIT_CODE=$?
+              
+              if [ $VSCE_EXIT_CODE -eq 0 ] && echo "$VSCE_OUTPUT" | jq empty >/dev/null 2>&1; then
+                CURRENT_VERSION=$(echo "$VSCE_OUTPUT" | jq -r '.versions[0].version')
+                echo "✅ Found existing version: $CURRENT_VERSION"
+              else
+                CURRENT_VERSION="none"
+                echo "🆕 Extension not found or error occurred - treating as first publication"
+                if [ $VSCE_EXIT_CODE -ne 0 ]; then
+                  echo "📝 vsce show exit code: $VSCE_EXIT_CODE"
+                fi
+              fi
+            else
+              # Open VSX Registry check
+              HTTP_STATUS=$(curl -s -o /tmp/ovsx_response.json -w "%{http_code}" "https://open-vsx.org/api/$PUBLISHER/$NAME")
+              if [ "$HTTP_STATUS" = "200" ]; then
+                CURRENT_VERSION=$(jq -r '.version' /tmp/ovsx_response.json)
+                echo "✅ Found existing version: $CURRENT_VERSION"
+              else
+                CURRENT_VERSION="none"
+                echo "🆕 Extension not found - this will be the first publication"
+              fi
+              rm -f /tmp/ovsx_response.json
+            fi
+            
+            # Publish if version is different
+            if [ "$CURRENT_VERSION" != "$VERSION" ]; then
+              echo "::notice::✅ Publishing $PUBLISHER.$NAME v$VERSION to $MARKETPLACE_NAME (current: $CURRENT_VERSION)"
+              
+              # Find VSIX file with multiple naming patterns based on marketplace
+              VSIX_CANDIDATES=(
+                "$DIST_PATH/$EXTENSION_NAME-$MARKETPLACE-extension-pack-$VERSION.vsix"
+                "$DIST_PATH/$PUBLISHER-$MARKETPLACE-$EXTENSION_NAME-$VERSION.vsix"
+                "$DIST_PATH/$EXTENSION_NAME-$MARKETPLACE-$VERSION.vsix"
+              )
+              
+              VSIX_FILE=""
+              for candidate in "${VSIX_CANDIDATES[@]}"; do
+                if [ -f "$candidate" ]; then
+                  VSIX_FILE="$candidate"
+                  echo "📁 Found VSIX file: $VSIX_FILE"
+                  break
+                fi
+              done
+              
+              if [ -z "$VSIX_FILE" ]; then
+                echo "::error::❌ Could not find VSIX file for $PUBLISHER.$NAME"
+                echo "::error::📋 Tried: ${VSIX_CANDIDATES[*]}"
+                echo "::error::📂 Available files in $DIST_PATH/:"
+                ls -la "$DIST_PATH/" || echo "$DIST_PATH/ directory not found"
+                ((SKIPPED_COUNT++))
+              else
+                # Publish to appropriate marketplace
+                if [ "$MARKETPLACE" == "vscode" ]; then
+                  vsce publish --packagePath "$VSIX_FILE"
+                else
+                  ovsx publish "$VSIX_FILE"
+                fi
+                
+                if [ $? -eq 0 ]; then
+                  echo "::notice::🎉 Successfully published $PUBLISHER.$NAME v$VERSION to $MARKETPLACE_NAME"
+                  ((PUBLISHED_COUNT++))
+                else
+                  echo "::error::❌ Failed to publish $PUBLISHER.$NAME v$VERSION"
+                  ((SKIPPED_COUNT++))
+                fi
+              fi
+            else
+              echo "::warning::⏭️ Skipping $PUBLISHER.$NAME - version $VERSION already published on $MARKETPLACE_NAME"
+              ((SKIPPED_COUNT++))
+            fi
+            
+            echo "::endgroup::"
+          fi
+        done
+        
+        echo "::endgroup::"
+        
+        SUMMARY="$MARKETPLACE_EMOJI $MARKETPLACE_NAME Summary: $PUBLISHED_COUNT extensions published, $SKIPPED_COUNT skipped"
+        echo "::notice::📊 $SUMMARY"
+        
+        # Set outputs
+        echo "published-count=$PUBLISHED_COUNT" >> $GITHUB_OUTPUT
+        echo "skipped-count=$SKIPPED_COUNT" >> $GITHUB_OUTPUT
+        echo "summary=$SUMMARY" >> $GITHUB_OUTPUT
