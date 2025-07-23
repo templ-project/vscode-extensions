@@ -1,4 +1,4 @@
-# [templ-project-1753307478151] Golang Extension Pack
+# [templ-project-1753307538243] Golang Extension Pack
 
 Essential Go development environment for VSCodium - comprehensive tooling for modern Go development using open-source alternatives
 
@@ -27,7 +27,7 @@ These extensions provide extra functionality and convenience:
 ### Method 1: Install from Marketplace
 1. Open Vscodium
 2. Go to Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-3. Search for "[templ-project-1753307478151] Golang Extension Pack"
+3. Search for "[templ-project-1753307538243] Golang Extension Pack"
 4. Click "Install"
 
 ### Method 2: Install via Command Line
