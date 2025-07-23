@@ -1,6 +1,6 @@
 {
   "name": "generic-essential-vscode-extension-pack",
-  "displayName": "[templ-project-1753301999730] Generic Essential Extension Pack",
+  "displayName": "[templ-project-1753303249884] Generic Essential Extension Pack",
   "description": "Essential productivity extensions for general development in VSCode",
   "version": "1.0.2",
   "publisher": "templ-project",
@@ -89,11 +89,11 @@
     "commands": [
       {
         "command": "templ-project.generic-essential-vscode.applySettings",
-        "title": "Apply [templ-project-1753301999730] Generic Essential Extension Pack Settings"
+        "title": "Apply [templ-project-1753303249884] Generic Essential Extension Pack Settings"
       },
       {
         "command": "templ-project.generic-essential-vscode.resetSettings",
-        "title": "Reset [templ-project-1753301999730] Generic Essential Extension Pack Settings"
+        "title": "Reset [templ-project-1753303249884] Generic Essential Extension Pack Settings"
       }
     ]
   },
