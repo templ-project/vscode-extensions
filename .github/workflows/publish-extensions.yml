@@ -77,12 +77,18 @@ jobs:
               
               # Check current published version (handle first-time publishing)
               echo "🔍 Checking if extension exists on VS Code Marketplace..."
-              if vsce show "$PUBLISHER.$NAME" --json >/dev/null 2>&1; then
-                CURRENT_VERSION=$(vsce show "$PUBLISHER.$NAME" --json | jq -r '.versions[0].version')
+              VSCE_OUTPUT=$(vsce show "$PUBLISHER.$NAME" --json 2>&1)
+              VSCE_EXIT_CODE=$?
+              
+              if [ $VSCE_EXIT_CODE -eq 0 ] && echo "$VSCE_OUTPUT" | jq empty >/dev/null 2>&1; then
+                CURRENT_VERSION=$(echo "$VSCE_OUTPUT" | jq -r '.versions[0].version')
                 echo "✅ Found existing version: $CURRENT_VERSION"
               else
                 CURRENT_VERSION="none"
-                echo "🆕 Extension not found - this will be the first publication"
+                echo "🆕 Extension not found or error occurred - treating as first publication"
+                if [ $VSCE_EXIT_CODE -ne 0 ]; then
+                  echo "📝 vsce show exit code: $VSCE_EXIT_CODE"
+                fi
               fi
               
               if [ "$CURRENT_VERSION" != "$VERSION" ]; then

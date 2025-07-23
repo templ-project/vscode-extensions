@@ -1,4 +1,4 @@
-# [templ-project-1753307985147] Javascript Extension Pack
+# [templ-project-1753308297971] Javascript Extension Pack
 
 Essential JavaScript development environment for VSCode - runtime-agnostic tools for modern JavaScript development
 
@@ -30,7 +30,7 @@ These extensions provide extra functionality and convenience:
 ### Method 1: Install from Marketplace
 1. Open Vscode
 2. Go to Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-3. Search for "[templ-project-1753307985147] Javascript Extension Pack"
+3. Search for "[templ-project-1753308297971] Javascript Extension Pack"
 4. Click "Install"
 
 ### Method 2: Install via Command Line
