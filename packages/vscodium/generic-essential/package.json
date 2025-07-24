@@ -2,7 +2,7 @@
   "name": "tpl-vscodium-generic-essential",
   "displayName": "Templ Project Generic Essential Extension Pack",
   "description": "Essential productivity extensions for general development in VSCodium (JSON support built-in)",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "publisher": "templ-project",
   "repository": {
     "type": "git",

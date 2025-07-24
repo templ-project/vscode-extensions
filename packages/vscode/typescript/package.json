@@ -2,7 +2,7 @@
   "name": "tpl-vscode-typescript",
   "displayName": "Templ Project Typescript Extension Pack",
   "description": "Essential TypeScript development environment for VSCode - comprehensive tooling for type-safe development",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
