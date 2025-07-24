@@ -57,5 +57,5 @@ runs:
         VSCE_PAT: ${{ inputs.vsce-token }}
         OVSX_PAT: ${{ inputs.ovsx-token }}
       run: |
-        chmod +x scripts/publish.sh
+        chmod +x scripts/publish-extensions.sh
         ./scripts/publish-extensions.sh "${{ inputs.marketplace }}" "${{ inputs.packages-path }}" "${{ inputs.dist-path }}"
