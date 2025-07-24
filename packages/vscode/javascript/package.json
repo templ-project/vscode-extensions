@@ -1,6 +1,6 @@
 {
   "name": "tpl-vscode-javascript",
-  "displayName": "Templ Project Javascript Extension Pack",
+  "displayName": "Templ Project Javascript Extension Pack - ",
   "description": "Essential JavaScript development environment for VSCode - runtime-agnostic tools for modern JavaScript development",
   "version": "1.0.12",
   "publisher": "templ-project",

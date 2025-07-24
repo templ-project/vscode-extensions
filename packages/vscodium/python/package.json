@@ -1,6 +1,6 @@
 {
   "name": "tpl-vscodium-python",
-  "displayName": "Templ Project Python Extension Pack",
+  "displayName": "Templ Project Python Extension Pack - ",
   "description": "Essential Python development extensions for VSCodium, including language support, debugging, formatting, and testing tools",
   "version": "1.0.12",
   "publisher": "templ-project",

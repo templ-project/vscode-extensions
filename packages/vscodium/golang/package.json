@@ -1,6 +1,6 @@
 {
   "name": "tpl-vscodium-golang",
-  "displayName": "Templ Project Golang Extension Pack",
+  "displayName": "Templ Project Golang Extension Pack - ",
   "description": "Essential Go development environment for VSCodium - comprehensive tooling for modern Go development using open-source alternatives",
   "version": "1.0.12",
   "publisher": "templ-project",
