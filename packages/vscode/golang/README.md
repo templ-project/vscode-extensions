@@ -1,4 +1,4 @@
-# [templ-project-1753309682909] Golang Extension Pack
+# Templ Project Golang Extension Pack
 
 Essential Go development environment for VSCode - comprehensive tooling for modern Go development
 
@@ -30,7 +30,7 @@ These extensions provide extra functionality and convenience:
 ### Method 1: Install from Marketplace
 1. Open Vscode
 2. Go to Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-3. Search for "[templ-project-1753309682909] Golang Extension Pack"
+3. Search for "Templ Project Golang Extension Pack"
 4. Click "Install"
 
 ### Method 2: Install via Command Line

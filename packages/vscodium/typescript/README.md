@@ -1,4 +1,4 @@
-# [templ-project-1753309689171] Typescript Extension Pack
+# Templ Project Typescript Extension Pack
 
 Essential TypeScript development environment for VSCodium - comprehensive tooling for type-safe development using open-source alternatives
 
@@ -20,7 +20,7 @@ These extensions are essential for typescript development:
 ### Method 1: Install from Marketplace
 1. Open Vscodium
 2. Go to Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-3. Search for "[templ-project-1753309689171] Typescript Extension Pack"
+3. Search for "Templ Project Typescript Extension Pack"
 4. Click "Install"
 
 ### Method 2: Install via Command Line

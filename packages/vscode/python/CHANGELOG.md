@@ -1,6 +1,6 @@
 # Change Log
 
-## [1.0.0] - 2025-07-23
+## [1.0.0] - 2025-07-24
 
 ### Added
 - Initial release of python extension pack for vscode
