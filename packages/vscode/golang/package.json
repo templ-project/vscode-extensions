@@ -1,6 +1,6 @@
 {
   "name": "tpl-vscode-golang",
-  "displayName": "Templ Project Golang Extension Pack - ",
+  "displayName": "Templ Project Golang Extension Pack",
   "description": "Essential Go development environment for VSCode - comprehensive tooling for modern Go development",
   "version": "1.0.13",
   "publisher": "templ-project",

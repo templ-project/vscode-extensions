@@ -1,6 +1,6 @@
 {
   "name": "tpl-vscodium-javascript",
-  "displayName": "Templ Project Javascript Extension Pack - ",
+  "displayName": "Templ Project Javascript Extension Pack",
   "description": "Essential JavaScript development environment for VSCodium - runtime-agnostic tools using open-source alternatives",
   "version": "1.0.13",
   "publisher": "templ-project",
