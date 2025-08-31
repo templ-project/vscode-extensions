@@ -2,7 +2,7 @@
   "name": "tpl-vscode-generic-essential",
   "displayName": "Templ Project Generic Essential Extension Pack",
   "description": "Essential productivity extensions for general development in VSCode",
-  "version": "1.0.14",
+  "version": "1.1.0",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
