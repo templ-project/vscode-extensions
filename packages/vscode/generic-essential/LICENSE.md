@@ -91,6 +91,16 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Publisher: darkriszty
   - License: MIT
   - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;darkriszty.markdown-table-prettify)
+- **Markdown Preview Mermaid Support** (`bierner.markdown-mermaid`)
+  - Description: Adds Mermaid diagram and flowchart support to VS Code&#x27;s builtin markdown preview
+  - Publisher: Matt Bierner
+  - License: MIT
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;yzhang.markdown-all-in-one)
+- **Mermaid Markdown Syntax Highlighting** (`bpruitt-goddard.mermaid-markdown-syntax-highlighting`)
+  - Description: Markdown syntax support for the Mermaid charting language
+  - Publisher: Brian Pruitt-Goddard
+  - License: MIT
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;bpruitt-goddard.mermaid-markdown-syntax-highlighting)
 - **Even Better TOML** (`tamasfe.even-better-toml`)
   - Description: Fully-featured TOML support with syntax highlighting, validation, formatting, and schema support
   - Publisher: tamasfe

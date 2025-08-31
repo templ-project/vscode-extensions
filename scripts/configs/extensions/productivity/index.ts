@@ -90,6 +90,26 @@ export const markdownAllInOne: Extension = {
   why_required: "Comprehensive Markdown editing with table of contents, shortcuts, and preview"
 };
 
+export const markdownMermaid: Extension = {
+  id: "bierner.markdown-mermaid",
+  name: "Markdown Preview Mermaid Support",
+  description: "Adds Mermaid diagram and flowchart support to VS Code's builtin markdown preview",
+  publisher: "Matt Bierner",
+  license: "MIT",
+  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one",
+  why_required: "The need to view Mermaid diagrams and flowcharts directly within markdown files"
+}
+
+export const markdownWermaidSyntax: Extension = {
+  id: "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
+  name: "Mermaid Markdown Syntax Highlighting",
+  description: "Markdown syntax support for the Mermaid charting language",
+  publisher: "Brian Pruitt-Goddard",
+  license: "MIT",
+  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=bpruitt-goddard.mermaid-markdown-syntax-highlighting",
+  why_required: "The need to view Mermaid Syntax when working in Markdown files"
+}
+
 export const markdownlint: Extension = {
   id: "davidanson.vscode-markdownlint",
   name: "markdownlint",

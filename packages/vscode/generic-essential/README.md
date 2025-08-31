@@ -4,9 +4,9 @@ Essential productivity extensions for general development in VSCode
 
 ## 📦 What's Included
 
-This extension pack includes **16 carefully selected extensions** to enhance your generic-essential development experience in vscode.
+This extension pack includes **18 carefully selected extensions** to enhance your generic-essential development experience in vscode.
 
-### ✅ Core Extensions (15)
+### ✅ Core Extensions (17)
 
 These extensions are essential for generic-essential development:
 
@@ -23,6 +23,8 @@ These extensions are essential for generic-essential development:
 - **[Markdown All in One](https://marketplace.visualstudio.com/items?itemName&#x3D;yzhang.markdown-all-in-one)** - All you need to write Markdown (keyboard shortcuts, table of contents, auto preview and more)
 - **[markdownlint](https://marketplace.visualstudio.com/items?itemName&#x3D;davidanson.vscode-markdownlint)** - Markdown linting and style checking for Visual Studio Code
 - **[Markdown Table Prettifier](https://marketplace.visualstudio.com/items?itemName&#x3D;darkriszty.markdown-table-prettify)** - Transforms markdown tables to be more readable
+- **[Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName&#x3D;yzhang.markdown-all-in-one)** - Adds Mermaid diagram and flowchart support to VS Code&#x27;s builtin markdown preview
+- **[Mermaid Markdown Syntax Highlighting](https://marketplace.visualstudio.com/items?itemName&#x3D;bpruitt-goddard.mermaid-markdown-syntax-highlighting)** - Markdown syntax support for the Mermaid charting language
 - **[Even Better TOML](https://marketplace.visualstudio.com/items?itemName&#x3D;tamasfe.even-better-toml)** - Fully-featured TOML support with syntax highlighting, validation, formatting, and schema support
 - **[YAML](https://marketplace.visualstudio.com/items?itemName&#x3D;redhat.vscode-yaml)** - YAML language support with schema validation
 
@@ -140,6 +142,8 @@ After installation, you may want to configure some settings for optimal generic-
 | [Markdown All in One](https://marketplace.visualstudio.com/items?itemName&#x3D;yzhang.markdown-all-in-one) | Yu Zhang | All you need to write Markdown (keyboard shortcuts, table of contents, auto preview and more) |
 | [markdownlint](https://marketplace.visualstudio.com/items?itemName&#x3D;davidanson.vscode-markdownlint) | David Anson | Markdown linting and style checking for Visual Studio Code |
 | [Markdown Table Prettifier](https://marketplace.visualstudio.com/items?itemName&#x3D;darkriszty.markdown-table-prettify) | darkriszty | Transforms markdown tables to be more readable |
+| [Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName&#x3D;yzhang.markdown-all-in-one) | Matt Bierner | Adds Mermaid diagram and flowchart support to VS Code&#x27;s builtin markdown preview |
+| [Mermaid Markdown Syntax Highlighting](https://marketplace.visualstudio.com/items?itemName&#x3D;bpruitt-goddard.mermaid-markdown-syntax-highlighting) | Brian Pruitt-Goddard | Markdown syntax support for the Mermaid charting language |
 | [Even Better TOML](https://marketplace.visualstudio.com/items?itemName&#x3D;tamasfe.even-better-toml) | tamasfe | Fully-featured TOML support with syntax highlighting, validation, formatting, and schema support |
 | [YAML](https://marketplace.visualstudio.com/items?itemName&#x3D;redhat.vscode-yaml) | Red Hat | YAML language support with schema validation |
 | [Trailing Spaces](https://marketplace.visualstudio.com/items?itemName&#x3D;shardulm94.trailing-spaces) | Shardul Mahadik | Highlight trailing spaces and delete them in a flash |
@@ -171,6 +175,8 @@ This extension pack is licensed under the **MIT License** - see [LICENSE.md](htt
 | [Markdown All in One](https://marketplace.visualstudio.com/items?itemName&#x3D;yzhang.markdown-all-in-one) | Yu Zhang | MIT | All you need to write Markdown (keyboard shortcuts, table of contents, auto preview and more) |
 | [markdownlint](https://marketplace.visualstudio.com/items?itemName&#x3D;davidanson.vscode-markdownlint) | David Anson | MIT | Markdown linting and style checking for Visual Studio Code |
 | [Markdown Table Prettifier](https://marketplace.visualstudio.com/items?itemName&#x3D;darkriszty.markdown-table-prettify) | darkriszty | MIT | Transforms markdown tables to be more readable |
+| [Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName&#x3D;yzhang.markdown-all-in-one) | Matt Bierner | MIT | Adds Mermaid diagram and flowchart support to VS Code&#x27;s builtin markdown preview |
+| [Mermaid Markdown Syntax Highlighting](https://marketplace.visualstudio.com/items?itemName&#x3D;bpruitt-goddard.mermaid-markdown-syntax-highlighting) | Brian Pruitt-Goddard | MIT | Markdown syntax support for the Mermaid charting language |
 | [Even Better TOML](https://marketplace.visualstudio.com/items?itemName&#x3D;tamasfe.even-better-toml) | tamasfe | MIT | Fully-featured TOML support with syntax highlighting, validation, formatting, and schema support |
 | [YAML](https://marketplace.visualstudio.com/items?itemName&#x3D;redhat.vscode-yaml) | Red Hat | MIT | YAML language support with schema validation |
 | [Trailing Spaces](https://marketplace.visualstudio.com/items?itemName&#x3D;shardulm94.trailing-spaces) | Shardul Mahadik | MIT | Highlight trailing spaces and delete them in a flash |
@@ -187,8 +193,8 @@ Found an issue or want to suggest an extension? Please [open an issue](https://g
 
 ## 📊 Extension Pack Stats
 
-- **Total Extensions**: 16
-- **Required Extensions**: 15
+- **Total Extensions**: 18
+- **Required Extensions**: 17
 - **Optional Extensions**: 1
 - **Target IDE**: vscode
 - **Language Focus**: generic-essential

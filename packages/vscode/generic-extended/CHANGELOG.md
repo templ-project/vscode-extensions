@@ -1,6 +1,6 @@
 # Change Log
 
-## [1.0.0] - 2025-07-24
+## [1.0.0] - 2025-08-31
 
 ### Added
 - Initial release of generic-extended extension pack for vscode

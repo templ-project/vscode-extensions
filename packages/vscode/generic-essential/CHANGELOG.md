@@ -1,10 +1,10 @@
 # Change Log
 
-## [1.0.0] - 2025-07-24
+## [1.0.0] - 2025-08-31
 
 ### Added
 - Initial release of generic-essential extension pack for vscode
-- 15 required extensions
+- 17 required extensions
 - 1 optional extensions
 
 ### Extensions Included
@@ -23,6 +23,8 @@
 - [Markdown All in One](https://marketplace.visualstudio.com/items?itemName&#x3D;yzhang.markdown-all-in-one) - All you need to write Markdown (keyboard shortcuts, table of contents, auto preview and more)
 - [markdownlint](https://marketplace.visualstudio.com/items?itemName&#x3D;davidanson.vscode-markdownlint) - Markdown linting and style checking for Visual Studio Code
 - [Markdown Table Prettifier](https://marketplace.visualstudio.com/items?itemName&#x3D;darkriszty.markdown-table-prettify) - Transforms markdown tables to be more readable
+- [Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName&#x3D;yzhang.markdown-all-in-one) - Adds Mermaid diagram and flowchart support to VS Code&#x27;s builtin markdown preview
+- [Mermaid Markdown Syntax Highlighting](https://marketplace.visualstudio.com/items?itemName&#x3D;bpruitt-goddard.mermaid-markdown-syntax-highlighting) - Markdown syntax support for the Mermaid charting language
 - [Even Better TOML](https://marketplace.visualstudio.com/items?itemName&#x3D;tamasfe.even-better-toml) - Fully-featured TOML support with syntax highlighting, validation, formatting, and schema support
 - [YAML](https://marketplace.visualstudio.com/items?itemName&#x3D;redhat.vscode-yaml) - YAML language support with schema validation
 

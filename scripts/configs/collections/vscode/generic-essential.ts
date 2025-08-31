@@ -1,9 +1,9 @@
 import { Collection } from '../../shared/types';
 import { githubCopilotVSCode } from '../../extensions/ai';
-import { 
-  bookmarks, 
-  todoTree, 
-  codeSpellChecker, 
+import {
+  bookmarks,
+  todoTree,
+  codeSpellChecker,
   betterComments,
   trailingSpaces,
   yamlSupport,
@@ -14,16 +14,18 @@ import {
   markdownTablePrettify,
   versionLens,
   pathIntellisense,
-  dotenv
+  dotenv,
+  markdownMermaid,
+  markdownWermaidSyntax
 } from '../../extensions/productivity';
 import {
-  gitlens, 
+  gitlens,
 } from '../../extensions/cvs';
 
 export const genericEssential: Collection = {
   description: "Essential productivity extensions for general development in VSCode",
   tags: ["productivity", "general", "essential", "git", "debugging", "editing"],
-  
+
   required_extensions: [
     // ai extensions
     githubCopilotVSCode,
@@ -42,15 +44,17 @@ export const genericEssential: Collection = {
     markdownAllInOne,
     markdownlint,
     markdownTablePrettify,
+    markdownMermaid,
+    markdownWermaidSyntax,
     tomlSupport,
     yamlSupport,
   ],
-  
+
   optional_extensions: [
     // Productivity
     trailingSpaces
   ],
-  
+
   settings: {
     'workbench.colorTheme': {
       value: 'Default Dark+',
@@ -82,7 +86,7 @@ export const genericEssential: Collection = {
       description: 'Default Git view mode',
       scope: 'user'
     },
-    
+
     // JSON and JSONC formatting settings
     '[json]': {
       value: {
@@ -105,7 +109,7 @@ export const genericEssential: Collection = {
       scope: "workspace"
     }
   },
-  
+
   keybindings: [
     {
       key: 'ctrl+shift+b',
@@ -124,9 +128,9 @@ export const genericEssential: Collection = {
       description: 'Jump to previous bookmark'
     }
   ],
-  
+
   snippets: [],
-  
+
   documentation: {
     setup_guide: `# Generic Essential Extension Pack Setup
 
