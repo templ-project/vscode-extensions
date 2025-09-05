@@ -30,42 +30,42 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Description: Base language support for C#
   - Publisher: Microsoft
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-dotnettools.csharp)
 - **C# Dev Kit** (`ms-dotnettools.csdevkit`)
   - Description: Official C# extension from Microsoft
   - Publisher: Microsoft
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-dotnettools.csdevkit)
 - **EditorConfig for VS Code** (`editorconfig.editorconfig`)
   - Description: EditorConfig Support for Visual Studio Code
   - Publisher: EditorConfig
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=editorconfig.editorconfig)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;editorconfig.editorconfig)
 - **Error Lens** (`usernamehw.errorlens`)
   - Description: Improve highlighting of errors, warnings and other language diagnostics
   - Publisher: Alexander
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;usernamehw.errorlens)
 - **C# Extensions** (`kreativ-software.csharpextensions`)
   - Description: C# IDE Extensions for VSCode
   - Publisher: Kreativ Software
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=kreativ-software.csharpextensions)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;kreativ-software.csharpextensions)
 - **.NET Core Test Explorer** (`formulahendry.dotnet-test-explorer`)
   - Description: Test Explorer for .NET Core (MSTest, xUnit, NUnit)
   - Publisher: Jun Han
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=formulahendry.dotnet-test-explorer)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;formulahendry.dotnet-test-explorer)
 - **C# Snippets** (`jorgeserrano.vscode-csharp-snippets`)
   - Description: C# Snippets for Visual Studio Code
   - Publisher: Jorge Serrano
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=jorgeserrano.vscode-csharp-snippets)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;jorgeserrano.vscode-csharp-snippets)
 - **Roslynator** (`josefpihrt-vscode.roslynator`)
   - Description: A collection of 500+ analyzers, refactorings and fixes for C#, powered by Roslyn
   - Publisher: Josef Pihrt
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=josefpihrt-vscode.roslynator)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;josefpihrt-vscode.roslynator)
 
 ## Disclaimer
 

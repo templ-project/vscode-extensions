@@ -2,7 +2,7 @@
   "name": "tpl-vscode-python",
   "displayName": "Templ Project Python Extension Pack",
   "description": "Essential Python development environment for VSCode - comprehensive tooling for modern Python development, data science, and web applications",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "python",
     "data-science",
@@ -40,8 +42,14 @@
     "njpwerner.autodocstring",
     "littlefoxteam.vscode-python-test-adapter"
   ],
-  "extensionDependencies": ["ms-python.python", "ms-python.black-formatter", "ms-python.isort"],
-  "activationEvents": ["onStartupFinished"],
+  "extensionDependencies": [
+    "ms-python.python",
+    "ms-python.black-formatter",
+    "ms-python.isort"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [

@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "cpp",
     "c++",
@@ -49,7 +51,9 @@
     "xaver.clang-format",
     "usernamehw.errorlens"
   ],
-  "activationEvents": ["onStartupFinished"],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [

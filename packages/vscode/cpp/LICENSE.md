@@ -30,47 +30,47 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Description: C/C++ completion, navigation, and insights
   - Publisher: LLVM Extensions
   - License: Apache-2.0
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;llvm-vs-code-extensions.vscode-clangd)
 - **CMake** (`twxs.cmake`)
   - Description: CMake language support for Visual Studio Code
   - Publisher: twxs
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=twxs.cmake)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;twxs.cmake)
 - **Clang-Format** (`xaver.clang-format`)
   - Description: Use Clang-Format in Visual Studio Code
   - Publisher: xaver
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=xaver.clang-format)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;xaver.clang-format)
 - **Error Lens** (`usernamehw.errorlens`)
   - Description: Improve highlighting of errors, warnings and other language diagnostics
   - Publisher: Alexander
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;usernamehw.errorlens)
 - **CMake Tools** (`ms-vscode.cmake-tools`)
   - Description: Extended CMake support in Visual Studio Code
   - Publisher: Microsoft
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.cmake-tools)
 - **XMake** (`tboox.xmake-vscode`)
   - Description: Extended XMake support in Visual Studio Code
   - Publisher: tboox
   - License: Apache-2.0
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=tboox.xmake-vscode)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;tboox.xmake-vscode)
 - **Better C++ Syntax** (`jeff-hykin.better-cpp-syntax`)
   - Description: The bleeding edge of the C++ syntax
   - Publisher: Jeff Hykin
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=jeff-hykin.better-cpp-syntax)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;jeff-hykin.better-cpp-syntax)
 - **Doxygen Documentation Generator** (`cschlosser.doxdocgen`)
   - Description: Let me generate Doxygen documentation from your source code for you
   - Publisher: Christoph Schlosser
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=cschlosser.doxdocgen)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;cschlosser.doxdocgen)
 - **Native Debug** (`webfreak.debug`)
   - Description: GDB, LLDB &amp; Mago-MI Debugger support for VSCode
   - Publisher: WebFreak
   - License: Unlicense
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=webfreak.debug)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;webfreak.debug)
 
 ## Disclaimer
 

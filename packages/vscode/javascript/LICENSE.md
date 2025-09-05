@@ -30,47 +30,47 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Description: Integrates ESLint JavaScript linting into VS Code
   - Publisher: Microsoft
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;dbaeumer.vscode-eslint)
 - **Prettier - Code formatter** (`esbenp.prettier-vscode`)
   - Description: Code formatter using prettier for consistent code style
   - Publisher: Prettier
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;esbenp.prettier-vscode)
 - **JavaScript Debugger** (`ms-vscode.js-debug`)
   - Description: Built-in JavaScript debugger for VS Code
   - Publisher: Microsoft
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.js-debug)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.js-debug)
 - **Babel JavaScript** (`mgmcdermott.vscode-language-babel`)
   - Description: Syntax highlighting for today&#x27;s JavaScript
   - Publisher: Michael McDermott
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=mgmcdermott.vscode-language-babel)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;mgmcdermott.vscode-language-babel)
 - **IntelliCode** (`VisualStudioExptTeam.vscodeintellicode`)
   - Description: AI-assisted development for JavaScript
   - Publisher: Microsoft
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;VisualStudioExptTeam.vscodeintellicode)
 - **Import Cost** (`wix.vscode-import-cost`)
   - Description: Display import/require package size in the editor
   - Publisher: Wix
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;wix.vscode-import-cost)
 - **Quokka.js** (`WallabyJs.quokka-vscode`)
   - Description: JavaScript and TypeScript playground in your editor
   - Publisher: Wallaby.js
   - License: Commercial
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=WallabyJs.quokka-vscode)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;WallabyJs.quokka-vscode)
 - **Bun for Visual Studio Code** (`oven.bun-vscode`)
   - Description: VS Code extension for Bun
   - Publisher: Oven
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=oven.bun-vscode)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;oven.bun-vscode)
 - **Deno** (`denoland.vscode-deno`)
   - Description: Deno support for Visual Studio Code
   - Publisher: Deno Land Inc.
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;denoland.vscode-deno)
 
 ## Disclaimer
 

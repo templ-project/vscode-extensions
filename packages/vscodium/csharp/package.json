@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "csharp",
     "c#",
@@ -43,8 +45,15 @@
     "",
     "josefpihrt-vscode.roslynator"
   ],
-  "extensionDependencies": ["ms-dotnettools.csharp", "ms-dotnettools.csdevkit", "editorconfig.editorconfig", ""],
-  "activationEvents": ["onStartupFinished"],
+  "extensionDependencies": [
+    "ms-dotnettools.csharp",
+    "ms-dotnettools.csdevkit",
+    "editorconfig.editorconfig",
+    ""
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [

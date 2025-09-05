@@ -51,8 +51,8 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Publisher: razoric
   - License: MIT
   - Marketplace: [View Extension](https://open-vsx.org/extension/razoric/gdscript-snippets)
-- \*\*\*\* (``)
-  - Description:
+- **** (``)
+  - Description: 
   - Publisher: Unknown
   - License: Please refer to the extension's marketplace page for license information
   - Marketplace: https://marketplace.visualstudio.com/items?itemName=
@@ -66,8 +66,8 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Publisher: 2gua
   - License: MIT
   - Marketplace: [View Extension](https://open-vsx.org/extension/2gua/rainbow-brackets)
-- \*\*\*\* (``)
-  - Description:
+- **** (``)
+  - Description: 
   - Publisher: Unknown
   - License: Please refer to the extension's marketplace page for license information
   - Marketplace: https://marketplace.visualstudio.com/items?itemName=

@@ -31,8 +31,8 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Publisher: Go Team at Google
   - License: MIT
   - Marketplace: [View Extension](https://open-vsx.org/extension/golang/go)
-- \*\*\*\* (``)
-  - Description:
+- **** (``)
+  - Description: 
   - Publisher: Unknown
   - License: Please refer to the extension's marketplace page for license information
   - Marketplace: https://marketplace.visualstudio.com/items?itemName=
