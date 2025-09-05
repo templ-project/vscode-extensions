@@ -1,0 +1,58 @@
+{
+  "0": {
+    "prefix": "class",
+    "body": [
+      "class ${1:ClassName} {",
+      "public:",
+      "    ${1:ClassName}();",
+      "    ~${1:ClassName}();",
+      "    ",
+      "private:",
+      "    ${0:// Private members}",
+      "};"
+    ],
+    "description": "Basic C++ class template"
+  },
+  "1": {
+    "prefix": "main",
+    "body": [
+      "int main(${1:int argc, char* argv[]}) {",
+      "    ${0:// Your code here}",
+      "    return 0;",
+      "}"
+    ],
+    "description": "Main function template"
+  },
+  "2": {
+    "prefix": "guard",
+    "body": [
+      "#ifndef ${1:${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H}",
+      "#define ${1:${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H}",
+      "",
+      "${0:// Header content}",
+      "",
+      "#endif // ${1:${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H}"
+    ],
+    "description": "Header guard template"
+  },
+  "3": {
+    "prefix": "namespace",
+    "body": [
+      "namespace ${1:name} {",
+      "",
+      "${0:// Namespace content}",
+      "",
+      "} // namespace ${1:name}"
+    ],
+    "description": "Namespace template"
+  },
+  "4": {
+    "prefix": "forr",
+    "body": [
+      "for (${1:const auto&} ${2:item} : ${3:container}) {",
+      "    ${0:// Loop body}",
+      "}"
+    ],
+    "description": "Range-based for loop"
+  }
+}
