@@ -1,0 +1,110 @@
+{
+  "name": "tpl-vscode-godot",
+  "displayName": "Templ Project Godot Extension Pack",
+  "description": "Essential extensions for Godot game development with GDScript support, debugging, and enhanced productivity tools",
+  "version": "1.0.0",
+  "publisher": "templ-project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/templ-project/vscode-extensions",
+    "directory": "packages/vscode/godot"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "icon": "logo.png",
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "dark"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "keywords": [
+    "godot",
+    "gdscript",
+    "game development",
+    "engine",
+    "3d",
+    "2d",
+    "shaders",
+    "vscode",
+    "godot",
+    "extension-pack"
+  ],
+  "extensionPack": [
+    "geequlim.godot-tools",
+    "jjkim.gdscript",
+    "alfish.godot-files",
+    "arkii.godot-shaders",
+    "razoric.gdscript-snippets",
+    "usernamehw.errorlens",
+    "wayou.vscode-todo-highlight",
+    "2gua.rainbow-brackets",
+    "aaron-bond.better-comments"
+  ],
+  "extensionDependencies": [
+    "geequlim.godot-tools",
+    "jjkim.gdscript"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "godot",
+        "path": "./snippets/godot.json"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "f5",
+        "command": "godot.debugger.debug",
+        "when": "resourceExtname &#x3D;&#x3D; .gd"
+      },
+      {
+        "key": "ctrl+f5",
+        "command": "godot.debugger.debug_without_debugging",
+        "when": "resourceExtname &#x3D;&#x3D; .gd"
+      },
+      {
+        "key": "shift+f5",
+        "command": "godot.debugger.stop"
+      },
+      {
+        "key": "ctrl+shift+f5",
+        "command": "godot.debugger.restart"
+      },
+      {
+        "key": "f6",
+        "command": "godot.open_editor"
+      },
+      {
+        "key": "ctrl+alt+g",
+        "command": "godot.list_classes"
+      }
+    ],
+    "commands": [
+      {
+        "command": "templ-project.godot-vscode.applySettings",
+        "title": "Apply Templ Project Godot Extension Pack Settings"
+      },
+      {
+        "command": "templ-project.godot-vscode.resetSettings",
+        "title": "Reset Templ Project Godot Extension Pack Settings"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.0"
+  }
+}
