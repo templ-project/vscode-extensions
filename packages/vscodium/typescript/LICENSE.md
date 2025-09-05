@@ -26,18 +26,18 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
 
 ### Included Extensions and Their Licenses
 
-- **** (``)
-  - Description: 
+- \*\*\*\* (``)
+  - Description:
   - Publisher: Unknown
   - License: Please refer to the extension's marketplace page for license information
   - Marketplace: https://marketplace.visualstudio.com/items?itemName=
-- **** (``)
-  - Description: 
+- \*\*\*\* (``)
+  - Description:
   - Publisher: Unknown
   - License: Please refer to the extension's marketplace page for license information
   - Marketplace: https://marketplace.visualstudio.com/items?itemName=
-- **** (``)
-  - Description: 
+- \*\*\*\* (``)
+  - Description:
   - Publisher: Unknown
   - License: Please refer to the extension's marketplace page for license information
   - Marketplace: https://marketplace.visualstudio.com/items?itemName=

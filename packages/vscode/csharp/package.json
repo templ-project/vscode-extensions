@@ -17,9 +17,7 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": [
-    "Extension Packs"
-  ],
+  "categories": ["Extension Packs"],
   "keywords": [
     "csharp",
     "c#",
@@ -50,9 +48,7 @@
     "editorconfig.editorconfig",
     "usernamehw.errorlens"
   ],
-  "activationEvents": [
-    "onStartupFinished"
-  ],
+  "activationEvents": ["onStartupFinished"],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [

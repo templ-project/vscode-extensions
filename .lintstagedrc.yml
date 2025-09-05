@@ -10,7 +10,7 @@
 # Markdown files - basic formatting
 '**/*.{md,mdx}':
   - 'npx prettier --write'
-  - 'npx eslint --fix --no-warn-ignored'
+  # - 'npx eslint --fix --no-warn-ignored'
 
 # JSON files - format with prettier
 '**/*.{json,jsonc}':

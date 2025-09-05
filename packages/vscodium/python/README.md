@@ -23,26 +23,29 @@ These extensions are essential for python development:
 
 These extensions provide extra functionality and convenience:
 
-- **[Jupyter](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-toolsai.jupyter)** - Jupyter notebook support, interactive programming and computing that supports Intellisense, debugging and more.
-- **[Pylint](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-python.pylint)** - Linting support for Python files using Pylint.
-- **[Flake8](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-python.flake8)** - Linting support for Python files using Flake8.
-- **[autoDocstring - Python Docstring Generator](https://marketplace.visualstudio.com/items?itemName&#x3D;njpwerner.autodocstring)** - Generates python docstrings automatically
-- **[Python Test Explorer for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName&#x3D;littlefoxteam.vscode-python-test-adapter)** - Run your Python tests in the Sidebar of Visual Studio Code
+- **[Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)** - Jupyter notebook support, interactive programming and computing that supports Intellisense, debugging and more.
+- **[Pylint](https://marketplace.visualstudio.com/items?itemName=ms-python.pylint)** - Linting support for Python files using Pylint.
+- **[Flake8](https://marketplace.visualstudio.com/items?itemName=ms-python.flake8)** - Linting support for Python files using Flake8.
+- **[autoDocstring - Python Docstring Generator](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring)** - Generates python docstrings automatically
+- **[Python Test Explorer for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=littlefoxteam.vscode-python-test-adapter)** - Run your Python tests in the Sidebar of Visual Studio Code
 
 ## 🚀 Installation
 
 ### Method 1: Install from Marketplace
+
 1. Open Vscodium
 2. Go to Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
 3. Search for "Templ Project Python Extension Pack"
 4. Click "Install"
 
 ### Method 2: Install via Command Line
+
 ```bash
 codium --install-extension @templ-project/python-extension-pack
 ```
 
 ### Method 3: Install from VSIX
+
 1. Download the latest `.vsix` file from [Releases](https://github.com/templ-project/vscode-extensions/releases)
 2. Open Vscodium
 3. Run `Extensions: Install from VSIX...` command
@@ -53,45 +56,58 @@ codium --install-extension @templ-project/python-extension-pack
 After installation, you may want to configure some settings for optimal python development:
 
 ### workbench.colorTheme
+
 ```json
 "workbench.colorTheme": &quot;Default Dark+&quot;
 ```
+
 > Default dark theme for better visibility
 
 ### editor.renderWhitespace
+
 ```json
 "editor.renderWhitespace": &quot;trailing&quot;
 ```
+
 > Show trailing whitespace
 
 ### files.trimTrailingWhitespace
+
 ```json
 "files.trimTrailingWhitespace": true
 ```
+
 > Trim trailing whitespace on save
 
 ### files.insertFinalNewline
+
 ```json
 "files.insertFinalNewline": true
 ```
+
 > Insert final newline at end of file
 
 ### editor.rulers
+
 ```json
 "editor.rulers": [
   80,
   120
 ]
 ```
+
 > Show rulers at 80 and 120 characters
 
 ### scm.defaultViewMode
+
 ```json
 "scm.defaultViewMode": &quot;tree&quot;
 ```
+
 > Default Git view mode
 
 ### [json]
+
 ```json
 "[json]": {
   &quot;editor.defaultFormatter&quot;: &quot;vscode.json-language-features&quot;,
@@ -100,9 +116,11 @@ After installation, you may want to configure some settings for optimal python d
   &quot;editor.insertSpaces&quot;: true
 }
 ```
+
 > JSON file formatting settings using built-in formatter
 
 ### [jsonc]
+
 ```json
 "[jsonc]": {
   &quot;editor.defaultFormatter&quot;: &quot;vscode.json-language-features&quot;,
@@ -111,62 +129,80 @@ After installation, you may want to configure some settings for optimal python d
   &quot;editor.insertSpaces&quot;: true
 }
 ```
+
 > JSON with Comments file formatting settings using built-in formatter
 
 ### python.defaultInterpreterPath
+
 ```json
 "python.defaultInterpreterPath": &quot;python&quot;
 ```
+
 > Default Python interpreter path
 
 ### python.formatting.provider
+
 ```json
 "python.formatting.provider": &quot;black&quot;
 ```
+
 > Use Black as default Python formatter
 
 ### python.linting.enabled
+
 ```json
 "python.linting.enabled": true
 ```
+
 > Enable Python linting
 
 ### python.linting.pylintEnabled
+
 ```json
 "python.linting.pylintEnabled": true
 ```
+
 > Enable Pylint for Python linting
 
 ### python.linting.flake8Enabled
+
 ```json
 "python.linting.flake8Enabled": true
 ```
+
 > Enable Flake8 for Python linting
 
 ### python.testing.pytestEnabled
+
 ```json
 "python.testing.pytestEnabled": true
 ```
+
 > Enable pytest for Python testing
 
 ### python.testing.unittestEnabled
+
 ```json
 "python.testing.unittestEnabled": false
 ```
+
 > Disable unittest in favor of pytest
 
 ### jupyter.askForKernelRestart
+
 ```json
 "jupyter.askForKernelRestart": false
 ```
+
 > Don&#x27;t ask for kernel restart confirmation
 
 ### jupyter.interactiveWindow.textEditor.executeSelection
+
 ```json
 "jupyter.interactiveWindow.textEditor.executeSelection": true
 ```
-> Execute selection in interactive window
 
+> Execute selection in interactive window
 
 ## ⌨️ Recommended Keybindings
 
@@ -180,51 +216,52 @@ After installation, you may want to configure some settings for optimal python d
 
 ## 📝 Extension Details
 
-| Extension | Publisher | Description |
-|-----------|-----------|-------------|
-| [Python](https://open-vsx.org/extension/ms-python/python) | Microsoft | Python language support with extension access points for IntelliSense (Pylance), Debugging (Python Debugger), linting, formatting, refactoring, unit tests, and more. |
-| [Jupyter](https://open-vsx.org/extension/ms-toolsai/jupyter) | Microsoft | Jupyter notebook support, interactive programming and computing that supports Intellisense, debugging and more. |
-| [Black Formatter](https://open-vsx.org/extension/ms-python/black-formatter) | Microsoft | Formatting support for Python files using the Black formatter. |
-| [isort](https://open-vsx.org/extension/ms-python/isort) | Microsoft | Import organization support for Python files using isort. |
-| [Pylint](https://open-vsx.org/extension/ms-python/pylint) | Microsoft | Linting support for Python files using Pylint. |
-| [Flake8](https://open-vsx.org/extension/ms-python/flake8) | Microsoft | Linting support for Python files using Flake8. |
-| [autoDocstring - Python Docstring Generator](https://open-vsx.org/extension/njpwerner/autodocstring) | Nils Werner | Generates python docstrings automatically |
-| [Python Test Explorer for Visual Studio Code](https://open-vsx.org/extension/littlefoxteam/vscode-python-test-adapter) | Little Fox Team | Run your Python tests in the Sidebar of Visual Studio Code |
-| [Jupyter](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-toolsai.jupyter) | Microsoft | Jupyter notebook support, interactive programming and computing that supports Intellisense, debugging and more. |
-| [Pylint](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-python.pylint) | Microsoft | Linting support for Python files using Pylint. |
-| [Flake8](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-python.flake8) | Microsoft | Linting support for Python files using Flake8. |
-| [autoDocstring - Python Docstring Generator](https://marketplace.visualstudio.com/items?itemName&#x3D;njpwerner.autodocstring) | Nils Werner | Generates python docstrings automatically |
-| [Python Test Explorer for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName&#x3D;littlefoxteam.vscode-python-test-adapter) | Little Fox Team | Run your Python tests in the Sidebar of Visual Studio Code |
+| Extension                                                                                                                                   | Publisher       | Description                                                                                                                                                           |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Python](https://open-vsx.org/extension/ms-python/python)                                                                                   | Microsoft       | Python language support with extension access points for IntelliSense (Pylance), Debugging (Python Debugger), linting, formatting, refactoring, unit tests, and more. |
+| [Jupyter](https://open-vsx.org/extension/ms-toolsai/jupyter)                                                                                | Microsoft       | Jupyter notebook support, interactive programming and computing that supports Intellisense, debugging and more.                                                       |
+| [Black Formatter](https://open-vsx.org/extension/ms-python/black-formatter)                                                                 | Microsoft       | Formatting support for Python files using the Black formatter.                                                                                                        |
+| [isort](https://open-vsx.org/extension/ms-python/isort)                                                                                     | Microsoft       | Import organization support for Python files using isort.                                                                                                             |
+| [Pylint](https://open-vsx.org/extension/ms-python/pylint)                                                                                   | Microsoft       | Linting support for Python files using Pylint.                                                                                                                        |
+| [Flake8](https://open-vsx.org/extension/ms-python/flake8)                                                                                   | Microsoft       | Linting support for Python files using Flake8.                                                                                                                        |
+| [autoDocstring - Python Docstring Generator](https://open-vsx.org/extension/njpwerner/autodocstring)                                        | Nils Werner     | Generates python docstrings automatically                                                                                                                             |
+| [Python Test Explorer for Visual Studio Code](https://open-vsx.org/extension/littlefoxteam/vscode-python-test-adapter)                      | Little Fox Team | Run your Python tests in the Sidebar of Visual Studio Code                                                                                                            |
+| [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)                                                           | Microsoft       | Jupyter notebook support, interactive programming and computing that supports Intellisense, debugging and more.                                                       |
+| [Pylint](https://marketplace.visualstudio.com/items?itemName=ms-python.pylint)                                                              | Microsoft       | Linting support for Python files using Pylint.                                                                                                                        |
+| [Flake8](https://marketplace.visualstudio.com/items?itemName=ms-python.flake8)                                                              | Microsoft       | Linting support for Python files using Flake8.                                                                                                                        |
+| [autoDocstring - Python Docstring Generator](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring)                   | Nils Werner     | Generates python docstrings automatically                                                                                                                             |
+| [Python Test Explorer for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=littlefoxteam.vscode-python-test-adapter) | Little Fox Team | Run your Python tests in the Sidebar of Visual Studio Code                                                                                                            |
 
 ## 🏷️ Categories
-
-
 
 ## 📄 License
 
 ### Extension Pack License
+
 This extension pack is licensed under the **MIT License** - see [LICENSE.md](https://github.com/templ-project/vscode-extensions/blob/main/packages/vscodium/python/LICENSE.md) for details.
 
 ### Third-Party Extension Licenses
+
 **Important**: Each extension included in this pack has its own license terms. templ-project is not responsible for the licensing, functionality, or security of third-party extensions.
 
-| Extension | Publisher | License | Description |
-|-----------|-----------|---------|-------------|
-| [Python](https://open-vsx.org/extension/ms-python/python) | Microsoft | MIT | Python language support with extension access points for IntelliSense (Pylance), Debugging (Python Debugger), linting, formatting, refactoring, unit tests, and more. |
-| [Jupyter](https://open-vsx.org/extension/ms-toolsai/jupyter) | Microsoft | MIT | Jupyter notebook support, interactive programming and computing that supports Intellisense, debugging and more. |
-| [Black Formatter](https://open-vsx.org/extension/ms-python/black-formatter) | Microsoft | MIT | Formatting support for Python files using the Black formatter. |
-| [isort](https://open-vsx.org/extension/ms-python/isort) | Microsoft | MIT | Import organization support for Python files using isort. |
-| [Pylint](https://open-vsx.org/extension/ms-python/pylint) | Microsoft | MIT | Linting support for Python files using Pylint. |
-| [Flake8](https://open-vsx.org/extension/ms-python/flake8) | Microsoft | MIT | Linting support for Python files using Flake8. |
-| [autoDocstring - Python Docstring Generator](https://open-vsx.org/extension/njpwerner/autodocstring) | Nils Werner | MIT | Generates python docstrings automatically |
-| [Python Test Explorer for Visual Studio Code](https://open-vsx.org/extension/littlefoxteam/vscode-python-test-adapter) | Little Fox Team | MIT | Run your Python tests in the Sidebar of Visual Studio Code |
-| [Jupyter](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-toolsai.jupyter) | Microsoft | MIT | Jupyter notebook support, interactive programming and computing that supports Intellisense, debugging and more. |
-| [Pylint](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-python.pylint) | Microsoft | MIT | Linting support for Python files using Pylint. |
-| [Flake8](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-python.flake8) | Microsoft | MIT | Linting support for Python files using Flake8. |
-| [autoDocstring - Python Docstring Generator](https://marketplace.visualstudio.com/items?itemName&#x3D;njpwerner.autodocstring) | Nils Werner | MIT | Generates python docstrings automatically |
-| [Python Test Explorer for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName&#x3D;littlefoxteam.vscode-python-test-adapter) | Little Fox Team | MIT | Run your Python tests in the Sidebar of Visual Studio Code |
+| Extension                                                                                                                                   | Publisher       | License | Description                                                                                                                                                           |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Python](https://open-vsx.org/extension/ms-python/python)                                                                                   | Microsoft       | MIT     | Python language support with extension access points for IntelliSense (Pylance), Debugging (Python Debugger), linting, formatting, refactoring, unit tests, and more. |
+| [Jupyter](https://open-vsx.org/extension/ms-toolsai/jupyter)                                                                                | Microsoft       | MIT     | Jupyter notebook support, interactive programming and computing that supports Intellisense, debugging and more.                                                       |
+| [Black Formatter](https://open-vsx.org/extension/ms-python/black-formatter)                                                                 | Microsoft       | MIT     | Formatting support for Python files using the Black formatter.                                                                                                        |
+| [isort](https://open-vsx.org/extension/ms-python/isort)                                                                                     | Microsoft       | MIT     | Import organization support for Python files using isort.                                                                                                             |
+| [Pylint](https://open-vsx.org/extension/ms-python/pylint)                                                                                   | Microsoft       | MIT     | Linting support for Python files using Pylint.                                                                                                                        |
+| [Flake8](https://open-vsx.org/extension/ms-python/flake8)                                                                                   | Microsoft       | MIT     | Linting support for Python files using Flake8.                                                                                                                        |
+| [autoDocstring - Python Docstring Generator](https://open-vsx.org/extension/njpwerner/autodocstring)                                        | Nils Werner     | MIT     | Generates python docstrings automatically                                                                                                                             |
+| [Python Test Explorer for Visual Studio Code](https://open-vsx.org/extension/littlefoxteam/vscode-python-test-adapter)                      | Little Fox Team | MIT     | Run your Python tests in the Sidebar of Visual Studio Code                                                                                                            |
+| [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)                                                           | Microsoft       | MIT     | Jupyter notebook support, interactive programming and computing that supports Intellisense, debugging and more.                                                       |
+| [Pylint](https://marketplace.visualstudio.com/items?itemName=ms-python.pylint)                                                              | Microsoft       | MIT     | Linting support for Python files using Pylint.                                                                                                                        |
+| [Flake8](https://marketplace.visualstudio.com/items?itemName=ms-python.flake8)                                                              | Microsoft       | MIT     | Linting support for Python files using Flake8.                                                                                                                        |
+| [autoDocstring - Python Docstring Generator](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring)                   | Nils Werner     | MIT     | Generates python docstrings automatically                                                                                                                             |
+| [Python Test Explorer for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=littlefoxteam.vscode-python-test-adapter) | Little Fox Team | MIT     | Run your Python tests in the Sidebar of Visual Studio Code                                                                                                            |
 
 ### Disclaimer
+
 - We **do not guarantee** the functionality, security, or compatibility of included extensions
 - We **are not responsible** for any issues caused by third-party extensions
 - Users install and use extensions **at their own risk**
@@ -244,4 +281,4 @@ Found an issue or want to suggest an extension? Please [open an issue](https://g
 
 ---
 
-*This extension pack is maintained by [templ-project](https://github.com/templ-project) and updated regularly to include the most useful python development extensions.*
+_This extension pack is maintained by [templ-project](https://github.com/templ-project) and updated regularly to include the most useful python development extensions._

@@ -17,9 +17,7 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": [
-    "Extension Packs"
-  ],
+  "categories": ["Extension Packs"],
   "keywords": [
     "productivity",
     "general",
@@ -66,9 +64,7 @@
     "davidanson.vscode-markdownlint",
     "darkriszty.markdown-table-prettify"
   ],
-  "activationEvents": [
-    "onStartupFinished"
-  ],
+  "activationEvents": ["onStartupFinished"],
   "main": "./out/extension.js",
   "contributes": {
     "keybindings": [

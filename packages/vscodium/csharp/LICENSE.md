@@ -41,8 +41,8 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Publisher: EditorConfig
   - License: MIT
   - Marketplace: [View Extension](https://open-vsx.org/extension/editorconfig/editorconfig)
-- **** (``)
-  - Description: 
+- \*\*\*\* (``)
+  - Description:
   - Publisher: Unknown
   - License: Please refer to the extension's marketplace page for license information
   - Marketplace: https://marketplace.visualstudio.com/items?itemName=
@@ -61,8 +61,8 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Publisher: Jorge Serrano
   - License: MIT
   - Marketplace: [View Extension](https://open-vsx.org/extension/jorgeserrano/vscode-csharp-snippets)
-- **** (``)
-  - Description: 
+- \*\*\*\* (``)
+  - Description:
   - Publisher: Unknown
   - License: Please refer to the extension's marketplace page for license information
   - Marketplace: https://marketplace.visualstudio.com/items?itemName=

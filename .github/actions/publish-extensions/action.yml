@@ -39,12 +39,12 @@ runs:
           echo "::error::Invalid marketplace. Must be 'vscode' or 'vscodium'"
           exit 1
         fi
-        
+
         if [ "${{ inputs.marketplace }}" == "vscode" ] && [ -z "${{ inputs.vsce-token }}" ]; then
           echo "::error::vsce-token is required for VS Code Marketplace"
           exit 1
         fi
-        
+
         if [ "${{ inputs.marketplace }}" == "vscodium" ] && [ -z "${{ inputs.ovsx-token }}" ]; then
           echo "::error::ovsx-token is required for Open VSX Registry"
           exit 1
