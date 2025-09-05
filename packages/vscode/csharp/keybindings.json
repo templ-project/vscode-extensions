@@ -1,0 +1,32 @@
+[
+  {
+    "key": "ctrl+shift+f",
+    "command": "editor.action.formatDocument",
+    "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; &#x27;csharp&#x27;"
+  },
+  {
+    "key": "f12",
+    "command": "editor.action.revealDefinition",
+    "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; &#x27;csharp&#x27;"
+  },
+  {
+    "key": "shift+f12",
+    "command": "editor.action.goToReferences",
+    "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; &#x27;csharp&#x27;"
+  },
+  {
+    "key": "ctrl+shift+o",
+    "command": "workbench.action.gotoSymbol",
+    "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; &#x27;csharp&#x27;"
+  },
+  {
+    "key": "ctrl+t",
+    "command": "workbench.action.showAllSymbols",
+    "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; &#x27;csharp&#x27;"
+  },
+  {
+    "key": "ctrl+.",
+    "command": "editor.action.quickFix",
+    "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; &#x27;csharp&#x27;"
+  }
+]

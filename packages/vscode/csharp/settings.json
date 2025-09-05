@@ -1,0 +1,30 @@
+{
+  "csharp.format.enable": true,
+  "csharp.semanticHighlighting.enabled": true,
+  "csharp.completion.trigger": true,
+  "dotnet.server.useOmnisharp": false,
+  "dotnet.completion.showCompletionItemsFromUnimportedNamespaces": true,
+  "dotnet.inlayHints.enableInlayHintsForParameters": true,
+  "dotnet.inlayHints.enableInlayHintsForLiteralParameters": true,
+  "dotnet.inlayHints.enableInlayHintsForIndexerParameters": true,
+  "dotnet.inlayHints.enableInlayHintsForObjectCreationParameters": true,
+  "dotnet.inlayHints.enableInlayHintsForOtherParameters": false,
+  "dotnet.inlayHints.enableInlayHintsForTypeParameters": true,
+  "files.associations": {
+  "*.cs": "csharp",
+  "*.csx": "csharp",
+  "*.cake": "csharp",
+  "*.cshtml": "aspnetcorerazor",
+  "*.razor": "aspnetcorerazor"
+},
+  "[csharp]": {
+  "editor.defaultFormatter": "ms-dotnettools.csharp",
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  }
+},
+  "dotnet-test-explorer.testProjectPath": "**/*Tests.csproj",
+  "dotnet-test-explorer.useTreeView": true
+}
