@@ -33,14 +33,10 @@
   ],
   "extensionPack": [
     "ms-vscode.vscode-typescript-next",
-    "ms-vscode.vscode-typescript-next",
-    "ms-vscode.js-debug",
     "GregorBiswanger.json2ts"
   ],
   "extensionDependencies": [
     "ms-vscode.vscode-typescript-next",
-    "ms-vscode.vscode-typescript-next",
-    "ms-vscode.js-debug",
     "GregorBiswanger.json2ts"
   ],
   "activationEvents": [

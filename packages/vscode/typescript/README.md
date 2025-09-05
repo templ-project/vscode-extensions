@@ -4,15 +4,13 @@ Essential TypeScript development environment for VSCode - comprehensive tooling 
 
 ## 📦 What's Included
 
-This extension pack includes **4 carefully selected extensions** to enhance your typescript development experience in vscode.
+This extension pack includes **2 carefully selected extensions** to enhance your typescript development experience in vscode.
 
-### ✅ Core Extensions (4)
+### ✅ Core Extensions (2)
 
 These extensions are essential for typescript development:
 
-- **[TypeScript Importer](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.vscode-typescript-next)** - Automatically searches for TypeScript definitions
-- **[TypeScript Snippets](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.vscode-typescript-next)** - Code snippets for TypeScript development
-- **[TypeScript Debugger](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.js-debug)** - Built-in TypeScript/JavaScript debugger for VS Code
+- **[TypeScript Language Features](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.vscode-typescript-next)** - Enhanced TypeScript language support with auto-import and intellisense
 - **[json2ts](https://marketplace.visualstudio.com/items?itemName&#x3D;GregorBiswanger.json2ts)** - Convert JSON object to typescript interfaces
 
 
@@ -105,9 +103,7 @@ After installation, you may want to configure some settings for optimal typescri
 
 | Extension | Publisher | Description |
 |-----------|-----------|-------------|
-| [TypeScript Importer](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.vscode-typescript-next) | Microsoft | Automatically searches for TypeScript definitions |
-| [TypeScript Snippets](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.vscode-typescript-next) | Microsoft | Code snippets for TypeScript development |
-| [TypeScript Debugger](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.js-debug) | Microsoft | Built-in TypeScript/JavaScript debugger for VS Code |
+| [TypeScript Language Features](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.vscode-typescript-next) | Microsoft | Enhanced TypeScript language support with auto-import and intellisense |
 | [json2ts](https://marketplace.visualstudio.com/items?itemName&#x3D;GregorBiswanger.json2ts) | Gregor Biswanger | Convert JSON object to typescript interfaces |
 
 ## 🏷️ Categories
@@ -124,9 +120,7 @@ This extension pack is licensed under the **MIT License** - see [LICENSE.md](htt
 
 | Extension | Publisher | License | Description |
 |-----------|-----------|---------|-------------|
-| [TypeScript Importer](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.vscode-typescript-next) | Microsoft | MIT | Automatically searches for TypeScript definitions |
-| [TypeScript Snippets](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.vscode-typescript-next) | Microsoft | MIT | Code snippets for TypeScript development |
-| [TypeScript Debugger](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.js-debug) | Microsoft | MIT | Built-in TypeScript/JavaScript debugger for VS Code |
+| [TypeScript Language Features](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.vscode-typescript-next) | Microsoft | MIT | Enhanced TypeScript language support with auto-import and intellisense |
 | [json2ts](https://marketplace.visualstudio.com/items?itemName&#x3D;GregorBiswanger.json2ts) | Gregor Biswanger | MIT | Convert JSON object to typescript interfaces |
 
 ### Disclaimer
@@ -141,8 +135,8 @@ Found an issue or want to suggest an extension? Please [open an issue](https://g
 
 ## 📊 Extension Pack Stats
 
-- **Total Extensions**: 4
-- **Required Extensions**: 4
+- **Total Extensions**: 2
+- **Required Extensions**: 2
 - **Optional Extensions**: 0
 - **Target IDE**: vscode
 - **Language Focus**: typescript

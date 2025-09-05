@@ -32,14 +32,14 @@
     "extension-pack"
   ],
   "extensionPack": [
-    "ms-vscode.vscode-typescript-next",
-    "ms-vscode.vscode-typescript-next",
-    "ms-vscode.js-debug"
+    "",
+    "",
+    ""
   ],
   "extensionDependencies": [
-    "ms-vscode.vscode-typescript-next",
-    "ms-vscode.vscode-typescript-next",
-    "ms-vscode.js-debug"
+    "",
+    "",
+    ""
   ],
   "activationEvents": [
     "onStartupFinished"

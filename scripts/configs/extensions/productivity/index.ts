@@ -96,7 +96,7 @@ export const markdownMermaid: Extension = {
   description: "Adds Mermaid diagram and flowchart support to VS Code's builtin markdown preview",
   publisher: "Matt Bierner",
   license: "MIT",
-  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one",
+  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermai",
   why_required: "The need to view Mermaid diagrams and flowcharts directly within markdown files"
 }
 
@@ -240,4 +240,20 @@ export const sonarLintVSCodium: Extension = {
   license: "LGPL-3.0",
   marketplace_url: "https://open-vsx.org/extension/SonarSource/sonarlint-vscode",
   why_required: "Advanced code analysis for detecting bugs, security vulnerabilities, and code smells across multiple languages (Open VSX compatible)"
+};
+
+// Error highlighting and diagnostics
+export const errorLens: Extension = {
+  id: "usernamehw.errorlens",
+  name: "Error Lens",
+  description: "Improve highlighting of errors, warnings and other language diagnostics",
+  publisher: "Alexander",
+  license: "MIT",
+  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens",
+  why_required: "Enhanced error visibility and inline diagnostics for better development experience across all languages"
+};
+
+export const errorLensVSCodium: Extension = {
+  ...errorLens,
+  marketplace_url: "https://open-vsx.org/extension/usernamehw/errorlens"
 };

@@ -11,7 +11,7 @@
 
 #### Required Extensions
 - [Go](https://open-vsx.org/extension/golang/go) - Rich Go language support for Visual Studio Code
-- [Error Lens](https://open-vsx.org/extension/usernamehw/errorlens) - Improve highlighting of errors, warnings and other language diagnostics
+- []() - 
 
 #### Optional Extensions  
 - [Go Outliner](https://open-vsx.org/extension/766b/go-outliner) - Go code outline explorer

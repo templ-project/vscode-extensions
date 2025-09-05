@@ -28,15 +28,6 @@ const baseEditorConfig: Omit<Extension, 'marketplace_url'> = {
   why_required: "Consistent coding styles and formatting rules across different editors and IDEs"
 };
 
-const baseErrorLens: Omit<Extension, 'marketplace_url'> = {
-  id: "usernamehw.errorlens",
-  name: "Error Lens",
-  description: "Improve highlighting of errors, warnings and other language diagnostics",
-  publisher: "Alexander",
-  license: "MIT",
-  why_required: "Enhanced error visibility and inline diagnostics for better development experience"
-};
-
 const baseCSharpExtensions: Omit<Extension, 'marketplace_url'> = {
   id: "kreativ-software.csharpextensions",
   name: "C# Extensions",
@@ -64,15 +55,6 @@ const baseCSharpSnippets: Omit<Extension, 'marketplace_url'> = {
   why_recommended: "Comprehensive collection of C# code snippets for faster development"
 };
 
-const baseVersionLens: Omit<Extension, 'marketplace_url'> = {
-  id: "pflannery.vscode-versionlens",
-  name: "Version Lens",
-  description: "Shows the latest version for each package using code lens",
-  publisher: "pflannery",
-  license: "MIT",
-  why_recommended: "View and update NuGet package versions directly in project files"
-};
-
 const baseRoslynator: Omit<Extension, 'marketplace_url'> = {
   id: "josefpihrt-vscode.roslynator",
   name: "Roslynator",
@@ -98,11 +80,6 @@ export const editorConfig: Extension = {
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=editorconfig.editorconfig"
 };
 
-export const errorLens: Extension = {
-  ...baseErrorLens,
-  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens"
-};
-
 export const csharpExtensions: Extension = {
   ...baseCSharpExtensions,
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=kreativ-software.csharpextensions"
@@ -116,11 +93,6 @@ export const dotnetTestExplorer: Extension = {
 export const csharpSnippets: Extension = {
   ...baseCSharpSnippets,
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=jorgeserrano.vscode-csharp-snippets"
-};
-
-export const versionLens: Extension = {
-  ...baseVersionLens,
-  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens"
 };
 
 export const roslynator: Extension = {
@@ -144,11 +116,6 @@ export const editorConfigVSCodium: Extension = {
   marketplace_url: "https://open-vsx.org/extension/editorconfig/editorconfig"
 };
 
-export const errorLensVSCodium: Extension = {
-  ...baseErrorLens,
-  marketplace_url: "https://open-vsx.org/extension/usernamehw/errorlens"
-};
-
 export const csharpExtensionsVSCodium: Extension = {
   ...baseCSharpExtensions,
   marketplace_url: "https://open-vsx.org/extension/kreativ-software/csharpextensions"
@@ -162,11 +129,6 @@ export const dotnetTestExplorerVSCodium: Extension = {
 export const csharpSnippetsVSCodium: Extension = {
   ...baseCSharpSnippets,
   marketplace_url: "https://open-vsx.org/extension/jorgeserrano/vscode-csharp-snippets"
-};
-
-export const versionLensVSCodium: Extension = {
-  ...baseVersionLens,
-  marketplace_url: "https://open-vsx.org/extension/pflannery/vscode-versionlens"
 };
 
 export const roslynatorVSCodium: Extension = {

@@ -20,4 +20,4 @@
 - [Error Lens](https://marketplace.visualstudio.com/items?itemName&#x3D;usernamehw.errorlens) - Improve highlighting of errors, warnings and other language diagnostics
 - [TODO Highlight](https://marketplace.visualstudio.com/items?itemName&#x3D;wayou.vscode-todo-highlight) - Highlight TODOs, FIXMEs, and other annotations in your code
 - [Rainbow Brackets](https://marketplace.visualstudio.com/items?itemName&#x3D;2gua.rainbow-brackets) - Provide rainbow colors for the round brackets, the square brackets and the squiggly brackets
-- [Better Comments](https://marketplace.visualstudio.com/items?itemName&#x3D;aaron-bond.better-comments) - Improve your code commenting by annotating with alert, informational, TODOs, and more
+- [Better Comments](https://marketplace.visualstudio.com/items?itemName&#x3D;aaron-bond.better-comments) - Improve your code commenting by annotating with alert, info, todo, and more

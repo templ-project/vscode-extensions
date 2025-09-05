@@ -11,7 +11,7 @@ This extension pack includes **6 carefully selected extensions** to enhance your
 These extensions are essential for golang development:
 
 - **[Go](https://open-vsx.org/extension/golang/go)** - Rich Go language support for Visual Studio Code
-- **[Error Lens](https://open-vsx.org/extension/usernamehw/errorlens)** - Improve highlighting of errors, warnings and other language diagnostics
+- **[]()** - 
 
 ### 💡 Additional Extensions (4)
 
@@ -172,7 +172,7 @@ After installation, you may want to configure some settings for optimal golang d
 | Extension | Publisher | Description |
 |-----------|-----------|-------------|
 | [Go](https://open-vsx.org/extension/golang/go) | Go Team at Google | Rich Go language support for Visual Studio Code |
-| [Error Lens](https://open-vsx.org/extension/usernamehw/errorlens) | Alexander | Improve highlighting of errors, warnings and other language diagnostics |
+| []() |  |  |
 | [Go Outliner](https://open-vsx.org/extension/766b/go-outliner) | 766b | Go code outline explorer |
 | [Go Test Explorer](https://open-vsx.org/extension/premparihar/gotestexplorer) | Prem Parihar | Go Test Explorer for Visual Studio Code |
 | [Go Fill Struct](https://open-vsx.org/extension/davidbarratt/go-fill-struct) | David Barratt | Fill struct literals with default values |
@@ -193,7 +193,7 @@ This extension pack is licensed under the **MIT License** - see [LICENSE.md](htt
 | Extension | Publisher | License | Description |
 |-----------|-----------|---------|-------------|
 | [Go](https://open-vsx.org/extension/golang/go) | Go Team at Google | MIT | Rich Go language support for Visual Studio Code |
-| [Error Lens](https://open-vsx.org/extension/usernamehw/errorlens) | Alexander | MIT | Improve highlighting of errors, warnings and other language diagnostics |
+| [](https://marketplace.visualstudio.com/items?itemName=) | Unknown | See extension page |  |
 | [Go Outliner](https://open-vsx.org/extension/766b/go-outliner) | 766b | MIT | Go code outline explorer |
 | [Go Test Explorer](https://open-vsx.org/extension/premparihar/gotestexplorer) | Prem Parihar | MIT | Go Test Explorer for Visual Studio Code |
 | [Go Fill Struct](https://open-vsx.org/extension/davidbarratt/go-fill-struct) | David Barratt | MIT | Fill struct literals with default values |

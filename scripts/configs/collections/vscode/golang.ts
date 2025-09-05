@@ -1,15 +1,15 @@
-import { Collection } from '../../shared/types';
 import {
-  goExtension,
-  goOutliner,
-  goTestExplorer,
-  goFillStruct,
-  errorLens,
-  goTemplateHighlighter,
-  goDoc,
-  goCritic,
-  goAsm
+    goAsm,
+    goCritic,
+    goDoc,
+    goExtension,
+    goFillStruct,
+    goOutliner,
+    goTemplateHighlighter,
+    goTestExplorer
 } from '../../extensions/golang';
+import { errorLens } from '../../extensions/productivity';
+import { Collection } from '../../shared/types';
 
 export const golang: Collection = {
   description: "Essential Go development environment for VSCode - comprehensive tooling for modern Go development",

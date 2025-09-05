@@ -1,6 +1,4 @@
 import {
-    betterCommentsVSCode,
-    errorLensVSCode,
     gdscriptVSCode,
     godotFilesVSCode,
     godotShadersVSCode,
@@ -9,6 +7,7 @@ import {
     rainbowBracketsVSCode,
     todoHighlightVSCode
 } from '../../extensions/godot';
+import { betterComments, errorLens } from '../../extensions/productivity';
 import { Collection } from '../../shared/types';
 
 export const godot: Collection = {
@@ -24,10 +23,10 @@ export const godot: Collection = {
     godotFilesVSCode,
     godotShadersVSCode,
     godotSnippetsVSCode,
-    errorLensVSCode,
+    errorLens,
     todoHighlightVSCode,
     rainbowBracketsVSCode,
-    betterCommentsVSCode
+    betterComments
   ],
   
   settings: {

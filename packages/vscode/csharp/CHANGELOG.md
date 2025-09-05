@@ -5,7 +5,7 @@
 ### Added
 - Initial release of csharp extension pack for vscode
 - 4 required extensions
-- 5 optional extensions
+- 4 optional extensions
 
 ### Extensions Included
 
@@ -19,5 +19,4 @@
 - [C# Extensions](https://marketplace.visualstudio.com/items?itemName&#x3D;kreativ-software.csharpextensions) - C# IDE Extensions for VSCode
 - [.NET Core Test Explorer](https://marketplace.visualstudio.com/items?itemName&#x3D;formulahendry.dotnet-test-explorer) - Test Explorer for .NET Core (MSTest, xUnit, NUnit)
 - [C# Snippets](https://marketplace.visualstudio.com/items?itemName&#x3D;jorgeserrano.vscode-csharp-snippets) - C# Snippets for Visual Studio Code
-- [Version Lens](https://marketplace.visualstudio.com/items?itemName&#x3D;pflannery.vscode-versionlens) - Shows the latest version for each package using code lens
 - [Roslynator](https://marketplace.visualstudio.com/items?itemName&#x3D;josefpihrt-vscode.roslynator) - A collection of 500+ analyzers, refactorings and fixes for C#, powered by Roslyn

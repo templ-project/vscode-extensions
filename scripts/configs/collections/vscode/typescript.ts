@@ -1,10 +1,8 @@
-import { Collection } from '../../shared/types';
 import {
-  tsSnippets,
-  tsDebugger,
-  typescriptLanguage,
-  json2ts
+    json2ts,
+    typescriptLanguage
 } from '../../extensions/typescript';
+import { Collection } from '../../shared/types';
 
 export const typescript: Collection = {
   description: "Essential TypeScript development environment for VSCode - comprehensive tooling for type-safe development",
@@ -12,8 +10,6 @@ export const typescript: Collection = {
   
   required_extensions: [
     typescriptLanguage,
-    tsSnippets,
-    tsDebugger,
     json2ts
   ],
   

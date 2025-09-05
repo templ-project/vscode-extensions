@@ -1,26 +1,27 @@
-import { Collection } from '../../shared/types';
 import { githubCopilotVSCode } from '../../extensions/ai';
 import {
-  bookmarks,
-  todoTree,
-  codeSpellChecker,
-  betterComments,
-  trailingSpaces,
-  yamlSupport,
-  tomlSupport,
-  json5Support,
-  markdownAllInOne,
-  markdownlint,
-  markdownTablePrettify,
-  versionLens,
-  pathIntellisense,
-  dotenv,
-  markdownMermaid,
-  markdownWermaidSyntax
-} from '../../extensions/productivity';
-import {
-  gitlens,
+    gitlens,
 } from '../../extensions/cvs';
+import {
+    betterComments,
+    bookmarks,
+    codeSpellChecker,
+    dotenv,
+    errorLens,
+    json5Support,
+    markdownAllInOne,
+    markdownlint,
+    markdownMermaid,
+    markdownTablePrettify,
+    markdownWermaidSyntax,
+    pathIntellisense,
+    todoTree,
+    tomlSupport,
+    trailingSpaces,
+    versionLens,
+    yamlSupport
+} from '../../extensions/productivity';
+import { Collection } from '../../shared/types';
 
 export const genericEssential: Collection = {
   description: "Essential productivity extensions for general development in VSCode",
@@ -36,6 +37,7 @@ export const genericEssential: Collection = {
     bookmarks,
     codeSpellChecker,
     dotenv,
+    errorLens,
     pathIntellisense,
     todoTree,
     versionLens,

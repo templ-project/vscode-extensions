@@ -56,6 +56,11 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Publisher: mikestead
   - License: MIT
   - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;mikestead.dotenv)
+- **Error Lens** (`usernamehw.errorlens`)
+  - Description: Improve highlighting of errors, warnings and other language diagnostics
+  - Publisher: Alexander
+  - License: MIT
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;usernamehw.errorlens)
 - **Path Intellisense** (`christian-kohler.path-intellisense`)
   - Description: Visual Studio Code plugin that autocompletes filenames
   - Publisher: Christian Kohler
@@ -95,7 +100,7 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Description: Adds Mermaid diagram and flowchart support to VS Code&#x27;s builtin markdown preview
   - Publisher: Matt Bierner
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;yzhang.markdown-all-in-one)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;bierner.markdown-mermai)
 - **Mermaid Markdown Syntax Highlighting** (`bpruitt-goddard.mermaid-markdown-syntax-highlighting`)
   - Description: Markdown syntax support for the Mermaid charting language
   - Publisher: Brian Pruitt-Goddard

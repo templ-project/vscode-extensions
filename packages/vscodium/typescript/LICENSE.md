@@ -26,21 +26,21 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
 
 ### Included Extensions and Their Licenses
 
-- **TypeScript Importer** (`ms-vscode.vscode-typescript-next`)
-  - Description: Automatically searches for TypeScript definitions
-  - Publisher: Microsoft
-  - License: MIT
-  - Marketplace: [View Extension](https://open-vsx.org/extension/ms-vscode/vscode-typescript-next)
-- **TypeScript Snippets** (`ms-vscode.vscode-typescript-next`)
-  - Description: Code snippets for TypeScript development
-  - Publisher: Microsoft
-  - License: MIT
-  - Marketplace: [View Extension](https://open-vsx.org/extension/ms-vscode/vscode-typescript-next)
-- **TypeScript Debugger** (`ms-vscode.js-debug`)
-  - Description: Built-in TypeScript/JavaScript debugger for VS Code
-  - Publisher: Microsoft
-  - License: MIT
-  - Marketplace: [View Extension](https://open-vsx.org/extension/ms-vscode/js-debug)
+- **** (``)
+  - Description: 
+  - Publisher: Unknown
+  - License: Please refer to the extension's marketplace page for license information
+  - Marketplace: https://marketplace.visualstudio.com/items?itemName=
+- **** (``)
+  - Description: 
+  - Publisher: Unknown
+  - License: Please refer to the extension's marketplace page for license information
+  - Marketplace: https://marketplace.visualstudio.com/items?itemName=
+- **** (``)
+  - Description: 
+  - Publisher: Unknown
+  - License: Please refer to the extension's marketplace page for license information
+  - Marketplace: https://marketplace.visualstudio.com/items?itemName=
 
 ## Disclaimer
 

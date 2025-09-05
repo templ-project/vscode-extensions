@@ -33,7 +33,7 @@
   ],
   "extensionPack": [
     "golang.go",
-    "usernamehw.errorlens",
+    "",
     "766b.go-outliner",
     "premparihar.gotestexplorer",
     "davidbarratt.go-fill-struct",
@@ -41,7 +41,7 @@
   ],
   "extensionDependencies": [
     "golang.go",
-    "usernamehw.errorlens"
+    ""
   ],
   "activationEvents": [
     "onStartupFinished"

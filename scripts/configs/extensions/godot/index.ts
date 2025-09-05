@@ -51,16 +51,6 @@ const baseGodotSnippets: Omit<Extension, 'marketplace_url'> = {
   why_recommended: "Provides useful code snippets for common GDScript patterns and Godot API usage"
 };
 
-// Error highlighting
-const baseErrorLens: Omit<Extension, 'marketplace_url'> = {
-  id: "usernamehw.errorlens",
-  name: "Error Lens",
-  description: "Improve highlighting of errors, warnings and other language diagnostics",
-  publisher: "usernamehw",
-  license: "MIT",
-  why_recommended: "Enhances error visibility by showing diagnostics inline with the code"
-};
-
 // Todo highlighting
 const baseTodoHighlight: Omit<Extension, 'marketplace_url'> = {
   id: "wayou.vscode-todo-highlight",
@@ -79,16 +69,6 @@ const baseRainbowBrackets: Omit<Extension, 'marketplace_url'> = {
   publisher: "2gua",
   license: "MIT",
   why_recommended: "Improves code readability by color-coding bracket pairs"
-};
-
-// Better comments for documentation
-const baseBetterComments: Omit<Extension, 'marketplace_url'> = {
-  id: "aaron-bond.better-comments",
-  name: "Better Comments",
-  description: "Improve your code commenting by annotating with alert, informational, TODOs, and more",
-  publisher: "aaron-bond",
-  license: "MIT",
-  why_recommended: "Enhances code documentation with styled comments for better game development workflow"
 };
 
 // VSCode marketplace versions
@@ -117,11 +97,6 @@ export const godotSnippetsVSCode: Extension = {
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=razoric.gdscript-snippets"
 };
 
-export const errorLensVSCode: Extension = {
-  ...baseErrorLens,
-  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens"
-};
-
 export const todoHighlightVSCode: Extension = {
   ...baseTodoHighlight,
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight"
@@ -130,11 +105,6 @@ export const todoHighlightVSCode: Extension = {
 export const rainbowBracketsVSCode: Extension = {
   ...baseRainbowBrackets,
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=2gua.rainbow-brackets"
-};
-
-export const betterCommentsVSCode: Extension = {
-  ...baseBetterComments,
-  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments"
 };
 
 // VSCodium marketplace versions
@@ -163,11 +133,6 @@ export const godotSnippetsVSCodium: Extension = {
   marketplace_url: "https://open-vsx.org/extension/razoric/gdscript-snippets"
 };
 
-export const errorLensVSCodium: Extension = {
-  ...baseErrorLens,
-  marketplace_url: "https://open-vsx.org/extension/usernamehw/errorlens"
-};
-
 export const todoHighlightVSCodium: Extension = {
   ...baseTodoHighlight,
   marketplace_url: "https://open-vsx.org/extension/wayou/vscode-todo-highlight"
@@ -176,9 +141,4 @@ export const todoHighlightVSCodium: Extension = {
 export const rainbowBracketsVSCodium: Extension = {
   ...baseRainbowBrackets,
   marketplace_url: "https://open-vsx.org/extension/2gua/rainbow-brackets"
-};
-
-export const betterCommentsVSCodium: Extension = {
-  ...baseBetterComments,
-  marketplace_url: "https://open-vsx.org/extension/aaron-bond/better-comments"
 };

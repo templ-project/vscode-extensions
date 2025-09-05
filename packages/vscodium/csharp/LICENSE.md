@@ -41,11 +41,11 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Publisher: EditorConfig
   - License: MIT
   - Marketplace: [View Extension](https://open-vsx.org/extension/editorconfig/editorconfig)
-- **Error Lens** (`usernamehw.errorlens`)
-  - Description: Improve highlighting of errors, warnings and other language diagnostics
-  - Publisher: Alexander
-  - License: MIT
-  - Marketplace: [View Extension](https://open-vsx.org/extension/usernamehw/errorlens)
+- **** (``)
+  - Description: 
+  - Publisher: Unknown
+  - License: Please refer to the extension's marketplace page for license information
+  - Marketplace: https://marketplace.visualstudio.com/items?itemName=
 - **C# Extensions** (`kreativ-software.csharpextensions`)
   - Description: C# IDE Extensions for VSCode
   - Publisher: Kreativ Software
@@ -61,11 +61,11 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Publisher: Jorge Serrano
   - License: MIT
   - Marketplace: [View Extension](https://open-vsx.org/extension/jorgeserrano/vscode-csharp-snippets)
-- **Version Lens** (`pflannery.vscode-versionlens`)
-  - Description: Shows the latest version for each package using code lens
-  - Publisher: pflannery
-  - License: MIT
-  - Marketplace: [View Extension](https://open-vsx.org/extension/pflannery/vscode-versionlens)
+- **** (``)
+  - Description: 
+  - Publisher: Unknown
+  - License: Please refer to the extension's marketplace page for license information
+  - Marketplace: https://marketplace.visualstudio.com/items?itemName=
 - **Roslynator** (`josefpihrt-vscode.roslynator`)
   - Description: A collection of 500+ analyzers, refactorings and fixes for C#, powered by Roslyn
   - Publisher: Josef Pihrt

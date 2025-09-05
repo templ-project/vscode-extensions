@@ -53,7 +53,7 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;razoric.gdscript-snippets)
 - **Error Lens** (`usernamehw.errorlens`)
   - Description: Improve highlighting of errors, warnings and other language diagnostics
-  - Publisher: usernamehw
+  - Publisher: Alexander
   - License: MIT
   - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;usernamehw.errorlens)
 - **TODO Highlight** (`wayou.vscode-todo-highlight`)
@@ -67,8 +67,8 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - License: MIT
   - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;2gua.rainbow-brackets)
 - **Better Comments** (`aaron-bond.better-comments`)
-  - Description: Improve your code commenting by annotating with alert, informational, TODOs, and more
-  - Publisher: aaron-bond
+  - Description: Improve your code commenting by annotating with alert, info, todo, and more
+  - Publisher: Aaron Bond
   - License: MIT
   - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;aaron-bond.better-comments)
 

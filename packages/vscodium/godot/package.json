@@ -38,10 +38,10 @@
     "alfish.godot-files",
     "arkii.godot-shaders",
     "razoric.gdscript-snippets",
-    "usernamehw.errorlens",
+    "",
     "wayou.vscode-todo-highlight",
     "2gua.rainbow-brackets",
-    "aaron-bond.better-comments"
+    ""
   ],
   "extensionDependencies": [
     "geequlim.godot-tools",

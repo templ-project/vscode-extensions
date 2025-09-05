@@ -4,7 +4,7 @@ Essential C# development environment for VSCode - comprehensive .NET tooling wit
 
 ## 📦 What's Included
 
-This extension pack includes **9 carefully selected extensions** to enhance your csharp development experience in vscode.
+This extension pack includes **8 carefully selected extensions** to enhance your csharp development experience in vscode.
 
 ### ✅ Core Extensions (4)
 
@@ -15,14 +15,13 @@ These extensions are essential for csharp development:
 - **[EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName&#x3D;editorconfig.editorconfig)** - EditorConfig Support for Visual Studio Code
 - **[Error Lens](https://marketplace.visualstudio.com/items?itemName&#x3D;usernamehw.errorlens)** - Improve highlighting of errors, warnings and other language diagnostics
 
-### 💡 Additional Extensions (5)
+### 💡 Additional Extensions (4)
 
 These extensions provide extra functionality and convenience:
 
 - **[C# Extensions](https://marketplace.visualstudio.com/items?itemName&#x3D;kreativ-software.csharpextensions)** - C# IDE Extensions for VSCode
 - **[.NET Core Test Explorer](https://marketplace.visualstudio.com/items?itemName&#x3D;formulahendry.dotnet-test-explorer)** - Test Explorer for .NET Core (MSTest, xUnit, NUnit)
 - **[C# Snippets](https://marketplace.visualstudio.com/items?itemName&#x3D;jorgeserrano.vscode-csharp-snippets)** - C# Snippets for Visual Studio Code
-- **[Version Lens](https://marketplace.visualstudio.com/items?itemName&#x3D;pflannery.vscode-versionlens)** - Shows the latest version for each package using code lens
 - **[Roslynator](https://marketplace.visualstudio.com/items?itemName&#x3D;josefpihrt-vscode.roslynator)** - A collection of 500+ analyzers, refactorings and fixes for C#, powered by Roslyn
 
 ## 🚀 Installation
@@ -172,7 +171,6 @@ After installation, you may want to configure some settings for optimal csharp d
 | [C# Extensions](https://marketplace.visualstudio.com/items?itemName&#x3D;kreativ-software.csharpextensions) | Kreativ Software | C# IDE Extensions for VSCode |
 | [.NET Core Test Explorer](https://marketplace.visualstudio.com/items?itemName&#x3D;formulahendry.dotnet-test-explorer) | Jun Han | Test Explorer for .NET Core (MSTest, xUnit, NUnit) |
 | [C# Snippets](https://marketplace.visualstudio.com/items?itemName&#x3D;jorgeserrano.vscode-csharp-snippets) | Jorge Serrano | C# Snippets for Visual Studio Code |
-| [Version Lens](https://marketplace.visualstudio.com/items?itemName&#x3D;pflannery.vscode-versionlens) | pflannery | Shows the latest version for each package using code lens |
 | [Roslynator](https://marketplace.visualstudio.com/items?itemName&#x3D;josefpihrt-vscode.roslynator) | Josef Pihrt | A collection of 500+ analyzers, refactorings and fixes for C#, powered by Roslyn |
 
 ## 🏷️ Categories
@@ -196,7 +194,6 @@ This extension pack is licensed under the **MIT License** - see [LICENSE.md](htt
 | [C# Extensions](https://marketplace.visualstudio.com/items?itemName&#x3D;kreativ-software.csharpextensions) | Kreativ Software | MIT | C# IDE Extensions for VSCode |
 | [.NET Core Test Explorer](https://marketplace.visualstudio.com/items?itemName&#x3D;formulahendry.dotnet-test-explorer) | Jun Han | MIT | Test Explorer for .NET Core (MSTest, xUnit, NUnit) |
 | [C# Snippets](https://marketplace.visualstudio.com/items?itemName&#x3D;jorgeserrano.vscode-csharp-snippets) | Jorge Serrano | MIT | C# Snippets for Visual Studio Code |
-| [Version Lens](https://marketplace.visualstudio.com/items?itemName&#x3D;pflannery.vscode-versionlens) | pflannery | MIT | Shows the latest version for each package using code lens |
 | [Roslynator](https://marketplace.visualstudio.com/items?itemName&#x3D;josefpihrt-vscode.roslynator) | Josef Pihrt | MIT | A collection of 500+ analyzers, refactorings and fixes for C#, powered by Roslyn |
 
 ### Disclaimer
@@ -211,9 +208,9 @@ Found an issue or want to suggest an extension? Please [open an issue](https://g
 
 ## 📊 Extension Pack Stats
 
-- **Total Extensions**: 9
+- **Total Extensions**: 8
 - **Required Extensions**: 4
-- **Optional Extensions**: 5
+- **Optional Extensions**: 4
 - **Target IDE**: vscode
 - **Language Focus**: csharp
 

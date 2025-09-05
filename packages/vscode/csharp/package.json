@@ -42,7 +42,6 @@
     "kreativ-software.csharpextensions",
     "formulahendry.dotnet-test-explorer",
     "jorgeserrano.vscode-csharp-snippets",
-    "pflannery.vscode-versionlens",
     "josefpihrt-vscode.roslynator"
   ],
   "extensionDependencies": [

@@ -38,18 +38,18 @@
     "ms-dotnettools.csharp",
     "ms-dotnettools.csdevkit",
     "editorconfig.editorconfig",
-    "usernamehw.errorlens",
+    "",
     "kreativ-software.csharpextensions",
     "formulahendry.dotnet-test-explorer",
     "jorgeserrano.vscode-csharp-snippets",
-    "pflannery.vscode-versionlens",
+    "",
     "josefpihrt-vscode.roslynator"
   ],
   "extensionDependencies": [
     "ms-dotnettools.csharp",
     "ms-dotnettools.csdevkit",
     "editorconfig.editorconfig",
-    "usernamehw.errorlens"
+    ""
   ],
   "activationEvents": [
     "onStartupFinished"

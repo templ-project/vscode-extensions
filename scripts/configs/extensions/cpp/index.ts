@@ -46,15 +46,6 @@ const baseClangFormat: Omit<Extension, 'marketplace_url'> = {
   why_required: "Essential code formatting for C/C++ using clang-format with customizable style options"
 };
 
-const baseErrorLens: Omit<Extension, 'marketplace_url'> = {
-  id: "usernamehw.errorlens",
-  name: "Error Lens",
-  description: "Improve highlighting of errors, warnings and other language diagnostics",
-  publisher: "Alexander",
-  license: "MIT",
-  why_required: "Enhanced error visibility and inline diagnostics for better development experience"
-};
-
 const baseBetterCppSyntax: Omit<Extension, 'marketplace_url'> = {
   id: "jeff-hykin.better-cpp-syntax",
   name: "Better C++ Syntax",
@@ -108,11 +99,6 @@ export const clangFormat: Extension = {
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=xaver.clang-format"
 };
 
-export const errorLens: Extension = {
-  ...baseErrorLens,
-  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens"
-};
-
 export const betterCppSyntax: Extension = {
   ...baseBetterCppSyntax,
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=jeff-hykin.better-cpp-syntax"
@@ -152,11 +138,6 @@ export const xmakeVSCodium: Extension = {
 export const clangFormatVSCodium: Extension = {
   ...baseClangFormat,
   marketplace_url: "https://open-vsx.org/extension/xaver/clang-format"
-};
-
-export const errorLensVSCodium: Extension = {
-  ...baseErrorLens,
-  marketplace_url: "https://open-vsx.org/extension/usernamehw/errorlens"
 };
 
 export const betterCppSyntaxVSCodium: Extension = {

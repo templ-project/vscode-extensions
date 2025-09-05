@@ -5,10 +5,9 @@ import {
   csharpSnippets,
   dotnetTestExplorer,
   editorConfig,
-  errorLens,
-  roslynator,
-  versionLens
+  roslynator
 } from '../../extensions/csharp';
+import { errorLens } from '../../extensions/productivity';
 import { Collection } from '../../shared/types';
 
 export const csharp: Collection = {
@@ -26,7 +25,6 @@ export const csharp: Collection = {
     csharpExtensions,
     dotnetTestExplorer,
     csharpSnippets,
-    versionLens,
     roslynator
   ],
   

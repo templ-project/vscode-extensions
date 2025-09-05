@@ -5,10 +5,10 @@ import {
   cmakeToolsVSCodium,
   cmakeVSCodium,
   doxygenVSCodium,
-  errorLensVSCodium,
   nativeDebugVSCodium,
   xmakeVSCodium
 } from '../../extensions/cpp';
+import { errorLensVSCodium } from '../../extensions/productivity';
 import { Collection } from '../../shared/types';
 
 export const cpp: Collection = {

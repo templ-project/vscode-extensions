@@ -5,10 +5,10 @@ import {
   cmake,
   cmakeTools,
   doxygen,
-  errorLens,
   nativeDebug,
   xmake
 } from '../../extensions/cpp';
+import { errorLens } from '../../extensions/productivity';
 import { Collection } from '../../shared/types';
 
 export const cpp: Collection = {

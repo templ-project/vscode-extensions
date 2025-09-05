@@ -23,7 +23,7 @@ These extensions provide extra functionality and convenience:
 - **[Error Lens](https://marketplace.visualstudio.com/items?itemName&#x3D;usernamehw.errorlens)** - Improve highlighting of errors, warnings and other language diagnostics
 - **[TODO Highlight](https://marketplace.visualstudio.com/items?itemName&#x3D;wayou.vscode-todo-highlight)** - Highlight TODOs, FIXMEs, and other annotations in your code
 - **[Rainbow Brackets](https://marketplace.visualstudio.com/items?itemName&#x3D;2gua.rainbow-brackets)** - Provide rainbow colors for the round brackets, the square brackets and the squiggly brackets
-- **[Better Comments](https://marketplace.visualstudio.com/items?itemName&#x3D;aaron-bond.better-comments)** - Improve your code commenting by annotating with alert, informational, TODOs, and more
+- **[Better Comments](https://marketplace.visualstudio.com/items?itemName&#x3D;aaron-bond.better-comments)** - Improve your code commenting by annotating with alert, info, todo, and more
 
 ## 🚀 Installation
 
@@ -236,10 +236,10 @@ After installation, you may want to configure some settings for optimal godot de
 | [Godot Files](https://marketplace.visualstudio.com/items?itemName&#x3D;alfish.godot-files) | alfish | Syntax highlighting for Godot files (.tres, .tscn, .godot, etc.) |
 | [Godot Shaders](https://marketplace.visualstudio.com/items?itemName&#x3D;arkii.godot-shaders) | arkii | Syntax highlighting and support for Godot shader files |
 | [Godot Snippets](https://marketplace.visualstudio.com/items?itemName&#x3D;razoric.gdscript-snippets) | razoric | Code snippets for GDScript and Godot development |
-| [Error Lens](https://marketplace.visualstudio.com/items?itemName&#x3D;usernamehw.errorlens) | usernamehw | Improve highlighting of errors, warnings and other language diagnostics |
+| [Error Lens](https://marketplace.visualstudio.com/items?itemName&#x3D;usernamehw.errorlens) | Alexander | Improve highlighting of errors, warnings and other language diagnostics |
 | [TODO Highlight](https://marketplace.visualstudio.com/items?itemName&#x3D;wayou.vscode-todo-highlight) | wayou | Highlight TODOs, FIXMEs, and other annotations in your code |
 | [Rainbow Brackets](https://marketplace.visualstudio.com/items?itemName&#x3D;2gua.rainbow-brackets) | 2gua | Provide rainbow colors for the round brackets, the square brackets and the squiggly brackets |
-| [Better Comments](https://marketplace.visualstudio.com/items?itemName&#x3D;aaron-bond.better-comments) | aaron-bond | Improve your code commenting by annotating with alert, informational, TODOs, and more |
+| [Better Comments](https://marketplace.visualstudio.com/items?itemName&#x3D;aaron-bond.better-comments) | Aaron Bond | Improve your code commenting by annotating with alert, info, todo, and more |
 
 ## 🏷️ Categories
 
@@ -260,10 +260,10 @@ This extension pack is licensed under the **MIT License** - see [LICENSE.md](htt
 | [Godot Files](https://marketplace.visualstudio.com/items?itemName&#x3D;alfish.godot-files) | alfish | MIT | Syntax highlighting for Godot files (.tres, .tscn, .godot, etc.) |
 | [Godot Shaders](https://marketplace.visualstudio.com/items?itemName&#x3D;arkii.godot-shaders) | arkii | MIT | Syntax highlighting and support for Godot shader files |
 | [Godot Snippets](https://marketplace.visualstudio.com/items?itemName&#x3D;razoric.gdscript-snippets) | razoric | MIT | Code snippets for GDScript and Godot development |
-| [Error Lens](https://marketplace.visualstudio.com/items?itemName&#x3D;usernamehw.errorlens) | usernamehw | MIT | Improve highlighting of errors, warnings and other language diagnostics |
+| [Error Lens](https://marketplace.visualstudio.com/items?itemName&#x3D;usernamehw.errorlens) | Alexander | MIT | Improve highlighting of errors, warnings and other language diagnostics |
 | [TODO Highlight](https://marketplace.visualstudio.com/items?itemName&#x3D;wayou.vscode-todo-highlight) | wayou | MIT | Highlight TODOs, FIXMEs, and other annotations in your code |
 | [Rainbow Brackets](https://marketplace.visualstudio.com/items?itemName&#x3D;2gua.rainbow-brackets) | 2gua | MIT | Provide rainbow colors for the round brackets, the square brackets and the squiggly brackets |
-| [Better Comments](https://marketplace.visualstudio.com/items?itemName&#x3D;aaron-bond.better-comments) | aaron-bond | MIT | Improve your code commenting by annotating with alert, informational, TODOs, and more |
+| [Better Comments](https://marketplace.visualstudio.com/items?itemName&#x3D;aaron-bond.better-comments) | Aaron Bond | MIT | Improve your code commenting by annotating with alert, info, todo, and more |
 
 ### Disclaimer
 - We **do not guarantee** the functionality, security, or compatibility of included extensions

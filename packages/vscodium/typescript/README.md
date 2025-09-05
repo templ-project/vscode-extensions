@@ -10,9 +10,9 @@ This extension pack includes **3 carefully selected extensions** to enhance your
 
 These extensions are essential for typescript development:
 
-- **[TypeScript Importer](https://open-vsx.org/extension/ms-vscode/vscode-typescript-next)** - Automatically searches for TypeScript definitions
-- **[TypeScript Snippets](https://open-vsx.org/extension/ms-vscode/vscode-typescript-next)** - Code snippets for TypeScript development
-- **[TypeScript Debugger](https://open-vsx.org/extension/ms-vscode/js-debug)** - Built-in TypeScript/JavaScript debugger for VS Code
+- **[]()** - 
+- **[]()** - 
+- **[]()** - 
 
 
 ## 🚀 Installation
@@ -104,9 +104,9 @@ After installation, you may want to configure some settings for optimal typescri
 
 | Extension | Publisher | Description |
 |-----------|-----------|-------------|
-| [TypeScript Importer](https://open-vsx.org/extension/ms-vscode/vscode-typescript-next) | Microsoft | Automatically searches for TypeScript definitions |
-| [TypeScript Snippets](https://open-vsx.org/extension/ms-vscode/vscode-typescript-next) | Microsoft | Code snippets for TypeScript development |
-| [TypeScript Debugger](https://open-vsx.org/extension/ms-vscode/js-debug) | Microsoft | Built-in TypeScript/JavaScript debugger for VS Code |
+| []() |  |  |
+| []() |  |  |
+| []() |  |  |
 
 ## 🏷️ Categories
 
@@ -122,9 +122,9 @@ This extension pack is licensed under the **MIT License** - see [LICENSE.md](htt
 
 | Extension | Publisher | License | Description |
 |-----------|-----------|---------|-------------|
-| [TypeScript Importer](https://open-vsx.org/extension/ms-vscode/vscode-typescript-next) | Microsoft | MIT | Automatically searches for TypeScript definitions |
-| [TypeScript Snippets](https://open-vsx.org/extension/ms-vscode/vscode-typescript-next) | Microsoft | MIT | Code snippets for TypeScript development |
-| [TypeScript Debugger](https://open-vsx.org/extension/ms-vscode/js-debug) | Microsoft | MIT | Built-in TypeScript/JavaScript debugger for VS Code |
+| [](https://marketplace.visualstudio.com/items?itemName=) | Unknown | See extension page |  |
+| [](https://marketplace.visualstudio.com/items?itemName=) | Unknown | See extension page |  |
+| [](https://marketplace.visualstudio.com/items?itemName=) | Unknown | See extension page |  |
 
 ### Disclaimer
 - We **do not guarantee** the functionality, security, or compatibility of included extensions

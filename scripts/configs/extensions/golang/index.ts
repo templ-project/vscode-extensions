@@ -37,15 +37,6 @@ const baseGoFillStruct: Omit<Extension, 'marketplace_url'> = {
   why_required: "Automatically fill Go struct literals with zero values"
 };
 
-const baseGoErrorLens: Omit<Extension, 'marketplace_url'> = {
-  id: "usernamehw.errorlens",
-  name: "Error Lens",
-  description: "Improve highlighting of errors, warnings and other language diagnostics",
-  publisher: "Alexander",
-  license: "MIT",
-  why_required: "Enhanced error visibility for Go development"
-};
-
 const baseGoTemplateHighlighter: Omit<Extension, 'marketplace_url'> = {
   id: "karyan40024.gotmpl-syntax-highlighter",
   name: "Go Template Syntax Highlighter",
@@ -103,11 +94,6 @@ export const goFillStruct: Extension = {
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=davidbarratt.go-fill-struct"
 };
 
-export const errorLens: Extension = {
-  ...baseGoErrorLens,
-  marketplace_url: "https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens"
-};
-
 export const goTemplateHighlighter: Extension = {
   ...baseGoTemplateHighlighter,
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=karyan40024.gotmpl-syntax-highlighter"
@@ -147,11 +133,6 @@ export const goTestExplorerVSCodium: Extension = {
 export const goFillStructVSCodium: Extension = {
   ...baseGoFillStruct,
   marketplace_url: "https://open-vsx.org/extension/davidbarratt/go-fill-struct"
-};
-
-export const errorLensVSCodium: Extension = {
-  ...baseGoErrorLens,
-  marketplace_url: "https://open-vsx.org/extension/usernamehw/errorlens"
 };
 
 export const goTemplateHighlighterVSCodium: Extension = {
