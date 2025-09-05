@@ -262,3 +262,22 @@ export const errorLensVSCodium: Extension = {
   ...errorLens,
   marketplace_url: 'https://open-vsx.org/extension/usernamehw/errorlens',
 };
+
+const baseEditorConfig: Omit<Extension, 'marketplace_url'> = {
+  id: 'editorconfig.editorconfig',
+  name: 'EditorConfig for VS Code',
+  description: 'EditorConfig Support for Visual Studio Code',
+  publisher: 'EditorConfig',
+  license: 'MIT',
+  why_required: 'Consistent coding styles and formatting rules across different editors and IDEs',
+};
+
+export const editorConfig: Extension = {
+  ...baseEditorConfig,
+  marketplace_url: 'https://marketplace.visualstudio.com/items?itemName=editorconfig.editorconfig',
+};
+
+export const editorConfigVSCodium: Extension = {
+  ...baseEditorConfig,
+  marketplace_url: 'https://open-vsx.org/extension/editorconfig/editorconfig',
+};

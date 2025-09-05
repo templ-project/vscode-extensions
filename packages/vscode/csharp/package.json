@@ -17,9 +17,7 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": [
-    "Extension Packs"
-  ],
+  "categories": ["Extension Packs"],
   "keywords": [
     "csharp",
     "c#",
@@ -37,22 +35,13 @@
   "extensionPack": [
     "ms-dotnettools.csharp",
     "ms-dotnettools.csdevkit",
-    "editorconfig.editorconfig",
-    "usernamehw.errorlens",
     "kreativ-software.csharpextensions",
     "formulahendry.dotnet-test-explorer",
     "jorgeserrano.vscode-csharp-snippets",
     "josefpihrt-vscode.roslynator"
   ],
-  "extensionDependencies": [
-    "ms-dotnettools.csharp",
-    "ms-dotnettools.csdevkit",
-    "editorconfig.editorconfig",
-    "usernamehw.errorlens"
-  ],
-  "activationEvents": [
-    "onStartupFinished"
-  ],
+  "extensionDependencies": ["ms-dotnettools.csharp", "ms-dotnettools.csdevkit"],
+  "activationEvents": ["onStartupFinished"],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [

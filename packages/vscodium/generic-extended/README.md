@@ -23,7 +23,7 @@ These extensions are essential for generic-extended development:
 
 These extensions provide extra functionality and convenience:
 
-- **[Better DockerFile Syntax](https://marketplace.visualstudio.com/items?itemName&#x3D;jeff-hykin.better-dockerfile-syntax)** - An update to the syntax of Dockerfile
+- **[Better DockerFile Syntax](https://marketplace.visualstudio.com/items?itemName=jeff-hykin.better-dockerfile-syntax)** - An update to the syntax of Dockerfile
 - **[Kubernetes Support](https://open-vsx.org/extension/ipedrazas/kubernetes-snippets)** - Code snippets of kubernetes for Visual Studio Code
 - **[Git Graph](https://open-vsx.org/extension/mhutchie/git-graph)** - View a Git Graph of your repository, and perform Git actions from the graph
 - **[SonarLint](https://open-vsx.org/extension/SonarSource/sonarlint-vscode)** - Detects bugs, vulnerabilities and code smells for multiple languages
@@ -31,17 +31,20 @@ These extensions provide extra functionality and convenience:
 ## 🚀 Installation
 
 ### Method 1: Install from Marketplace
+
 1. Open Vscodium
 2. Go to Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
 3. Search for "Templ Project Generic Extended Extension Pack"
 4. Click "Install"
 
 ### Method 2: Install via Command Line
+
 ```bash
 codium --install-extension @templ-project/generic-extended-extension-pack
 ```
 
 ### Method 3: Install from VSIX
+
 1. Download the latest `.vsix` file from [Releases](https://github.com/templ-project/vscode-extensions/releases)
 2. Open Vscodium
 3. Run `Extensions: Install from VSIX...` command
@@ -52,178 +55,275 @@ codium --install-extension @templ-project/generic-extended-extension-pack
 After installation, you may want to configure some settings for optimal generic-extended development:
 
 ### openapi.completion.enable
+
 ```json
-"openapi.completion.enable": true
+{
+  "openapi.completion.enable": true
+}
 ```
+
 > Enable OpenAPI completion suggestions
 
 ### openapi.validation.enable
+
 ```json
-"openapi.validation.enable": true
+{
+  "openapi.validation.enable": true
+}
 ```
+
 > Enable OpenAPI validation
 
 ### openapi.preview.enable
+
 ```json
-"openapi.preview.enable": true
+{
+  "openapi.preview.enable": true
+}
 ```
+
 > Enable OpenAPI preview
 
 ### rest-client.enableTelemetry
+
 ```json
-"rest-client.enableTelemetry": false
+{
+  "rest-client.enableTelemetry": false
+}
 ```
+
 > Disable REST Client telemetry
 
 ### rest-client.showResponseInDifferentTab
+
 ```json
-"rest-client.showResponseInDifferentTab": true
+{
+  "rest-client.showResponseInDifferentTab": true
+}
 ```
+
 > Show REST Client response in separate tab
 
 ### docker.attachShellCommand.linuxContainer
+
 ```json
-"docker.attachShellCommand.linuxContainer": &quot;/bin/bash&quot;
+{
+  "docker.attachShellCommand.linuxContainer": "/bin/bash"
+}
 ```
+
 > Default shell command for Linux containers
 
 ### docker.attachShellCommand.windowsContainer
+
 ```json
-"docker.attachShellCommand.windowsContainer": &quot;cmd.exe&quot;
+{
+  "docker.attachShellCommand.windowsContainer": "cmd.exe"
+}
 ```
+
 > Default shell command for Windows containers
 
 ### docker.showStartPage
+
 ```json
-"docker.showStartPage": false
+{
+  "docker.showStartPage": false
+}
 ```
+
 > Hide Docker start page
 
 ### vs-kubernetes.vs-kubernetes.namespace
+
 ```json
-"vs-kubernetes.vs-kubernetes.namespace": &quot;&quot;
+{
+  "vs-kubernetes.vs-kubernetes.namespace": ""
+}
 ```
+
 > Default Kubernetes namespace
 
 ### vs-kubernetes.outputFormat
+
 ```json
-"vs-kubernetes.outputFormat": &quot;yaml&quot;
+{
+  "vs-kubernetes.outputFormat": "yaml"
+}
 ```
+
 > Default output format for Kubernetes resources
 
 ### vs-kubernetes.autoCleanupOnDebugTerminate
+
 ```json
-"vs-kubernetes.autoCleanupOnDebugTerminate": true
+{
+  "vs-kubernetes.autoCleanupOnDebugTerminate": true
+}
 ```
+
 > Auto cleanup Kubernetes debug resources
 
 ### github.pullRequests.createOnPublishBranch
+
 ```json
-"github.pullRequests.createOnPublishBranch": &quot;never&quot;
+{
+  "github.pullRequests.createOnPublishBranch": "never"
+}
 ```
+
 > Never create pull requests on publish branch
 
 ### github.pullRequests.pullBranch
+
 ```json
-"github.pullRequests.pullBranch": &quot;never&quot;
+{
+  "github.pullRequests.pullBranch": "never"
+}
 ```
+
 > Never pull branch on pull request
 
 ### github.pullRequests.showInTimeline
+
 ```json
-"github.pullRequests.showInTimeline": true
+{
+  "github.pullRequests.showInTimeline": true
+}
 ```
+
 > Show pull requests in timeline view
 
 ### githubActions.workflows.pinned.workflows
+
 ```json
-"githubActions.workflows.pinned.workflows": []
+{
+  "githubActions.workflows.pinned.workflows": []
+}
 ```
+
 > Pinned GitHub Actions workflows
 
 ### githubActions.workflows.pinned.refresh.enabled
+
 ```json
-"githubActions.workflows.pinned.refresh.enabled": true
+{
+  "githubActions.workflows.pinned.refresh.enabled": true
+}
 ```
+
 > Enable automatic refresh of pinned workflows
 
 ### git.enableSmartCommit
+
 ```json
-"git.enableSmartCommit": true
+{
+  "git.enableSmartCommit": true
+}
 ```
+
 > Enable smart commit (stage all changes when committing)
 
 ### git.autofetch
+
 ```json
-"git.autofetch": true
+{
+  "git.autofetch": true
+}
 ```
+
 > Enable automatic git fetch
 
 ### git.autofetchPeriod
+
 ```json
-"git.autofetchPeriod": 180
+{
+  "git.autofetchPeriod": 180
+}
 ```
+
 > Auto fetch period in seconds (3 minutes)
 
 ### git.confirmSync
+
 ```json
-"git.confirmSync": false
+{
+  "git.confirmSync": false
+}
 ```
+
 > Disable confirmation for git sync
 
 ### git.enableStatusBarSync
+
 ```json
-"git.enableStatusBarSync": true
+{
+  "git.enableStatusBarSync": true
+}
 ```
+
 > Enable git sync status in status bar
 
 ### yaml.schemas
+
 ```json
-"yaml.schemas": {
-  &quot;https://json.schemastore.org/github-workflow.json&quot;: &quot;.github/workflows/*&quot;,
-  &quot;https://json.schemastore.org/github-action.json&quot;: &quot;.github/actions/*/action.yml&quot;,
-  &quot;https://json.schemastore.org/docker-compose.json&quot;: [
-    &quot;docker-compose.yml&quot;,
-    &quot;docker-compose.yaml&quot;
-  ],
-  &quot;https://json.schemastore.org/kustomization.json&quot;: [
-    &quot;kustomization.yaml&quot;,
-    &quot;kustomization.yml&quot;
-  ],
-  &quot;https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json&quot;: [
-    &quot;k8s/**/*.yaml&quot;,
-    &quot;k8s/**/*.yml&quot;,
-    &quot;kubernetes/**/*.yaml&quot;,
-    &quot;kubernetes/**/*.yml&quot;
-  ]
+{
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": ".github/workflows/*",
+    "https://json.schemastore.org/github-action.json": ".github/actions/*/action.yml",
+    "https://json.schemastore.org/docker-compose.json": ["docker-compose.yml", "docker-compose.yaml"],
+    "https://json.schemastore.org/kustomization.json": ["kustomization.yaml", "kustomization.yml"],
+    "https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json": [
+      "k8s/**/*.yaml",
+      "k8s/**/*.yml",
+      "kubernetes/**/*.yaml",
+      "kubernetes/**/*.yml"
+    ]
+  }
 }
 ```
+
 > YAML schema mappings for various file types
 
 ### yaml.format.enable
+
 ```json
-"yaml.format.enable": true
+{
+  "yaml.format.enable": true
+}
 ```
+
 > Enable YAML formatting
 
 ### yaml.validate
+
 ```json
-"yaml.validate": true
+{
+  "yaml.validate": true
+}
 ```
+
 > Enable YAML validation
 
 ### yaml.hover
+
 ```json
-"yaml.hover": true
+{
+  "yaml.hover": true
+}
 ```
+
 > Enable YAML hover information
 
 ### yaml.completion
-```json
-"yaml.completion": true
-```
-> Enable YAML completion
 
+```json
+{
+  "yaml.completion": true
+}
+```
+
+> Enable YAML completion
 
 ## ⌨️ Recommended Keybindings
 
@@ -238,49 +338,50 @@ After installation, you may want to configure some settings for optimal generic-
 
 ## 📝 Extension Details
 
-| Extension | Publisher | Description |
-|-----------|-----------|-------------|
-| [OpenAPI (Swagger) Editor](https://open-vsx.org/extension/42crunch/vscode-openapi) | 42Crunch | OpenAPI editing, validation and preview in VS Code |
-| [REST Client](https://open-vsx.org/extension/humao/rest-client) | Huachao Mao | REST Client for Visual Studio Code |
-| [Docker](https://open-vsx.org/extension/ms-azuretools/vscode-docker) | Microsoft | Makes it easy to create, manage, and debug containerized applications |
-| [Kubernetes](https://open-vsx.org/extension/ms-kubernetes-tools/vscode-kubernetes-tools) | Microsoft | Develop, deploy and debug Kubernetes applications |
-| [Helm Intellisense](https://open-vsx.org/extension/tim-koehler/helm-intellisense) | Tim Koehler | This extension provides intellisense for helm templates |
-| [GitHub Pull Requests](https://open-vsx.org/extension/github/vscode-pull-request-github) | GitHub | Pull Request and Issue Provider for GitHub |
-| [GitHub Actions](https://open-vsx.org/extension/github/vscode-github-actions) | GitHub | GitHub Actions workflows and runs for github.com hosted repositories |
-| [Code Runner](https://open-vsx.org/extension/formulahendry/code-runner) | Jun Han | Run code snippets or code files for multiple languages |
-| [Better DockerFile Syntax](https://marketplace.visualstudio.com/items?itemName&#x3D;jeff-hykin.better-dockerfile-syntax) | jeff-hykin | An update to the syntax of Dockerfile |
-| [Kubernetes Support](https://open-vsx.org/extension/ipedrazas/kubernetes-snippets) | Iván Pedrazas | Code snippets of kubernetes for Visual Studio Code |
-| [Git Graph](https://open-vsx.org/extension/mhutchie/git-graph) | mhutchie | View a Git Graph of your repository, and perform Git actions from the graph |
-| [SonarLint](https://open-vsx.org/extension/SonarSource/sonarlint-vscode) | SonarSource | Detects bugs, vulnerabilities and code smells for multiple languages |
+| Extension                                                                                                           | Publisher     | Description                                                                 |
+| ------------------------------------------------------------------------------------------------------------------- | ------------- | --------------------------------------------------------------------------- |
+| [OpenAPI (Swagger) Editor](https://open-vsx.org/extension/42crunch/vscode-openapi)                                  | 42Crunch      | OpenAPI editing, validation and preview in VS Code                          |
+| [REST Client](https://open-vsx.org/extension/humao/rest-client)                                                     | Huachao Mao   | REST Client for Visual Studio Code                                          |
+| [Docker](https://open-vsx.org/extension/ms-azuretools/vscode-docker)                                                | Microsoft     | Makes it easy to create, manage, and debug containerized applications       |
+| [Kubernetes](https://open-vsx.org/extension/ms-kubernetes-tools/vscode-kubernetes-tools)                            | Microsoft     | Develop, deploy and debug Kubernetes applications                           |
+| [Helm Intellisense](https://open-vsx.org/extension/tim-koehler/helm-intellisense)                                   | Tim Koehler   | This extension provides intellisense for helm templates                     |
+| [GitHub Pull Requests](https://open-vsx.org/extension/github/vscode-pull-request-github)                            | GitHub        | Pull Request and Issue Provider for GitHub                                  |
+| [GitHub Actions](https://open-vsx.org/extension/github/vscode-github-actions)                                       | GitHub        | GitHub Actions workflows and runs for github.com hosted repositories        |
+| [Code Runner](https://open-vsx.org/extension/formulahendry/code-runner)                                             | Jun Han       | Run code snippets or code files for multiple languages                      |
+| [Better DockerFile Syntax](https://marketplace.visualstudio.com/items?itemName=jeff-hykin.better-dockerfile-syntax) | jeff-hykin    | An update to the syntax of Dockerfile                                       |
+| [Kubernetes Support](https://open-vsx.org/extension/ipedrazas/kubernetes-snippets)                                  | Iván Pedrazas | Code snippets of kubernetes for Visual Studio Code                          |
+| [Git Graph](https://open-vsx.org/extension/mhutchie/git-graph)                                                      | mhutchie      | View a Git Graph of your repository, and perform Git actions from the graph |
+| [SonarLint](https://open-vsx.org/extension/SonarSource/sonarlint-vscode)                                            | SonarSource   | Detects bugs, vulnerabilities and code smells for multiple languages        |
 
 ## 🏷️ Categories
-
-
 
 ## 📄 License
 
 ### Extension Pack License
+
 This extension pack is licensed under the **MIT License** - see [LICENSE.md](https://github.com/templ-project/vscode-extensions/blob/main/packages/vscodium/generic-extended/LICENSE.md) for details.
 
 ### Third-Party Extension Licenses
+
 **Important**: Each extension included in this pack has its own license terms. templ-project is not responsible for the licensing, functionality, or security of third-party extensions.
 
-| Extension | Publisher | License | Description |
-|-----------|-----------|---------|-------------|
-| [OpenAPI (Swagger) Editor](https://open-vsx.org/extension/42crunch/vscode-openapi) | 42Crunch | MIT | OpenAPI editing, validation and preview in VS Code |
-| [REST Client](https://open-vsx.org/extension/humao/rest-client) | Huachao Mao | MIT | REST Client for Visual Studio Code |
-| [Docker](https://open-vsx.org/extension/ms-azuretools/vscode-docker) | Microsoft | MIT | Makes it easy to create, manage, and debug containerized applications |
-| [Kubernetes](https://open-vsx.org/extension/ms-kubernetes-tools/vscode-kubernetes-tools) | Microsoft | MIT | Develop, deploy and debug Kubernetes applications |
-| [Helm Intellisense](https://open-vsx.org/extension/tim-koehler/helm-intellisense) | Tim Koehler | MIT | This extension provides intellisense for helm templates |
-| [GitHub Pull Requests](https://open-vsx.org/extension/github/vscode-pull-request-github) | GitHub | MIT | Pull Request and Issue Provider for GitHub |
-| [GitHub Actions](https://open-vsx.org/extension/github/vscode-github-actions) | GitHub | MIT | GitHub Actions workflows and runs for github.com hosted repositories |
-| [Code Runner](https://open-vsx.org/extension/formulahendry/code-runner) | Jun Han | MIT | Run code snippets or code files for multiple languages |
-| [Better DockerFile Syntax](https://marketplace.visualstudio.com/items?itemName&#x3D;jeff-hykin.better-dockerfile-syntax) | jeff-hykin | MIT | An update to the syntax of Dockerfile |
-| [Kubernetes Support](https://open-vsx.org/extension/ipedrazas/kubernetes-snippets) | Iván Pedrazas | MIT | Code snippets of kubernetes for Visual Studio Code |
-| [Git Graph](https://open-vsx.org/extension/mhutchie/git-graph) | mhutchie | MIT | View a Git Graph of your repository, and perform Git actions from the graph |
-| [SonarLint](https://open-vsx.org/extension/SonarSource/sonarlint-vscode) | SonarSource | LGPL-3.0 | Detects bugs, vulnerabilities and code smells for multiple languages |
+| Extension                                                                                                           | Publisher     | License  | Description                                                                 |
+| ------------------------------------------------------------------------------------------------------------------- | ------------- | -------- | --------------------------------------------------------------------------- |
+| [OpenAPI (Swagger) Editor](https://open-vsx.org/extension/42crunch/vscode-openapi)                                  | 42Crunch      | MIT      | OpenAPI editing, validation and preview in VS Code                          |
+| [REST Client](https://open-vsx.org/extension/humao/rest-client)                                                     | Huachao Mao   | MIT      | REST Client for Visual Studio Code                                          |
+| [Docker](https://open-vsx.org/extension/ms-azuretools/vscode-docker)                                                | Microsoft     | MIT      | Makes it easy to create, manage, and debug containerized applications       |
+| [Kubernetes](https://open-vsx.org/extension/ms-kubernetes-tools/vscode-kubernetes-tools)                            | Microsoft     | MIT      | Develop, deploy and debug Kubernetes applications                           |
+| [Helm Intellisense](https://open-vsx.org/extension/tim-koehler/helm-intellisense)                                   | Tim Koehler   | MIT      | This extension provides intellisense for helm templates                     |
+| [GitHub Pull Requests](https://open-vsx.org/extension/github/vscode-pull-request-github)                            | GitHub        | MIT      | Pull Request and Issue Provider for GitHub                                  |
+| [GitHub Actions](https://open-vsx.org/extension/github/vscode-github-actions)                                       | GitHub        | MIT      | GitHub Actions workflows and runs for github.com hosted repositories        |
+| [Code Runner](https://open-vsx.org/extension/formulahendry/code-runner)                                             | Jun Han       | MIT      | Run code snippets or code files for multiple languages                      |
+| [Better DockerFile Syntax](https://marketplace.visualstudio.com/items?itemName=jeff-hykin.better-dockerfile-syntax) | jeff-hykin    | MIT      | An update to the syntax of Dockerfile                                       |
+| [Kubernetes Support](https://open-vsx.org/extension/ipedrazas/kubernetes-snippets)                                  | Iván Pedrazas | MIT      | Code snippets of kubernetes for Visual Studio Code                          |
+| [Git Graph](https://open-vsx.org/extension/mhutchie/git-graph)                                                      | mhutchie      | MIT      | View a Git Graph of your repository, and perform Git actions from the graph |
+| [SonarLint](https://open-vsx.org/extension/SonarSource/sonarlint-vscode)                                            | SonarSource   | LGPL-3.0 | Detects bugs, vulnerabilities and code smells for multiple languages        |
 
 ### Disclaimer
+
 - We **do not guarantee** the functionality, security, or compatibility of included extensions
 - We **are not responsible** for any issues caused by third-party extensions
 - Users install and use extensions **at their own risk**
@@ -300,4 +401,4 @@ Found an issue or want to suggest an extension? Please [open an issue](https://g
 
 ---
 
-*This extension pack is maintained by [templ-project](https://github.com/templ-project) and updated regularly to include the most useful generic-extended development extensions.*
+_This extension pack is maintained by [templ-project](https://github.com/templ-project) and updated regularly to include the most useful generic-extended development extensions._

@@ -6,6 +6,8 @@ import {
   bookmarks,
   codeSpellChecker,
   dotenvVSCodium,
+  editorConfigVSCodium,
+  errorLensVSCodium,
   markdownAllInOne,
   markdownlint,
   markdownTablePrettify,
@@ -43,6 +45,9 @@ export const genericEssential: Collection = {
     markdownAllInOne,
     markdownlint,
     markdownTablePrettify,
+    editorConfigVSCodium,
+    versionLensVSCodium,
+    errorLensVSCodium,
   ],
 
   optional_extensions: [
@@ -64,6 +69,17 @@ export const genericEssential: Collection = {
       value: 'manual',
       description: 'Manual updates recommended for VSCodium',
       scope: 'user',
+    },
+    // Error Lens Settings
+    'errorLens.enabledDiagnosticLevels': {
+      value: ['error', 'warning', 'info'],
+      description: 'Show error lens for errors, warnings, and info messages',
+      scope: 'workspace',
+    },
+    'errorLens.excludeBySource': {
+      value: [],
+      description: 'Sources to exclude from error lens',
+      scope: 'workspace',
     },
   },
 

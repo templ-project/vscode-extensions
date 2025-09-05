@@ -5,6 +5,7 @@ import {
   bookmarks,
   codeSpellChecker,
   dotenv,
+  editorConfig,
   errorLens,
   json5Support,
   markdownAllInOne,
@@ -35,6 +36,7 @@ export const genericEssential: Collection = {
     bookmarks,
     codeSpellChecker,
     dotenv,
+    editorConfig,
     errorLens,
     pathIntellisense,
     todoTree,
@@ -85,6 +87,18 @@ export const genericEssential: Collection = {
       value: 'tree',
       description: 'Default Git view mode',
       scope: 'user',
+    },
+
+    // Error Lens Settings
+    'errorLens.enabledDiagnosticLevels': {
+      value: ['error', 'warning', 'info'],
+      description: 'Show error lens for errors, warnings, and info messages',
+      scope: 'workspace',
+    },
+    'errorLens.excludeBySource': {
+      value: [],
+      description: 'Sources to exclude from error lens',
+      scope: 'workspace',
     },
 
     // JSON and JSONC formatting settings

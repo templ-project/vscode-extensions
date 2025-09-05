@@ -26,21 +26,16 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
 
 ### Included Extensions and Their Licenses
 
-- **** (``)
-  - Description: 
-  - Publisher: Unknown
-  - License: Please refer to the extension's marketplace page for license information
-  - Marketplace: https://marketplace.visualstudio.com/items?itemName=
-- **** (``)
-  - Description: 
-  - Publisher: Unknown
-  - License: Please refer to the extension's marketplace page for license information
-  - Marketplace: https://marketplace.visualstudio.com/items?itemName=
-- **** (``)
-  - Description: 
-  - Publisher: Unknown
-  - License: Please refer to the extension's marketplace page for license information
-  - Marketplace: https://marketplace.visualstudio.com/items?itemName=
+- **TypeScript Language Features** (`ms-vscode.vscode-typescript-next`)
+  - Description: Enhanced TypeScript language support with auto-import and intellisense
+  - Publisher: Microsoft
+  - License: MIT
+  - Marketplace: [View Extension](https://open-vsx.org/extension/ms-vscode/vscode-typescript-next)
+- **json2ts** (`GregorBiswanger.json2ts`)
+  - Description: Convert JSON object to typescript interfaces
+  - Publisher: Gregor Biswanger
+  - License: MIT
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=GregorBiswanger.json2ts)
 
 ## Disclaimer
 

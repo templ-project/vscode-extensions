@@ -1,6 +1,4 @@
 import {
-  betterCommentsVSCodium,
-  errorLensVSCodium,
   gdscriptVSCodium,
   godotFilesVSCodium,
   godotShadersVSCodium,
@@ -22,10 +20,8 @@ export const godot: Collection = {
     godotFilesVSCodium,
     godotShadersVSCodium,
     godotSnippetsVSCodium,
-    errorLensVSCodium,
     todoHighlightVSCodium,
     rainbowBracketsVSCodium,
-    betterCommentsVSCodium,
   ],
 
   settings: {
@@ -87,18 +83,6 @@ export const godot: Collection = {
         'source.organizeImports': true,
       },
       description: 'Organize imports on save',
-      scope: 'workspace',
-    },
-
-    // Error Lens Settings
-    'errorLens.enabledDiagnosticLevels': {
-      value: ['error', 'warning', 'info'],
-      description: 'Show error lens for errors, warnings, and info messages',
-      scope: 'workspace',
-    },
-    'errorLens.excludeBySource': {
-      value: [],
-      description: 'Sources to exclude from error lens',
       scope: 'workspace',
     },
 

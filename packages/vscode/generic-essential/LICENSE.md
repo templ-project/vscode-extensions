@@ -30,97 +30,102 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Description: Your AI pair programmer
   - Publisher: GitHub
   - License: GitHub Copilot License
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;github.copilot)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=github.copilot)
 - **GitLens** (`eamodio.gitlens`)
   - Description: Git supercharged
   - Publisher: Eric Amodio
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;eamodio.gitlens)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
 - **Better Comments** (`aaron-bond.better-comments`)
   - Description: Improve your code commenting by annotating with alert, info, todo, and more
   - Publisher: Aaron Bond
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;aaron-bond.better-comments)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
 - **Bookmarks** (`alefragnani.bookmarks`)
   - Description: Mark lines and jump to them
   - Publisher: Alessandro Fragnani
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;alefragnani.bookmarks)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=alefragnani.bookmarks)
 - **Code Spell Checker** (`streetsidesoftware.code-spell-checker`)
   - Description: Spelling checker for source code
   - Publisher: Street Side Software
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;streetsidesoftware.code-spell-checker)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 - **DotENV** (`mikestead.dotenv`)
   - Description: Support for dotenv file syntax
   - Publisher: mikestead
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;mikestead.dotenv)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)
+- **EditorConfig for VS Code** (`editorconfig.editorconfig`)
+  - Description: EditorConfig Support for Visual Studio Code
+  - Publisher: EditorConfig
+  - License: MIT
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=editorconfig.editorconfig)
 - **Error Lens** (`usernamehw.errorlens`)
   - Description: Improve highlighting of errors, warnings and other language diagnostics
   - Publisher: Alexander
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;usernamehw.errorlens)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
 - **Path Intellisense** (`christian-kohler.path-intellisense`)
   - Description: Visual Studio Code plugin that autocompletes filenames
   - Publisher: Christian Kohler
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;christian-kohler.path-intellisense)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
 - **TODO Tree** (`gruntfuggly.todo-tree`)
   - Description: Show TODO, FIXME, etc. comment tags in a tree view
   - Publisher: Gruntfuggly
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;gruntfuggly.todo-tree)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=gruntfuggly.todo-tree)
 - **Version Lens** (`pflannery.vscode-versionlens`)
   - Description: Shows the latest version for each package using code lens
   - Publisher: pflannery
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;pflannery.vscode-versionlens)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens)
 - **JSON5 syntax** (`mrmlnc.vscode-json5`)
   - Description: JSON5 syntax support
   - Publisher: mrmlnc
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;mrmlnc.vscode-json5)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-json5)
 - **Markdown All in One** (`yzhang.markdown-all-in-one`)
   - Description: All you need to write Markdown (keyboard shortcuts, table of contents, auto preview and more)
   - Publisher: Yu Zhang
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;yzhang.markdown-all-in-one)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
 - **markdownlint** (`davidanson.vscode-markdownlint`)
   - Description: Markdown linting and style checking for Visual Studio Code
   - Publisher: David Anson
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;davidanson.vscode-markdownlint)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=davidanson.vscode-markdownlint)
 - **Markdown Table Prettifier** (`darkriszty.markdown-table-prettify`)
   - Description: Transforms markdown tables to be more readable
   - Publisher: darkriszty
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;darkriszty.markdown-table-prettify)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=darkriszty.markdown-table-prettify)
 - **Markdown Preview Mermaid Support** (`bierner.markdown-mermaid`)
   - Description: Adds Mermaid diagram and flowchart support to VS Code&#x27;s builtin markdown preview
   - Publisher: Matt Bierner
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;bierner.markdown-mermai)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermai)
 - **Mermaid Markdown Syntax Highlighting** (`bpruitt-goddard.mermaid-markdown-syntax-highlighting`)
   - Description: Markdown syntax support for the Mermaid charting language
   - Publisher: Brian Pruitt-Goddard
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;bpruitt-goddard.mermaid-markdown-syntax-highlighting)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=bpruitt-goddard.mermaid-markdown-syntax-highlighting)
 - **Even Better TOML** (`tamasfe.even-better-toml`)
   - Description: Fully-featured TOML support with syntax highlighting, validation, formatting, and schema support
   - Publisher: tamasfe
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;tamasfe.even-better-toml)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml)
 - **YAML** (`redhat.vscode-yaml`)
   - Description: YAML language support with schema validation
   - Publisher: Red Hat
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;redhat.vscode-yaml)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
 - **Trailing Spaces** (`shardulm94.trailing-spaces`)
   - Description: Highlight trailing spaces and delete them in a flash
   - Publisher: Shardul Mahadik
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;shardulm94.trailing-spaces)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces)
 
 ## Disclaimer
 

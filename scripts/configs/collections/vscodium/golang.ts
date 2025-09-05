@@ -1,10 +1,9 @@
 import {
   goExtensionVSCodium as goExtension,
-  goOutlinerVSCodium as goOutliner,
-  goTestExplorerVSCodium as goTestExplorer,
   goFillStructVSCodium as goFillStruct,
-  errorLensVSCodium as errorLens,
+  goOutlinerVSCodium as goOutliner,
   goTemplateHighlighterVSCodium as goTemplateHighlighter,
+  goTestExplorerVSCodium as goTestExplorer,
 } from '../../extensions/golang';
 import { Collection } from '../../shared/types';
 
@@ -15,7 +14,7 @@ export const golang: Collection = {
   description:
     'Essential Go development environment for VSCodium - comprehensive tooling for modern Go development using open-source alternatives',
 
-  required_extensions: [goExtension, errorLens],
+  required_extensions: [goExtension],
 
   optional_extensions: [goOutliner, goTestExplorer, goFillStruct, goTemplateHighlighter],
 
@@ -33,7 +32,6 @@ export const golang: Collection = {
 
 ### Core Go Support
 - **Go**: Official Go language support with IntelliSense, debugging, and testing
-- **Error Lens**: Enhanced error visibility for Go development
 
 ### Productivity Tools (Optional)
 - **Go Outliner**: Navigate Go code structure with enhanced outline view

@@ -8,14 +8,13 @@ import {
   goTemplateHighlighter,
   goTestExplorer,
 } from '../../extensions/golang';
-import { errorLens } from '../../extensions/productivity';
 import { Collection } from '../../shared/types';
 
 export const golang: Collection = {
   description: 'Essential Go development environment for VSCode - comprehensive tooling for modern Go development',
   tags: ['golang', 'go', 'backend', 'development', 'testing', 'microservices'],
 
-  required_extensions: [goExtension, errorLens],
+  required_extensions: [goExtension],
 
   optional_extensions: [goOutliner, goTestExplorer, goFillStruct, goTemplateHighlighter, goDoc, goCritic, goAsm],
 

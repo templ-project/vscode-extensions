@@ -53,7 +53,9 @@ After installation, you may want to configure some settings for optimal {{langua
 {{#each settings}}
 ### {{@key}}
 ```json
-"{{@key}}": {{json value}}
+{
+  "{{@key}}": {{{json value}}}
+}
 ```
 > {{description}}
 

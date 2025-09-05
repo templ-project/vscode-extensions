@@ -1,8 +1,4 @@
-import {
-  vscodiumTsSnippets as tsSnippets,
-  vscodiumTsDebugger as tsDebugger,
-  vscodiumTypescriptLanguage as typescriptLanguage,
-} from '../../extensions/typescript';
+import { json2ts, typescriptLanguageVSCodium as typescriptLanguage } from '../../extensions/typescript';
 import { Collection } from '../../shared/types';
 
 import { typescript as typescriptVSCode } from '../vscode/typescript';
@@ -12,7 +8,7 @@ export const typescript: Collection = {
   description:
     'Essential TypeScript development environment for VSCodium - comprehensive tooling for type-safe development using open-source alternatives',
 
-  required_extensions: [typescriptLanguage, tsSnippets, tsDebugger],
+  required_extensions: [typescriptLanguage, json2ts],
 
   documentation: {
     setup_guide: `# TypeScript Extension Pack Setup (VSCodium)

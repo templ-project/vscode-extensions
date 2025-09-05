@@ -7,7 +7,6 @@ import {
   rainbowBracketsVSCode,
   todoHighlightVSCode,
 } from '../../extensions/godot';
-import { betterComments, errorLens } from '../../extensions/productivity';
 import { Collection } from '../../shared/types';
 
 export const godot: Collection = {
@@ -21,10 +20,8 @@ export const godot: Collection = {
     godotFilesVSCode,
     godotShadersVSCode,
     godotSnippetsVSCode,
-    errorLens,
     todoHighlightVSCode,
     rainbowBracketsVSCode,
-    betterComments,
   ],
 
   settings: {
@@ -86,18 +83,6 @@ export const godot: Collection = {
         'source.organizeImports': true,
       },
       description: 'Organize imports on save',
-      scope: 'workspace',
-    },
-
-    // Error Lens Settings
-    'errorLens.enabledDiagnosticLevels': {
-      value: ['error', 'warning', 'info'],
-      description: 'Show error lens for errors, warnings, and info messages',
-      scope: 'workspace',
-    },
-    'errorLens.excludeBySource': {
-      value: [],
-      description: 'Sources to exclude from error lens',
       scope: 'workspace',
     },
 

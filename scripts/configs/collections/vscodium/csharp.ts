@@ -4,10 +4,7 @@ import {
   csharpSnippetsVSCodium,
   csharpVSCodium,
   dotnetTestExplorerVSCodium,
-  editorConfigVSCodium,
-  errorLensVSCodium,
   roslynatorVSCodium,
-  versionLensVSCodium,
 } from '../../extensions/csharp';
 import { Collection } from '../../shared/types';
 
@@ -16,13 +13,12 @@ export const csharp: Collection = {
     'Essential C# development environment for VSCodium - comprehensive .NET tooling with IntelliSense, debugging, testing, and modern C# features',
   tags: ['csharp', 'c#', 'dotnet', '.net', 'asp.net', 'blazor', 'maui', 'testing', 'nuget'],
 
-  required_extensions: [csharpVSCodium, csharpDevKitVSCodium, editorConfigVSCodium, errorLensVSCodium],
+  required_extensions: [csharpVSCodium, csharpDevKitVSCodium],
 
   optional_extensions: [
     csharpExtensionsVSCodium,
     dotnetTestExplorerVSCodium,
     csharpSnippetsVSCodium,
-    versionLensVSCodium,
     roslynatorVSCodium,
   ],
 

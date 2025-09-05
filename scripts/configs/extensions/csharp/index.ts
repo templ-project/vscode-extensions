@@ -19,15 +19,6 @@ const baseCSharpDevKit: Omit<Extension, 'marketplace_url'> = {
   why_required: 'Advanced C# development features including project system, testing, and debugging',
 };
 
-const baseEditorConfig: Omit<Extension, 'marketplace_url'> = {
-  id: 'editorconfig.editorconfig',
-  name: 'EditorConfig for VS Code',
-  description: 'EditorConfig Support for Visual Studio Code',
-  publisher: 'EditorConfig',
-  license: 'MIT',
-  why_required: 'Consistent coding styles and formatting rules across different editors and IDEs',
-};
-
 const baseCSharpExtensions: Omit<Extension, 'marketplace_url'> = {
   id: 'kreativ-software.csharpextensions',
   name: 'C# Extensions',
@@ -75,11 +66,6 @@ export const csharpDevKit: Extension = {
   marketplace_url: 'https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit',
 };
 
-export const editorConfig: Extension = {
-  ...baseEditorConfig,
-  marketplace_url: 'https://marketplace.visualstudio.com/items?itemName=editorconfig.editorconfig',
-};
-
 export const csharpExtensions: Extension = {
   ...baseCSharpExtensions,
   marketplace_url: 'https://marketplace.visualstudio.com/items?itemName=kreativ-software.csharpextensions',
@@ -109,11 +95,6 @@ export const csharpVSCodium: Extension = {
 export const csharpDevKitVSCodium: Extension = {
   ...baseCSharpDevKit,
   marketplace_url: 'https://open-vsx.org/extension/ms-dotnettools/csdevkit',
-};
-
-export const editorConfigVSCodium: Extension = {
-  ...baseEditorConfig,
-  marketplace_url: 'https://open-vsx.org/extension/editorconfig/editorconfig',
 };
 
 export const csharpExtensionsVSCodium: Extension = {
