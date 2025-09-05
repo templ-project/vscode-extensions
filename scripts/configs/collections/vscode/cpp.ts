@@ -1,15 +1,15 @@
-import { Collection } from '../../shared/types';
 import {
+  betterCppSyntax,
   clangd,
+  clangFormat,
   cmake,
   cmakeTools,
-  xmake,
-  clangFormat,
-  errorLens,
-  betterCppSyntax,
   doxygen,
-  nativeDebug
+  errorLens,
+  nativeDebug,
+  xmake
 } from '../../extensions/cpp';
+import { Collection } from '../../shared/types';
 
 export const cpp: Collection = {
   description: "Essential C/C++ development environment for VSCode - modern tooling with clang-based language server, CMake/XMake build systems, and advanced debugging",

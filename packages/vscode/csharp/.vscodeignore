@@ -1,0 +1,13 @@
+.vscode/
+.gitignore
+.git/
+node_modules/
+*.vsix
+src/
+scripts/
+.eslintrc*
+.prettier*
+tsconfig.json
+webpack.config.js
+templates/
+*.log

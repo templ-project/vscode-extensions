@@ -1,15 +1,15 @@
-import { Collection } from '../../shared/types';
 import {
-  clangdVSCodium,
-  cmakeVSCodium,
-  cmakeToolsVSCodium,
-  xmakeVSCodium,
-  clangFormatVSCodium,
-  errorLensVSCodium,
   betterCppSyntaxVSCodium,
+  clangdVSCodium,
+  clangFormatVSCodium,
+  cmakeToolsVSCodium,
+  cmakeVSCodium,
   doxygenVSCodium,
-  nativeDebugVSCodium
+  errorLensVSCodium,
+  nativeDebugVSCodium,
+  xmakeVSCodium
 } from '../../extensions/cpp';
+import { Collection } from '../../shared/types';
 
 export const cpp: Collection = {
   description: "Essential C/C++ development environment for VSCodium - modern tooling with clang-based language server, CMake/XMake build systems, and advanced debugging",
