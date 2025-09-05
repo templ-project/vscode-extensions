@@ -1,0 +1,113 @@
+{
+  "name": "tpl-vscode-csharp",
+  "displayName": "Templ Project Csharp Extension Pack",
+  "description": "Essential C# development environment for VSCode - comprehensive .NET tooling with IntelliSense, debugging, testing, and modern C# features",
+  "version": "1.0.0",
+  "publisher": "templ-project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/templ-project/vscode-extensions",
+    "directory": "packages/vscode/csharp"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "icon": "logo.png",
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "dark"
+  },
+  "categories": ["Extension Packs"],
+  "keywords": [
+    "csharp",
+    "c#",
+    "dotnet",
+    ".net",
+    "asp.net",
+    "blazor",
+    "maui",
+    "testing",
+    "nuget",
+    "vscode",
+    "csharp",
+    "extension-pack"
+  ],
+  "extensionPack": [
+    "ms-dotnettools.csharp",
+    "ms-dotnettools.csdevkit",
+    "editorconfig.editorconfig",
+    "usernamehw.errorlens",
+    "kreativ-software.csharpextensions",
+    "formulahendry.dotnet-test-explorer",
+    "jorgeserrano.vscode-csharp-snippets",
+    "josefpihrt-vscode.roslynator"
+  ],
+  "extensionDependencies": [
+    "ms-dotnettools.csharp",
+    "ms-dotnettools.csdevkit",
+    "editorconfig.editorconfig",
+    "usernamehw.errorlens"
+  ],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "csharp",
+        "path": "./snippets/csharp.json"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "ctrl+shift+f",
+        "command": "editor.action.formatDocument",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; &#x27;csharp&#x27;"
+      },
+      {
+        "key": "f12",
+        "command": "editor.action.revealDefinition",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; &#x27;csharp&#x27;"
+      },
+      {
+        "key": "shift+f12",
+        "command": "editor.action.goToReferences",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; &#x27;csharp&#x27;"
+      },
+      {
+        "key": "ctrl+shift+o",
+        "command": "workbench.action.gotoSymbol",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; &#x27;csharp&#x27;"
+      },
+      {
+        "key": "ctrl+t",
+        "command": "workbench.action.showAllSymbols",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; &#x27;csharp&#x27;"
+      },
+      {
+        "key": "ctrl+.",
+        "command": "editor.action.quickFix",
+        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; &#x27;csharp&#x27;"
+      }
+    ],
+    "commands": [
+      {
+        "command": "templ-project.csharp-vscode.applySettings",
+        "title": "Apply Templ Project Csharp Extension Pack Settings"
+      },
+      {
+        "command": "templ-project.csharp-vscode.resetSettings",
+        "title": "Reset Templ Project Csharp Extension Pack Settings"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.0"
+  }
+}

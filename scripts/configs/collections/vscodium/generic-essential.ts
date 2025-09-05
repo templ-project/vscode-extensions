@@ -1,30 +1,28 @@
-import { Collection } from '../../shared/types';
-import { continueAIVSCodium, codeiumVSCodium } from '../../extensions/ai';
-import { 
-  bookmarks, 
-  todoTree, 
-  codeSpellChecker, 
+import { continueAIVSCodium } from '../../extensions/ai';
+import { gitlensVSCodium } from '../../extensions/cvs';
+import {
   betterComments,
-  yamlSupport,
-  tomlSupportVSCodium,
+  betterJson5,
+  bookmarks,
+  codeSpellChecker,
+  dotenvVSCodium,
   markdownAllInOne,
   markdownlint,
   markdownTablePrettify,
-  betterJson5,
-  versionLensVSCodium,
-  trailingSpacesVSCodium,
   pathIntellisenseVSCodium,
-  dotenvVSCodium
+  todoTree,
+  tomlSupportVSCodium,
+  trailingSpacesVSCodium,
+  versionLensVSCodium,
+  yamlSupport,
 } from '../../extensions/productivity';
-import {
-  gitlensVSCodium, 
-} from '../../extensions/cvs';
+import { Collection } from '../../shared/types';
 import { genericEssential as genericEssentialVSCode } from '../vscode/generic-essential';
 
 export const genericEssential: Collection = {
   ...genericEssentialVSCode,
-  description: "Essential productivity extensions for general development in VSCodium (JSON support built-in)",
-  
+  description: 'Essential productivity extensions for general development in VSCodium (JSON support built-in)',
+
   required_extensions: [
     // ai extensions
     continueAIVSCodium,
@@ -46,7 +44,7 @@ export const genericEssential: Collection = {
     markdownlint,
     markdownTablePrettify,
   ],
-  
+
   optional_extensions: [
     // ai extensions
     // TODO: (keep commented) make sure codeium is a good fit for VSCodium extension
@@ -54,21 +52,21 @@ export const genericEssential: Collection = {
     // Productivity
     trailingSpacesVSCodium,
   ],
-  
+
   settings: {
     ...genericEssentialVSCode.settings,
     'telemetry.enableTelemetry': {
       value: false,
       description: 'Disable telemetry (VSCodium default)',
-      scope: 'user'
+      scope: 'user',
     },
     'update.mode': {
       value: 'manual',
       description: 'Manual updates recommended for VSCodium',
-      scope: 'user'
-    }
+      scope: 'user',
+    },
   },
-  
+
   documentation: {
     setup_guide: `# Generic Essential Extension Pack Setup for VSCodium
 
@@ -138,6 +136,6 @@ git config --global user.email "your.email@example.com"
 ## Bookmarks not persisting
 - Bookmarks are saved per workspace
 - Check that workspace is properly configured
-- Verify file permissions in workspace directory`
-  }
+- Verify file permissions in workspace directory`,
+  },
 };

@@ -31,11 +31,11 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Publisher: Go Team at Google
   - License: MIT
   - Marketplace: [View Extension](https://open-vsx.org/extension/golang/go)
-- **Error Lens** (`usernamehw.errorlens`)
-  - Description: Improve highlighting of errors, warnings and other language diagnostics
-  - Publisher: Alexander
-  - License: MIT
-  - Marketplace: [View Extension](https://open-vsx.org/extension/usernamehw/errorlens)
+- \*\*\*\* (``)
+  - Description:
+  - Publisher: Unknown
+  - License: Please refer to the extension's marketplace page for license information
+  - Marketplace: https://marketplace.visualstudio.com/items?itemName=
 - **Go Outliner** (`766b.go-outliner`)
   - Description: Go code outline explorer
   - Publisher: 766b

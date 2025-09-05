@@ -1,93 +1,72 @@
-import { Collection } from '../../shared/types';
-
 // API/OpenAPI Extensions (VSCodium compatible)
-import { 
-  swaggerEditorVSCodium, 
-  restClientVSCodium
-} from '../../extensions/api';
+import { restClientVSCodium, swaggerEditorVSCodium } from '../../extensions/api';
+
+// CVS Extensions (VSCodium compatible)
+import { gitGraphVSCodium, githubActionsVSCodium, githubPullRequestsVSCodium } from '../../extensions/cvs';
 
 // Docker Extensions (VSCodium compatible)
-import { 
-  dockerVSCodium, 
-  devContainersVSCodium, 
-  shellFormatVSCodium,
-  betterDockerfile 
-} from '../../extensions/docker';
+import { betterDockerfile, dockerVSCodium } from '../../extensions/docker';
 
 // Kubernetes Extensions (VSCodium compatible)
-import { 
-  kubernetesToolsVSCodium, 
-  helmIntellisenseVSCodium, 
-  kubernetesSnippetsVSCodium 
+import {
+  helmIntellisenseVSCodium,
+  kubernetesSnippetsVSCodium,
+  kubernetesToolsVSCodium,
 } from '../../extensions/kubernetes';
 
-// GitHub Extensions (VSCodium compatible)
-import { 
-  githubPullRequestsVSCodium, 
-  githubActionsVSCodium, 
-  gitGraphVSCodium ,
-  gitlabWorkflowVSCodium, 
-  atlassianIntegrationVSCodium, 
-  openInGitHubVSCodium 
-} from '../../extensions/cvs';
-
 // Productivity Extensions
-import { 
-  yamlSupport, 
-  versionLensVSCodium,
-  betterJson5,
-  codeRunnerVSCodium,
-  sonarLintVSCodium 
-} from '../../extensions/productivity';
+import { codeRunnerVSCodium, sonarLintVSCodium } from '../../extensions/productivity';
+import { Collection } from '../../shared/types';
 
 import { genericExtended as genericExtendedVSCode } from '../vscode/generic-extended';
 
 export const genericExtended: Collection = {
   ...genericExtendedVSCode,
-  description: "Extended developer tools for API development, containerization, and Git forge integration in VSCodium (Open VSX compatible)",
-  
+  description:
+    'Extended developer tools for API development, containerization, and Git forge integration in VSCodium (Open VSX compatible)',
+
   required_extensions: [
     // API/OpenAPI - Core
     swaggerEditorVSCodium,
     restClientVSCodium,
-    
+
     // Docker - Core
     dockerVSCodium,
     // devContainersVSCodium,
-    
-    // Kubernetes - Core  
+
+    // Kubernetes - Core
     kubernetesToolsVSCodium,
     helmIntellisenseVSCodium,
-    
+
     // GitHub - Core
     githubPullRequestsVSCodium,
     githubActionsVSCodium,
-    
+
     // Multi-language development tools
     codeRunnerVSCodium,
-    
+
     // // Forge - Core
     // gitlabWorkflowVSCodium,
     // atlassianIntegrationVSCodium,
   ],
-  
+
   optional_extensions: [
     // Docker - Optional
     betterDockerfile,
-    
+
     // Kubernetes - Optional
     kubernetesSnippetsVSCodium,
-    
+
     // GitHub - Optional
     gitGraphVSCodium,
-    
+
     // Advanced code analysis
     sonarLintVSCodium,
-    
+
     // // Forge - Optional
     // openInGitHubVSCodium
   ],
-  
+
   documentation: {
     setup_guide: `# Generic Extended Extension Pack Setup for VSCodium
 
@@ -238,6 +217,6 @@ export const genericExtended: Collection = {
 ## VSCodium Specific Issues
 - **Marketplace compatibility**: Use Open VSX Registry instead of Microsoft Marketplace
 - **Missing extensions**: Check Open VSX availability or find alternatives
-- **Telemetry errors**: Telemetry is disabled by default in VSCodium`
-  }
+- **Telemetry errors**: Telemetry is disabled by default in VSCodium`,
+  },
 };

@@ -26,26 +26,16 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
 
 ### Included Extensions and Their Licenses
 
-- **TypeScript Importer** (`ms-vscode.vscode-typescript-next`)
-  - Description: Automatically searches for TypeScript definitions
+- **TypeScript Language Features** (`ms-vscode.vscode-typescript-next`)
+  - Description: Enhanced TypeScript language support with auto-import and intellisense
   - Publisher: Microsoft
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.vscode-typescript-next)
-- **TypeScript Snippets** (`ms-vscode.vscode-typescript-next`)
-  - Description: Code snippets for TypeScript development
-  - Publisher: Microsoft
-  - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.vscode-typescript-next)
-- **TypeScript Debugger** (`ms-vscode.js-debug`)
-  - Description: Built-in TypeScript/JavaScript debugger for VS Code
-  - Publisher: Microsoft
-  - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.js-debug)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-next)
 - **json2ts** (`GregorBiswanger.json2ts`)
   - Description: Convert JSON object to typescript interfaces
   - Publisher: Gregor Biswanger
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;GregorBiswanger.json2ts)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=GregorBiswanger.json2ts)
 
 ## Disclaimer
 

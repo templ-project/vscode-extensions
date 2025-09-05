@@ -17,9 +17,7 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": [
-    "Extension Packs"
-  ],
+  "categories": ["Extension Packs"],
   "keywords": [
     "productivity",
     "general",
@@ -38,6 +36,7 @@
     "alefragnani.bookmarks",
     "streetsidesoftware.code-spell-checker",
     "mikestead.dotenv",
+    "usernamehw.errorlens",
     "christian-kohler.path-intellisense",
     "gruntfuggly.todo-tree",
     "pflannery.vscode-versionlens",
@@ -58,6 +57,7 @@
     "alefragnani.bookmarks",
     "streetsidesoftware.code-spell-checker",
     "mikestead.dotenv",
+    "usernamehw.errorlens",
     "christian-kohler.path-intellisense",
     "gruntfuggly.todo-tree",
     "pflannery.vscode-versionlens",
@@ -70,9 +70,7 @@
     "tamasfe.even-better-toml",
     "redhat.vscode-yaml"
   ],
-  "activationEvents": [
-    "onStartupFinished"
-  ],
+  "activationEvents": ["onStartupFinished"],
   "main": "./out/extension.js",
   "contributes": {
     "keybindings": [

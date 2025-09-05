@@ -1,0 +1,28 @@
+[
+  {
+    "key": "f5",
+    "command": "godot.debugger.debug",
+    "when": "resourceExtname &#x3D;&#x3D; .gd"
+  },
+  {
+    "key": "ctrl+f5",
+    "command": "godot.debugger.debug_without_debugging",
+    "when": "resourceExtname &#x3D;&#x3D; .gd"
+  },
+  {
+    "key": "shift+f5",
+    "command": "godot.debugger.stop"
+  },
+  {
+    "key": "ctrl+shift+f5",
+    "command": "godot.debugger.restart"
+  },
+  {
+    "key": "f6",
+    "command": "godot.open_editor"
+  },
+  {
+    "key": "ctrl+alt+g",
+    "command": "godot.list_classes"
+  }
+]

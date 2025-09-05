@@ -24,16 +24,8 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "include": [
-    "scripts/**/*",
-    "configs/typescript/**/*"
-, "configs/shared"  ],
-  "exclude": [
-    "node_modules",
-    "packages",
-    "dist",
-    "templates"
-  ],
+  "include": ["scripts/**/*", "configs/typescript/**/*", "configs/shared"],
+  "exclude": ["node_modules", "packages", "dist", "templates"],
   "ts-node": {
     "esm": false,
     "compilerOptions": {

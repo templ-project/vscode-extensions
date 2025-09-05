@@ -1,6 +1,7 @@
 # Modular Configuration Structure Proposal
 
 ## Current Problems with YAML
+
 - 1000+ line files are unreadable
 - No code reuse or modularity
 - Hard to maintain and extend
@@ -10,6 +11,7 @@
 ## Proposed Solution: TypeScript Configuration
 
 ### New Structure
+
 ```
 configs/
 ├── shared/
@@ -49,6 +51,7 @@ configs/
 ```
 
 ### Benefits
+
 1. **Modularity**: Each extension defined once, reused everywhere
 2. **Type Safety**: Full TypeScript support with IntelliSense
 3. **Code Reuse**: Share common configurations
@@ -59,6 +62,7 @@ configs/
 ### Example Implementation
 
 #### shared/types.ts
+
 ```typescript
 export interface Extension {
   id: string;
@@ -76,7 +80,7 @@ export interface Collection {
   tags: string[];
   required_extensions: Extension[];
   optional_extensions: Extension[];
-  settings: Record<string, any>;
+  settings: Record<string, unknown>;
   keybindings: Keybinding[];
   snippets: Snippet[];
   documentation: Documentation;
@@ -84,8 +88,9 @@ export interface Collection {
 ```
 
 #### extensions/ai/github-copilot.ts
+
 ```typescript
-import { Extension } from '../../shared/types';
+import {Extension} from "../../shared/types";
 
 export const githubCopilot: Extension = {
   id: "github.copilot",
@@ -94,13 +99,14 @@ export const githubCopilot: Extension = {
   publisher: "GitHub",
   license: "GitHub Copilot License",
   marketplace_url: "https://marketplace.visualstudio.com/items?itemName=github.copilot",
-  why_required: "AI-powered code completion and assistance"
+  why_required: "AI-powered code completion and assistance",
 };
 ```
 
 #### extensions/ai/continue.ts
+
 ```typescript
-import { Extension } from '../../shared/types';
+import {Extension} from "../../shared/types";
 
 export const continueAI: Extension = {
   id: "continue.continue",
@@ -109,18 +115,19 @@ export const continueAI: Extension = {
   publisher: "Continue",
   license: "Apache-2.0",
   marketplace_url: "https://open-vsx.org/extension/Continue/continue",
-  why_required: "Open-source AI-powered code completion and assistance (GitHub Copilot alternative)"
+  why_required: "Open-source AI-powered code completion and assistance (GitHub Copilot alternative)",
 };
 ```
 
 #### collections/vscode/generic-essential.ts
+
 ```typescript
-import { Collection } from '../../shared/types';
-import { githubCopilot } from '../../extensions/ai/github-copilot';
-import { gitlens } from '../../extensions/git/gitlens';
-import { bookmarks } from '../../extensions/productivity/bookmarks';
-import { commonSettings } from '../../shared/common-settings';
-import { commonKeybindings } from '../../shared/common-keybindings';
+import {githubCopilot} from "../../extensions/ai/github-copilot";
+import {gitlens} from "../../extensions/git/gitlens";
+import {bookmarks} from "../../extensions/productivity/bookmarks";
+import {commonKeybindings} from "../../shared/common-keybindings";
+import {commonSettings} from "../../shared/common-settings";
+import {Collection} from "../../shared/types";
 
 export const genericEssential: Collection = {
   description: "Essential productivity extensions for general development in VSCode",
@@ -142,25 +149,26 @@ export const genericEssential: Collection = {
   snippets: [],
   documentation: {
     setup_guide: `# Generic Essential Extension Pack Setup...`,
-    troubleshooting: `# Common Issues and Solutions...`
-  }
+    troubleshooting: `# Common Issues and Solutions...`,
+  },
 };
 ```
 
 #### collections/vscodium/generic-essential.ts
+
 ```typescript
-import { Collection } from '../../shared/types';
-import { continueAI } from '../../extensions/ai/continue';
-import { gitlens } from '../../extensions/git/gitlens';
-import { bookmarks } from '../../extensions/productivity/bookmarks';
-import { commonSettings } from '../../shared/common-settings';
-import { vscodiumSettings } from '../../shared/vscodium-settings';
+import {continueAI} from "../../extensions/ai/continue";
+import {gitlens} from "../../extensions/git/gitlens";
+import {bookmarks} from "../../extensions/productivity/bookmarks";
+import {commonSettings} from "../../shared/common-settings";
+import {Collection} from "../../shared/types";
+import {vscodiumSettings} from "../../shared/vscodium-settings";
 
 export const genericEssential: Collection = {
   description: "Essential productivity extensions for general development in VSCodium",
   tags: ["productivity", "general", "essential", "git", "debugging", "editing", "open-source"],
   required_extensions: [
-    continueAI,  // Use Continue instead of GitHub Copilot
+    continueAI, // Use Continue instead of GitHub Copilot
     gitlens,
     bookmarks,
     // ... other extensions
@@ -176,8 +184,8 @@ export const genericEssential: Collection = {
   snippets: [],
   documentation: {
     setup_guide: `# Generic Essential Extension Pack Setup for VSCodium...`,
-    troubleshooting: `# Common Issues and Solutions...`
-  }
+    troubleshooting: `# Common Issues and Solutions...`,
+  },
 };
 ```
 

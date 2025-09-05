@@ -30,42 +30,42 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Description: Python language support with extension access points for IntelliSense (Pylance), Debugging (Python Debugger), linting, formatting, refactoring, unit tests, and more.
   - Publisher: Microsoft
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-python.python)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
 - **Black Formatter** (`ms-python.black-formatter`)
   - Description: Formatting support for Python files using the Black formatter.
   - Publisher: Microsoft
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-python.black-formatter)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter)
 - **isort** (`ms-python.isort`)
   - Description: Import organization support for Python files using isort.
   - Publisher: Microsoft
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-python.isort)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.isort)
 - **Jupyter** (`ms-toolsai.jupyter`)
   - Description: Jupyter notebook support, interactive programming and computing that supports Intellisense, debugging and more.
   - Publisher: Microsoft
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-toolsai.jupyter)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
 - **Pylint** (`ms-python.pylint`)
   - Description: Linting support for Python files using Pylint.
   - Publisher: Microsoft
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-python.pylint)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.pylint)
 - **Flake8** (`ms-python.flake8`)
   - Description: Linting support for Python files using Flake8.
   - Publisher: Microsoft
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-python.flake8)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=ms-python.flake8)
 - **autoDocstring - Python Docstring Generator** (`njpwerner.autodocstring`)
   - Description: Generates python docstrings automatically
   - Publisher: Nils Werner
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;njpwerner.autodocstring)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring)
 - **Python Test Explorer for Visual Studio Code** (`littlefoxteam.vscode-python-test-adapter`)
   - Description: Run your Python tests in the Sidebar of Visual Studio Code
   - Publisher: Little Fox Team
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;littlefoxteam.vscode-python-test-adapter)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=littlefoxteam.vscode-python-test-adapter)
 
 ## Disclaimer
 

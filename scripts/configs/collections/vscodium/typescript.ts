@@ -1,21 +1,18 @@
-import { Collection } from '../../shared/types';
 import {
   vscodiumTsSnippets as tsSnippets,
   vscodiumTsDebugger as tsDebugger,
   vscodiumTypescriptLanguage as typescriptLanguage,
 } from '../../extensions/typescript';
+import { Collection } from '../../shared/types';
 
-import {typescript as typescriptVSCode} from '../vscode/typescript';
+import { typescript as typescriptVSCode } from '../vscode/typescript';
 
 export const typescript: Collection = {
   ...typescriptVSCode,
-  description: "Essential TypeScript development environment for VSCodium - comprehensive tooling for type-safe development using open-source alternatives",
+  description:
+    'Essential TypeScript development environment for VSCodium - comprehensive tooling for type-safe development using open-source alternatives',
 
-    required_extensions: [
-      typescriptLanguage,
-      tsSnippets,
-      tsDebugger
-    ],
+  required_extensions: [typescriptLanguage, tsSnippets, tsDebugger],
 
   documentation: {
     setup_guide: `# TypeScript Extension Pack Setup (VSCodium)
@@ -264,6 +261,6 @@ Add these helpful scripts to your \`package.json\`:
 - Check settings scope (user vs workspace)
 - Verify JSON syntax in configuration files
 - Restart VSCodium after major changes
-- Check for TypeScript-specific settings overrides`
-  }
+- Check for TypeScript-specific settings overrides`,
+  },
 };

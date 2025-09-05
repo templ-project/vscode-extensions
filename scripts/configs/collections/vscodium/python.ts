@@ -1,6 +1,4 @@
-import { Collection } from '../../shared/types';
-import { genericEssential } from '../vscode/generic-essential';
-import { 
+import {
   pythonExtensionVSCodium,
   // pylanceVSCodium,
   // pythonDebuggerVSCodium,
@@ -10,14 +8,17 @@ import {
   pylintVSCodium,
   flake8VSCodium,
   autoDocstringVSCodium,
-  pythonTestExplorerVSCodium
+  pythonTestExplorerVSCodium,
 } from '../../extensions/python';
+import { Collection } from '../../shared/types';
+import { genericEssential } from '../vscode/generic-essential';
 import { python as pythonVSCode } from '../vscode/python';
 
 export const python: Collection = {
   ...pythonVSCode,
-  description: "Essential Python development extensions for VSCodium, including language support, debugging, formatting, and testing tools",
-  
+  description:
+    'Essential Python development extensions for VSCodium, including language support, debugging, formatting, and testing tools',
+
   required_extensions: [
     // Python-specific extensions
     pythonExtensionVSCodium,
@@ -29,59 +30,59 @@ export const python: Collection = {
     pylintVSCodium,
     flake8VSCodium,
     autoDocstringVSCodium,
-    pythonTestExplorerVSCodium
+    pythonTestExplorerVSCodium,
   ],
-  
+
   settings: {
     ...genericEssential.settings,
     // Python-specific settings
     'python.defaultInterpreterPath': {
       value: 'python',
       description: 'Default Python interpreter path',
-      scope: 'workspace'
+      scope: 'workspace',
     },
     'python.formatting.provider': {
       value: 'black',
       description: 'Use Black as default Python formatter',
-      scope: 'workspace'
+      scope: 'workspace',
     },
     'python.linting.enabled': {
       value: true,
       description: 'Enable Python linting',
-      scope: 'workspace'
+      scope: 'workspace',
     },
     'python.linting.pylintEnabled': {
       value: true,
       description: 'Enable Pylint for Python linting',
-      scope: 'workspace'
+      scope: 'workspace',
     },
     'python.linting.flake8Enabled': {
       value: true,
       description: 'Enable Flake8 for Python linting',
-      scope: 'workspace'
+      scope: 'workspace',
     },
     'python.testing.pytestEnabled': {
       value: true,
       description: 'Enable pytest for Python testing',
-      scope: 'workspace'
+      scope: 'workspace',
     },
     'python.testing.unittestEnabled': {
       value: false,
       description: 'Disable unittest in favor of pytest',
-      scope: 'workspace'
+      scope: 'workspace',
     },
     'jupyter.askForKernelRestart': {
       value: false,
-      description: 'Don\'t ask for kernel restart confirmation',
-      scope: 'user'
+      description: "Don't ask for kernel restart confirmation",
+      scope: 'user',
     },
     'jupyter.interactiveWindow.textEditor.executeSelection': {
       value: true,
       description: 'Execute selection in interactive window',
-      scope: 'user'
-    }
+      scope: 'user',
+    },
   },
-  
+
   keybindings: [
     ...genericEssential.keybindings,
     // Python-specific keybindings
@@ -89,62 +90,62 @@ export const python: Collection = {
       key: 'ctrl+shift+p',
       command: 'python.execInTerminal',
       description: 'Execute Python file in terminal',
-      when: 'editorLangId == python'
+      when: 'editorLangId == python',
     },
     {
       key: 'f5',
       command: 'python.debugInTerminal',
       description: 'Debug Python file',
-      when: 'editorLangId == python'
+      when: 'editorLangId == python',
     },
     {
       key: 'shift+enter',
       command: 'jupyter.execSelectionInteractive',
       description: 'Execute selection in Jupyter interactive window',
-      when: 'editorLangId == python'
+      when: 'editorLangId == python',
     },
     {
       key: 'ctrl+shift+enter',
       command: 'jupyter.runallcellsabove.palette',
       description: 'Run all cells above',
-      when: 'editorLangId == python'
-    }
+      when: 'editorLangId == python',
+    },
   ],
-  
+
   snippets: [
     {
-      name: "Python Main Function",
-      prefix: "pymain",
-      description: "Basic Python main function structure",
+      name: 'Python Main Function',
+      prefix: 'pymain',
+      description: 'Basic Python main function structure',
       body: [
-        "def main():",
-        "    \"\"\"Main function.\"\"\"",
-        "    ${1:pass}",
-        "",
-        "",
-        "if __name__ == \"__main__\":",
-        "    main()"
-      ]
+        'def main():',
+        '    """Main function."""',
+        '    ${1:pass}',
+        '',
+        '',
+        'if __name__ == "__main__":',
+        '    main()',
+      ],
     },
     {
-      name: "Python Class",
-      prefix: "pyclass",
-      description: "Basic Python class with init",
+      name: 'Python Class',
+      prefix: 'pyclass',
+      description: 'Basic Python class with init',
       body: [
-        "class ${1:ClassName}:",
-        "    \"\"\"${2:Class description}.\"\"\"",
-        "    ",
-        "    def __init__(self, ${3:parameters}):",
-        "        \"\"\"Initialize ${1:ClassName}.",
-        "        ",
-        "        Args:",
-        "            ${4:parameter_description}",
-        "        \"\"\"",
-        "        ${5:pass}"
-      ]
-    }
+        'class ${1:ClassName}:',
+        '    """${2:Class description}."""',
+        '    ',
+        '    def __init__(self, ${3:parameters}):',
+        '        """Initialize ${1:ClassName}.',
+        '        ',
+        '        Args:',
+        '            ${4:parameter_description}',
+        '        """',
+        '        ${5:pass}',
+      ],
+    },
   ],
-  
+
   documentation: {
     setup_guide: `# Python Development Pack for VSCodium Setup
 
@@ -229,6 +230,6 @@ pip install black isort pylint flake8 pytest
 - **Solution**:
   1. Exclude __pycache__ and .pyc files from search
   2. Use workspace-specific settings for large codebases
-  3. Consider disabling real-time linting for very large files`
-  }
+  3. Consider disabling real-time linting for very large files`,
+  },
 };

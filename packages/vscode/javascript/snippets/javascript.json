@@ -1,20 +1,12 @@
 {
   "0": {
     "prefix": "fn",
-    "body": [
-      "function ${1:functionName}(${2:parameters}) {",
-      "  ${3:// function body}",
-      "}"
-    ],
+    "body": ["function ${1:functionName}(${2:parameters}) {", "  ${3:// function body}", "}"],
     "description": "JavaScript function declaration"
   },
   "1": {
     "prefix": "af",
-    "body": [
-      "const ${1:functionName} = (${2:parameters}) => {",
-      "  ${3:// function body}",
-      "};"
-    ],
+    "body": ["const ${1:functionName} = (${2:parameters}) => {", "  ${3:// function body}", "};"],
     "description": "JavaScript arrow function"
   },
   "2": {
@@ -34,58 +26,32 @@
   },
   "3": {
     "prefix": "cm",
-    "body": [
-      "${1:methodName}(${2:parameters}) {",
-      "  ${3:// method body}",
-      "}"
-    ],
+    "body": ["${1:methodName}(${2:parameters}) {", "  ${3:// method body}", "}"],
     "description": "Class method definition"
   },
   "4": {
     "prefix": "if",
-    "body": [
-      "if (${1:condition}) {",
-      "  ${2:// if body}",
-      "}"
-    ],
+    "body": ["if (${1:condition}) {", "  ${2:// if body}", "}"],
     "description": "Simple if statement"
   },
   "5": {
     "prefix": "ifel",
-    "body": [
-      "if (${1:condition}) {",
-      "  ${2:// if body}",
-      "} else {",
-      "  ${3:// else body}",
-      "}"
-    ],
+    "body": ["if (${1:condition}) {", "  ${2:// if body}", "} else {", "  ${3:// else body}", "}"],
     "description": "If-else statement"
   },
   "6": {
     "prefix": "for",
-    "body": [
-      "for (let ${1:i} = 0; ${1:i} < ${2:length}; ${1:i}++) {",
-      "  ${3:// loop body}",
-      "}"
-    ],
+    "body": ["for (let ${1:i} = 0; ${1:i} < ${2:length}; ${1:i}++) {", "  ${3:// loop body}", "}"],
     "description": "Standard for loop"
   },
   "7": {
     "prefix": "forof",
-    "body": [
-      "for (const ${1:item} of ${2:iterable}) {",
-      "  ${3:// loop body}",
-      "}"
-    ],
+    "body": ["for (const ${1:item} of ${2:iterable}) {", "  ${3:// loop body}", "}"],
     "description": "For-of loop for iterables"
   },
   "8": {
     "prefix": "whl",
-    "body": [
-      "while (${1:condition}) {",
-      "  ${2:// loop body}",
-      "}"
-    ],
+    "body": ["while (${1:condition}) {", "  ${2:// loop body}", "}"],
     "description": "While loop"
   },
   "9": {
@@ -106,32 +72,22 @@
   },
   "10": {
     "prefix": "im",
-    "body": [
-      "import { ${1:exports} } from '${2:module}';"
-    ],
+    "body": ["import { ${1:exports} } from '${2:module}';"],
     "description": "ES6 import statement"
   },
   "11": {
     "prefix": "imd",
-    "body": [
-      "import ${1:name} from '${2:module}';"
-    ],
+    "body": ["import ${1:name} from '${2:module}';"],
     "description": "ES6 default import"
   },
   "12": {
     "prefix": "ima",
-    "body": [
-      "import * as ${1:name} from '${2:module}';"
-    ],
+    "body": ["import * as ${1:name} from '${2:module}';"],
     "description": "Import all as namespace"
   },
   "13": {
     "prefix": "ex",
-    "body": [
-      "export function ${1:functionName}(${2:parameters}) {",
-      "  ${3:// function body}",
-      "}"
-    ],
+    "body": ["export function ${1:functionName}(${2:parameters}) {", "  ${3:// function body}", "}"],
     "description": "Export a function"
   },
   "14": {
@@ -147,82 +103,52 @@
   },
   "15": {
     "prefix": "exd",
-    "body": [
-      "export default ${1:exportedItem};"
-    ],
+    "body": ["export default ${1:exportedItem};"],
     "description": "Default export"
   },
   "16": {
     "prefix": "log",
-    "body": [
-      "console.log('${1:message}', ${2:variable});"
-    ],
+    "body": ["console.log('${1:message}', ${2:variable});"],
     "description": "Console.log statement"
   },
   "17": {
     "prefix": "logerr",
-    "body": [
-      "console.error('${1:error}', ${2:errorObject});"
-    ],
+    "body": ["console.error('${1:error}', ${2:errorObject});"],
     "description": "Console.error statement"
   },
   "18": {
     "prefix": "logwarn",
-    "body": [
-      "console.warn('${1:warning}', ${2:warningObject});"
-    ],
+    "body": ["console.warn('${1:warning}', ${2:warningObject});"],
     "description": "Console.warn statement"
   },
   "19": {
     "prefix": "debug",
-    "body": [
-      "console.debug('${1:context}:', ${2:variable});"
-    ],
+    "body": ["console.debug('${1:context}:', ${2:variable});"],
     "description": "Debug logging with context"
   },
   "20": {
     "prefix": "com",
-    "body": [
-      "/**",
-      " * ${1:description}",
-      " */"
-    ],
+    "body": ["/**", " * ${1:description}", " */"],
     "description": "Multi-line comment block"
   },
   "21": {
     "prefix": "todo",
-    "body": [
-      "// TODO: ${1:description}"
-    ],
+    "body": ["// TODO: ${1:description}"],
     "description": "TODO comment marker"
   },
   "22": {
     "prefix": "async",
-    "body": [
-      "async function ${1:functionName}(${2:parameters}) {",
-      "  ${3:// async function body}",
-      "}"
-    ],
+    "body": ["async function ${1:functionName}(${2:parameters}) {", "  ${3:// async function body}", "}"],
     "description": "Async function declaration"
   },
   "23": {
     "prefix": "promise",
-    "body": [
-      "new Promise((resolve, reject) => {",
-      "  ${1:// promise body}",
-      "})"
-    ],
+    "body": ["new Promise((resolve, reject) => {", "  ${1:// promise body}", "})"],
     "description": "Promise constructor"
   },
   "24": {
     "prefix": "try",
-    "body": [
-      "try {",
-      "  ${1:// try body}",
-      "} catch (${2:error}) {",
-      "  ${3:// catch body}",
-      "}"
-    ],
+    "body": ["try {", "  ${1:// try body}", "} catch (${2:error}) {", "  ${3:// catch body}", "}"],
     "description": "Try-catch block"
   }
 }

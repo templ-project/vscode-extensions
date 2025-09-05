@@ -70,7 +70,7 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Description: An update to the syntax of Dockerfile
   - Publisher: jeff-hykin
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;jeff-hykin.better-dockerfile-syntax)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=jeff-hykin.better-dockerfile-syntax)
 - **Kubernetes Support** (`ipedrazas.kubernetes-snippets`)
   - Description: Code snippets of kubernetes for Visual Studio Code
   - Publisher: Iván Pedrazas

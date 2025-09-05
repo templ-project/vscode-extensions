@@ -1,0 +1,27 @@
+[
+  {
+    "key": "ctrl+shift+f",
+    "command": "clang-format.format",
+    "when": "editorTextFocus &amp;&amp; (editorLangId &#x3D;&#x3D; &#x27;cpp&#x27; || editorLangId &#x3D;&#x3D; &#x27;c&#x27;)"
+  },
+  {
+    "key": "ctrl+shift+i",
+    "command": "clangd.switchheadersource",
+    "when": "editorTextFocus &amp;&amp; (editorLangId &#x3D;&#x3D; &#x27;cpp&#x27; || editorLangId &#x3D;&#x3D; &#x27;c&#x27;)"
+  },
+  {
+    "key": "f12",
+    "command": "editor.action.revealDefinition",
+    "when": "editorTextFocus &amp;&amp; (editorLangId &#x3D;&#x3D; &#x27;cpp&#x27; || editorLangId &#x3D;&#x3D; &#x27;c&#x27;)"
+  },
+  {
+    "key": "ctrl+f12",
+    "command": "editor.action.goToReferences",
+    "when": "editorTextFocus &amp;&amp; (editorLangId &#x3D;&#x3D; &#x27;cpp&#x27; || editorLangId &#x3D;&#x3D; &#x27;c&#x27;)"
+  },
+  {
+    "key": "ctrl+shift+o",
+    "command": "workbench.action.gotoSymbol",
+    "when": "editorTextFocus &amp;&amp; (editorLangId &#x3D;&#x3D; &#x27;cpp&#x27; || editorLangId &#x3D;&#x3D; &#x27;c&#x27;)"
+  }
+]

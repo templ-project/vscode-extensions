@@ -1,17 +1,16 @@
 # Change Log
 
-## [1.0.0] - 2025-08-31
+## [1.0.0] - 2025-09-05
 
 ### Added
+
 - Initial release of typescript extension pack for vscode
-- 4 required extensions
+- 2 required extensions
 - 0 optional extensions
 
 ### Extensions Included
 
 #### Required Extensions
-- [TypeScript Importer](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.vscode-typescript-next) - Automatically searches for TypeScript definitions
-- [TypeScript Snippets](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.vscode-typescript-next) - Code snippets for TypeScript development
-- [TypeScript Debugger](https://marketplace.visualstudio.com/items?itemName&#x3D;ms-vscode.js-debug) - Built-in TypeScript/JavaScript debugger for VS Code
-- [json2ts](https://marketplace.visualstudio.com/items?itemName&#x3D;GregorBiswanger.json2ts) - Convert JSON object to typescript interfaces
 
+- [TypeScript Language Features](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-next) - Enhanced TypeScript language support with auto-import and intellisense
+- [json2ts](https://marketplace.visualstudio.com/items?itemName=GregorBiswanger.json2ts) - Convert JSON object to typescript interfaces

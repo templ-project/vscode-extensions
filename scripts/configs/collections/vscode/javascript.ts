@@ -1,4 +1,3 @@
-import { Collection } from '../../shared/types';
 import {
   eslint,
   prettier,
@@ -8,77 +7,67 @@ import {
   quokka,
   babelSyntax,
   bunVSCode,
-  deno
+  deno,
 } from '../../extensions/javascript';
+import { Collection } from '../../shared/types';
 
 export const javascript: Collection = {
-  description: "Essential JavaScript development environment for VSCode - runtime-agnostic tools for modern JavaScript development",
-  tags: ["javascript", "es6", "frontend", "web", "development", "linting", "formatting"],
-  
-  required_extensions: [
-    eslint,
-    prettier,
-    jsDebugger,
-    babelSyntax
-  ],
-  
-  optional_extensions: [
-    intelliCode,
-    importCost, 
-    quokka,
-    bunVSCode,
-    deno
-  ],
-  
+  description:
+    'Essential JavaScript development environment for VSCode - runtime-agnostic tools for modern JavaScript development',
+  tags: ['javascript', 'es6', 'frontend', 'web', 'development', 'linting', 'formatting'],
+
+  required_extensions: [eslint, prettier, jsDebugger, babelSyntax],
+
+  optional_extensions: [intelliCode, importCost, quokka, bunVSCode, deno],
+
   settings: {
-    
     // JavaScript Language Settings
-    "javascript.preferences.quoteStyle": {
-      value: "single",
-      description: "Use single quotes for JavaScript imports and strings",
-      scope: "workspace"
+    'javascript.preferences.quoteStyle': {
+      value: 'single',
+      description: 'Use single quotes for JavaScript imports and strings',
+      scope: 'workspace',
     },
-    "javascript.suggest.autoImports": {
+    'javascript.suggest.autoImports': {
       value: true,
-      description: "Enable auto-import suggestions for JavaScript",
-      scope: "workspace"
+      description: 'Enable auto-import suggestions for JavaScript',
+      scope: 'workspace',
     },
-    "javascript.updateImportsOnFileMove.enabled": {
-      value: "always",
-      description: "Automatically update imports when files are moved",
-      scope: "workspace"
+    'javascript.updateImportsOnFileMove.enabled': {
+      value: 'always',
+      description: 'Automatically update imports when files are moved',
+      scope: 'workspace',
     },
-    
+
     // ESLint Settings
-    "eslint.validate": {
-      value: ["javascript", "javascriptreact"],
-      description: "File types to validate with ESLint",
-      scope: "workspace"
+    'eslint.validate': {
+      value: ['javascript', 'javascriptreact'],
+      description: 'File types to validate with ESLint',
+      scope: 'workspace',
     },
-    "eslint.format.enable": {
+    'eslint.format.enable': {
       value: false,
-      description: "Disable ESLint as formatter (use Prettier instead)",
-      scope: "workspace"
+      description: 'Disable ESLint as formatter (use Prettier instead)',
+      scope: 'workspace',
     },
-    "eslint.codeActionsOnSave.rules": {
-      value: ["*"],
-      description: "ESLint rules to fix on save",
-      scope: "workspace"
+    'eslint.codeActionsOnSave.rules': {
+      value: ['*'],
+      description: 'ESLint rules to fix on save',
+      scope: 'workspace',
     },
-    
+
     // Editor Settings for JavaScript
-    "[javascript]": {
+    '[javascript]': {
       value: {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-          "source.fixAll.eslint": "explicit"
+        'editor.defaultFormatter': 'esbenp.prettier-vscode',
+        'editor.formatOnSave': true,
+        'editor.codeActionsOnSave': {
+          'source.fixAll.eslint': 'explicit',
         },
-        "editor.tabSize": 2,
-        "editor.insertSpaces": true
+        'editor.tabSize': 2,
+        'editor.insertSpaces': true,
       },
-      description: "JavaScript-specific editor settings",
-      scope: "workspace"
+      description: 'JavaScript-specific editor settings',
+      scope: 'workspace',
     },
     // TODO: (keep as comment) will move to react extension pack
     // "[javascriptreact]": {
@@ -95,267 +84,211 @@ export const javascript: Collection = {
     //   scope: "workspace"
     // }
   },
-  
+
   keybindings: [
     {
-      key: "ctrl+shift+f",
-      command: "prettier.forceFormatDocument",
-      when: "editorTextFocus",
-      description: "Force format document with Prettier"
+      key: 'ctrl+shift+f',
+      command: 'prettier.forceFormatDocument',
+      when: 'editorTextFocus',
+      description: 'Force format document with Prettier',
     },
     {
-      key: "ctrl+shift+e",
-      command: "eslint.executeAutofix", 
-      when: "editorTextFocus",
-      description: "Fix ESLint problems in current file"
-    }
+      key: 'ctrl+shift+e',
+      command: 'eslint.executeAutofix',
+      when: 'editorTextFocus',
+      description: 'Fix ESLint problems in current file',
+    },
   ],
-  
+
   snippets: [
     // Core Language Constructs
     {
-      name: "Function Declaration",
-      prefix: "fn",
-      description: "JavaScript function declaration",
-      body: [
-        "function ${1:functionName}(${2:parameters}) {",
-        "  ${3:// function body}",
-        "}"
-      ]
+      name: 'Function Declaration',
+      prefix: 'fn',
+      description: 'JavaScript function declaration',
+      body: ['function ${1:functionName}(${2:parameters}) {', '  ${3:// function body}', '}'],
     },
     {
-      name: "Arrow Function",
-      prefix: "af",
-      description: "JavaScript arrow function",
-      body: [
-        "const ${1:functionName} = (${2:parameters}) => {",
-        "  ${3:// function body}",
-        "};"
-      ]
+      name: 'Arrow Function',
+      prefix: 'af',
+      description: 'JavaScript arrow function',
+      body: ['const ${1:functionName} = (${2:parameters}) => {', '  ${3:// function body}', '};'],
     },
     {
-      name: "Class Declaration", 
-      prefix: "cl",
-      description: "JavaScript class definition",
+      name: 'Class Declaration',
+      prefix: 'cl',
+      description: 'JavaScript class definition',
       body: [
-        "class ${1:ClassName} {",
-        "  constructor(${2:parameters}) {",
-        "    ${3:// constructor body}",
-        "  }",
-        "",
-        "  ${4:methodName}(${5:parameters}) {",
-        "    ${6:// method body}",
-        "  }",
-        "}"
-      ]
+        'class ${1:ClassName} {',
+        '  constructor(${2:parameters}) {',
+        '    ${3:// constructor body}',
+        '  }',
+        '',
+        '  ${4:methodName}(${5:parameters}) {',
+        '    ${6:// method body}',
+        '  }',
+        '}',
+      ],
     },
     {
-      name: "Class Method",
-      prefix: "cm", 
-      description: "Class method definition",
-      body: [
-        "${1:methodName}(${2:parameters}) {",
-        "  ${3:// method body}",
-        "}"
-      ]
+      name: 'Class Method',
+      prefix: 'cm',
+      description: 'Class method definition',
+      body: ['${1:methodName}(${2:parameters}) {', '  ${3:// method body}', '}'],
     },
-    
+
     // Control Flow
     {
-      name: "If Statement",
-      prefix: "if",
-      description: "Simple if statement", 
-      body: [
-        "if (${1:condition}) {",
-        "  ${2:// if body}",
-        "}"
-      ]
+      name: 'If Statement',
+      prefix: 'if',
+      description: 'Simple if statement',
+      body: ['if (${1:condition}) {', '  ${2:// if body}', '}'],
     },
     {
-      name: "If-Else Statement",
-      prefix: "ifel",
-      description: "If-else statement",
-      body: [
-        "if (${1:condition}) {",
-        "  ${2:// if body}",
-        "} else {",
-        "  ${3:// else body}",
-        "}"
-      ]
+      name: 'If-Else Statement',
+      prefix: 'ifel',
+      description: 'If-else statement',
+      body: ['if (${1:condition}) {', '  ${2:// if body}', '} else {', '  ${3:// else body}', '}'],
     },
     {
-      name: "For Loop",
-      prefix: "for",
-      description: "Standard for loop",
-      body: [
-        "for (let ${1:i} = 0; ${1:i} < ${2:length}; ${1:i}++) {",
-        "  ${3:// loop body}",
-        "}"
-      ]
+      name: 'For Loop',
+      prefix: 'for',
+      description: 'Standard for loop',
+      body: ['for (let ${1:i} = 0; ${1:i} < ${2:length}; ${1:i}++) {', '  ${3:// loop body}', '}'],
     },
     {
-      name: "For-Of Loop",
-      prefix: "forof",
-      description: "For-of loop for iterables",
-      body: [
-        "for (const ${1:item} of ${2:iterable}) {",
-        "  ${3:// loop body}",
-        "}"
-      ]
+      name: 'For-Of Loop',
+      prefix: 'forof',
+      description: 'For-of loop for iterables',
+      body: ['for (const ${1:item} of ${2:iterable}) {', '  ${3:// loop body}', '}'],
     },
     {
-      name: "While Loop",
-      prefix: "whl", 
-      description: "While loop",
-      body: [
-        "while (${1:condition}) {",
-        "  ${2:// loop body}",
-        "}"
-      ]
+      name: 'While Loop',
+      prefix: 'whl',
+      description: 'While loop',
+      body: ['while (${1:condition}) {', '  ${2:// loop body}', '}'],
     },
     {
-      name: "Switch Statement",
-      prefix: "sw",
-      description: "Switch statement",
+      name: 'Switch Statement',
+      prefix: 'sw',
+      description: 'Switch statement',
       body: [
-        "switch (${1:expression}) {",
-        "  case ${2:value1}:",
-        "    ${3:// case 1}",
-        "    break;",
-        "  case ${4:value2}:",
-        "    ${5:// case 2}",
-        "    break;",
-        "  default:",
-        "    ${6:// default case}",
-        "}"
-      ]
+        'switch (${1:expression}) {',
+        '  case ${2:value1}:',
+        '    ${3:// case 1}',
+        '    break;',
+        '  case ${4:value2}:',
+        '    ${5:// case 2}',
+        '    break;',
+        '  default:',
+        '    ${6:// default case}',
+        '}',
+      ],
     },
-    
+
     // Import/Export
     {
-      name: "Import Statement", 
-      prefix: "im",
-      description: "ES6 import statement",
-      body: "import { ${1:exports} } from '${2:module}';"
+      name: 'Import Statement',
+      prefix: 'im',
+      description: 'ES6 import statement',
+      body: "import { ${1:exports} } from '${2:module}';",
     },
     {
-      name: "Import Default",
-      prefix: "imd",
-      description: "ES6 default import",
-      body: "import ${1:name} from '${2:module}';"
+      name: 'Import Default',
+      prefix: 'imd',
+      description: 'ES6 default import',
+      body: "import ${1:name} from '${2:module}';",
     },
     {
-      name: "Import All",
-      prefix: "ima",
-      description: "Import all as namespace",
-      body: "import * as ${1:name} from '${2:module}';"
+      name: 'Import All',
+      prefix: 'ima',
+      description: 'Import all as namespace',
+      body: "import * as ${1:name} from '${2:module}';",
     },
     {
-      name: "Export Function",
-      prefix: "ex",
-      description: "Export a function", 
+      name: 'Export Function',
+      prefix: 'ex',
+      description: 'Export a function',
+      body: ['export function ${1:functionName}(${2:parameters}) {', '  ${3:// function body}', '}'],
+    },
+    {
+      name: 'Export Class',
+      prefix: 'exc',
+      description: 'Export a class',
       body: [
-        "export function ${1:functionName}(${2:parameters}) {",
-        "  ${3:// function body}",
-        "}"
-      ]
+        'export class ${1:ClassName} {',
+        '  constructor(${2:parameters}) {',
+        '    ${3:// constructor body}',
+        '  }',
+        '}',
+      ],
     },
     {
-      name: "Export Class",
-      prefix: "exc",
-      description: "Export a class",
-      body: [
-        "export class ${1:ClassName} {",
-        "  constructor(${2:parameters}) {",
-        "    ${3:// constructor body}",
-        "  }",
-        "}"
-      ]
+      name: 'Export Default',
+      prefix: 'exd',
+      description: 'Default export',
+      body: 'export default ${1:exportedItem};',
     },
-    {
-      name: "Export Default",
-      prefix: "exd", 
-      description: "Default export",
-      body: "export default ${1:exportedItem};"
-    },
-    
+
     // Development/Debugging
     {
-      name: "Console Log",
-      prefix: "log",
-      description: "Console.log statement",
-      body: "console.log('${1:message}', ${2:variable});"
+      name: 'Console Log',
+      prefix: 'log',
+      description: 'Console.log statement',
+      body: "console.log('${1:message}', ${2:variable});",
     },
     {
-      name: "Console Error",
-      prefix: "logerr",
-      description: "Console.error statement", 
-      body: "console.error('${1:error}', ${2:errorObject});"
+      name: 'Console Error',
+      prefix: 'logerr',
+      description: 'Console.error statement',
+      body: "console.error('${1:error}', ${2:errorObject});",
     },
     {
-      name: "Console Warn",
-      prefix: "logwarn",
-      description: "Console.warn statement",
-      body: "console.warn('${1:warning}', ${2:warningObject});"
+      name: 'Console Warn',
+      prefix: 'logwarn',
+      description: 'Console.warn statement',
+      body: "console.warn('${1:warning}', ${2:warningObject});",
     },
     {
-      name: "Debug Print",
-      prefix: "debug",
-      description: "Debug logging with context",
-      body: "console.debug('${1:context}:', ${2:variable});"
+      name: 'Debug Print',
+      prefix: 'debug',
+      description: 'Debug logging with context',
+      body: "console.debug('${1:context}:', ${2:variable});",
     },
     {
-      name: "Comment Block",
-      prefix: "com",
-      description: "Multi-line comment block",
-      body: [
-        "/**",
-        " * ${1:description}",
-        " */"
-      ]
+      name: 'Comment Block',
+      prefix: 'com',
+      description: 'Multi-line comment block',
+      body: ['/**', ' * ${1:description}', ' */'],
     },
     {
-      name: "TODO Comment",
-      prefix: "todo", 
-      description: "TODO comment marker",
-      body: "// TODO: ${1:description}"
+      name: 'TODO Comment',
+      prefix: 'todo',
+      description: 'TODO comment marker',
+      body: '// TODO: ${1:description}',
     },
-    
+
     // Async/Promises
     {
-      name: "Async Function",
-      prefix: "async",
-      description: "Async function declaration",
-      body: [
-        "async function ${1:functionName}(${2:parameters}) {",
-        "  ${3:// async function body}",
-        "}"
-      ]
+      name: 'Async Function',
+      prefix: 'async',
+      description: 'Async function declaration',
+      body: ['async function ${1:functionName}(${2:parameters}) {', '  ${3:// async function body}', '}'],
     },
     {
-      name: "Promise",
-      prefix: "promise", 
-      description: "Promise constructor",
-      body: [
-        "new Promise((resolve, reject) => {",
-        "  ${1:// promise body}",
-        "})"
-      ]
+      name: 'Promise',
+      prefix: 'promise',
+      description: 'Promise constructor',
+      body: ['new Promise((resolve, reject) => {', '  ${1:// promise body}', '})'],
     },
     {
-      name: "Try-Catch",
-      prefix: "try",
-      description: "Try-catch block",
-      body: [
-        "try {",
-        "  ${1:// try body}", 
-        "} catch (${2:error}) {",
-        "  ${3:// catch body}",
-        "}"
-      ]
-    }
+      name: 'Try-Catch',
+      prefix: 'try',
+      description: 'Try-catch block',
+      body: ['try {', '  ${1:// try body}', '} catch (${2:error}) {', '  ${3:// catch body}', '}'],
+    },
   ],
-  
+
   documentation: {
     setup_guide: `# JavaScript Extension Pack Setup
 
@@ -520,6 +453,6 @@ Add these helpful scripts to your \`package.json\`:
 - Check settings scope (user vs workspace)
 - Verify JSON syntax in settings files
 - Restart VSCode after major changes
-- Check for duplicate or conflicting settings`
-  }
+- Check for duplicate or conflicting settings`,
+  },
 };

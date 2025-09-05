@@ -1,52 +1,40 @@
-import { Collection } from '../../shared/types';
-
 // API/OpenAPI Extensions
-import { 
-  swaggerEditor, 
-  restClient, 
-  thunderClient, 
-  redoclyOpenAPI 
-} from '../../extensions/api';
+import { restClient, swaggerEditor } from '../../extensions/api';
+
+// CVS Extensions
+import { gitGraph, githubActions, githubIssueNotebooks, githubPullRequests } from '../../extensions/cvs';
 
 // Docker Extensions
-import { 
-  dockerOfficial, 
-  devContainers, 
-  shellFormat, 
-  betterDockerfile 
-} from '../../extensions/docker';
+import { betterDockerfile, dockerOfficial } from '../../extensions/docker';
 
 // Kubernetes Extensions
-import { 
-  kubernetesTools, 
-  helmIntellisense, 
-  kubernetesSnippets, 
-  kubernetesYamlFormatter
+import {
+  helmIntellisense,
+  kubernetesSnippets,
+  kubernetesTools,
+  kubernetesYamlFormatter,
 } from '../../extensions/kubernetes';
 
-// GitHub Extensions
-import { 
-  githubPullRequests, 
-  githubActions, 
-  githubIssueNotebooks, 
-  gitGraph,
-  gitlabWorkflow, 
-  atlassianIntegration, 
-  openInGitHub 
-} from '../../extensions/cvs';
-
 // Productivity Extensions
-import { 
-  yamlSupport, 
-  versionLens,
-  codeRunner,
-  sonarLint
-} from '../../extensions/productivity';
+import { codeRunner, sonarLint } from '../../extensions/productivity';
+import { Collection } from '../../shared/types';
 
 export const genericExtended: Collection = {
-  description: "Extended developer tools for API development, containerization, and Git forge integration in VSCode",
-  tags: ["api", "swagger", "openapi", "rest", "docker", "kubernetes", "github", "gitlab", "bitbucket", "forge", "extended"],
-  
+  description: 'Extended developer tools for API development, containerization, and Git forge integration in VSCode',
+  tags: [
+    'api',
+    'swagger',
+    'openapi',
+    'rest',
+    'docker',
+    'kubernetes',
+    'github',
+    'gitlab',
+    'bitbucket',
+    'forge',
+    'extended',
+  ],
+
   required_extensions: [
     // api
     swaggerEditor,
@@ -57,7 +45,7 @@ export const genericExtended: Collection = {
     // TODO: (keep in code), not sure if needed
     // devContainers,
 
-    // Kubernetes - Core  
+    // Kubernetes - Core
     kubernetesTools,
     helmIntellisense,
 
@@ -69,242 +57,243 @@ export const genericExtended: Collection = {
     githubPullRequests,
     githubActions,
   ],
-  
+
   optional_extensions: [
     // API/OpenAPI - Optional
     // TODO: (keep in code), not sure if needed
     // redoclyOpenAPI,
     // TODO: (keep in code), not sure if needed
     // thunderClient,
-    
+
     // Docker - Optional
     betterDockerfile,
-    
+
     // Kubernetes - Optional
     kubernetesSnippets,
     kubernetesYamlFormatter,
-    
+
     // CVS - Optional
     githubIssueNotebooks,
     gitGraph,
     // TODO: (keep in code), not sure if needed
     // openInGitHub
-    
+
     // Productivity
     codeRunner,
     sonarLint,
   ],
-  
+
   settings: {
     // API/OpenAPI specific settings
-    "openapi.completion.enable": {
+    'openapi.completion.enable': {
       value: true,
-      description: "Enable OpenAPI completion suggestions",
-      scope: "workspace"
+      description: 'Enable OpenAPI completion suggestions',
+      scope: 'workspace',
     },
-    "openapi.validation.enable": {
+    'openapi.validation.enable': {
       value: true,
-      description: "Enable OpenAPI validation",
-      scope: "workspace"
+      description: 'Enable OpenAPI validation',
+      scope: 'workspace',
     },
-    "openapi.preview.enable": {
+    'openapi.preview.enable': {
       value: true,
-      description: "Enable OpenAPI preview",
-      scope: "workspace"
+      description: 'Enable OpenAPI preview',
+      scope: 'workspace',
     },
-    "rest-client.enableTelemetry": {
+    'rest-client.enableTelemetry': {
       value: false,
-      description: "Disable REST Client telemetry",
-      scope: "user"
+      description: 'Disable REST Client telemetry',
+      scope: 'user',
     },
-    "rest-client.showResponseInDifferentTab": {
+    'rest-client.showResponseInDifferentTab': {
       value: true,
-      description: "Show REST Client response in separate tab",
-      scope: "workspace"
+      description: 'Show REST Client response in separate tab',
+      scope: 'workspace',
     },
-    
+
     // Docker specific settings
-    "docker.attachShellCommand.linuxContainer": {
-      value: "/bin/bash",
-      description: "Default shell command for Linux containers",
-      scope: "workspace"
+    'docker.attachShellCommand.linuxContainer': {
+      value: '/bin/bash',
+      description: 'Default shell command for Linux containers',
+      scope: 'workspace',
     },
-    "docker.attachShellCommand.windowsContainer": {
-      value: "cmd.exe",
-      description: "Default shell command for Windows containers",
-      scope: "workspace"
+    'docker.attachShellCommand.windowsContainer': {
+      value: 'cmd.exe',
+      description: 'Default shell command for Windows containers',
+      scope: 'workspace',
     },
-    "docker.showStartPage": {
+    'docker.showStartPage': {
       value: false,
-      description: "Hide Docker start page",
-      scope: "user"
+      description: 'Hide Docker start page',
+      scope: 'user',
     },
-    
+
     // Kubernetes specific settings
-    "vs-kubernetes.vs-kubernetes.namespace": {
-      value: "",
-      description: "Default Kubernetes namespace",
-      scope: "workspace"
+    'vs-kubernetes.vs-kubernetes.namespace': {
+      value: '',
+      description: 'Default Kubernetes namespace',
+      scope: 'workspace',
     },
-    "vs-kubernetes.outputFormat": {
-      value: "yaml",
-      description: "Default output format for Kubernetes resources",
-      scope: "workspace"
+    'vs-kubernetes.outputFormat': {
+      value: 'yaml',
+      description: 'Default output format for Kubernetes resources',
+      scope: 'workspace',
     },
-    "vs-kubernetes.autoCleanupOnDebugTerminate": {
+    'vs-kubernetes.autoCleanupOnDebugTerminate': {
       value: true,
-      description: "Auto cleanup Kubernetes debug resources",
-      scope: "workspace"
+      description: 'Auto cleanup Kubernetes debug resources',
+      scope: 'workspace',
     },
-    
+
     // GitHub specific settings
-    "github.pullRequests.createOnPublishBranch": {
-      value: "never",
-      description: "Never create pull requests on publish branch",
-      scope: "workspace"
+    'github.pullRequests.createOnPublishBranch': {
+      value: 'never',
+      description: 'Never create pull requests on publish branch',
+      scope: 'workspace',
     },
-    "github.pullRequests.pullBranch": {
-      value: "never",
-      description: "Never pull branch on pull request",
-      scope: "workspace"
+    'github.pullRequests.pullBranch': {
+      value: 'never',
+      description: 'Never pull branch on pull request',
+      scope: 'workspace',
     },
-    "github.pullRequests.showInTimeline": {
+    'github.pullRequests.showInTimeline': {
       value: true,
-      description: "Show pull requests in timeline view",
-      scope: "workspace"
+      description: 'Show pull requests in timeline view',
+      scope: 'workspace',
     },
-    "githubActions.workflows.pinned.workflows": {
+    'githubActions.workflows.pinned.workflows': {
       value: [],
-      description: "Pinned GitHub Actions workflows",
-      scope: "workspace"
+      description: 'Pinned GitHub Actions workflows',
+      scope: 'workspace',
     },
-    "githubActions.workflows.pinned.refresh.enabled": {
+    'githubActions.workflows.pinned.refresh.enabled': {
       value: true,
-      description: "Enable automatic refresh of pinned workflows",
-      scope: "workspace"
+      description: 'Enable automatic refresh of pinned workflows',
+      scope: 'workspace',
     },
-    
+
     // Git/Forge specific settings
-    "git.enableSmartCommit": {
+    'git.enableSmartCommit': {
       value: true,
-      description: "Enable smart commit (stage all changes when committing)",
-      scope: "workspace"
+      description: 'Enable smart commit (stage all changes when committing)',
+      scope: 'workspace',
     },
-    "git.autofetch": {
+    'git.autofetch': {
       value: true,
-      description: "Enable automatic git fetch",
-      scope: "workspace"
+      description: 'Enable automatic git fetch',
+      scope: 'workspace',
     },
-    "git.autofetchPeriod": {
+    'git.autofetchPeriod': {
       value: 180,
-      description: "Auto fetch period in seconds (3 minutes)",
-      scope: "workspace"
+      description: 'Auto fetch period in seconds (3 minutes)',
+      scope: 'workspace',
     },
-    "git.confirmSync": {
+    'git.confirmSync': {
       value: false,
-      description: "Disable confirmation for git sync",
-      scope: "workspace"
+      description: 'Disable confirmation for git sync',
+      scope: 'workspace',
     },
-    "git.enableStatusBarSync": {
+    'git.enableStatusBarSync': {
       value: true,
-      description: "Enable git sync status in status bar",
-      scope: "workspace"
+      description: 'Enable git sync status in status bar',
+      scope: 'workspace',
     },
-    
+
     // YAML/Configuration
-    "yaml.schemas": {
+    'yaml.schemas': {
       value: {
-        "https://json.schemastore.org/github-workflow.json": ".github/workflows/*",
-        "https://json.schemastore.org/github-action.json": ".github/actions/*/action.yml",
-        "https://json.schemastore.org/docker-compose.json": ["docker-compose.yml", "docker-compose.yaml"],
-        "https://json.schemastore.org/kustomization.json": ["kustomization.yaml", "kustomization.yml"],
-        "https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json": ["k8s/**/*.yaml", "k8s/**/*.yml", "kubernetes/**/*.yaml", "kubernetes/**/*.yml"]
+        'https://json.schemastore.org/github-workflow.json': '.github/workflows/*',
+        'https://json.schemastore.org/github-action.json': '.github/actions/*/action.yml',
+        'https://json.schemastore.org/docker-compose.json': ['docker-compose.yml', 'docker-compose.yaml'],
+        'https://json.schemastore.org/kustomization.json': ['kustomization.yaml', 'kustomization.yml'],
+        'https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json':
+          ['k8s/**/*.yaml', 'k8s/**/*.yml', 'kubernetes/**/*.yaml', 'kubernetes/**/*.yml'],
       },
-      description: "YAML schema mappings for various file types",
-      scope: "workspace"
+      description: 'YAML schema mappings for various file types',
+      scope: 'workspace',
     },
-    "yaml.format.enable": {
+    'yaml.format.enable': {
       value: true,
-      description: "Enable YAML formatting",
-      scope: "workspace"
+      description: 'Enable YAML formatting',
+      scope: 'workspace',
     },
-    "yaml.validate": {
+    'yaml.validate': {
       value: true,
-      description: "Enable YAML validation",
-      scope: "workspace"
+      description: 'Enable YAML validation',
+      scope: 'workspace',
     },
-    "yaml.hover": {
+    'yaml.hover': {
       value: true,
-      description: "Enable YAML hover information",
-      scope: "workspace"
+      description: 'Enable YAML hover information',
+      scope: 'workspace',
     },
-    "yaml.completion": {
+    'yaml.completion': {
       value: true,
-      description: "Enable YAML completion",
-      scope: "workspace"
-    }
+      description: 'Enable YAML completion',
+      scope: 'workspace',
+    },
   },
-  
+
   keybindings: [
     // API/REST specific keybindings
     {
-      key: "ctrl+alt+r",
-      command: "rest-client.request",
-      description: "Execute REST request",
-      when: "editorTextFocus && editorLangId == 'http'"
+      key: 'ctrl+alt+r',
+      command: 'rest-client.request',
+      description: 'Execute REST request',
+      when: "editorTextFocus && editorLangId == 'http'",
     },
     {
-      key: "ctrl+alt+e",
-      command: "rest-client.request-last",
-      description: "Execute last REST request",
-      when: "editorTextFocus"
+      key: 'ctrl+alt+e',
+      command: 'rest-client.request-last',
+      description: 'Execute last REST request',
+      when: 'editorTextFocus',
     },
-    
+
     // Docker specific keybindings
     {
-      key: "ctrl+shift+d ctrl+shift+b",
-      command: "docker.images.build",
-      description: "Build Docker image",
-      when: "resourceExtname == '.dockerfile' || resourceFilename == 'Dockerfile'"
+      key: 'ctrl+shift+d ctrl+shift+b',
+      command: 'docker.images.build',
+      description: 'Build Docker image',
+      when: "resourceExtname == '.dockerfile' || resourceFilename == 'Dockerfile'",
     },
     {
-      key: "ctrl+shift+d ctrl+shift+r",
-      command: "docker.containers.run",
-      description: "Run Docker container",
-      when: "focusedView == 'dockerContainers'"
+      key: 'ctrl+shift+d ctrl+shift+r',
+      command: 'docker.containers.run',
+      description: 'Run Docker container',
+      when: "focusedView == 'dockerContainers'",
     },
-    
+
     // Kubernetes specific keybindings
     {
-      key: "ctrl+shift+k ctrl+shift+a",
-      command: "kubernetes.portForward",
-      description: "Kubernetes port forward",
-      when: "focusedView == 'extension.vsKubernetesExplorer'"
+      key: 'ctrl+shift+k ctrl+shift+a',
+      command: 'kubernetes.portForward',
+      description: 'Kubernetes port forward',
+      when: "focusedView == 'extension.vsKubernetesExplorer'",
     },
     {
-      key: "ctrl+shift+k ctrl+shift+l",
-      command: "kubernetes.logs",
-      description: "Show Kubernetes logs",
-      when: "focusedView == 'extension.vsKubernetesExplorer'"
+      key: 'ctrl+shift+k ctrl+shift+l',
+      command: 'kubernetes.logs',
+      description: 'Show Kubernetes logs',
+      when: "focusedView == 'extension.vsKubernetesExplorer'",
     },
-    
+
     // GitHub specific keybindings
     {
-      key: "ctrl+shift+g ctrl+shift+p",
-      command: "github.pullRequests.refresh",
-      description: "Refresh GitHub pull requests",
-      when: "focusedView == 'github:pullRequests'"
+      key: 'ctrl+shift+g ctrl+shift+p',
+      command: 'github.pullRequests.refresh',
+      description: 'Refresh GitHub pull requests',
+      when: "focusedView == 'github:pullRequests'",
     },
     {
-      key: "ctrl+shift+g ctrl+shift+i",
-      command: "github.pullRequests.openQuery",
-      description: "Open GitHub pull request query",
-      when: "focusedView == 'github:pullRequests'"
-    }
+      key: 'ctrl+shift+g ctrl+shift+i',
+      command: 'github.pullRequests.openQuery',
+      description: 'Open GitHub pull request query',
+      when: "focusedView == 'github:pullRequests'",
+    },
   ],
-  
+
   snippets: [],
-  
+
   documentation: {
     setup_guide: `# Generic Extended Extension Pack Setup for VSCode
 
@@ -464,6 +453,6 @@ Create \`.github/workflows/\` directory for CI/CD workflows with full syntax sup
 ## Performance Issues
 - **Slow extension loading**: Disable unused optional extensions
 - **High memory usage**: Check for large files in workspace
-- **Slow Git operations**: Configure Git auto-fetch period appropriately`
-  }
+- **Slow Git operations**: Configure Git auto-fetch period appropriately`,
+  },
 };

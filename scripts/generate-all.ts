@@ -1,8 +1,8 @@
 #!/usr/bin/env ts-node
 
-import { spawn } from 'child_process';
-import * as fs from 'fs';
-import * as path from 'path';
+import { spawn } from 'node:child_process';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 
 console.log('🎯 TypeScript generate-all script is working!');
 console.log('📋 Arguments:', process.argv.slice(2));
@@ -18,18 +18,18 @@ async function runScript(script: string, args: string[]): Promise<void> {
   return new Promise((resolve, reject) => {
     const scriptPath = path.join(__dirname, script);
     const isTypeScript = script.endsWith('.ts');
-    
+
     const command = isTypeScript ? 'npx' : 'node';
     const commandArgs = isTypeScript ? ['ts-node', '--transpile-only', scriptPath, ...args] : [scriptPath, ...args];
-    
+
     console.log(`🔄 Running: ${command} ${commandArgs.join(' ')}`);
-    
+
     const child = spawn(command, commandArgs, {
       stdio: 'inherit',
       cwd: path.join(__dirname, '..'),
-      shell: true // Enable shell mode for Windows compatibility
+      shell: true, // Enable shell mode for Windows compatibility
     });
-    
+
     child.on('close', (code) => {
       if (code === 0) {
         resolve();
@@ -37,7 +37,7 @@ async function runScript(script: string, args: string[]): Promise<void> {
         reject(new Error(`Script ${script} exited with code ${code}`));
       }
     });
-    
+
     child.on('error', (error) => {
       reject(error);
     });
@@ -47,12 +47,11 @@ async function runScript(script: string, args: string[]): Promise<void> {
 async function main(): Promise<void> {
   const ide = targetIde;
   const language = targetLanguage;
-  
-  // Define available IDE/language combinations
-  const combinations: {ide: string, language: string}[] = [];
-  
-  if (ide && language) {
 
+  // Define available IDE/language combinations
+  const combinations: { ide: string; language: string }[] = [];
+
+  if (ide && language) {
     combinations.push({ ide, language });
   } else if (ide) {
     combinations.push({ ide, language: 'generic-essential' });
@@ -68,9 +67,9 @@ async function main(): Promise<void> {
       });
     });
   }
-  
+
   console.log(`🚀 Generating extension packs for ${combinations.length} combination(s)...`);
-  
+
   // Check for version store file
   const versionStorePath = path.join(__dirname, '..', '.version-store.json');
   if (!fs.existsSync(versionStorePath)) {
@@ -85,7 +84,7 @@ async function main(): Promise<void> {
     console.error('Then you can run the generation process again.');
     process.exit(1);
   }
-  
+
   // Store current versions before generation
   console.log('\n💾 Storing current extension versions...');
   try {
@@ -93,11 +92,11 @@ async function main(): Promise<void> {
   } catch (error) {
     console.log(`⚠️  Warning: Could not store versions: ${error}`);
   }
-  
+
   // Generate each combination
   let successCount = 0;
   let failCount = 0;
-  
+
   for (const { ide, language } of combinations) {
     console.log(`\n🔄 Generating ${ide}/${language}...`);
     try {
@@ -109,11 +108,11 @@ async function main(): Promise<void> {
       failCount++;
     }
   }
-  
+
   console.log(`\n📊 Generation Summary:`);
   console.log(`✅ Successfully generated: ${successCount}`);
   console.log(`❌ Failed: ${failCount}`);
-  
+
   // Restore versions after generation
   console.log('\n🔄 Restoring extension versions...');
   try {
@@ -121,7 +120,7 @@ async function main(): Promise<void> {
   } catch (error) {
     console.log(`⚠️  Warning: Could not restore versions: ${error}`);
   }
-  
+
   // Clean up version store file
   console.log('\n🧹 Cleaning up version store...');
   try {
@@ -136,7 +135,7 @@ async function main(): Promise<void> {
 }
 
 if (require.main === module) {
-  main().catch(error => {
+  main().catch((error) => {
     console.error('💥 Fatal error:', error);
     process.exit(1);
   });

@@ -1,7 +1,7 @@
 #!/usr/bin/env ts-node
 
-import * as fs from 'fs';
-import * as path from 'path';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 import * as Handlebars from 'handlebars';
 
 /**
@@ -23,13 +23,16 @@ Handlebars.registerHelper('isString', function (value) {
   return typeof value === 'string';
 });
 
-Handlebars.registerHelper('hasCommands', function (options) {
+Handlebars.registerHelper('hasCommands', function () {
   return true; // Always include commands for active extensions
 });
 
 Handlebars.registerHelper('split', function (str, delimiter) {
   if (typeof str !== 'string') return [str];
-  return str.split(delimiter).filter(line => line.trim() !== '').map(line => line.trimEnd());
+  return str
+    .split(delimiter)
+    .filter((line) => line.trim() !== '')
+    .map((line) => line.trimEnd());
 });
 
 Handlebars.registerHelper('trim', function (str) {
@@ -39,7 +42,12 @@ Handlebars.registerHelper('trim', function (str) {
 
 Handlebars.registerHelper('escapeJson', function (str) {
   if (typeof str !== 'string') return str;
-  return str.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t');
+  return str
+    .replace(/\\/g, '\\\\')
+    .replace(/"/g, '\\"')
+    .replace(/\n/g, '\\n')
+    .replace(/\r/g, '\\r')
+    .replace(/\t/g, '\\t');
 });
 
 Handlebars.registerHelper('year', function () {
@@ -52,7 +60,7 @@ Handlebars.registerHelper('getPublisher', function (extensionId) {
   return parts.length > 1 ? parts[0] : 'Unknown';
 });
 
-async function loadTypeScriptConfig(ide: string, language: string): Promise<any> {
+async function loadTypeScriptConfig(ide: string, language: string): Promise<Record<string, unknown>> {
   const configPath = path.join(__dirname, 'configs', 'collections', ide, `${language}.ts`);
 
   if (!fs.existsSync(configPath)) {
@@ -85,18 +93,33 @@ function loadTemplate(templateName: string): HandlebarsTemplateDelegate {
   return Handlebars.compile(templateContent);
 }
 
-function prepareTemplateContext(config: any, ide: string, language: string): any {
+function prepareTemplateContext(
+  config: Record<string, unknown>,
+  ide: string,
+  language: string,
+): Record<string, unknown> {
   // Get the collection from the config - it might be exported as default, named export, or direct object
   // Convert language to camelCase for export name (e.g., 'generic-extended' -> 'genericExtended')
   const exportName = language.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
   const collection = config[exportName] || config.default || config;
 
+  // Type assertion for collection structure
+  const typedCollection = collection as {
+    description?: string;
+    tags?: string[];
+    required_extensions?: unknown[];
+    optional_extensions?: unknown[];
+    settings?: Record<string, unknown>;
+    keybindings?: unknown[];
+    snippets?: Record<string, unknown>;
+  };
+
   if (!collection) {
     throw new Error(`Language '${language}' not found in ${ide} configuration. Looking for export '${exportName}'`);
   }
 
-  const requiredExtensions = collection.required_extensions || [];
-  const optionalExtensions = collection.optional_extensions || [];
+  const requiredExtensions = typedCollection.required_extensions || [];
+  const optionalExtensions = typedCollection.optional_extensions || [];
   const allExtensions = [...requiredExtensions, ...optionalExtensions];
 
   // Create context for template
@@ -107,11 +130,14 @@ function prepareTemplateContext(config: any, ide: string, language: string): any
     organization: 'templ-project',
 
     // Package metadata
-    displayName: `Templ Project ${language.split('-').map(l => l.charAt(0).toUpperCase() + l.slice(1)).join(' ')} Extension Pack`,
-    description: collection.description,
-    version: "1.0.0",
-    publisher: "templ-project",
-    repositoryUrl: "https://github.com/templ-project/vscode-extensions",
+    displayName: `Templ Project ${language
+      .split('-')
+      .map((l) => l.charAt(0).toUpperCase() + l.slice(1))
+      .join(' ')} Extension Pack`,
+    description: typedCollection.description,
+    version: '1.0.0',
+    publisher: 'templ-project',
+    repositoryUrl: 'https://github.com/templ-project/vscode-extensions',
 
     // Extensions
     requiredExtensions,
@@ -120,29 +146,24 @@ function prepareTemplateContext(config: any, ide: string, language: string): any
     totalExtensions: allExtensions.length,
 
     // Keywords
-    keywords: [
-      ...collection.tags || [],
-      ide,
-      language,
-      "extension-pack"
-    ],
+    keywords: [...(typedCollection.tags || []), ide, language, 'extension-pack'],
 
     // Settings and other config
-    settings: collection.settings || {},
-    keybindings: collection.keybindings || [],
-    snippets: collection.snippets || {},
+    settings: typedCollection.settings || {},
+    keybindings: typedCollection.keybindings || [],
+    snippets: typedCollection.snippets || {},
 
     // Computed values
     capitalizedIde: ide.charAt(0).toUpperCase() + ide.slice(1),
     cliCommand: ide === 'vscode' ? 'code' : 'codium',
     date: new Date().toISOString().split('T')[0],
-    hasCommands: true
+    hasCommands: true,
   };
 
   return context;
 }
 
-function generateFromTemplate(templateName: string, context: any, outputPath: string): void {
+function generateFromTemplate(templateName: string, context: Record<string, unknown>, outputPath: string): void {
   const template = loadTemplate(templateName);
   const content = template(context);
 
@@ -158,7 +179,7 @@ function generateFromTemplate(templateName: string, context: any, outputPath: st
   console.log(`✅ Generated ${fileName} from template`);
 }
 
-async function writeExtensionPackFiles(config: any, ide: string, language: string): Promise<void> {
+async function writeExtensionPackFiles(config: Record<string, unknown>, ide: string, language: string): Promise<void> {
   const packageDir = path.join(__dirname, '..', 'packages', ide, language);
   const context = prepareTemplateContext(config, ide, language);
 
@@ -168,77 +189,41 @@ async function writeExtensionPackFiles(config: any, ide: string, language: strin
   fs.mkdirSync(path.join(packageDir, 'snippets'), { recursive: true });
 
   // Generate package.json
-  generateFromTemplate(
-    'package.json.handlebars',
-    context,
-    path.join(packageDir, 'package.json')
-  );
+  generateFromTemplate('package.json.handlebars', context, path.join(packageDir, 'package.json'));
 
   // Generate .vscodeignore
-  generateFromTemplate(
-    '.vscodeignore.handlebars',
-    context,
-    path.join(packageDir, '.vscodeignore')
-  );
+  generateFromTemplate('.vscodeignore.handlebars', context, path.join(packageDir, '.vscodeignore'));
 
   // Generate CHANGELOG.md
-  generateFromTemplate(
-    'CHANGELOG.md.handlebars',
-    context,
-    path.join(packageDir, 'CHANGELOG.md')
-  );
+  generateFromTemplate('CHANGELOG.md.handlebars', context, path.join(packageDir, 'CHANGELOG.md'));
 
   // Generate LICENSE.md
-  generateFromTemplate(
-    'LICENSE.md.handlebars',
-    context,
-    path.join(packageDir, 'LICENSE.md')
-  );
+  generateFromTemplate('LICENSE.md.handlebars', context, path.join(packageDir, 'LICENSE.md'));
 
   // Generate TypeScript config
-  generateFromTemplate(
-    'tsconfig.json.handlebars',
-    context,
-    path.join(packageDir, 'tsconfig.json')
-  );
+  generateFromTemplate('tsconfig.json.handlebars', context, path.join(packageDir, 'tsconfig.json'));
 
   // Generate extension source code
-  generateFromTemplate(
-    'extension.ts.handlebars',
-    context,
-    path.join(packageDir, 'src', 'extension.ts')
-  );
+  generateFromTemplate('extension.ts.handlebars', context, path.join(packageDir, 'src', 'extension.ts'));
 
   // Generate README.md
-  generateFromTemplate(
-    'README.md.handlebars',
-    context,
-    path.join(packageDir, 'README.md')
-  );
+  generateFromTemplate('README.md.handlebars', context, path.join(packageDir, 'README.md'));
 
   // Generate config files if they have content
   if (context.settings && Object.keys(context.settings).length > 0) {
-    generateFromTemplate(
-      'settings.json.handlebars',
-      context,
-      path.join(packageDir, 'settings.json')
-    );
+    generateFromTemplate('settings.json.handlebars', context, path.join(packageDir, 'settings.json'));
   }
 
-  if (context.keybindings && context.keybindings.length > 0) {
-    generateFromTemplate(
-      'keybindings.json.handlebars',
-      context,
-      path.join(packageDir, 'keybindings.json')
-    );
+  if (context.keybindings && Array.isArray(context.keybindings) && context.keybindings.length > 0) {
+    generateFromTemplate('keybindings.json.handlebars', context, path.join(packageDir, 'keybindings.json'));
   }
 
-  if (context.snippets && Object.keys(context.snippets).length > 0) {
-    generateFromTemplate(
-      'snippets.json.handlebars',
-      context,
-      path.join(packageDir, 'snippets', `${language}.json`)
-    );
+  if (
+    context.snippets &&
+    typeof context.snippets === 'object' &&
+    Object.keys(context.snippets as Record<string, unknown>).length > 0
+  ) {
+    generateFromTemplate('snippets.json.handlebars', context, path.join(packageDir, 'snippets', `${language}.json`));
   }
 
   // Copy logo to extension directory
@@ -255,20 +240,12 @@ async function writeExtensionPackFiles(config: any, ide: string, language: strin
       console.log(`✅ Copied generic logo: generic-128.png`);
     } else {
       // Create a simple placeholder logo if neither exists
-      generateFromTemplate(
-        'logo-placeholder.md.handlebars',
-        context,
-        path.join(packageDir, 'logo-placeholder.md')
-      );
+      generateFromTemplate('logo-placeholder.md.handlebars', context, path.join(packageDir, 'logo-placeholder.md'));
       console.log(`💡 No logo files found. Logo placeholder created. Add logo.png (128x128) to ${packageDir}/`);
     }
   } catch (error) {
     console.warn(`⚠️  Failed to copy logo: ${error}`);
-    generateFromTemplate(
-      'logo-placeholder.md.handlebars',
-      context,
-      path.join(packageDir, 'logo-placeholder.md')
-    );
+    generateFromTemplate('logo-placeholder.md.handlebars', context, path.join(packageDir, 'logo-placeholder.md'));
     console.log(`💡 Logo placeholder created. Add logo.png (128x128) to ${packageDir}/`);
   }
 
@@ -319,7 +296,6 @@ async function main(): Promise<void> {
     console.log(`   # Install vsce: npm install -g vsce`);
     console.log(`   # Package: vsce package`);
     console.log(`   # Publish: vsce publish`);
-
   } catch (error) {
     console.error(`❌ Error: ${error}`);
     process.exit(1);
@@ -330,9 +306,4 @@ if (require.main === module) {
   main();
 }
 
-export {
-  loadTypeScriptConfig,
-  loadTemplate,
-  prepareTemplateContext,
-  writeExtensionPackFiles
-};
+export { loadTemplate, loadTypeScriptConfig, prepareTemplateContext, writeExtensionPackFiles };

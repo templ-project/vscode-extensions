@@ -1,402 +1,339 @@
-import { Collection } from '../../shared/types';
 import {
-  goExtension,
-  goOutliner,
-  goTestExplorer,
-  goFillStruct,
-  errorLens,
-  goTemplateHighlighter,
-  goDoc,
+  goAsm,
   goCritic,
-  goAsm
+  goDoc,
+  goExtension,
+  goFillStruct,
+  goOutliner,
+  goTemplateHighlighter,
+  goTestExplorer,
 } from '../../extensions/golang';
+import { errorLens } from '../../extensions/productivity';
+import { Collection } from '../../shared/types';
 
 export const golang: Collection = {
-  description: "Essential Go development environment for VSCode - comprehensive tooling for modern Go development",
-  tags: ["golang", "go", "backend", "development", "testing", "microservices"],
-  
-  required_extensions: [
-    goExtension,
-    errorLens
-  ],
-  
-  optional_extensions: [
-    goOutliner,
-    goTestExplorer,
-    goFillStruct,
-    goTemplateHighlighter,
-    goDoc,
-    goCritic,
-    goAsm
-  ],
-  
+  description: 'Essential Go development environment for VSCode - comprehensive tooling for modern Go development',
+  tags: ['golang', 'go', 'backend', 'development', 'testing', 'microservices'],
+
+  required_extensions: [goExtension, errorLens],
+
+  optional_extensions: [goOutliner, goTestExplorer, goFillStruct, goTemplateHighlighter, goDoc, goCritic, goAsm],
+
   settings: {
     // Go Language Settings
-    "go.useLanguageServer": {
+    'go.useLanguageServer': {
       value: true,
-      description: "Use the Go language server (gopls) for enhanced features",
-      scope: "workspace"
+      description: 'Use the Go language server (gopls) for enhanced features',
+      scope: 'workspace',
     },
-    "go.formatTool": {
-      value: "goimports",
-      description: "Use goimports for formatting (handles imports automatically)",
-      scope: "workspace"
+    'go.formatTool': {
+      value: 'goimports',
+      description: 'Use goimports for formatting (handles imports automatically)',
+      scope: 'workspace',
     },
-    "go.lintTool": {
-      value: "golangci-lint",
-      description: "Use golangci-lint for comprehensive linting",
-      scope: "workspace"
+    'go.lintTool': {
+      value: 'golangci-lint',
+      description: 'Use golangci-lint for comprehensive linting',
+      scope: 'workspace',
     },
-    "go.lintOnSave": {
-      value: "workspace",
-      description: "Run linter on save for workspace files",
-      scope: "workspace"
+    'go.lintOnSave': {
+      value: 'workspace',
+      description: 'Run linter on save for workspace files',
+      scope: 'workspace',
     },
-    "go.vetOnSave": {
-      value: "workspace", 
-      description: "Run go vet on save for workspace files",
-      scope: "workspace"
+    'go.vetOnSave': {
+      value: 'workspace',
+      description: 'Run go vet on save for workspace files',
+      scope: 'workspace',
     },
-    "go.buildOnSave": {
-      value: "workspace",
-      description: "Build on save for workspace files",
-      scope: "workspace"
+    'go.buildOnSave': {
+      value: 'workspace',
+      description: 'Build on save for workspace files',
+      scope: 'workspace',
     },
-    "go.testOnSave": {
+    'go.testOnSave': {
       value: false,
-      description: "Disable automatic test running on save (performance)",
-      scope: "workspace"
+      description: 'Disable automatic test running on save (performance)',
+      scope: 'workspace',
     },
-    "go.coverOnSave": {
+    'go.coverOnSave': {
       value: false,
-      description: "Disable automatic coverage on save (performance)",
-      scope: "workspace"
+      description: 'Disable automatic coverage on save (performance)',
+      scope: 'workspace',
     },
-    "go.gocodeAutoBuild": {
+    'go.gocodeAutoBuild': {
       value: true,
-      description: "Enable automatic building for autocompletion",
-      scope: "workspace"
+      description: 'Enable automatic building for autocompletion',
+      scope: 'workspace',
     },
-    
+
     // Editor Settings for Go
-    "[go]": {
+    '[go]': {
       value: {
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-          "source.organizeImports": "explicit"
+        'editor.formatOnSave': true,
+        'editor.codeActionsOnSave': {
+          'source.organizeImports': 'explicit',
         },
-        "editor.tabSize": 4,
-        "editor.insertSpaces": false,
-        "editor.detectIndentation": false
+        'editor.tabSize': 4,
+        'editor.insertSpaces': false,
+        'editor.detectIndentation': false,
       },
-      description: "Go-specific editor settings following Go conventions",
-      scope: "workspace"
+      description: 'Go-specific editor settings following Go conventions',
+      scope: 'workspace',
     },
-    "[go.mod]": {
+    '[go.mod]': {
       value: {
-        "editor.formatOnSave": true,
-        "editor.tabSize": 4,
-        "editor.insertSpaces": false
+        'editor.formatOnSave': true,
+        'editor.tabSize': 4,
+        'editor.insertSpaces': false,
       },
-      description: "Go module file specific settings",
-      scope: "workspace"
+      description: 'Go module file specific settings',
+      scope: 'workspace',
     },
-    "[go.sum]": {
+    '[go.sum]': {
       value: {
-        "editor.formatOnSave": false,
-        "editor.tabSize": 4,
-        "editor.insertSpaces": false
+        'editor.formatOnSave': false,
+        'editor.tabSize': 4,
+        'editor.insertSpaces': false,
       },
-      description: "Go sum file specific settings (no formatting)",
-      scope: "workspace"
+      description: 'Go sum file specific settings (no formatting)',
+      scope: 'workspace',
     },
-    
+
     // Testing Settings
-    "go.testFlags": {
-      value: ["-v", "-race"],
-      description: "Default flags for go test (verbose and race detection)",
-      scope: "workspace"
+    'go.testFlags': {
+      value: ['-v', '-race'],
+      description: 'Default flags for go test (verbose and race detection)',
+      scope: 'workspace',
     },
-    "go.testTimeout": {
-      value: "30s",
-      description: "Test timeout duration",
-      scope: "workspace"
+    'go.testTimeout': {
+      value: '30s',
+      description: 'Test timeout duration',
+      scope: 'workspace',
     },
-    "go.coverageDecorator": {
+    'go.coverageDecorator': {
       value: {
-        "type": "gutter",
-        "coveredHighlightColor": "rgba(64,128,128,0.5)",
-        "uncoveredHighlightColor": "rgba(128,64,64,0.25)"
+        type: 'gutter',
+        coveredHighlightColor: 'rgba(64,128,128,0.5)',
+        uncoveredHighlightColor: 'rgba(128,64,64,0.25)',
       },
-      description: "Test coverage visualization settings",
-      scope: "workspace"
-    }
+      description: 'Test coverage visualization settings',
+      scope: 'workspace',
+    },
   },
-  
+
   keybindings: [
     {
-      key: "ctrl+shift+t",
-      command: "go.test.package",
-      when: "editorTextFocus && editorLangId == go",
-      description: "Run tests in current package"
+      key: 'ctrl+shift+t',
+      command: 'go.test.package',
+      when: 'editorTextFocus && editorLangId == go',
+      description: 'Run tests in current package',
     },
     {
-      key: "ctrl+shift+f",
-      command: "editor.action.formatDocument",
-      when: "editorTextFocus && editorLangId == go",
-      description: "Format Go code"
+      key: 'ctrl+shift+f',
+      command: 'editor.action.formatDocument',
+      when: 'editorTextFocus && editorLangId == go',
+      description: 'Format Go code',
     },
     {
-      key: "ctrl+shift+r",
-      command: "go.test.file",
-      when: "editorTextFocus && editorLangId == go",
-      description: "Run tests in current file"
+      key: 'ctrl+shift+r',
+      command: 'go.test.file',
+      when: 'editorTextFocus && editorLangId == go',
+      description: 'Run tests in current file',
     },
     {
-      key: "f12",
-      command: "editor.action.revealDefinition",
-      when: "editorTextFocus && editorLangId == go",
-      description: "Go to definition"
+      key: 'f12',
+      command: 'editor.action.revealDefinition',
+      when: 'editorTextFocus && editorLangId == go',
+      description: 'Go to definition',
     },
     {
-      key: "shift+f12",
-      command: "editor.action.goToReferences",
-      when: "editorTextFocus && editorLangId == go",
-      description: "Find all references"
-    }
+      key: 'shift+f12',
+      command: 'editor.action.goToReferences',
+      when: 'editorTextFocus && editorLangId == go',
+      description: 'Find all references',
+    },
   ],
-  
+
   snippets: [
     // Core Language Constructs
     {
-      name: "Function Declaration",
-      prefix: "fn",
-      description: "Go function declaration",
-      body: [
-        "func ${1:functionName}(${2:params}) ${3:returnType} {",
-        "\t${4:// function body}",
-        "}"
-      ]
+      name: 'Function Declaration',
+      prefix: 'fn',
+      description: 'Go function declaration',
+      body: ['func ${1:functionName}(${2:params}) ${3:returnType} {', '\t${4:// function body}', '}'],
     },
     {
-      name: "Method Declaration", 
-      prefix: "cm",
-      description: "Go method declaration",
+      name: 'Method Declaration',
+      prefix: 'cm',
+      description: 'Go method declaration',
       body: [
-        "func (${1:receiver} ${2:Type}) ${3:methodName}(${4:params}) ${5:returnType} {",
-        "\t${6:// method body}",
-        "}"
-      ]
+        'func (${1:receiver} ${2:Type}) ${3:methodName}(${4:params}) ${5:returnType} {',
+        '\t${6:// method body}',
+        '}',
+      ],
     },
     {
-      name: "Struct Declaration",
-      prefix: "cl",
-      description: "Go struct definition",
-      body: [
-        "type ${1:StructName} struct {",
-        "\t${2:Field} ${3:Type}",
-        "}"
-      ]
+      name: 'Struct Declaration',
+      prefix: 'cl',
+      description: 'Go struct definition',
+      body: ['type ${1:StructName} struct {', '\t${2:Field} ${3:Type}', '}'],
     },
     {
-      name: "Interface Declaration",
-      prefix: "inf",
-      description: "Go interface definition", 
-      body: [
-        "type ${1:InterfaceName} interface {",
-        "\t${2:MethodName}(${3:params}) ${4:returnType}",
-        "}"
-      ]
+      name: 'Interface Declaration',
+      prefix: 'inf',
+      description: 'Go interface definition',
+      body: ['type ${1:InterfaceName} interface {', '\t${2:MethodName}(${3:params}) ${4:returnType}', '}'],
     },
-    
+
     // Control Flow
     {
-      name: "If Statement",
-      prefix: "if",
-      description: "Simple if statement",
-      body: [
-        "if ${1:condition} {",
-        "\t${2:// if body}",
-        "}"
-      ]
+      name: 'If Statement',
+      prefix: 'if',
+      description: 'Simple if statement',
+      body: ['if ${1:condition} {', '\t${2:// if body}', '}'],
     },
     {
-      name: "If-Else Statement", 
-      prefix: "ifel",
-      description: "If-else statement",
-      body: [
-        "if ${1:condition} {",
-        "\t${2:// if body}",
-        "} else {",
-        "\t${3:// else body}",
-        "}"
-      ]
+      name: 'If-Else Statement',
+      prefix: 'ifel',
+      description: 'If-else statement',
+      body: ['if ${1:condition} {', '\t${2:// if body}', '} else {', '\t${3:// else body}', '}'],
     },
     {
-      name: "For Loop",
-      prefix: "for",
-      description: "Standard for loop",
-      body: [
-        "for ${1:i} := 0; ${1:i} < ${2:length}; ${1:i}++ {",
-        "\t${3:// loop body}",
-        "}"
-      ]
+      name: 'For Loop',
+      prefix: 'for',
+      description: 'Standard for loop',
+      body: ['for ${1:i} := 0; ${1:i} < ${2:length}; ${1:i}++ {', '\t${3:// loop body}', '}'],
     },
     {
-      name: "Range Loop",
-      prefix: "forr",
-      description: "Range loop for slices/maps",
-      body: [
-        "for ${1:index}, ${2:value} := range ${3:slice} {",
-        "\t${4:// loop body}",
-        "}"
-      ]
+      name: 'Range Loop',
+      prefix: 'forr',
+      description: 'Range loop for slices/maps',
+      body: ['for ${1:index}, ${2:value} := range ${3:slice} {', '\t${4:// loop body}', '}'],
     },
     {
-      name: "Switch Statement",
-      prefix: "sw",
-      description: "Switch statement", 
+      name: 'Switch Statement',
+      prefix: 'sw',
+      description: 'Switch statement',
       body: [
-        "switch ${1:expression} {",
-        "case ${2:value1}:",
-        "\t${3:// case 1}",
-        "case ${4:value2}:",
-        "\t${5:// case 2}",
-        "default:",
-        "\t${6:// default case}",
-        "}"
-      ]
+        'switch ${1:expression} {',
+        'case ${2:value1}:',
+        '\t${3:// case 1}',
+        'case ${4:value2}:',
+        '\t${5:// case 2}',
+        'default:',
+        '\t${6:// default case}',
+        '}',
+      ],
     },
-    
+
     // Error Handling
     {
-      name: "Error Check",
-      prefix: "err",
-      description: "Standard Go error checking",
-      body: [
-        "if err != nil {",
-        "\t${1:return err}",
-        "}"
-      ]
+      name: 'Error Check',
+      prefix: 'err',
+      description: 'Standard Go error checking',
+      body: ['if err != nil {', '\t${1:return err}', '}'],
     },
     {
-      name: "Error Check with Log",
-      prefix: "errl",
-      description: "Error checking with logging",
-      body: [
-        "if err != nil {",
-        "\tlog.Printf(\"${1:error message}: %v\", err)",
-        "\t${2:return err}",
-        "}"
-      ]
+      name: 'Error Check with Log',
+      prefix: 'errl',
+      description: 'Error checking with logging',
+      body: ['if err != nil {', '\tlog.Printf("${1:error message}: %v", err)', '\t${2:return err}', '}'],
     },
-    
+
     // Package and Imports
     {
-      name: "Package Declaration",
-      prefix: "pkg",
-      description: "Package declaration",
-      body: "package ${1:main}"
+      name: 'Package Declaration',
+      prefix: 'pkg',
+      description: 'Package declaration',
+      body: 'package ${1:main}',
     },
     {
-      name: "Import Statement",
-      prefix: "im",
-      description: "Import statement",
-      body: "import \"${1:package}\""
+      name: 'Import Statement',
+      prefix: 'im',
+      description: 'Import statement',
+      body: 'import "${1:package}"',
     },
     {
-      name: "Import Block",
-      prefix: "imb",
-      description: "Import block with multiple packages",
-      body: [
-        "import (",
-        "\t\"${1:package1}\"",
-        "\t\"${2:package2}\"",
-        ")"
-      ]
+      name: 'Import Block',
+      prefix: 'imb',
+      description: 'Import block with multiple packages',
+      body: ['import (', '\t"${1:package1}"', '\t"${2:package2}"', ')'],
     },
-    
+
     // Testing
     {
-      name: "Test Function",
-      prefix: "test",
-      description: "Go test function",
-      body: [
-        "func Test${1:FunctionName}(t *testing.T) {",
-        "\t${2:// test body}",
-        "}"
-      ]
+      name: 'Test Function',
+      prefix: 'test',
+      description: 'Go test function',
+      body: ['func Test${1:FunctionName}(t *testing.T) {', '\t${2:// test body}', '}'],
     },
     {
-      name: "Benchmark Function", 
-      prefix: "bench",
-      description: "Go benchmark function",
+      name: 'Benchmark Function',
+      prefix: 'bench',
+      description: 'Go benchmark function',
       body: [
-        "func Benchmark${1:FunctionName}(b *testing.B) {",
-        "\tfor i := 0; i < b.N; i++ {",
-        "\t\t${2:// benchmark body}",
-        "\t}",
-        "}"
-      ]
+        'func Benchmark${1:FunctionName}(b *testing.B) {',
+        '\tfor i := 0; i < b.N; i++ {',
+        '\t\t${2:// benchmark body}',
+        '\t}',
+        '}',
+      ],
     },
-    
+
     // Development/Debugging
     {
-      name: "Print Statement",
-      prefix: "log",
-      description: "Print statement",
-      body: "fmt.Println(${1:value})"
+      name: 'Print Statement',
+      prefix: 'log',
+      description: 'Print statement',
+      body: 'fmt.Println(${1:value})',
     },
     {
-      name: "Printf Statement",
-      prefix: "logf",
-      description: "Printf statement with formatting",
-      body: "fmt.Printf(\"${1:format}\\n\", ${2:args})"
+      name: 'Printf Statement',
+      prefix: 'logf',
+      description: 'Printf statement with formatting',
+      body: 'fmt.Printf("${1:format}\\n", ${2:args})',
     },
     {
-      name: "Log Statement",
-      prefix: "logl",
-      description: "Log statement",
-      body: "log.Println(${1:value})"
+      name: 'Log Statement',
+      prefix: 'logl',
+      description: 'Log statement',
+      body: 'log.Println(${1:value})',
     },
     {
-      name: "Debug Print",
-      prefix: "debug",
-      description: "Debug logging with context",
-      body: "log.Printf(\"DEBUG ${1:context}: %+v\", ${2:variable})"
+      name: 'Debug Print',
+      prefix: 'debug',
+      description: 'Debug logging with context',
+      body: 'log.Printf("DEBUG ${1:context}: %+v", ${2:variable})',
     },
     {
-      name: "TODO Comment",
-      prefix: "todo",
-      description: "TODO comment marker",
-      body: "// TODO: ${1:description}"
+      name: 'TODO Comment',
+      prefix: 'todo',
+      description: 'TODO comment marker',
+      body: '// TODO: ${1:description}',
     },
-    
+
     // Common Patterns
     {
-      name: "HTTP Handler",
-      prefix: "handler",
-      description: "HTTP handler function",
-      body: [
-        "func ${1:handlerName}(w http.ResponseWriter, r *http.Request) {",
-        "\t${2:// handler body}",
-        "}"
-      ]
+      name: 'HTTP Handler',
+      prefix: 'handler',
+      description: 'HTTP handler function',
+      body: ['func ${1:handlerName}(w http.ResponseWriter, r *http.Request) {', '\t${2:// handler body}', '}'],
     },
     {
-      name: "Go Routine",
-      prefix: "go",
-      description: "Go routine call",
-      body: "go ${1:functionCall}(${2:args})"
+      name: 'Go Routine',
+      prefix: 'go',
+      description: 'Go routine call',
+      body: 'go ${1:functionCall}(${2:args})',
     },
     {
-      name: "Channel Declaration",
-      prefix: "ch",
-      description: "Channel declaration",
-      body: "${1:ch} := make(chan ${2:type}${3:, buffer})"
-    }
+      name: 'Channel Declaration',
+      prefix: 'ch',
+      description: 'Channel declaration',
+      body: '${1:ch} := make(chan ${2:type}${3:, buffer})',
+    },
   ],
-  
+
   documentation: {
     setup_guide: `# Go Extension Pack Setup
 
@@ -659,6 +596,6 @@ linters:
 ### Performance optimization
 - Exclude large directories from Go extension
 - Use .gitignore to exclude generated files
-- Consider using remote development for large projects`
-  }
+- Consider using remote development for large projects`,
+  },
 };

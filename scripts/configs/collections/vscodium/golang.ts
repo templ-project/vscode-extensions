@@ -1,30 +1,23 @@
-import { Collection } from '../../shared/types';
 import {
   goExtensionVSCodium as goExtension,
   goOutlinerVSCodium as goOutliner,
   goTestExplorerVSCodium as goTestExplorer,
   goFillStructVSCodium as goFillStruct,
   errorLensVSCodium as errorLens,
-  goTemplateHighlighterVSCodium as goTemplateHighlighter
+  goTemplateHighlighterVSCodium as goTemplateHighlighter,
 } from '../../extensions/golang';
+import { Collection } from '../../shared/types';
 
-import {golang as golangVSCode} from '../vscode/golang';
+import { golang as golangVSCode } from '../vscode/golang';
 
 export const golang: Collection = {
   ...golangVSCode,
-  description: "Essential Go development environment for VSCodium - comprehensive tooling for modern Go development using open-source alternatives",
-  
-  required_extensions: [
-    goExtension,
-    errorLens
-  ],
-  
-  optional_extensions: [
-    goOutliner,
-    goTestExplorer,
-    goFillStruct,
-    goTemplateHighlighter
-  ],
+  description:
+    'Essential Go development environment for VSCodium - comprehensive tooling for modern Go development using open-source alternatives',
+
+  required_extensions: [goExtension, errorLens],
+
+  optional_extensions: [goOutliner, goTestExplorer, goFillStruct, goTemplateHighlighter],
 
   documentation: {
     setup_guide: `# Go Extension Pack Setup (VSCodium)
@@ -311,6 +304,6 @@ linters:
 ### Performance optimization
 - Exclude large directories from Go extension
 - Use .gitignore to exclude generated files
-- Consider using remote development for large projects`
-  }
+- Consider using remote development for large projects`,
+  },
 };

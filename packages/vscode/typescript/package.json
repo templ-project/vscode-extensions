@@ -17,9 +17,7 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": [
-    "Extension Packs"
-  ],
+  "categories": ["Extension Packs"],
   "keywords": [
     "typescript",
     "types",
@@ -31,21 +29,9 @@
     "typescript",
     "extension-pack"
   ],
-  "extensionPack": [
-    "ms-vscode.vscode-typescript-next",
-    "ms-vscode.vscode-typescript-next",
-    "ms-vscode.js-debug",
-    "GregorBiswanger.json2ts"
-  ],
-  "extensionDependencies": [
-    "ms-vscode.vscode-typescript-next",
-    "ms-vscode.vscode-typescript-next",
-    "ms-vscode.js-debug",
-    "GregorBiswanger.json2ts"
-  ],
-  "activationEvents": [
-    "onStartupFinished"
-  ],
+  "extensionPack": ["ms-vscode.vscode-typescript-next", "GregorBiswanger.json2ts"],
+  "extensionDependencies": ["ms-vscode.vscode-typescript-next", "GregorBiswanger.json2ts"],
+  "activationEvents": ["onStartupFinished"],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [

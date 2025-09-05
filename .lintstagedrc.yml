@@ -1,0 +1,26 @@
+---
+# Lint-staged configuration for code quality and formatting
+# Runs linters and formatters on staged files before commit
+
+# TypeScript and JavaScript files - use the configured ESLint
+'**/*.{ts,js,mts,cts,mjs,cjs}':
+  - 'npx prettier --write'
+  - 'npx eslint --fix --no-warn-ignored'
+
+# Markdown files - basic formatting
+'**/*.{md,mdx}':
+  - 'npx prettier --write'
+  # - 'npx eslint --fix --no-warn-ignored'
+
+# JSON files - format with prettier
+'**/*.{json,jsonc}':
+  - 'npx prettier --write'
+  - 'npx eslint --fix --no-warn-ignored'
+
+# YAML files - format with prettier
+'**/*.{yml,yaml}':
+  - 'npx prettier --write --parser yaml'
+  - 'npx eslint --fix --no-warn-ignored'
+# TypeScript compilation check
+# '**/*.ts':
+#   - 'npx tsc --noEmit'
