@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
+const { execSync } = require('node:child_process');
+const fs = require('node:fs');
+const path = require('node:path');
 
 /**
  * Package all generated VSCode extensions using vsce
@@ -13,12 +13,12 @@ function ensureVsceInstalled() {
   try {
     execSync('vsce --version', { stdio: 'pipe' });
     console.log('✓ vsce is installed');
-  } catch (error) {
+  } catch {
     console.log('📦 Installing vsce globally...');
     try {
       execSync('npm install -g @vscode/vsce', { stdio: 'inherit' });
       console.log('✅ vsce installed successfully');
-    } catch (installError) {
+    } catch {
       console.error('❌ Failed to install vsce. Please run: npm install -g @vscode/vsce');
       process.exit(1);
     }
@@ -33,26 +33,28 @@ function getExtensionDirectories() {
   }
 
   const extensions = [];
-  const ides = fs.readdirSync(packagesDir, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory())
-    .map(dirent => dirent.name);
+  const ides = fs
+    .readdirSync(packagesDir, { withFileTypes: true })
+    .filter((dirent) => dirent.isDirectory())
+    .map((dirent) => dirent.name);
 
   for (const ide of ides) {
     const idePath = path.join(packagesDir, ide);
-    const languages = fs.readdirSync(idePath, { withFileTypes: true })
-      .filter(dirent => dirent.isDirectory())
-      .map(dirent => dirent.name);
+    const languages = fs
+      .readdirSync(idePath, { withFileTypes: true })
+      .filter((dirent) => dirent.isDirectory())
+      .map((dirent) => dirent.name);
 
     for (const language of languages) {
       const extensionPath = path.join(idePath, language);
       const packageJsonPath = path.join(extensionPath, 'package.json');
-      
+
       if (fs.existsSync(packageJsonPath)) {
         extensions.push({
           ide,
           language,
           path: extensionPath,
-          name: `${language}-${ide}-extension-pack`
+          name: `${language}-${ide}-extension-pack`,
         });
       }
     }
@@ -64,9 +66,9 @@ function getExtensionDirectories() {
 function compileExtension(extensionPath, extensionName) {
   console.log(`🔨 Compiling ${extensionName}...`);
   try {
-    execSync('npm run compile', { 
-      cwd: extensionPath, 
-      stdio: 'pipe' 
+    execSync('npm run compile', {
+      cwd: extensionPath,
+      stdio: 'pipe',
     });
     console.log(`✅ Compiled ${extensionName}`);
     return true;
@@ -81,19 +83,19 @@ async function packageExtension(extensionPath, extensionName) {
   console.log(`📦 Packaging ${extensionName}...`);
   try {
     // Start packaging process
-    const result = execSync('vsce package --no-dependencies', { 
-      cwd: extensionPath, 
+    execSync('vsce package --no-dependencies', {
+      cwd: extensionPath,
       stdio: 'pipe',
-      encoding: 'utf8'
+      encoding: 'utf8',
     });
-    
+
     console.log(`✅ Packaged ${extensionName}`);
-    
+
     // Wait for .vsix file to appear (with timeout)
     console.log(`⏳ Waiting for .vsix file to be created...`);
     const vsixFile = await waitForVsixFile(extensionPath, 10000, 500); // 10 second timeout, check every 500ms
     console.log(`📄 Found .vsix file: ${vsixFile}`);
-    
+
     return vsixFile;
   } catch (error) {
     if (error.message && error.message.includes('Timeout')) {
@@ -119,37 +121,37 @@ function createPackagesDirectory() {
 function waitForVsixFile(extensionPath, maxWaitTime = 30000, checkInterval = 1000) {
   return new Promise((resolve, reject) => {
     const startTime = Date.now();
-    
+
     const checkForVsix = () => {
       try {
         const files = fs.readdirSync(extensionPath);
-        const vsixFiles = files.filter(file => file.endsWith('.vsix'));
-        
+        const vsixFiles = files.filter((file) => file.endsWith('.vsix'));
+
         if (vsixFiles.length > 0) {
           resolve(vsixFiles[0]); // Return the first .vsix file found
           return;
         }
-        
+
         const elapsed = Date.now() - startTime;
         if (elapsed >= maxWaitTime) {
           reject(new Error(`Timeout: No .vsix file found in ${extensionPath} after ${maxWaitTime}ms`));
           return;
         }
-        
+
         setTimeout(checkForVsix, checkInterval);
       } catch (error) {
         reject(error);
       }
     };
-    
+
     checkForVsix();
   });
 }
 
-function movePackageToOutput(extensionPath, vsixFile, outputDir, extensionName) {
+function movePackageToOutput(extensionPath, vsixFile, outputDir) {
   const sourcePath = path.join(extensionPath, vsixFile);
   const targetPath = path.join(outputDir, vsixFile);
-  
+
   if (fs.existsSync(sourcePath)) {
     fs.copyFileSync(sourcePath, targetPath);
     fs.unlinkSync(sourcePath); // Remove from extension directory
@@ -176,14 +178,14 @@ async function main() {
 
   // Get all extension directories
   const extensions = getExtensionDirectories();
-  
+
   if (extensions.length === 0) {
     console.log('❌ No extensions found. Run npm run generate first.');
     return;
   }
 
   // Filter extensions if specific IDE/language requested
-  const filteredExtensions = extensions.filter(ext => {
+  const filteredExtensions = extensions.filter((ext) => {
     if (targetIde && ext.ide !== targetIde) return false;
     if (targetLanguage && ext.language !== targetLanguage) return false;
     return true;
@@ -202,7 +204,7 @@ async function main() {
 
   for (const extension of filteredExtensions) {
     console.log(`\n🔄 Processing ${extension.ide}/${extension.language}...`);
-    
+
     // Compile the extension
     const compiled = compileExtension(extension.path, extension.name);
     if (!compiled) {
@@ -225,7 +227,7 @@ async function main() {
       results.push({
         extension: `${extension.ide}/${extension.language}`,
         file: vsixFile,
-        path: finalPath
+        path: finalPath,
       });
       successCount++;
     } else {
@@ -236,20 +238,20 @@ async function main() {
   // Summary
   console.log('\n📊 Packaging Summary:');
   console.log('========================');
-  
+
   if (successCount > 0) {
     console.log(`✅ Successfully packaged (${successCount}):`);
-    results.forEach(result => {
+    results.forEach((result) => {
       console.log(`   • ${result.extension} → ${result.file}`);
     });
   }
-  
+
   if (failureCount > 0) {
     console.log(`❌ Failed to package: ${failureCount}`);
   }
 
   console.log(`\n📁 Packaged extensions are in: ${outputDir}`);
-  
+
   if (results.length > 0) {
     console.log('\n🚀 To install an extension locally:');
     console.log('   code --install-extension dist/<filename>.vsix');
@@ -259,7 +261,7 @@ async function main() {
 }
 
 if (require.main === module) {
-  main().catch(error => {
+  main().catch((error) => {
     console.error('❌ Packaging failed:', error.message);
     process.exit(1);
   });

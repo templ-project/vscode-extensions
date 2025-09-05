@@ -6,229 +6,204 @@ import {
   cmakeTools,
   doxygen,
   nativeDebug,
-  xmake
+  xmake,
 } from '../../extensions/cpp';
 import { errorLens } from '../../extensions/productivity';
 import { Collection } from '../../shared/types';
 
 export const cpp: Collection = {
-  description: "Essential C/C++ development environment for VSCode - modern tooling with clang-based language server, CMake/XMake build systems, and advanced debugging",
-  tags: ["cpp", "c++", "c", "clang", "cmake", "xmake", "native", "systems", "embedded"],
-  
-  required_extensions: [
-    clangd,
-    cmake,
-    clangFormat,
-    errorLens
-  ],
-  
-  optional_extensions: [
-    cmakeTools,
-    xmake,
-    betterCppSyntax,
-    doxygen,
-    nativeDebug
-  ],
-  
+  description:
+    'Essential C/C++ development environment for VSCode - modern tooling with clang-based language server, CMake/XMake build systems, and advanced debugging',
+  tags: ['cpp', 'c++', 'c', 'clang', 'cmake', 'xmake', 'native', 'systems', 'embedded'],
+
+  required_extensions: [clangd, cmake, clangFormat, errorLens],
+
+  optional_extensions: [cmakeTools, xmake, betterCppSyntax, doxygen, nativeDebug],
+
   settings: {
     // Clangd Language Server Settings
-    "clangd.path": {
-      value: "clangd",
-      description: "Path to clangd executable (use system PATH or specify absolute path)",
-      scope: "workspace"
+    'clangd.path': {
+      value: 'clangd',
+      description: 'Path to clangd executable (use system PATH or specify absolute path)',
+      scope: 'workspace',
     },
-    "clangd.arguments": {
+    'clangd.arguments': {
       value: [
-        "--header-insertion=iwyu",
-        "--completion-style=detailed",
-        "--function-arg-placeholders",
-        "--fallback-style=llvm"
+        '--header-insertion=iwyu',
+        '--completion-style=detailed',
+        '--function-arg-placeholders',
+        '--fallback-style=llvm',
       ],
-      description: "Additional arguments passed to clangd language server",
-      scope: "workspace"
+      description: 'Additional arguments passed to clangd language server',
+      scope: 'workspace',
     },
-    "clangd.semanticHighlighting": {
+    'clangd.semanticHighlighting': {
       value: true,
-      description: "Enable semantic highlighting for better code visualization",
-      scope: "workspace"
+      description: 'Enable semantic highlighting for better code visualization',
+      scope: 'workspace',
     },
-    
+
     // CMake Settings
-    "cmake.configureOnOpen": {
+    'cmake.configureOnOpen': {
       value: false,
-      description: "Automatically configure CMake project when opened",
-      scope: "workspace"
+      description: 'Automatically configure CMake project when opened',
+      scope: 'workspace',
     },
-    "cmake.buildDirectory": {
-      value: "${workspaceFolder}/build",
-      description: "Default CMake build directory",
-      scope: "workspace"
+    'cmake.buildDirectory': {
+      value: '${workspaceFolder}/build',
+      description: 'Default CMake build directory',
+      scope: 'workspace',
     },
-    "cmake.generator": {
-      value: "Ninja",
-      description: "Default CMake generator (Ninja, Unix Makefiles, etc.)",
-      scope: "workspace"
+    'cmake.generator': {
+      value: 'Ninja',
+      description: 'Default CMake generator (Ninja, Unix Makefiles, etc.)',
+      scope: 'workspace',
     },
-    
+
     // C/C++ File Settings
-    "files.associations": {
+    'files.associations': {
       value: {
-        "*.h": "cpp",
-        "*.hpp": "cpp",
-        "*.cpp": "cpp",
-        "*.cc": "cpp",
-        "*.cxx": "cpp",
-        "*.c++": "cpp",
-        "*.C": "cpp",
-        "*.tpp": "cpp",
-        "*.ipp": "cpp"
+        '*.h': 'cpp',
+        '*.hpp': 'cpp',
+        '*.cpp': 'cpp',
+        '*.cc': 'cpp',
+        '*.cxx': 'cpp',
+        '*.c++': 'cpp',
+        '*.C': 'cpp',
+        '*.tpp': 'cpp',
+        '*.ipp': 'cpp',
       },
-      description: "File associations for C/C++ files",
-      scope: "workspace"
+      description: 'File associations for C/C++ files',
+      scope: 'workspace',
     },
-    
+
     // Clang-Format Settings
-    "clang-format.executable": {
-      value: "clang-format",
-      description: "Path to clang-format executable",
-      scope: "workspace"
+    'clang-format.executable': {
+      value: 'clang-format',
+      description: 'Path to clang-format executable',
+      scope: 'workspace',
     },
-    "clang-format.style": {
-      value: "llvm",
-      description: "Clang-format style (llvm, google, chromium, mozilla, webkit, or file)",
-      scope: "workspace"
+    'clang-format.style': {
+      value: 'llvm',
+      description: 'Clang-format style (llvm, google, chromium, mozilla, webkit, or file)',
+      scope: 'workspace',
     },
-    "[cpp]": {
+    '[cpp]': {
       value: {
-        "editor.defaultFormatter": "xaver.clang-format",
-        "editor.formatOnSave": true,
-        "editor.formatOnType": true
+        'editor.defaultFormatter': 'xaver.clang-format',
+        'editor.formatOnSave': true,
+        'editor.formatOnType': true,
       },
-      description: "C++ specific editor settings",
-      scope: "workspace"
+      description: 'C++ specific editor settings',
+      scope: 'workspace',
     },
-    "[c]": {
+    '[c]': {
       value: {
-        "editor.defaultFormatter": "xaver.clang-format",
-        "editor.formatOnSave": true,
-        "editor.formatOnType": true
+        'editor.defaultFormatter': 'xaver.clang-format',
+        'editor.formatOnSave': true,
+        'editor.formatOnType': true,
       },
-      description: "C specific editor settings",
-      scope: "workspace"
+      description: 'C specific editor settings',
+      scope: 'workspace',
     },
-    
+
     // Editor Settings for C/C++
-    "editor.suggest.insertMode": {
-      value: "replace",
-      description: "How code completion should behave when inserting text",
-      scope: "workspace"
+    'editor.suggest.insertMode': {
+      value: 'replace',
+      description: 'How code completion should behave when inserting text',
+      scope: 'workspace',
     },
-    "editor.semanticTokenColorCustomizations": {
+    'editor.semanticTokenColorCustomizations': {
       value: {
-        "enabled": true
+        enabled: true,
       },
-      description: "Enable semantic token color customizations",
-      scope: "workspace"
-    }
+      description: 'Enable semantic token color customizations',
+      scope: 'workspace',
+    },
   },
-  
+
   keybindings: [
     {
-      key: "ctrl+shift+f",
-      command: "clang-format.format",
-      description: "Format current file with clang-format",
-      when: "editorTextFocus && (editorLangId == 'cpp' || editorLangId == 'c')"
+      key: 'ctrl+shift+f',
+      command: 'clang-format.format',
+      description: 'Format current file with clang-format',
+      when: "editorTextFocus && (editorLangId == 'cpp' || editorLangId == 'c')",
     },
     {
-      key: "ctrl+shift+i",
-      command: "clangd.switchheadersource",
-      description: "Switch between header and source file",
-      when: "editorTextFocus && (editorLangId == 'cpp' || editorLangId == 'c')"
+      key: 'ctrl+shift+i',
+      command: 'clangd.switchheadersource',
+      description: 'Switch between header and source file',
+      when: "editorTextFocus && (editorLangId == 'cpp' || editorLangId == 'c')",
     },
     {
-      key: "f12",
-      command: "editor.action.revealDefinition",
-      description: "Go to definition",
-      when: "editorTextFocus && (editorLangId == 'cpp' || editorLangId == 'c')"
+      key: 'f12',
+      command: 'editor.action.revealDefinition',
+      description: 'Go to definition',
+      when: "editorTextFocus && (editorLangId == 'cpp' || editorLangId == 'c')",
     },
     {
-      key: "ctrl+f12",
-      command: "editor.action.goToReferences",
-      description: "Find all references",
-      when: "editorTextFocus && (editorLangId == 'cpp' || editorLangId == 'c')"
+      key: 'ctrl+f12',
+      command: 'editor.action.goToReferences',
+      description: 'Find all references',
+      when: "editorTextFocus && (editorLangId == 'cpp' || editorLangId == 'c')",
     },
     {
-      key: "ctrl+shift+o",
-      command: "workbench.action.gotoSymbol",
-      description: "Go to symbol in file",
-      when: "editorTextFocus && (editorLangId == 'cpp' || editorLangId == 'c')"
-    }
+      key: 'ctrl+shift+o',
+      command: 'workbench.action.gotoSymbol',
+      description: 'Go to symbol in file',
+      when: "editorTextFocus && (editorLangId == 'cpp' || editorLangId == 'c')",
+    },
   ],
-  
+
   snippets: [
     {
-      name: "class",
-      prefix: "class",
-      description: "Basic C++ class template",
+      name: 'class',
+      prefix: 'class',
+      description: 'Basic C++ class template',
       body: [
-        "class ${1:ClassName} {",
-        "public:",
-        "    ${1:ClassName}();",
-        "    ~${1:ClassName}();",
-        "    ",
-        "private:",
-        "    ${0:// Private members}",
-        "};"
-      ]
+        'class ${1:ClassName} {',
+        'public:',
+        '    ${1:ClassName}();',
+        '    ~${1:ClassName}();',
+        '    ',
+        'private:',
+        '    ${0:// Private members}',
+        '};',
+      ],
     },
     {
-      name: "main",
-      prefix: "main",
-      description: "Main function template",
-      body: [
-        "int main(${1:int argc, char* argv[]}) {",
-        "    ${0:// Your code here}",
-        "    return 0;",
-        "}"
-      ]
+      name: 'main',
+      prefix: 'main',
+      description: 'Main function template',
+      body: ['int main(${1:int argc, char* argv[]}) {', '    ${0:// Your code here}', '    return 0;', '}'],
     },
     {
-      name: "header_guard",
-      prefix: "guard",
-      description: "Header guard template",
+      name: 'header_guard',
+      prefix: 'guard',
+      description: 'Header guard template',
       body: [
-        "#ifndef ${1:${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H}",
-        "#define ${1:${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H}",
-        "",
-        "${0:// Header content}",
-        "",
-        "#endif // ${1:${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H}"
-      ]
+        '#ifndef ${1:${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H}',
+        '#define ${1:${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H}',
+        '',
+        '${0:// Header content}',
+        '',
+        '#endif // ${1:${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H}',
+      ],
     },
     {
-      name: "namespace",
-      prefix: "namespace",
-      description: "Namespace template",
-      body: [
-        "namespace ${1:name} {",
-        "",
-        "${0:// Namespace content}",
-        "",
-        "} // namespace ${1:name}"
-      ]
+      name: 'namespace',
+      prefix: 'namespace',
+      description: 'Namespace template',
+      body: ['namespace ${1:name} {', '', '${0:// Namespace content}', '', '} // namespace ${1:name}'],
     },
     {
-      name: "for_range",
-      prefix: "forr",
-      description: "Range-based for loop",
-      body: [
-        "for (${1:const auto&} ${2:item} : ${3:container}) {",
-        "    ${0:// Loop body}",
-        "}"
-      ]
-    }
+      name: 'for_range',
+      prefix: 'forr',
+      description: 'Range-based for loop',
+      body: ['for (${1:const auto&} ${2:item} : ${3:container}) {', '    ${0:// Loop body}', '}'],
+    },
   ],
-  
+
   documentation: {
     setup_guide: `
 # C/C++ Development Setup Guide
@@ -326,6 +301,6 @@ ColumnLimit: 100
 - Use \`clangd.arguments\` to limit resource usage
 - Exclude build directories from workspace indexing
 - Use .clangd-tidy for specific project linting rules
-    `
-  }
+    `,
+  },
 };

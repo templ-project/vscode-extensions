@@ -5,234 +5,198 @@ import {
   csharpSnippets,
   dotnetTestExplorer,
   editorConfig,
-  roslynator
+  roslynator,
 } from '../../extensions/csharp';
 import { errorLens } from '../../extensions/productivity';
 import { Collection } from '../../shared/types';
 
 export const csharp: Collection = {
-  description: "Essential C# development environment for VSCode - comprehensive .NET tooling with IntelliSense, debugging, testing, and modern C# features",
-  tags: ["csharp", "c#", "dotnet", ".net", "asp.net", "blazor", "maui", "testing", "nuget"],
-  
-  required_extensions: [
-    csharpExtension,
-    csharpDevKit,
-    editorConfig,
-    errorLens
-  ],
-  
-  optional_extensions: [
-    csharpExtensions,
-    dotnetTestExplorer,
-    csharpSnippets,
-    roslynator
-  ],
-  
+  description:
+    'Essential C# development environment for VSCode - comprehensive .NET tooling with IntelliSense, debugging, testing, and modern C# features',
+  tags: ['csharp', 'c#', 'dotnet', '.net', 'asp.net', 'blazor', 'maui', 'testing', 'nuget'],
+
+  required_extensions: [csharpExtension, csharpDevKit, editorConfig, errorLens],
+
+  optional_extensions: [csharpExtensions, dotnetTestExplorer, csharpSnippets, roslynator],
+
   settings: {
     // C# Language Server Settings
-    "csharp.format.enable": {
+    'csharp.format.enable': {
       value: true,
-      description: "Enable C# formatting",
-      scope: "workspace"
+      description: 'Enable C# formatting',
+      scope: 'workspace',
     },
-    "csharp.semanticHighlighting.enabled": {
+    'csharp.semanticHighlighting.enabled': {
       value: true,
-      description: "Enable semantic highlighting for C#",
-      scope: "workspace"
+      description: 'Enable semantic highlighting for C#',
+      scope: 'workspace',
     },
-    "csharp.completion.trigger": {
+    'csharp.completion.trigger': {
       value: true,
-      description: "Enable completion triggers",
-      scope: "workspace"
+      description: 'Enable completion triggers',
+      scope: 'workspace',
     },
-    
+
     // .NET Settings
-    "dotnet.server.useOmnisharp": {
+    'dotnet.server.useOmnisharp': {
       value: false,
-      description: "Use the new .NET Language Server instead of OmniSharp",
-      scope: "workspace"
+      description: 'Use the new .NET Language Server instead of OmniSharp',
+      scope: 'workspace',
     },
-    "dotnet.completion.showCompletionItemsFromUnimportedNamespaces": {
+    'dotnet.completion.showCompletionItemsFromUnimportedNamespaces': {
       value: true,
-      description: "Show completion items from unimported namespaces",
-      scope: "workspace"
+      description: 'Show completion items from unimported namespaces',
+      scope: 'workspace',
     },
-    "dotnet.inlayHints.enableInlayHintsForParameters": {
+    'dotnet.inlayHints.enableInlayHintsForParameters': {
       value: true,
-      description: "Enable inlay hints for parameters",
-      scope: "workspace"
+      description: 'Enable inlay hints for parameters',
+      scope: 'workspace',
     },
-    "dotnet.inlayHints.enableInlayHintsForLiteralParameters": {
+    'dotnet.inlayHints.enableInlayHintsForLiteralParameters': {
       value: true,
-      description: "Enable inlay hints for literal parameters",
-      scope: "workspace"
+      description: 'Enable inlay hints for literal parameters',
+      scope: 'workspace',
     },
-    "dotnet.inlayHints.enableInlayHintsForIndexerParameters": {
+    'dotnet.inlayHints.enableInlayHintsForIndexerParameters': {
       value: true,
-      description: "Enable inlay hints for indexer parameters",
-      scope: "workspace"
+      description: 'Enable inlay hints for indexer parameters',
+      scope: 'workspace',
     },
-    "dotnet.inlayHints.enableInlayHintsForObjectCreationParameters": {
+    'dotnet.inlayHints.enableInlayHintsForObjectCreationParameters': {
       value: true,
-      description: "Enable inlay hints for object creation parameters",
-      scope: "workspace"
+      description: 'Enable inlay hints for object creation parameters',
+      scope: 'workspace',
     },
-    "dotnet.inlayHints.enableInlayHintsForOtherParameters": {
+    'dotnet.inlayHints.enableInlayHintsForOtherParameters': {
       value: false,
-      description: "Enable inlay hints for other parameters",
-      scope: "workspace"
+      description: 'Enable inlay hints for other parameters',
+      scope: 'workspace',
     },
-    "dotnet.inlayHints.enableInlayHintsForTypeParameters": {
+    'dotnet.inlayHints.enableInlayHintsForTypeParameters': {
       value: true,
-      description: "Enable inlay hints for type parameters",
-      scope: "workspace"
+      description: 'Enable inlay hints for type parameters',
+      scope: 'workspace',
     },
-    
+
     // File Associations
-    "files.associations": {
+    'files.associations': {
       value: {
-        "*.cs": "csharp",
-        "*.csx": "csharp",
-        "*.cake": "csharp",
-        "*.cshtml": "aspnetcorerazor",
-        "*.razor": "aspnetcorerazor"
+        '*.cs': 'csharp',
+        '*.csx': 'csharp',
+        '*.cake': 'csharp',
+        '*.cshtml': 'aspnetcorerazor',
+        '*.razor': 'aspnetcorerazor',
       },
-      description: "File associations for C# files",
-      scope: "workspace"
+      description: 'File associations for C# files',
+      scope: 'workspace',
     },
-    
+
     // Editor Settings for C#
-    "[csharp]": {
+    '[csharp]': {
       value: {
-        "editor.defaultFormatter": "ms-dotnettools.csharp",
-        "editor.formatOnSave": true,
-        "editor.formatOnType": true,
-        "editor.codeActionsOnSave": {
-          "source.organizeImports": "explicit"
-        }
+        'editor.defaultFormatter': 'ms-dotnettools.csharp',
+        'editor.formatOnSave': true,
+        'editor.formatOnType': true,
+        'editor.codeActionsOnSave': {
+          'source.organizeImports': 'explicit',
+        },
       },
-      description: "C# specific editor settings",
-      scope: "workspace"
+      description: 'C# specific editor settings',
+      scope: 'workspace',
     },
-    
+
     // Test Explorer Settings
-    "dotnet-test-explorer.testProjectPath": {
-      value: "**/*Tests.csproj",
-      description: "Pattern to find test projects",
-      scope: "workspace"
+    'dotnet-test-explorer.testProjectPath': {
+      value: '**/*Tests.csproj',
+      description: 'Pattern to find test projects',
+      scope: 'workspace',
     },
-    "dotnet-test-explorer.useTreeView": {
+    'dotnet-test-explorer.useTreeView': {
       value: true,
-      description: "Use tree view for test explorer",
-      scope: "workspace"
-    }
+      description: 'Use tree view for test explorer',
+      scope: 'workspace',
+    },
   },
-  
+
   keybindings: [
     {
-      key: "ctrl+shift+f",
-      command: "editor.action.formatDocument",
-      description: "Format current C# file",
-      when: "editorTextFocus && editorLangId == 'csharp'"
+      key: 'ctrl+shift+f',
+      command: 'editor.action.formatDocument',
+      description: 'Format current C# file',
+      when: "editorTextFocus && editorLangId == 'csharp'",
     },
     {
-      key: "f12",
-      command: "editor.action.revealDefinition",
-      description: "Go to definition",
-      when: "editorTextFocus && editorLangId == 'csharp'"
+      key: 'f12',
+      command: 'editor.action.revealDefinition',
+      description: 'Go to definition',
+      when: "editorTextFocus && editorLangId == 'csharp'",
     },
     {
-      key: "shift+f12",
-      command: "editor.action.goToReferences",
-      description: "Find all references",
-      when: "editorTextFocus && editorLangId == 'csharp'"
+      key: 'shift+f12',
+      command: 'editor.action.goToReferences',
+      description: 'Find all references',
+      when: "editorTextFocus && editorLangId == 'csharp'",
     },
     {
-      key: "ctrl+shift+o",
-      command: "workbench.action.gotoSymbol",
-      description: "Go to symbol in file",
-      when: "editorTextFocus && editorLangId == 'csharp'"
+      key: 'ctrl+shift+o',
+      command: 'workbench.action.gotoSymbol',
+      description: 'Go to symbol in file',
+      when: "editorTextFocus && editorLangId == 'csharp'",
     },
     {
-      key: "ctrl+t",
-      command: "workbench.action.showAllSymbols",
-      description: "Go to symbol in workspace",
-      when: "editorTextFocus && editorLangId == 'csharp'"
+      key: 'ctrl+t',
+      command: 'workbench.action.showAllSymbols',
+      description: 'Go to symbol in workspace',
+      when: "editorTextFocus && editorLangId == 'csharp'",
     },
     {
-      key: "ctrl+.",
-      command: "editor.action.quickFix",
-      description: "Show code actions (quick fixes)",
-      when: "editorTextFocus && editorLangId == 'csharp'"
-    }
+      key: 'ctrl+.',
+      command: 'editor.action.quickFix',
+      description: 'Show code actions (quick fixes)',
+      when: "editorTextFocus && editorLangId == 'csharp'",
+    },
   ],
-  
+
   snippets: [
     {
-      name: "class",
-      prefix: "class",
-      description: "C# class template",
-      body: [
-        "public class ${1:ClassName}",
-        "{",
-        "    ${0:// Class members}",
-        "}"
-      ]
+      name: 'class',
+      prefix: 'class',
+      description: 'C# class template',
+      body: ['public class ${1:ClassName}', '{', '    ${0:// Class members}', '}'],
     },
     {
-      name: "interface",
-      prefix: "interface",
-      description: "C# interface template",
-      body: [
-        "public interface I${1:InterfaceName}",
-        "{",
-        "    ${0:// Interface members}",
-        "}"
-      ]
+      name: 'interface',
+      prefix: 'interface',
+      description: 'C# interface template',
+      body: ['public interface I${1:InterfaceName}', '{', '    ${0:// Interface members}', '}'],
     },
     {
-      name: "method",
-      prefix: "method",
-      description: "C# method template",
-      body: [
-        "public ${1:void} ${2:MethodName}(${3:parameters})",
-        "{",
-        "    ${0:// Method implementation}",
-        "}"
-      ]
+      name: 'method',
+      prefix: 'method',
+      description: 'C# method template',
+      body: ['public ${1:void} ${2:MethodName}(${3:parameters})', '{', '    ${0:// Method implementation}', '}'],
     },
     {
-      name: "property",
-      prefix: "prop",
-      description: "C# auto-property template",
-      body: [
-        "public ${1:string} ${2:PropertyName} { get; set; }"
-      ]
+      name: 'property',
+      prefix: 'prop',
+      description: 'C# auto-property template',
+      body: ['public ${1:string} ${2:PropertyName} { get; set; }'],
     },
     {
-      name: "constructor",
-      prefix: "ctor",
-      description: "C# constructor template",
-      body: [
-        "public ${1:ClassName}(${2:parameters})",
-        "{",
-        "    ${0:// Constructor implementation}",
-        "}"
-      ]
+      name: 'constructor',
+      prefix: 'ctor',
+      description: 'C# constructor template',
+      body: ['public ${1:ClassName}(${2:parameters})', '{', '    ${0:// Constructor implementation}', '}'],
     },
     {
-      name: "main",
-      prefix: "main",
-      description: "C# Main method template",
-      body: [
-        "static void Main(string[] args)",
-        "{",
-        "    ${0:// Program entry point}",
-        "}"
-      ]
-    }
+      name: 'main',
+      prefix: 'main',
+      description: 'C# Main method template',
+      body: ['static void Main(string[] args)', '{', '    ${0:// Program entry point}', '}'],
+    },
   ],
-  
+
   documentation: {
     setup_guide: `
 # C# Development Setup Guide
@@ -343,6 +307,6 @@ dotnet_style_qualification_for_event = false:suggestion
 - Exclude unnecessary folders from workspace (bin, obj)
 - Enable "Hot Reload" for faster development cycles
 - Use conditional compilation for different environments
-    `
-  }
+    `,
+  },
 };

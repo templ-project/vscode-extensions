@@ -1,9 +1,10 @@
+---
 name: Build, Version, and Publish Extensions
 
 on:
   push:
     branches: [main]
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 jobs:
   build-version-publish:

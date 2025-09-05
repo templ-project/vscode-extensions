@@ -11,7 +11,7 @@ export interface Extension {
 }
 
 export interface Setting {
-  value: any;
+  value: unknown;
   description: string;
   scope: 'user' | 'workspace';
 }

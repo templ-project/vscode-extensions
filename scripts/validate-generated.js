@@ -1,38 +1,38 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 
 /**
  * Validate generated extensions
  */
 function validateGenerated() {
   console.log('🧪 Validating generated extensions...\n');
-  
+
   const packagesDir = path.join(__dirname, '..', 'packages');
-  
+
   if (!fs.existsSync(packagesDir)) {
     console.error('❌ No packages directory found. Run npm run generate first.');
     return false;
   }
-  
+
   let allValid = true;
-  
+
   // Find all extension directories
   const ides = fs.readdirSync(packagesDir);
-  
+
   for (const ide of ides) {
     const idePath = path.join(packagesDir, ide);
     if (!fs.statSync(idePath).isDirectory()) continue;
-    
+
     const languages = fs.readdirSync(idePath);
-    
+
     for (const language of languages) {
       const extensionPath = path.join(idePath, language);
       if (!fs.statSync(extensionPath).isDirectory()) continue;
-      
+
       console.log(`🔍 Validating ${ide}/${language}...`);
-      
+
       const valid = validateExtension(extensionPath, ide, language);
       if (!valid) {
         allValid = false;
@@ -41,19 +41,19 @@ function validateGenerated() {
       }
     }
   }
-  
+
   if (allValid) {
     console.log('🎉 All generated extensions are valid!');
   } else {
     console.log('❌ Some extensions have validation errors.');
   }
-  
+
   return allValid;
 }
 
 function validateExtension(extensionPath, ide, language) {
   let valid = true;
-  
+
   // Check required files
   const requiredFiles = [
     'package.json',
@@ -61,9 +61,9 @@ function validateExtension(extensionPath, ide, language) {
     'tsconfig.json',
     'README.md',
     'CHANGELOG.md',
-    '.vscodeignore'
+    '.vscodeignore',
   ];
-  
+
   for (const file of requiredFiles) {
     const filePath = path.join(extensionPath, file);
     if (!fs.existsSync(filePath)) {
@@ -71,12 +71,12 @@ function validateExtension(extensionPath, ide, language) {
       valid = false;
     }
   }
-  
+
   // Validate package.json
   try {
     const packageJsonPath = path.join(extensionPath, 'package.json');
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-    
+
     // Check required fields
     const requiredFields = ['name', 'version', 'engines', 'activationEvents', 'main', 'contributes'];
     for (const field of requiredFields) {
@@ -85,26 +85,25 @@ function validateExtension(extensionPath, ide, language) {
         valid = false;
       }
     }
-    
+
     // Check activation events
     if (!packageJson.activationEvents || !packageJson.activationEvents.includes('onStartupFinished')) {
       console.error(`  ❌ Missing activation event: onStartupFinished`);
       valid = false;
     }
-    
+
     // Check extension pack
     if (!packageJson.extensionPack || packageJson.extensionPack.length === 0) {
       console.error(`  ❌ No extensions in extension pack`);
       valid = false;
     }
-    
+
     console.log(`  ✅ Package.json valid (${packageJson.extensionPack.length} extensions)`);
-    
   } catch (error) {
     console.error(`  ❌ Invalid package.json: ${error.message}`);
     valid = false;
   }
-  
+
   // Validate snippets if they exist
   const snippetsPath = path.join(extensionPath, 'snippets', `${language}.json`);
   if (fs.existsSync(snippetsPath)) {
@@ -117,7 +116,7 @@ function validateExtension(extensionPath, ide, language) {
       valid = false;
     }
   }
-  
+
   // Validate settings if they exist
   const settingsPath = path.join(extensionPath, 'settings.json');
   if (fs.existsSync(settingsPath)) {
@@ -130,7 +129,7 @@ function validateExtension(extensionPath, ide, language) {
       valid = false;
     }
   }
-  
+
   // Check TypeScript compilation
   const outPath = path.join(extensionPath, 'out', 'extension.js');
   if (fs.existsSync(outPath)) {
@@ -139,7 +138,7 @@ function validateExtension(extensionPath, ide, language) {
     console.error(`  ❌ TypeScript not compiled (missing out/extension.js)`);
     valid = false;
   }
-  
+
   return valid;
 }
 

@@ -1,31 +1,29 @@
 import { githubCopilotVSCode } from '../../extensions/ai';
+import { gitlens } from '../../extensions/cvs';
 import {
-    gitlens,
-} from '../../extensions/cvs';
-import {
-    betterComments,
-    bookmarks,
-    codeSpellChecker,
-    dotenv,
-    errorLens,
-    json5Support,
-    markdownAllInOne,
-    markdownlint,
-    markdownMermaid,
-    markdownTablePrettify,
-    markdownWermaidSyntax,
-    pathIntellisense,
-    todoTree,
-    tomlSupport,
-    trailingSpaces,
-    versionLens,
-    yamlSupport
+  betterComments,
+  bookmarks,
+  codeSpellChecker,
+  dotenv,
+  errorLens,
+  json5Support,
+  markdownAllInOne,
+  markdownlint,
+  markdownMermaid,
+  markdownTablePrettify,
+  markdownWermaidSyntax,
+  pathIntellisense,
+  todoTree,
+  tomlSupport,
+  trailingSpaces,
+  versionLens,
+  yamlSupport,
 } from '../../extensions/productivity';
 import { Collection } from '../../shared/types';
 
 export const genericEssential: Collection = {
-  description: "Essential productivity extensions for general development in VSCode",
-  tags: ["productivity", "general", "essential", "git", "debugging", "editing"],
+  description: 'Essential productivity extensions for general development in VSCode',
+  tags: ['productivity', 'general', 'essential', 'git', 'debugging', 'editing'],
 
   required_extensions: [
     // ai extensions
@@ -54,62 +52,62 @@ export const genericEssential: Collection = {
 
   optional_extensions: [
     // Productivity
-    trailingSpaces
+    trailingSpaces,
   ],
 
   settings: {
     'workbench.colorTheme': {
       value: 'Default Dark+',
       description: 'Default dark theme for better visibility',
-      scope: 'user'
+      scope: 'user',
     },
     'editor.renderWhitespace': {
       value: 'trailing',
       description: 'Show trailing whitespace',
-      scope: 'user'
+      scope: 'user',
     },
     'files.trimTrailingWhitespace': {
       value: true,
       description: 'Trim trailing whitespace on save',
-      scope: 'workspace'
+      scope: 'workspace',
     },
     'files.insertFinalNewline': {
       value: true,
       description: 'Insert final newline at end of file',
-      scope: 'workspace'
+      scope: 'workspace',
     },
     'editor.rulers': {
       value: [80, 120],
       description: 'Show rulers at 80 and 120 characters',
-      scope: 'user'
+      scope: 'user',
     },
     'scm.defaultViewMode': {
       value: 'tree',
       description: 'Default Git view mode',
-      scope: 'user'
+      scope: 'user',
     },
 
     // JSON and JSONC formatting settings
     '[json]': {
       value: {
-        "editor.defaultFormatter": "vscode.json-language-features",
-        "editor.formatOnSave": true,
-        "editor.tabSize": 2,
-        "editor.insertSpaces": true
+        'editor.defaultFormatter': 'vscode.json-language-features',
+        'editor.formatOnSave': true,
+        'editor.tabSize': 2,
+        'editor.insertSpaces': true,
       },
-      description: "JSON file formatting settings using built-in formatter",
-      scope: "workspace"
+      description: 'JSON file formatting settings using built-in formatter',
+      scope: 'workspace',
     },
     '[jsonc]': {
       value: {
-        "editor.defaultFormatter": "vscode.json-language-features",
-        "editor.formatOnSave": true,
-        "editor.tabSize": 2,
-        "editor.insertSpaces": true
+        'editor.defaultFormatter': 'vscode.json-language-features',
+        'editor.formatOnSave': true,
+        'editor.tabSize': 2,
+        'editor.insertSpaces': true,
       },
-      description: "JSON with Comments file formatting settings using built-in formatter",
-      scope: "workspace"
-    }
+      description: 'JSON with Comments file formatting settings using built-in formatter',
+      scope: 'workspace',
+    },
   },
 
   keybindings: [
@@ -117,18 +115,18 @@ export const genericEssential: Collection = {
       key: 'ctrl+shift+b',
       command: 'bookmarks.toggle',
       description: 'Toggle bookmark',
-      when: 'editorTextFocus'
+      when: 'editorTextFocus',
     },
     {
       key: 'ctrl+shift+j',
       command: 'bookmarks.jumpToNext',
-      description: 'Jump to next bookmark'
+      description: 'Jump to next bookmark',
     },
     {
       key: 'ctrl+shift+k',
       command: 'bookmarks.jumpToPrevious',
-      description: 'Jump to previous bookmark'
-    }
+      description: 'Jump to previous bookmark',
+    },
   ],
 
   snippets: [],
@@ -186,6 +184,6 @@ git config --global user.email "your.email@example.com"
 ## Bookmarks not persisting
 - Bookmarks are saved per workspace
 - Check that workspace is properly configured
-- Verify file permissions in workspace directory`
-  }
+- Verify file permissions in workspace directory`,
+  },
 };

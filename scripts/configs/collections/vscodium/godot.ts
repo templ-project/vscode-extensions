@@ -1,25 +1,23 @@
 import {
-    betterCommentsVSCodium,
-    errorLensVSCodium,
-    gdscriptVSCodium,
-    godotFilesVSCodium,
-    godotShadersVSCodium,
-    godotSnippetsVSCodium,
-    godotToolsVSCodium,
-    rainbowBracketsVSCodium,
-    todoHighlightVSCodium
+  betterCommentsVSCodium,
+  errorLensVSCodium,
+  gdscriptVSCodium,
+  godotFilesVSCodium,
+  godotShadersVSCodium,
+  godotSnippetsVSCodium,
+  godotToolsVSCodium,
+  rainbowBracketsVSCodium,
+  todoHighlightVSCodium,
 } from '../../extensions/godot';
 import { Collection } from '../../shared/types';
 
 export const godot: Collection = {
-  description: "Essential extensions for Godot game development with GDScript support, debugging, and enhanced productivity tools",
-  tags: ["godot", "gdscript", "game development", "engine", "3d", "2d", "shaders"],
-  
-  required_extensions: [
-    godotToolsVSCodium,
-    gdscriptVSCodium
-  ],
-  
+  description:
+    'Essential extensions for Godot game development with GDScript support, debugging, and enhanced productivity tools',
+  tags: ['godot', 'gdscript', 'game development', 'engine', '3d', '2d', 'shaders'],
+
+  required_extensions: [godotToolsVSCodium, gdscriptVSCodium],
+
   optional_extensions: [
     godotFilesVSCodium,
     godotShadersVSCodium,
@@ -27,308 +25,308 @@ export const godot: Collection = {
     errorLensVSCodium,
     todoHighlightVSCodium,
     rainbowBracketsVSCodium,
-    betterCommentsVSCodium
+    betterCommentsVSCodium,
   ],
-  
+
   settings: {
     // File associations
-    "files.associations": {
+    'files.associations': {
       value: {
-        "*.gd": "gdscript",
-        "*.cs": "csharp",
-        "*.tres": "godot-resource",
-        "*.tscn": "godot-scene",
-        "*.godot": "godot-project",
-        "*.gdshader": "godot-shader",
-        "*.gdextension": "ini"
+        '*.gd': 'gdscript',
+        '*.cs': 'csharp',
+        '*.tres': 'godot-resource',
+        '*.tscn': 'godot-scene',
+        '*.godot': 'godot-project',
+        '*.gdshader': 'godot-shader',
+        '*.gdextension': 'ini',
       },
-      description: "Associate Godot file types with appropriate syntax highlighting",
-      scope: "workspace"
+      description: 'Associate Godot file types with appropriate syntax highlighting',
+      scope: 'workspace',
     },
-    
+
     // Godot Tools Settings
-    "godot_tools.editor_path": {
-      value: "",
-      description: "Path to Godot editor executable (auto-detected if left empty)",
-      scope: "workspace"
+    'godot_tools.editor_path': {
+      value: '',
+      description: 'Path to Godot editor executable (auto-detected if left empty)',
+      scope: 'workspace',
     },
-    "godot_tools.gdscript_lsp_server_host": {
-      value: "127.0.0.1",
-      description: "Host address for GDScript Language Server",
-      scope: "workspace"
+    'godot_tools.gdscript_lsp_server_host': {
+      value: '127.0.0.1',
+      description: 'Host address for GDScript Language Server',
+      scope: 'workspace',
     },
-    "godot_tools.gdscript_lsp_server_port": {
+    'godot_tools.gdscript_lsp_server_port': {
       value: 6005,
-      description: "Port for GDScript Language Server",
-      scope: "workspace"
+      description: 'Port for GDScript Language Server',
+      scope: 'workspace',
     },
-    
+
     // Editor Settings for GDScript
-    "editor.tabSize": {
+    'editor.tabSize': {
       value: 4,
-      description: "Set tab size to 4 for GDScript (Godot convention)",
-      scope: "workspace"
+      description: 'Set tab size to 4 for GDScript (Godot convention)',
+      scope: 'workspace',
     },
-    "editor.insertSpaces": {
+    'editor.insertSpaces': {
       value: false,
-      description: "Use tabs instead of spaces for GDScript",
-      scope: "workspace"
+      description: 'Use tabs instead of spaces for GDScript',
+      scope: 'workspace',
     },
-    "editor.detectIndentation": {
+    'editor.detectIndentation': {
       value: false,
-      description: "Disable automatic indentation detection to enforce Godot conventions",
-      scope: "workspace"
+      description: 'Disable automatic indentation detection to enforce Godot conventions',
+      scope: 'workspace',
     },
-    "editor.formatOnSave": {
+    'editor.formatOnSave': {
       value: true,
-      description: "Automatically format code on save",
-      scope: "workspace"
+      description: 'Automatically format code on save',
+      scope: 'workspace',
     },
-    "editor.codeActionsOnSave": {
+    'editor.codeActionsOnSave': {
       value: {
-        "source.organizeImports": true
+        'source.organizeImports': true,
       },
-      description: "Organize imports on save",
-      scope: "workspace"
+      description: 'Organize imports on save',
+      scope: 'workspace',
     },
-    
+
     // Error Lens Settings
-    "errorLens.enabledDiagnosticLevels": {
-      value: ["error", "warning", "info"],
-      description: "Show error lens for errors, warnings, and info messages",
-      scope: "workspace"
+    'errorLens.enabledDiagnosticLevels': {
+      value: ['error', 'warning', 'info'],
+      description: 'Show error lens for errors, warnings, and info messages',
+      scope: 'workspace',
     },
-    "errorLens.excludeBySource": {
+    'errorLens.excludeBySource': {
       value: [],
-      description: "Sources to exclude from error lens",
-      scope: "workspace"
+      description: 'Sources to exclude from error lens',
+      scope: 'workspace',
     },
-    
+
     // TODO Highlight Settings
-    "todohighlight.isEnable": {
+    'todohighlight.isEnable': {
       value: true,
-      description: "Enable TODO highlighting",
-      scope: "workspace"
+      description: 'Enable TODO highlighting',
+      scope: 'workspace',
     },
-    "todohighlight.keywords": {
+    'todohighlight.keywords': {
       value: [
         {
-          "text": "TODO:",
-          "color": "#ff6b6b",
-          "backgroundColor": "transparent",
-          "overviewRulerColor": "#ff6b6b"
+          text: 'TODO:',
+          color: '#ff6b6b',
+          backgroundColor: 'transparent',
+          overviewRulerColor: '#ff6b6b',
         },
         {
-          "text": "FIXME:",
-          "color": "#feca57",
-          "backgroundColor": "transparent",
-          "overviewRulerColor": "#feca57"
+          text: 'FIXME:',
+          color: '#feca57',
+          backgroundColor: 'transparent',
+          overviewRulerColor: '#feca57',
         },
         {
-          "text": "NOTE:",
-          "color": "#48dbfb",
-          "backgroundColor": "transparent",
-          "overviewRulerColor": "#48dbfb"
+          text: 'NOTE:',
+          color: '#48dbfb',
+          backgroundColor: 'transparent',
+          overviewRulerColor: '#48dbfb',
         },
         {
-          "text": "BUG:",
-          "color": "#ff9ff3",
-          "backgroundColor": "transparent",
-          "overviewRulerColor": "#ff9ff3"
-        }
+          text: 'BUG:',
+          color: '#ff9ff3',
+          backgroundColor: 'transparent',
+          overviewRulerColor: '#ff9ff3',
+        },
       ],
-      description: "Keywords to highlight in comments",
-      scope: "workspace"
+      description: 'Keywords to highlight in comments',
+      scope: 'workspace',
     },
-    
+
     // Better Comments Settings
-    "better-comments.tags": {
+    'better-comments.tags': {
       value: [
         {
-          "tag": "!",
-          "color": "#FF2D00",
-          "strikethrough": false,
-          "underline": false,
-          "backgroundColor": "transparent",
-          "bold": false,
-          "italic": false
+          tag: '!',
+          color: '#FF2D00',
+          strikethrough: false,
+          underline: false,
+          backgroundColor: 'transparent',
+          bold: false,
+          italic: false,
         },
         {
-          "tag": "?",
-          "color": "#3498DB",
-          "strikethrough": false,
-          "underline": false,
-          "backgroundColor": "transparent",
-          "bold": false,
-          "italic": false
+          tag: '?',
+          color: '#3498DB',
+          strikethrough: false,
+          underline: false,
+          backgroundColor: 'transparent',
+          bold: false,
+          italic: false,
         },
         {
-          "tag": "//",
-          "color": "#474747",
-          "strikethrough": true,
-          "underline": false,
-          "backgroundColor": "transparent",
-          "bold": false,
-          "italic": false
+          tag: '//',
+          color: '#474747',
+          strikethrough: true,
+          underline: false,
+          backgroundColor: 'transparent',
+          bold: false,
+          italic: false,
         },
         {
-          "tag": "todo",
-          "color": "#FF8C00",
-          "strikethrough": false,
-          "underline": false,
-          "backgroundColor": "transparent",
-          "bold": false,
-          "italic": false
+          tag: 'todo',
+          color: '#FF8C00',
+          strikethrough: false,
+          underline: false,
+          backgroundColor: 'transparent',
+          bold: false,
+          italic: false,
         },
         {
-          "tag": "*",
-          "color": "#98C379",
-          "strikethrough": false,
-          "underline": false,
-          "backgroundColor": "transparent",
-          "bold": false,
-          "italic": false
-        }
+          tag: '*',
+          color: '#98C379',
+          strikethrough: false,
+          underline: false,
+          backgroundColor: 'transparent',
+          bold: false,
+          italic: false,
+        },
       ],
-      description: "Configure better comments tags for enhanced documentation",
-      scope: "workspace"
-    }
+      description: 'Configure better comments tags for enhanced documentation',
+      scope: 'workspace',
+    },
   },
-  
+
   keybindings: [
     {
-      key: "f5",
-      command: "godot.debugger.debug",
-      description: "Start Godot debugging session",
-      when: "resourceExtname == .gd"
+      key: 'f5',
+      command: 'godot.debugger.debug',
+      description: 'Start Godot debugging session',
+      when: 'resourceExtname == .gd',
     },
     {
-      key: "ctrl+f5",
-      command: "godot.debugger.debug_without_debugging",
-      description: "Run Godot project without debugging",
-      when: "resourceExtname == .gd"
+      key: 'ctrl+f5',
+      command: 'godot.debugger.debug_without_debugging',
+      description: 'Run Godot project without debugging',
+      when: 'resourceExtname == .gd',
     },
     {
-      key: "shift+f5",
-      command: "godot.debugger.stop",
-      description: "Stop Godot debugging session"
+      key: 'shift+f5',
+      command: 'godot.debugger.stop',
+      description: 'Stop Godot debugging session',
     },
     {
-      key: "ctrl+shift+f5",
-      command: "godot.debugger.restart",
-      description: "Restart Godot debugging session"
+      key: 'ctrl+shift+f5',
+      command: 'godot.debugger.restart',
+      description: 'Restart Godot debugging session',
     },
     {
-      key: "f6",
-      command: "godot.open_editor",
-      description: "Open Godot editor"
+      key: 'f6',
+      command: 'godot.open_editor',
+      description: 'Open Godot editor',
     },
     {
-      key: "ctrl+alt+g",
-      command: "godot.list_classes",
-      description: "List Godot classes"
-    }
+      key: 'ctrl+alt+g',
+      command: 'godot.list_classes',
+      description: 'List Godot classes',
+    },
   ],
-  
+
   snippets: [
     {
-      name: "extends",
-      prefix: "extends",
-      description: "Class inheritance",
-      body: "extends ${1:Node}$0"
+      name: 'extends',
+      prefix: 'extends',
+      description: 'Class inheritance',
+      body: 'extends ${1:Node}$0',
     },
     {
-      name: "class_name",
-      prefix: "class_name",
-      description: "Define class name",
-      body: "class_name ${1:ClassName}$0"
+      name: 'class_name',
+      prefix: 'class_name',
+      description: 'Define class name',
+      body: 'class_name ${1:ClassName}$0',
     },
     {
-      name: "func",
-      prefix: "func",
-      description: "Function definition",
-      body: "func ${1:function_name}(${2:parameters}):\n\t${3:pass}$0"
+      name: 'func',
+      prefix: 'func',
+      description: 'Function definition',
+      body: 'func ${1:function_name}(${2:parameters}):\n\t${3:pass}$0',
     },
     {
-      name: "_ready",
-      prefix: "_ready",
-      description: "Node _ready function",
-      body: "func _ready():\n\t${1:pass}$0"
+      name: '_ready',
+      prefix: '_ready',
+      description: 'Node _ready function',
+      body: 'func _ready():\n\t${1:pass}$0',
     },
     {
-      name: "_process",
-      prefix: "_process",
-      description: "Node _process function",
-      body: "func _process(delta):\n\t${1:pass}$0"
+      name: '_process',
+      prefix: '_process',
+      description: 'Node _process function',
+      body: 'func _process(delta):\n\t${1:pass}$0',
     },
     {
-      name: "_physics_process",
-      prefix: "_physics",
-      description: "Node _physics_process function",
-      body: "func _physics_process(delta):\n\t${1:pass}$0"
+      name: '_physics_process',
+      prefix: '_physics',
+      description: 'Node _physics_process function',
+      body: 'func _physics_process(delta):\n\t${1:pass}$0',
     },
     {
-      name: "_input",
-      prefix: "_input",
-      description: "Node _input function",
-      body: "func _input(event):\n\t${1:pass}$0"
+      name: '_input',
+      prefix: '_input',
+      description: 'Node _input function',
+      body: 'func _input(event):\n\t${1:pass}$0',
     },
     {
-      name: "_unhandled_input",
-      prefix: "_unhandled",
-      description: "Node _unhandled_input function",
-      body: "func _unhandled_input(event):\n\t${1:pass}$0"
+      name: '_unhandled_input',
+      prefix: '_unhandled',
+      description: 'Node _unhandled_input function',
+      body: 'func _unhandled_input(event):\n\t${1:pass}$0',
     },
     {
-      name: "signal",
-      prefix: "signal",
-      description: "Signal definition",
-      body: "signal ${1:signal_name}(${2:parameters})$0"
+      name: 'signal',
+      prefix: 'signal',
+      description: 'Signal definition',
+      body: 'signal ${1:signal_name}(${2:parameters})$0',
     },
     {
-      name: "onready",
-      prefix: "onready",
-      description: "Onready variable",
-      body: "onready var ${1:variable_name} = ${2:get_node(\"${3:NodePath}\")}$0"
+      name: 'onready',
+      prefix: 'onready',
+      description: 'Onready variable',
+      body: 'onready var ${1:variable_name} = ${2:get_node("${3:NodePath}")}$0',
     },
     {
-      name: "export",
-      prefix: "export",
-      description: "Export variable",
-      body: "export var ${1:variable_name}: ${2:int} = ${3:0}$0"
+      name: 'export',
+      prefix: 'export',
+      description: 'Export variable',
+      body: 'export var ${1:variable_name}: ${2:int} = ${3:0}$0',
     },
     {
-      name: "for_loop",
-      prefix: "for",
-      description: "For loop",
-      body: "for ${1:i} in ${2:range(10)}:\n\t${3:pass}$0"
+      name: 'for_loop',
+      prefix: 'for',
+      description: 'For loop',
+      body: 'for ${1:i} in ${2:range(10)}:\n\t${3:pass}$0',
     },
     {
-      name: "while_loop",
-      prefix: "while",
-      description: "While loop",
-      body: "while ${1:condition}:\n\t${2:pass}$0"
+      name: 'while_loop',
+      prefix: 'while',
+      description: 'While loop',
+      body: 'while ${1:condition}:\n\t${2:pass}$0',
     },
     {
-      name: "if_statement",
-      prefix: "if",
-      description: "If statement",
-      body: "if ${1:condition}:\n\t${2:pass}$0"
+      name: 'if_statement',
+      prefix: 'if',
+      description: 'If statement',
+      body: 'if ${1:condition}:\n\t${2:pass}$0',
     },
     {
-      name: "if_else",
-      prefix: "ifelse",
-      description: "If-else statement",
-      body: "if ${1:condition}:\n\t${2:pass}\nelse:\n\t${3:pass}$0"
+      name: 'if_else',
+      prefix: 'ifelse',
+      description: 'If-else statement',
+      body: 'if ${1:condition}:\n\t${2:pass}\nelse:\n\t${3:pass}$0',
     },
     {
-      name: "match",
-      prefix: "match",
-      description: "Match statement",
-      body: "match ${1:value}:\n\t${2:pattern1}:\n\t\t${3:pass}\n\t${4:pattern2}:\n\t\t${5:pass}\n\t_:\n\t\t${6:pass}$0"
-    }
+      name: 'match',
+      prefix: 'match',
+      description: 'Match statement',
+      body: 'match ${1:value}:\n\t${2:pattern1}:\n\t\t${3:pass}\n\t${4:pattern2}:\n\t\t${5:pass}\n\t_:\n\t\t${6:pass}$0',
+    },
   ],
-  
+
   documentation: {
     setup_guide: `
 # Godot Game Development Setup Guide
@@ -454,6 +452,6 @@ Use the following prefixes for quick code generation:
 - Godot Documentation: [docs.godotengine.org](https://docs.godotengine.org)
 - GDScript Reference: [docs.godotengine.org/en/stable/getting_started/scripting/gdscript/](https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/)
 - Community: [godotengine.org/community](https://godotengine.org/community)
-    `
-  }
+    `,
+  },
 };

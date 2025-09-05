@@ -1,4 +1,3 @@
-import { Collection } from '../../shared/types';
 import {
   vscodiumEslint as eslint,
   vscodiumPrettier as prettier,
@@ -7,29 +6,21 @@ import {
   vscodiumQuokka as quokka,
   vscodiumBabelSyntax as babelSyntax,
   bunVSCodium,
-  denoVSCodium
+  denoVSCodium,
 } from '../../extensions/javascript';
+import { Collection } from '../../shared/types';
 
-import {javascript as javascriptVSCode} from '../vscode/javascript';
+import { javascript as javascriptVSCode } from '../vscode/javascript';
 
 export const javascript: Collection = {
-...javascriptVSCode,
-  description: "Essential JavaScript development environment for VSCodium - runtime-agnostic tools using open-source alternatives",
+  ...javascriptVSCode,
+  description:
+    'Essential JavaScript development environment for VSCodium - runtime-agnostic tools using open-source alternatives',
 
-  required_extensions: [
-    eslint,
-    prettier,
-    jsDebugger,
-    babelSyntax
-  ],
-  
-  optional_extensions: [
-    importCost,
-    quokka,
-    bunVSCodium,
-    denoVSCodium
-  ],
-  
+  required_extensions: [eslint, prettier, jsDebugger, babelSyntax],
+
+  optional_extensions: [importCost, quokka, bunVSCodium, denoVSCodium],
+
   documentation: {
     setup_guide: `# JavaScript Extension Pack Setup (VSCodium)
 
@@ -209,6 +200,6 @@ Add these helpful scripts to your \`package.json\`:
 ### Performance
 - VSCodium may perform differently than VSCode
 - Disable unused extensions to improve performance
-- Consider adjusting JavaScript service memory limits for large projects`
-  }
+- Consider adjusting JavaScript service memory limits for large projects`,
+  },
 };

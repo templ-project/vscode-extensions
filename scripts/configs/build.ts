@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import * as fs from 'fs';
-import * as path from 'path';
-import { fileURLToPath } from 'url';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import yaml from 'yaml';
-import { ConfigurationFile, Collection, Extension, Setting } from '../shared/types.js';
+import { Collection, ConfigurationFile, Extension, Setting } from './shared/types.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,22 +24,23 @@ class ConfigurationBuilder {
    */
   async buildConfiguration(ide: 'vscode' | 'vscodium'): Promise<void> {
     console.log(`🔧 Building configuration for ${ide}...`);
-    
+
     const collections: Record<string, Collection> = {};
     const collectionsDir = path.join(__dirname, 'collections', ide);
-    
+
     // Dynamically import all collections
-    const collectionFiles = fs.readdirSync(collectionsDir).filter(file => file.endsWith('.js'));
-    
+    const collectionFiles = fs.readdirSync(collectionsDir).filter((file) => file.endsWith('.js'));
+
     for (const file of collectionFiles) {
       const collectionName = path.basename(file, '.js');
       const collectionModule = await import(path.join(collectionsDir, file));
-      
+
       // Look for default export or named export matching the collection name
-      const collection = collectionModule.default || 
-                       collectionModule[collectionName] ||
-                       collectionModule[Object.keys(collectionModule)[0]];
-      
+      const collection =
+        collectionModule.default ||
+        collectionModule[collectionName] ||
+        collectionModule[Object.keys(collectionModule)[0]];
+
       if (collection) {
         collections[collectionName] = collection;
         console.log(`  ✅ Loaded collection: ${collectionName}`);
@@ -53,25 +54,25 @@ class ConfigurationBuilder {
       metadata: {
         name: `${ide.charAt(0).toUpperCase() + ide.slice(1)} Development Collections`,
         description: `Curated extension collections for development in ${ide}`,
-        version: "1.0.0",
-        maintainer: "developer@templ-project.com",
-        organization: "templ-project",
-        publisher: "templ-project",
-        repositoryUrl: "https://github.com/templ-project/vscode-extensions",
+        version: '1.0.0',
+        maintainer: 'developer@templ-project.com',
+        organization: 'templ-project',
+        publisher: 'templ-project',
+        repositoryUrl: 'https://github.com/templ-project/vscode-extensions',
         ide: ide,
         created: new Date().toISOString().split('T')[0],
-        updated: new Date().toISOString().split('T')[0]
+        updated: new Date().toISOString().split('T')[0],
       },
-      collections: collections
+      collections: collections,
     };
 
     // Convert to YAML format expected by existing scripts
     const yamlConfig = this.convertToYamlFormat(config);
-    
+
     // Write to file
     const outputPath = path.join(this.outputDir, `${ide}-collections.yaml`);
     fs.writeFileSync(outputPath, yaml.stringify(yamlConfig, { indent: 2 }));
-    
+
     console.log(`  📁 Configuration written to: ${outputPath}`);
     console.log(`  🎉 Built ${Object.keys(collections).length} collections for ${ide}`);
   }
@@ -79,39 +80,39 @@ class ConfigurationBuilder {
   /**
    * Convert our TypeScript format to the YAML format expected by existing scripts
    */
-  private convertToYamlFormat(config: ConfigurationFile): any {
-    const yamlConfig: any = {
+  private convertToYamlFormat(config: ConfigurationFile): Record<string, unknown> {
+    const yamlConfig: Record<string, unknown> = {
       metadata: config.metadata,
-      collections: {}
+      collections: {} as Record<string, unknown>,
     };
 
     // Convert each collection
     for (const [name, collection] of Object.entries(config.collections)) {
-      yamlConfig.collections[name] = {
+      (yamlConfig.collections as Record<string, unknown>)[name] = {
         description: collection.description,
         tags: collection.tags,
-        required_extensions: collection.required_extensions.map(ext => ({
+        required_extensions: collection.required_extensions.map((ext: Extension) => ({
           id: ext.id,
           name: ext.name,
           description: ext.description,
           marketplace_url: ext.marketplace_url,
           publisher: ext.publisher,
           license: ext.license,
-          why_required: ext.why_required
+          why_required: ext.why_required,
         })),
-        optional_extensions: collection.optional_extensions.map(ext => ({
+        optional_extensions: collection.optional_extensions.map((ext: Extension) => ({
           id: ext.id,
           name: ext.name,
           description: ext.description,
           marketplace_url: ext.marketplace_url,
           publisher: ext.publisher,
           license: ext.license,
-          why_recommended: ext.why_recommended
+          why_recommended: ext.why_recommended,
         })),
         settings: this.convertSettings(collection.settings),
         keybindings: collection.keybindings,
         snippets: collection.snippets,
-        documentation: collection.documentation
+        documentation: collection.documentation,
       };
     }
 
@@ -121,17 +122,17 @@ class ConfigurationBuilder {
   /**
    * Convert settings from TypeScript format to YAML format
    */
-  private convertSettings(settings: Record<string, Setting>): any {
-    const yamlSettings: any = {};
-    
+  private convertSettings(settings: Record<string, Setting>): Record<string, unknown> {
+    const yamlSettings: Record<string, unknown> = {};
+
     for (const [key, setting] of Object.entries(settings)) {
       yamlSettings[key] = {
         value: setting.value,
         description: setting.description,
-        scope: setting.scope
+        scope: setting.scope,
       };
     }
-    
+
     return yamlSettings;
   }
 
@@ -140,7 +141,7 @@ class ConfigurationBuilder {
    */
   async buildAll(): Promise<void> {
     console.log('🚀 Building all configurations...');
-    
+
     // Ensure output directory exists
     if (!fs.existsSync(this.outputDir)) {
       fs.mkdirSync(this.outputDir, { recursive: true });
@@ -149,7 +150,7 @@ class ConfigurationBuilder {
     try {
       await this.buildConfiguration('vscode');
       await this.buildConfiguration('vscodium');
-      
+
       console.log('\n✅ All configurations built successfully!');
       console.log(`📁 Output directory: ${this.outputDir}`);
     } catch (error) {
@@ -163,7 +164,7 @@ class ConfigurationBuilder {
 async function main() {
   const outputDir = path.join(__dirname, '..', 'generated');
   const builder = new ConfigurationBuilder(outputDir);
-  
+
   await builder.buildAll();
 }
 
