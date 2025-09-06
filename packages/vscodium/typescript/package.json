@@ -2,7 +2,7 @@
   "name": "tpl-vscodium-typescript",
   "displayName": "Templ Project Typescript Extension Pack",
   "description": "Essential TypeScript development environment for VSCodium - comprehensive tooling for type-safe development using open-source alternatives",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "typescript",
     "types",
@@ -29,9 +31,17 @@
     "typescript",
     "extension-pack"
   ],
-  "extensionPack": ["ms-vscode.vscode-typescript-next", "GregorBiswanger.json2ts"],
-  "extensionDependencies": ["ms-vscode.vscode-typescript-next", "GregorBiswanger.json2ts"],
-  "activationEvents": ["onStartupFinished"],
+  "extensionPack": [
+    "ms-vscode.vscode-typescript-next",
+    "GregorBiswanger.json2ts"
+  ],
+  "extensionDependencies": [
+    "ms-vscode.vscode-typescript-next",
+    "GregorBiswanger.json2ts"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [

@@ -21,17 +21,23 @@
   "git.confirmSync": false,
   "git.enableStatusBarSync": true,
   "yaml.schemas": {
-    "https://json.schemastore.org/github-workflow.json": ".github/workflows/*",
-    "https://json.schemastore.org/github-action.json": ".github/actions/*/action.yml",
-    "https://json.schemastore.org/docker-compose.json": ["docker-compose.yml", "docker-compose.yaml"],
-    "https://json.schemastore.org/kustomization.json": ["kustomization.yaml", "kustomization.yml"],
-    "https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json": [
-      "k8s/**/*.yaml",
-      "k8s/**/*.yml",
-      "kubernetes/**/*.yaml",
-      "kubernetes/**/*.yml"
-    ]
-  },
+  "https://json.schemastore.org/github-workflow.json": ".github/workflows/*",
+  "https://json.schemastore.org/github-action.json": ".github/actions/*/action.yml",
+  "https://json.schemastore.org/docker-compose.json": [
+    "docker-compose.yml",
+    "docker-compose.yaml"
+  ],
+  "https://json.schemastore.org/kustomization.json": [
+    "kustomization.yaml",
+    "kustomization.yml"
+  ],
+  "https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json": [
+    "k8s/**/*.yaml",
+    "k8s/**/*.yml",
+    "kubernetes/**/*.yaml",
+    "kubernetes/**/*.yml"
+  ]
+},
   "yaml.format.enable": true,
   "yaml.validate": true,
   "yaml.hover": true,

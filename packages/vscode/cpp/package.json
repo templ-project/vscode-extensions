@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "cpp",
     "c++",
@@ -42,8 +44,14 @@
     "cschlosser.doxdocgen",
     "webfreak.debug"
   ],
-  "extensionDependencies": ["llvm-vs-code-extensions.vscode-clangd", "twxs.cmake", "xaver.clang-format"],
-  "activationEvents": ["onStartupFinished"],
+  "extensionDependencies": [
+    "llvm-vs-code-extensions.vscode-clangd",
+    "twxs.cmake",
+    "xaver.clang-format"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [

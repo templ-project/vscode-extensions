@@ -2,7 +2,7 @@
   "name": "tpl-vscode-generic-extended",
   "displayName": "Templ Project Generic Extended Extension Pack",
   "description": "Extended developer tools for API development, containerization, and Git forge integration in VSCode",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "api",
     "swagger",
@@ -59,7 +61,9 @@
     "github.vscode-pull-request-github",
     "github.vscode-github-actions"
   ],
-  "activationEvents": ["onStartupFinished"],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "keybindings": [

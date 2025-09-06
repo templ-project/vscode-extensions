@@ -2,7 +2,7 @@
   "name": "tpl-vscodium-javascript",
   "displayName": "Templ Project Javascript Extension Pack",
   "description": "Essential JavaScript development environment for VSCodium - runtime-agnostic tools using open-source alternatives",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "javascript",
     "es6",
@@ -46,7 +48,9 @@
     "ms-vscode.js-debug",
     "mgmcdermott.vscode-language-babel"
   ],
-  "activationEvents": ["onStartupFinished"],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [

@@ -2,7 +2,7 @@
   "name": "tpl-vscodium-golang",
   "displayName": "Templ Project Golang Extension Pack",
   "description": "Essential Go development environment for VSCodium - comprehensive tooling for modern Go development using open-source alternatives",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "golang",
     "go",
@@ -36,8 +38,12 @@
     "davidbarratt.go-fill-struct",
     "karyan40024.gotmpl-syntax-highlighter"
   ],
-  "extensionDependencies": ["golang.go"],
-  "activationEvents": ["onStartupFinished"],
+  "extensionDependencies": [
+    "golang.go"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [
