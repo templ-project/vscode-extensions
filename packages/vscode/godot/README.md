@@ -10,36 +10,33 @@ This extension pack includes **7 carefully selected extensions** to enhance your
 
 These extensions are essential for godot development:
 
-- **[Godot Tools](https://marketplace.visualstudio.com/items?itemName=geequlim.godot-tools)** - Complete Godot development support with LSP, GDScript syntax highlighting, and debugging
-- **[GDScript](https://marketplace.visualstudio.com/items?itemName=jjkim.gdscript)** - Syntax highlighting and code completion for GDScript
+- **[Godot Tools](https://marketplace.visualstudio.com/items?itemName&#x3D;geequlim.godot-tools)** - Complete Godot development support with LSP, GDScript syntax highlighting, and debugging
+- **[GDScript](https://marketplace.visualstudio.com/items?itemName&#x3D;jjkim.gdscript)** - Syntax highlighting and code completion for GDScript
 
 ### 💡 Additional Extensions (5)
 
 These extensions provide extra functionality and convenience:
 
-- **[Godot Files](https://marketplace.visualstudio.com/items?itemName=alfish.godot-files)** - Syntax highlighting for Godot files (.tres, .tscn, .godot, etc.)
-- **[Godot Shaders](https://marketplace.visualstudio.com/items?itemName=arkii.godot-shaders)** - Syntax highlighting and support for Godot shader files
-- **[Godot Snippets](https://marketplace.visualstudio.com/items?itemName=razoric.gdscript-snippets)** - Code snippets for GDScript and Godot development
-- **[TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight)** - Highlight TODOs, FIXMEs, and other annotations in your code
-- **[Rainbow Brackets](https://marketplace.visualstudio.com/items?itemName=2gua.rainbow-brackets)** - Provide rainbow colors for the round brackets, the square brackets and the squiggly brackets
+- **[Godot Files](https://marketplace.visualstudio.com/items?itemName&#x3D;alfish.godot-files)** - Syntax highlighting for Godot files (.tres, .tscn, .godot, etc.)
+- **[Godot Shaders](https://marketplace.visualstudio.com/items?itemName&#x3D;arkii.godot-shaders)** - Syntax highlighting and support for Godot shader files
+- **[Godot Snippets](https://marketplace.visualstudio.com/items?itemName&#x3D;razoric.gdscript-snippets)** - Code snippets for GDScript and Godot development
+- **[TODO Highlight](https://marketplace.visualstudio.com/items?itemName&#x3D;wayou.vscode-todo-highlight)** - Highlight TODOs, FIXMEs, and other annotations in your code
+- **[Rainbow Brackets](https://marketplace.visualstudio.com/items?itemName&#x3D;2gua.rainbow-brackets)** - Provide rainbow colors for the round brackets, the square brackets and the squiggly brackets
 
 ## 🚀 Installation
 
 ### Method 1: Install from Marketplace
-
 1. Open Vscode
 2. Go to Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
 3. Search for "Templ Project Godot Extension Pack"
 4. Click "Install"
 
 ### Method 2: Install via Command Line
-
 ```bash
 code --install-extension @templ-project/godot-extension-pack
 ```
 
 ### Method 3: Install from VSIX
-
 1. Download the latest `.vsix` file from [Releases](https://github.com/templ-project/vscode-extensions/releases)
 2. Open Vscode
 3. Run `Extensions: Install from VSIX...` command
@@ -50,205 +47,182 @@ code --install-extension @templ-project/godot-extension-pack
 After installation, you may want to configure some settings for optimal godot development:
 
 ### files.associations
-
 ```json
 {
   "files.associations": {
-    "*.gd": "gdscript",
-    "*.cs": "csharp",
-    "*.tres": "godot-resource",
-    "*.tscn": "godot-scene",
-    "*.godot": "godot-project",
-    "*.gdshader": "godot-shader",
-    "*.gdextension": "ini"
-  }
+  "*.gd": "gdscript",
+  "*.cs": "csharp",
+  "*.tres": "godot-resource",
+  "*.tscn": "godot-scene",
+  "*.godot": "godot-project",
+  "*.gdshader": "godot-shader",
+  "*.gdextension": "ini"
+}
 }
 ```
-
 > Associate Godot file types with appropriate syntax highlighting
 
 ### godot_tools.editor_path
-
 ```json
 {
   "godot_tools.editor_path": ""
 }
 ```
-
 > Path to Godot editor executable (auto-detected if left empty)
 
 ### godot_tools.gdscript_lsp_server_host
-
 ```json
 {
   "godot_tools.gdscript_lsp_server_host": "127.0.0.1"
 }
 ```
-
 > Host address for GDScript Language Server
 
 ### godot_tools.gdscript_lsp_server_port
-
 ```json
 {
   "godot_tools.gdscript_lsp_server_port": 6005
 }
 ```
-
 > Port for GDScript Language Server
 
 ### editor.tabSize
-
 ```json
 {
   "editor.tabSize": 4
 }
 ```
-
 > Set tab size to 4 for GDScript (Godot convention)
 
 ### editor.insertSpaces
-
 ```json
 {
   "editor.insertSpaces": false
 }
 ```
-
 > Use tabs instead of spaces for GDScript
 
 ### editor.detectIndentation
-
 ```json
 {
   "editor.detectIndentation": false
 }
 ```
-
 > Disable automatic indentation detection to enforce Godot conventions
 
 ### editor.formatOnSave
-
 ```json
 {
   "editor.formatOnSave": true
 }
 ```
-
 > Automatically format code on save
 
 ### editor.codeActionsOnSave
-
 ```json
 {
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true
-  }
+  "source.organizeImports": true
+}
 }
 ```
-
 > Organize imports on save
 
 ### todohighlight.isEnable
-
 ```json
 {
   "todohighlight.isEnable": true
 }
 ```
-
 > Enable TODO highlighting
 
 ### todohighlight.keywords
-
 ```json
 {
   "todohighlight.keywords": [
-    {
-      "text": "TODO:",
-      "color": "#ff6b6b",
-      "backgroundColor": "transparent",
-      "overviewRulerColor": "#ff6b6b"
-    },
-    {
-      "text": "FIXME:",
-      "color": "#feca57",
-      "backgroundColor": "transparent",
-      "overviewRulerColor": "#feca57"
-    },
-    {
-      "text": "NOTE:",
-      "color": "#48dbfb",
-      "backgroundColor": "transparent",
-      "overviewRulerColor": "#48dbfb"
-    },
-    {
-      "text": "BUG:",
-      "color": "#ff9ff3",
-      "backgroundColor": "transparent",
-      "overviewRulerColor": "#ff9ff3"
-    }
-  ]
+  {
+    "text": "TODO:",
+    "color": "#ff6b6b",
+    "backgroundColor": "transparent",
+    "overviewRulerColor": "#ff6b6b"
+  },
+  {
+    "text": "FIXME:",
+    "color": "#feca57",
+    "backgroundColor": "transparent",
+    "overviewRulerColor": "#feca57"
+  },
+  {
+    "text": "NOTE:",
+    "color": "#48dbfb",
+    "backgroundColor": "transparent",
+    "overviewRulerColor": "#48dbfb"
+  },
+  {
+    "text": "BUG:",
+    "color": "#ff9ff3",
+    "backgroundColor": "transparent",
+    "overviewRulerColor": "#ff9ff3"
+  }
+]
 }
 ```
-
 > Keywords to highlight in comments
 
 ### better-comments.tags
-
 ```json
 {
   "better-comments.tags": [
-    {
-      "tag": "!",
-      "color": "#FF2D00",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
-    },
-    {
-      "tag": "?",
-      "color": "#3498DB",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
-    },
-    {
-      "tag": "//",
-      "color": "#474747",
-      "strikethrough": true,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
-    },
-    {
-      "tag": "todo",
-      "color": "#FF8C00",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
-    },
-    {
-      "tag": "*",
-      "color": "#98C379",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
-    }
-  ]
+  {
+    "tag": "!",
+    "color": "#FF2D00",
+    "strikethrough": false,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
+  },
+  {
+    "tag": "?",
+    "color": "#3498DB",
+    "strikethrough": false,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
+  },
+  {
+    "tag": "//",
+    "color": "#474747",
+    "strikethrough": true,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
+  },
+  {
+    "tag": "todo",
+    "color": "#FF8C00",
+    "strikethrough": false,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
+  },
+  {
+    "tag": "*",
+    "color": "#98C379",
+    "strikethrough": false,
+    "underline": false,
+    "backgroundColor": "transparent",
+    "bold": false,
+    "italic": false
+  }
+]
 }
 ```
-
 > Configure better comments tags for enhanced documentation
+
 
 ## ⌨️ Recommended Keybindings
 
@@ -261,40 +235,39 @@ After installation, you may want to configure some settings for optimal godot de
 
 ## 📝 Extension Details
 
-| Extension                                                                                         | Publisher | Description                                                                                  |
-| ------------------------------------------------------------------------------------------------- | --------- | -------------------------------------------------------------------------------------------- |
-| [Godot Tools](https://marketplace.visualstudio.com/items?itemName=geequlim.godot-tools)           | geequlim  | Complete Godot development support with LSP, GDScript syntax highlighting, and debugging     |
-| [GDScript](https://marketplace.visualstudio.com/items?itemName=jjkim.gdscript)                    | jjkim     | Syntax highlighting and code completion for GDScript                                         |
-| [Godot Files](https://marketplace.visualstudio.com/items?itemName=alfish.godot-files)             | alfish    | Syntax highlighting for Godot files (.tres, .tscn, .godot, etc.)                             |
-| [Godot Shaders](https://marketplace.visualstudio.com/items?itemName=arkii.godot-shaders)          | arkii     | Syntax highlighting and support for Godot shader files                                       |
-| [Godot Snippets](https://marketplace.visualstudio.com/items?itemName=razoric.gdscript-snippets)   | razoric   | Code snippets for GDScript and Godot development                                             |
-| [TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight) | wayou     | Highlight TODOs, FIXMEs, and other annotations in your code                                  |
-| [Rainbow Brackets](https://marketplace.visualstudio.com/items?itemName=2gua.rainbow-brackets)     | 2gua      | Provide rainbow colors for the round brackets, the square brackets and the squiggly brackets |
+| Extension | Publisher | Description |
+|-----------|-----------|-------------|
+| [Godot Tools](https://marketplace.visualstudio.com/items?itemName&#x3D;geequlim.godot-tools) | geequlim | Complete Godot development support with LSP, GDScript syntax highlighting, and debugging |
+| [GDScript](https://marketplace.visualstudio.com/items?itemName&#x3D;jjkim.gdscript) | jjkim | Syntax highlighting and code completion for GDScript |
+| [Godot Files](https://marketplace.visualstudio.com/items?itemName&#x3D;alfish.godot-files) | alfish | Syntax highlighting for Godot files (.tres, .tscn, .godot, etc.) |
+| [Godot Shaders](https://marketplace.visualstudio.com/items?itemName&#x3D;arkii.godot-shaders) | arkii | Syntax highlighting and support for Godot shader files |
+| [Godot Snippets](https://marketplace.visualstudio.com/items?itemName&#x3D;razoric.gdscript-snippets) | razoric | Code snippets for GDScript and Godot development |
+| [TODO Highlight](https://marketplace.visualstudio.com/items?itemName&#x3D;wayou.vscode-todo-highlight) | wayou | Highlight TODOs, FIXMEs, and other annotations in your code |
+| [Rainbow Brackets](https://marketplace.visualstudio.com/items?itemName&#x3D;2gua.rainbow-brackets) | 2gua | Provide rainbow colors for the round brackets, the square brackets and the squiggly brackets |
 
 ## 🏷️ Categories
+
+
 
 ## 📄 License
 
 ### Extension Pack License
-
 This extension pack is licensed under the **MIT License** - see [LICENSE.md](https://github.com/templ-project/vscode-extensions/blob/main/packages/vscode/godot/LICENSE.md) for details.
 
 ### Third-Party Extension Licenses
-
 **Important**: Each extension included in this pack has its own license terms. templ-project is not responsible for the licensing, functionality, or security of third-party extensions.
 
-| Extension                                                                                         | Publisher | License | Description                                                                                  |
-| ------------------------------------------------------------------------------------------------- | --------- | ------- | -------------------------------------------------------------------------------------------- |
-| [Godot Tools](https://marketplace.visualstudio.com/items?itemName=geequlim.godot-tools)           | geequlim  | MIT     | Complete Godot development support with LSP, GDScript syntax highlighting, and debugging     |
-| [GDScript](https://marketplace.visualstudio.com/items?itemName=jjkim.gdscript)                    | jjkim     | MIT     | Syntax highlighting and code completion for GDScript                                         |
-| [Godot Files](https://marketplace.visualstudio.com/items?itemName=alfish.godot-files)             | alfish    | MIT     | Syntax highlighting for Godot files (.tres, .tscn, .godot, etc.)                             |
-| [Godot Shaders](https://marketplace.visualstudio.com/items?itemName=arkii.godot-shaders)          | arkii     | MIT     | Syntax highlighting and support for Godot shader files                                       |
-| [Godot Snippets](https://marketplace.visualstudio.com/items?itemName=razoric.gdscript-snippets)   | razoric   | MIT     | Code snippets for GDScript and Godot development                                             |
-| [TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight) | wayou     | MIT     | Highlight TODOs, FIXMEs, and other annotations in your code                                  |
-| [Rainbow Brackets](https://marketplace.visualstudio.com/items?itemName=2gua.rainbow-brackets)     | 2gua      | MIT     | Provide rainbow colors for the round brackets, the square brackets and the squiggly brackets |
+| Extension | Publisher | License | Description |
+|-----------|-----------|---------|-------------|
+| [Godot Tools](https://marketplace.visualstudio.com/items?itemName&#x3D;geequlim.godot-tools) | geequlim | MIT | Complete Godot development support with LSP, GDScript syntax highlighting, and debugging |
+| [GDScript](https://marketplace.visualstudio.com/items?itemName&#x3D;jjkim.gdscript) | jjkim | MIT | Syntax highlighting and code completion for GDScript |
+| [Godot Files](https://marketplace.visualstudio.com/items?itemName&#x3D;alfish.godot-files) | alfish | MIT | Syntax highlighting for Godot files (.tres, .tscn, .godot, etc.) |
+| [Godot Shaders](https://marketplace.visualstudio.com/items?itemName&#x3D;arkii.godot-shaders) | arkii | MIT | Syntax highlighting and support for Godot shader files |
+| [Godot Snippets](https://marketplace.visualstudio.com/items?itemName&#x3D;razoric.gdscript-snippets) | razoric | MIT | Code snippets for GDScript and Godot development |
+| [TODO Highlight](https://marketplace.visualstudio.com/items?itemName&#x3D;wayou.vscode-todo-highlight) | wayou | MIT | Highlight TODOs, FIXMEs, and other annotations in your code |
+| [Rainbow Brackets](https://marketplace.visualstudio.com/items?itemName&#x3D;2gua.rainbow-brackets) | 2gua | MIT | Provide rainbow colors for the round brackets, the square brackets and the squiggly brackets |
 
 ### Disclaimer
-
 - We **do not guarantee** the functionality, security, or compatibility of included extensions
 - We **are not responsible** for any issues caused by third-party extensions
 - Users install and use extensions **at their own risk**
@@ -314,4 +287,4 @@ Found an issue or want to suggest an extension? Please [open an issue](https://g
 
 ---
 
-_This extension pack is maintained by [templ-project](https://github.com/templ-project) and updated regularly to include the most useful godot development extensions._
+*This extension pack is maintained by [templ-project](https://github.com/templ-project) and updated regularly to include the most useful godot development extensions.*

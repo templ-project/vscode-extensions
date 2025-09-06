@@ -3,20 +3,27 @@
   "editor.renderWhitespace": "trailing",
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
-  "editor.rulers": [80, 120],
+  "editor.rulers": [
+  80,
+  120
+],
   "scm.defaultViewMode": "tree",
-  "errorLens.enabledDiagnosticLevels": ["error", "warning", "info"],
+  "errorLens.enabledDiagnosticLevels": [
+  "error",
+  "warning",
+  "info"
+],
   "errorLens.excludeBySource": [],
   "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features",
-    "editor.formatOnSave": true,
-    "editor.tabSize": 2,
-    "editor.insertSpaces": true
-  },
+  "editor.defaultFormatter": "vscode.json-language-features",
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true
+},
   "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features",
-    "editor.formatOnSave": true,
-    "editor.tabSize": 2,
-    "editor.insertSpaces": true
-  }
+  "editor.defaultFormatter": "vscode.json-language-features",
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true
+}
 }

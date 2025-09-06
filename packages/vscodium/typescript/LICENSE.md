@@ -35,7 +35,7 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Description: Convert JSON object to typescript interfaces
   - Publisher: Gregor Biswanger
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=GregorBiswanger.json2ts)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;GregorBiswanger.json2ts)
 
 ## Disclaimer
 

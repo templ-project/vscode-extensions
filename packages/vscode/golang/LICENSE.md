@@ -30,42 +30,42 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Description: Rich Go language support for Visual Studio Code
   - Publisher: Go Team at Google
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=golang.go)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;golang.go)
 - **Go Outliner** (`766b.go-outliner`)
   - Description: Go code outline explorer
   - Publisher: 766b
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=766b.go-outliner)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;766b.go-outliner)
 - **Go Test Explorer** (`premparihar.gotestexplorer`)
   - Description: Go Test Explorer for Visual Studio Code
   - Publisher: Prem Parihar
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=premparihar.gotestexplorer)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;premparihar.gotestexplorer)
 - **Go Fill Struct** (`davidbarratt.go-fill-struct`)
   - Description: Fill struct literals with default values
   - Publisher: David Barratt
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=davidbarratt.go-fill-struct)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;davidbarratt.go-fill-struct)
 - **Go Template Syntax Highlighter** (`karyan40024.gotmpl-syntax-highlighter`)
   - Description: Go Template Syntax Highlighter for Reply
   - Publisher: karyan40024
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=karyan40024.gotmpl-syntax-highlighter)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;karyan40024.gotmpl-syntax-highlighter)
 - **Go Doc** (`msyrus.go-doc`)
   - Description: Show documentation of go symbols and packages
   - Publisher: msyrus
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=msyrus.go-doc)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;msyrus.go-doc)
 - **Go Critic** (`neverik.go-critic`)
   - Description: Integration for the go-critic golang linter
   - Publisher: neverik
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=neverik.go-critic)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;neverik.go-critic)
 - **Go Asm** (`quillaja.goasm`)
   - Description: Syntax highlighting &amp; autocomplete for Go assembly
   - Publisher: quillaja
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=quillaja.goasm)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;quillaja.goasm)
 
 ## Disclaimer
 
