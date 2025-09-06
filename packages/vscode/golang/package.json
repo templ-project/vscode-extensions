@@ -17,9 +17,7 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": [
-    "Extension Packs"
-  ],
+  "categories": ["Extension Packs"],
   "keywords": [
     "golang",
     "go",
@@ -33,7 +31,6 @@
   ],
   "extensionPack": [
     "golang.go",
-    "usernamehw.errorlens",
     "766b.go-outliner",
     "premparihar.gotestexplorer",
     "davidbarratt.go-fill-struct",
@@ -42,13 +39,8 @@
     "neverik.go-critic",
     "quillaja.goasm"
   ],
-  "extensionDependencies": [
-    "golang.go",
-    "usernamehw.errorlens"
-  ],
-  "activationEvents": [
-    "onStartupFinished"
-  ],
+  "extensionDependencies": ["golang.go"],
+  "activationEvents": ["onStartupFinished"],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [

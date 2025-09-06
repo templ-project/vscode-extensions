@@ -1,28 +1,17 @@
 {
   "0": {
     "prefix": "interface",
-    "body": [
-      "interface ${1:InterfaceName} {",
-      "  ${2:property}: ${3:type};",
-      "}"
-    ],
+    "body": ["interface ${1:InterfaceName} {", "  ${2:property}: ${3:type};", "}"],
     "description": "TypeScript interface definition"
   },
   "1": {
     "prefix": "type",
-    "body": [
-      "type ${1:TypeName} = ${2:type};"
-    ],
+    "body": ["type ${1:TypeName} = ${2:type};"],
     "description": "TypeScript type alias"
   },
   "2": {
     "prefix": "enum",
-    "body": [
-      "enum ${1:EnumName} {",
-      "  ${2:VALUE1} = '${3:value1}',",
-      "  ${4:VALUE2} = '${5:value2}'",
-      "}"
-    ],
+    "body": ["enum ${1:EnumName} {", "  ${2:VALUE1} = '${3:value1}',", "  ${4:VALUE2} = '${5:value2}'", "}"],
     "description": "TypeScript enum definition"
   },
   "3": {

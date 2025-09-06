@@ -90,7 +90,7 @@ export interface Collection {
 #### extensions/ai/github-copilot.ts
 
 ```typescript
-import {Extension} from "../../shared/types";
+import { Extension } from "../../shared/types";
 
 export const githubCopilot: Extension = {
   id: "github.copilot",
@@ -106,7 +106,7 @@ export const githubCopilot: Extension = {
 #### extensions/ai/continue.ts
 
 ```typescript
-import {Extension} from "../../shared/types";
+import { Extension } from "../../shared/types";
 
 export const continueAI: Extension = {
   id: "continue.continue",
@@ -122,12 +122,12 @@ export const continueAI: Extension = {
 #### collections/vscode/generic-essential.ts
 
 ```typescript
-import {githubCopilot} from "../../extensions/ai/github-copilot";
-import {gitlens} from "../../extensions/git/gitlens";
-import {bookmarks} from "../../extensions/productivity/bookmarks";
-import {commonKeybindings} from "../../shared/common-keybindings";
-import {commonSettings} from "../../shared/common-settings";
-import {Collection} from "../../shared/types";
+import { githubCopilot } from "../../extensions/ai/github-copilot";
+import { gitlens } from "../../extensions/git/gitlens";
+import { bookmarks } from "../../extensions/productivity/bookmarks";
+import { commonKeybindings } from "../../shared/common-keybindings";
+import { commonSettings } from "../../shared/common-settings";
+import { Collection } from "../../shared/types";
 
 export const genericEssential: Collection = {
   description: "Essential productivity extensions for general development in VSCode",
@@ -157,12 +157,12 @@ export const genericEssential: Collection = {
 #### collections/vscodium/generic-essential.ts
 
 ```typescript
-import {continueAI} from "../../extensions/ai/continue";
-import {gitlens} from "../../extensions/git/gitlens";
-import {bookmarks} from "../../extensions/productivity/bookmarks";
-import {commonSettings} from "../../shared/common-settings";
-import {Collection} from "../../shared/types";
-import {vscodiumSettings} from "../../shared/vscodium-settings";
+import { continueAI } from "../../extensions/ai/continue";
+import { gitlens } from "../../extensions/git/gitlens";
+import { bookmarks } from "../../extensions/productivity/bookmarks";
+import { commonSettings } from "../../shared/common-settings";
+import { Collection } from "../../shared/types";
+import { vscodiumSettings } from "../../shared/vscodium-settings";
 
 export const genericEssential: Collection = {
   description: "Essential productivity extensions for general development in VSCodium",

@@ -11,20 +11,20 @@
   "dotnet.inlayHints.enableInlayHintsForOtherParameters": false,
   "dotnet.inlayHints.enableInlayHintsForTypeParameters": true,
   "files.associations": {
-  "*.cs": "csharp",
-  "*.csx": "csharp",
-  "*.cake": "csharp",
-  "*.cshtml": "aspnetcorerazor",
-  "*.razor": "aspnetcorerazor"
-},
+    "*.cs": "csharp",
+    "*.csx": "csharp",
+    "*.cake": "csharp",
+    "*.cshtml": "aspnetcorerazor",
+    "*.razor": "aspnetcorerazor"
+  },
   "[csharp]": {
-  "editor.defaultFormatter": "ms-dotnettools.csharp",
-  "editor.formatOnSave": true,
-  "editor.formatOnType": true,
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "explicit"
-  }
-},
+    "editor.defaultFormatter": "ms-dotnettools.csharp",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
   "dotnet-test-explorer.testProjectPath": "**/*Tests.csproj",
   "dotnet-test-explorer.useTreeView": true
 }

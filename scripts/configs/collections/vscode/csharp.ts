@@ -4,10 +4,8 @@ import {
   csharpExtensions,
   csharpSnippets,
   dotnetTestExplorer,
-  editorConfig,
   roslynator,
 } from '../../extensions/csharp';
-import { errorLens } from '../../extensions/productivity';
 import { Collection } from '../../shared/types';
 
 export const csharp: Collection = {
@@ -15,7 +13,7 @@ export const csharp: Collection = {
     'Essential C# development environment for VSCode - comprehensive .NET tooling with IntelliSense, debugging, testing, and modern C# features',
   tags: ['csharp', 'c#', 'dotnet', '.net', 'asp.net', 'blazor', 'maui', 'testing', 'nuget'],
 
-  required_extensions: [csharpExtension, csharpDevKit, editorConfig, errorLens],
+  required_extensions: [csharpExtension, csharpDevKit],
 
   optional_extensions: [csharpExtensions, dotnetTestExplorer, csharpSnippets, roslynator],
 

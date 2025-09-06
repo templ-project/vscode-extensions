@@ -40,22 +40,22 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Description: Mark lines and jump to them
   - Publisher: Alessandro Fragnani
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;alefragnani.bookmarks)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=alefragnani.bookmarks)
 - **TODO Tree** (`gruntfuggly.todo-tree`)
   - Description: Show TODO, FIXME, etc. comment tags in a tree view
   - Publisher: Gruntfuggly
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;gruntfuggly.todo-tree)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=gruntfuggly.todo-tree)
 - **Code Spell Checker** (`streetsidesoftware.code-spell-checker`)
   - Description: Spelling checker for source code
   - Publisher: Street Side Software
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;streetsidesoftware.code-spell-checker)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
 - **Better Comments** (`aaron-bond.better-comments`)
   - Description: Improve your code commenting by annotating with alert, info, todo, and more
   - Publisher: Aaron Bond
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;aaron-bond.better-comments)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
 - **DotENV** (`mikestead.dotenv`)
   - Description: Support for dotenv file syntax
   - Publisher: mikestead
@@ -75,7 +75,7 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Description: YAML language support with schema validation
   - Publisher: Red Hat
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;redhat.vscode-yaml)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
 - **Even Better TOML** (`tamasfe.even-better-toml`)
   - Description: Fully-featured TOML support with syntax highlighting, validation, formatting, and schema support
   - Publisher: tamasfe
@@ -90,17 +90,32 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Description: All you need to write Markdown (keyboard shortcuts, table of contents, auto preview and more)
   - Publisher: Yu Zhang
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;yzhang.markdown-all-in-one)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
 - **markdownlint** (`davidanson.vscode-markdownlint`)
   - Description: Markdown linting and style checking for Visual Studio Code
   - Publisher: David Anson
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;davidanson.vscode-markdownlint)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=davidanson.vscode-markdownlint)
 - **Markdown Table Prettifier** (`darkriszty.markdown-table-prettify`)
   - Description: Transforms markdown tables to be more readable
   - Publisher: darkriszty
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;darkriszty.markdown-table-prettify)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=darkriszty.markdown-table-prettify)
+- **EditorConfig for VS Code** (`editorconfig.editorconfig`)
+  - Description: EditorConfig Support for Visual Studio Code
+  - Publisher: EditorConfig
+  - License: MIT
+  - Marketplace: [View Extension](https://open-vsx.org/extension/editorconfig/editorconfig)
+- **Version Lens** (`pflannery.vscode-versionlens`)
+  - Description: Shows the latest version for each package using code lens
+  - Publisher: pflannery
+  - License: MIT
+  - Marketplace: [View Extension](https://open-vsx.org/extension/pflannery/vscode-versionlens)
+- **Error Lens** (`usernamehw.errorlens`)
+  - Description: Improve highlighting of errors, warnings and other language diagnostics
+  - Publisher: Alexander
+  - License: MIT
+  - Marketplace: [View Extension](https://open-vsx.org/extension/usernamehw/errorlens)
 - **Trailing Spaces** (`shardulm94.trailing-spaces`)
   - Description: Highlight trailing spaces and delete them in a flash
   - Publisher: Shardul Mahadik

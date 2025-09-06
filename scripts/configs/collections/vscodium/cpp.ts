@@ -8,7 +8,6 @@ import {
   nativeDebugVSCodium,
   xmakeVSCodium,
 } from '../../extensions/cpp';
-import { errorLensVSCodium } from '../../extensions/productivity';
 import { Collection } from '../../shared/types';
 
 export const cpp: Collection = {
@@ -16,7 +15,7 @@ export const cpp: Collection = {
     'Essential C/C++ development environment for VSCodium - modern tooling with clang-based language server, CMake/XMake build systems, and advanced debugging',
   tags: ['cpp', 'c++', 'c', 'clang', 'cmake', 'xmake', 'native', 'systems', 'embedded'],
 
-  required_extensions: [clangdVSCodium, cmakeVSCodium, clangFormatVSCodium, errorLensVSCodium],
+  required_extensions: [clangdVSCodium, cmakeVSCodium, clangFormatVSCodium],
 
   optional_extensions: [
     cmakeToolsVSCodium,

@@ -17,9 +17,7 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": [
-    "Extension Packs"
-  ],
+  "categories": ["Extension Packs"],
   "keywords": [
     "productivity",
     "general",
@@ -47,6 +45,9 @@
     "yzhang.markdown-all-in-one",
     "davidanson.vscode-markdownlint",
     "darkriszty.markdown-table-prettify",
+    "editorconfig.editorconfig",
+    "pflannery.vscode-versionlens",
+    "usernamehw.errorlens",
     "shardulm94.trailing-spaces"
   ],
   "extensionDependencies": [
@@ -64,11 +65,12 @@
     "BlueGlassBlock.better-json5",
     "yzhang.markdown-all-in-one",
     "davidanson.vscode-markdownlint",
-    "darkriszty.markdown-table-prettify"
+    "darkriszty.markdown-table-prettify",
+    "editorconfig.editorconfig",
+    "pflannery.vscode-versionlens",
+    "usernamehw.errorlens"
   ],
-  "activationEvents": [
-    "onStartupFinished"
-  ],
+  "activationEvents": ["onStartupFinished"],
   "main": "./out/extension.js",
   "contributes": {
     "keybindings": [

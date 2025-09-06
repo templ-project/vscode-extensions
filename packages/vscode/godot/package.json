@@ -17,9 +17,7 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": [
-    "Extension Packs"
-  ],
+  "categories": ["Extension Packs"],
   "keywords": [
     "godot",
     "gdscript",
@@ -38,18 +36,11 @@
     "alfish.godot-files",
     "arkii.godot-shaders",
     "razoric.gdscript-snippets",
-    "usernamehw.errorlens",
     "wayou.vscode-todo-highlight",
-    "2gua.rainbow-brackets",
-    "aaron-bond.better-comments"
+    "2gua.rainbow-brackets"
   ],
-  "extensionDependencies": [
-    "geequlim.godot-tools",
-    "jjkim.gdscript"
-  ],
-  "activationEvents": [
-    "onStartupFinished"
-  ],
+  "extensionDependencies": ["geequlim.godot-tools", "jjkim.gdscript"],
+  "activationEvents": ["onStartupFinished"],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [

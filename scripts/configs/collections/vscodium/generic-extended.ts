@@ -106,7 +106,6 @@ export const genericExtended: Collection = {
 
 ### Supporting Tools
 - **YAML**: Enhanced YAML support with schema validation
-- **Version Lens**: Version information for package dependencies
 - **Better JSON5**: JSON5 syntax support for configuration files
 - **shell-format**: Format shell scripts and Dockerfiles
 

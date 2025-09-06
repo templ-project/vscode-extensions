@@ -8,7 +8,6 @@ import {
   nativeDebug,
   xmake,
 } from '../../extensions/cpp';
-import { errorLens } from '../../extensions/productivity';
 import { Collection } from '../../shared/types';
 
 export const cpp: Collection = {
@@ -16,7 +15,7 @@ export const cpp: Collection = {
     'Essential C/C++ development environment for VSCode - modern tooling with clang-based language server, CMake/XMake build systems, and advanced debugging',
   tags: ['cpp', 'c++', 'c', 'clang', 'cmake', 'xmake', 'native', 'systems', 'embedded'],
 
-  required_extensions: [clangd, cmake, clangFormat, errorLens],
+  required_extensions: [clangd, cmake, clangFormat],
 
   optional_extensions: [cmakeTools, xmake, betterCppSyntax, doxygen, nativeDebug],
 

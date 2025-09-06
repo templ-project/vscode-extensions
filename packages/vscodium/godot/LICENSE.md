@@ -51,11 +51,6 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Publisher: razoric
   - License: MIT
   - Marketplace: [View Extension](https://open-vsx.org/extension/razoric/gdscript-snippets)
-- **** (``)
-  - Description: 
-  - Publisher: Unknown
-  - License: Please refer to the extension's marketplace page for license information
-  - Marketplace: https://marketplace.visualstudio.com/items?itemName=
 - **TODO Highlight** (`wayou.vscode-todo-highlight`)
   - Description: Highlight TODOs, FIXMEs, and other annotations in your code
   - Publisher: wayou
@@ -66,11 +61,6 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Publisher: 2gua
   - License: MIT
   - Marketplace: [View Extension](https://open-vsx.org/extension/2gua/rainbow-brackets)
-- **** (``)
-  - Description: 
-  - Publisher: Unknown
-  - License: Please refer to the extension's marketplace page for license information
-  - Marketplace: https://marketplace.visualstudio.com/items?itemName=
 
 ## Disclaimer
 
