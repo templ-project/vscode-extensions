@@ -90,3 +90,15 @@ export function createLogger(options: LoggerOptions = {}): pino.Logger {
 export function createChildLogger(parent: pino.Logger, context: Record<string, unknown>): pino.Logger {
   return parent.child(context);
 }
+
+// Create root logger
+export const parentLogger = createLogger();
+
+// TODO: since this was not part of the LLD, treat it later, when code is matured enough
+export class Loggable {
+    protected log: pino.Logger;
+
+    constructor() {
+        this.log = parentLogger.child({ module: this.constructor.name });
+    }
+}

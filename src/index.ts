@@ -5,6 +5,7 @@
  */
 
 import { createLogger, createChildLogger } from './logger.js';
+import { ConfigLoader } from './config/index.js';
 
 // Create root logger
 const logger = createLogger();
@@ -12,9 +13,11 @@ const logger = createLogger();
 // Log startup message
 logger.info('VSCode Extension Pack Builder initialized');
 
+// Initialize ConfigLoader (example)
+const configLoader = new ConfigLoader(logger);
+
 // Example of creating child loggers for modules (to be used in future stories)
-// const configLoader = createChildLogger(logger, { module: 'ConfigLoader' });
 // const builder = createChildLogger(logger, { module: 'ExtensionPackBuilder' });
 // const publisher = createChildLogger(logger, { module: 'MarketplacePublisher' });
 
-export { createLogger, createChildLogger };
+export { createLogger, createChildLogger, ConfigLoader };
