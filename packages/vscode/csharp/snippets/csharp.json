@@ -1,59 +1,32 @@
 {
   "0": {
     "prefix": "class",
-    "body": [
-      "public class ${1:ClassName}",
-      "{",
-      "    ${0:// Class members}",
-      "}"
-    ],
+    "body": ["public class ${1:ClassName}", "{", "    ${0:// Class members}", "}"],
     "description": "C# class template"
   },
   "1": {
     "prefix": "interface",
-    "body": [
-      "public interface I${1:InterfaceName}",
-      "{",
-      "    ${0:// Interface members}",
-      "}"
-    ],
+    "body": ["public interface I${1:InterfaceName}", "{", "    ${0:// Interface members}", "}"],
     "description": "C# interface template"
   },
   "2": {
     "prefix": "method",
-    "body": [
-      "public ${1:void} ${2:MethodName}(${3:parameters})",
-      "{",
-      "    ${0:// Method implementation}",
-      "}"
-    ],
+    "body": ["public ${1:void} ${2:MethodName}(${3:parameters})", "{", "    ${0:// Method implementation}", "}"],
     "description": "C# method template"
   },
   "3": {
     "prefix": "prop",
-    "body": [
-      "public ${1:string} ${2:PropertyName} { get; set; }"
-    ],
+    "body": ["public ${1:string} ${2:PropertyName} { get; set; }"],
     "description": "C# auto-property template"
   },
   "4": {
     "prefix": "ctor",
-    "body": [
-      "public ${1:ClassName}(${2:parameters})",
-      "{",
-      "    ${0:// Constructor implementation}",
-      "}"
-    ],
+    "body": ["public ${1:ClassName}(${2:parameters})", "{", "    ${0:// Constructor implementation}", "}"],
     "description": "C# constructor template"
   },
   "5": {
     "prefix": "main",
-    "body": [
-      "static void Main(string[] args)",
-      "{",
-      "    ${0:// Program entry point}",
-      "}"
-    ],
+    "body": ["static void Main(string[] args)", "{", "    ${0:// Program entry point}", "}"],
     "description": "C# Main method template"
   }
 }

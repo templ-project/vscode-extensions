@@ -9,14 +9,6 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "packages",
-    "dist",
-    "templates",
-    "tests"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "packages", "dist", "templates", "tests"]
 }

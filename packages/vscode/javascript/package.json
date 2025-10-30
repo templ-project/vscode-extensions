@@ -17,9 +17,7 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": [
-    "Extension Packs"
-  ],
+  "categories": ["Extension Packs"],
   "keywords": [
     "javascript",
     "es6",
@@ -49,9 +47,7 @@
     "ms-vscode.js-debug",
     "mgmcdermott.vscode-language-babel"
   ],
-  "activationEvents": [
-    "onStartupFinished"
-  ],
+  "activationEvents": ["onStartupFinished"],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [

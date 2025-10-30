@@ -198,7 +198,7 @@ export interface Extension {
 export interface Setting {
   value: unknown;
   description: string;
-  scope: 'user' | 'workspace';
+  scope: "user" | "workspace";
 }
 
 export interface Snippet {
@@ -228,7 +228,7 @@ interface VSCodePackageJson {
   publisher: string; // e.g., 'templ-project'
   repository: RepositoryInfo;
   engines: { vscode: string };
-  categories: ['Extension Packs'];
+  categories: ["Extension Packs"];
   keywords: string[]; // From Collection.tags
 
   // Extension pack definition
@@ -248,50 +248,45 @@ interface VSCodePackageJson {
 
 ```typescript
 // scripts/configs/collections/vscode/cpp.ts (existing file)
-import { clangd, cmake, clangFormat } from '../../extensions/cpp';
-import { Collection } from '../../shared/types';
+import { clangd, cmake, clangFormat } from "../../extensions/cpp";
+import { Collection } from "../../shared/types";
 
 export const cpp: Collection = {
-  description: 'Essential C/C++ development environment for VSCode',
-  tags: ['cpp', 'c++', 'clang', 'cmake'],
+  description: "Essential C/C++ development environment for VSCode",
+  tags: ["cpp", "c++", "clang", "cmake"],
 
   required_extensions: [clangd, cmake, clangFormat],
   optional_extensions: [],
 
   settings: {
-    'clangd.path': {
-      value: 'clangd',
-      description: 'Path to clangd executable',
-      scope: 'workspace'
+    "clangd.path": {
+      value: "clangd",
+      description: "Path to clangd executable",
+      scope: "workspace",
     },
-    '[cpp]': {
+    "[cpp]": {
       value: {
-        'editor.defaultFormatter': 'xaver.clang-format',
-        'editor.formatOnSave': true
+        "editor.defaultFormatter": "xaver.clang-format",
+        "editor.formatOnSave": true,
       },
-      description: 'C++ specific editor settings',
-      scope: 'workspace'
-    }
+      description: "C++ specific editor settings",
+      scope: "workspace",
+    },
   },
 
   snippets: [
     {
-      name: 'class',
-      prefix: 'class',
-      description: 'C++ class template',
-      body: [
-        'class ${1:ClassName} {',
-        'public:',
-        '    ${1:ClassName}();',
-        '};'
-      ]
-    }
+      name: "class",
+      prefix: "class",
+      description: "C++ class template",
+      body: ["class ${1:ClassName} {", "public:", "    ${1:ClassName}();", "};"],
+    },
   ],
 
   documentation: {
-    setup_guide: '# C++ Setup Guide\n...',
-    troubleshooting: '# Troubleshooting\n...'
-  }
+    setup_guide: "# C++ Setup Guide\n...",
+    troubleshooting: "# Troubleshooting\n...",
+  },
 };
 ```
 
@@ -305,13 +300,13 @@ export const cpp: Collection = {
 
 ```typescript
 // src/config/ConfigLoader.ts
-import pino from 'pino';
+import pino from "pino";
 
 export class ConfigLoader {
   private logger: pino.Logger;
 
   constructor(parentLogger: pino.Logger) {
-    this.logger = parentLogger.child({ module: 'ConfigLoader' });
+    this.logger = parentLogger.child({ module: "ConfigLoader" });
   }
 
   // Key methods:
@@ -353,13 +348,13 @@ export class ConfigLoader {
 
 ```typescript
 // src/build/ExtensionPackBuilder.ts
-import pino from 'pino';
+import pino from "pino";
 
 export class ExtensionPackBuilder {
   private logger: pino.Logger;
 
   constructor(parentLogger: pino.Logger) {
-    this.logger = parentLogger.child({ module: 'ExtensionPackBuilder' });
+    this.logger = parentLogger.child({ module: "ExtensionPackBuilder" });
   }
 
   // Build Pipeline:
@@ -415,14 +410,14 @@ export class ExtensionPackBuilder {
 }
 
 // src/build/TemplateGenerator.ts
-import pino from 'pino';
-import Handlebars from 'handlebars';
+import pino from "pino";
+import Handlebars from "handlebars";
 
 export class TemplateGenerator {
   private logger: pino.Logger;
 
   constructor(parentLogger: pino.Logger) {
-    this.logger = parentLogger.child({ module: 'TemplateGenerator' });
+    this.logger = parentLogger.child({ module: "TemplateGenerator" });
   }
 
   // Generates files from templates using Handlebars
@@ -445,13 +440,13 @@ export class TemplateGenerator {
 
 ```typescript
 // src/publish/MarketplacePublisher.ts
-import pino from 'pino';
+import pino from "pino";
 
 export class MarketplacePublisher {
   private logger: pino.Logger;
 
   constructor(parentLogger: pino.Logger) {
-    this.logger = parentLogger.child({ module: 'MarketplacePublisher' });
+    this.logger = parentLogger.child({ module: "MarketplacePublisher" });
   }
 
   // Publishing Flow:
@@ -483,13 +478,13 @@ export class MarketplacePublisher {
 }
 
 // src/publish/ErrorReporter.ts
-import pino from 'pino';
+import pino from "pino";
 
 export class ErrorReporter {
   private logger: pino.Logger;
 
   constructor(parentLogger: pino.Logger) {
-    this.logger = parentLogger.child({ module: 'ErrorReporter' });
+    this.logger = parentLogger.child({ module: "ErrorReporter" });
   }
 
   // Transparent Error Reporting:
@@ -524,7 +519,7 @@ export class ErrorReporter {
 
 ```yaml
 # Taskfile.yml
-version: '3'
+version: "3"
 
 tasks:
   # Unitary tasks
@@ -613,7 +608,7 @@ tasks:
 
 ```typescript
 // src/index.ts - Main entry point
-import pino from 'pino';
+import pino from "pino";
 
 // Simple CLI that accepts:
 // - build <ide> <language> [--output <dir>]
@@ -623,13 +618,13 @@ import pino from 'pino';
 // Use minimist or yargs for basic argument parsing
 
 const logger = pino({
-  level: process.env.LOG_LEVEL || 'info',
+  level: process.env.LOG_LEVEL || "info",
   transport: {
-    target: 'pino-pretty',
+    target: "pino-pretty",
     options: {
-      colorize: true
-    }
-  }
+      colorize: true,
+    },
+  },
 });
 
 // Create child loggers for each module
@@ -728,7 +723,7 @@ jobs:
           # Automatically detects changed extension packages
           # Increments version only for modified extensions
           # Updates root package.json if any extension changed
-          strategy: 'smart' # Only bump changed extensions
+          strategy: "smart" # Only bump changed extensions
 
   build:
     name: Build Extension Packs
@@ -741,8 +736,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -770,8 +765,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -824,16 +819,16 @@ Minimal happy path tests to ensure core functionality works:
 
 ```typescript
 // tests/config/ConfigLoader.test.ts
-describe('ConfigLoader', () => {
-  test('loads valid cpp collection for vscode', async () => {
+describe("ConfigLoader", () => {
+  test("loads valid cpp collection for vscode", async () => {
     const loader = new ConfigLoader(logger);
-    const collection = await loader.loadCollection('vscode', 'cpp');
+    const collection = await loader.loadCollection("vscode", "cpp");
 
     expect(collection.description).toBeDefined();
     expect(collection.required_extensions.length).toBeGreaterThan(0);
   });
 
-  test('validates collection with valid data', () => {
+  test("validates collection with valid data", () => {
     const loader = new ConfigLoader(logger);
     const result = loader.validateCollection(validCppCollection);
 
@@ -841,117 +836,112 @@ describe('ConfigLoader', () => {
     expect(result.errors).toHaveLength(0);
   });
 
-  test('rejects invalid extension ID format', () => {
+  test("rejects invalid extension ID format", () => {
     const loader = new ConfigLoader(logger);
-    const invalidCollection = { ...validCollection, required_extensions: [{ id: 'invalid' }] };
+    const invalidCollection = { ...validCollection, required_extensions: [{ id: "invalid" }] };
     const result = loader.validateCollection(invalidCollection);
 
     expect(result.isValid).toBe(false);
-    expect(result.errors[0]).toContain('Extension ID must match pattern');
+    expect(result.errors[0]).toContain("Extension ID must match pattern");
   });
 });
 
 // tests/build/ExtensionPackBuilder.test.ts
-describe('ExtensionPackBuilder', () => {
-  test('builds cpp extension pack successfully', async () => {
+describe("ExtensionPackBuilder", () => {
+  test("builds cpp extension pack successfully", async () => {
     const builder = new ExtensionPackBuilder(logger);
-    const result = await builder.build('vscode', 'cpp', './test-output');
+    const result = await builder.build("vscode", "cpp", "./test-output");
 
     expect(result.success).toBe(true);
-    expect(fs.existsSync('./test-output/vscode/cpp/package.json')).toBe(true);
-    expect(fs.existsSync('./test-output/vscode/cpp/icon.png')).toBe(true);
+    expect(fs.existsSync("./test-output/vscode/cpp/package.json")).toBe(true);
+    expect(fs.existsSync("./test-output/vscode/cpp/icon.png")).toBe(true);
   });
 
-  test('copies logo from logos directory', async () => {
+  test("copies logo from logos directory", async () => {
     const builder = new ExtensionPackBuilder(logger);
-    await builder.build('vscode', 'cpp', './test-output');
+    await builder.build("vscode", "cpp", "./test-output");
 
-    const iconPath = './test-output/vscode/cpp/icon.png';
+    const iconPath = "./test-output/vscode/cpp/icon.png";
     expect(fs.existsSync(iconPath)).toBe(true);
     expect(fs.statSync(iconPath).size).toBeGreaterThan(0);
   });
 
-  test('generates valid package.json', async () => {
+  test("generates valid package.json", async () => {
     const builder = new ExtensionPackBuilder(logger);
-    await builder.build('vscode', 'typescript', './test-output');
+    await builder.build("vscode", "typescript", "./test-output");
 
-    const pkg = JSON.parse(fs.readFileSync('./test-output/vscode/typescript/package.json', 'utf-8'));
+    const pkg = JSON.parse(fs.readFileSync("./test-output/vscode/typescript/package.json", "utf-8"));
     expect(pkg.name).toBeDefined();
     expect(pkg.extensionPack).toBeInstanceOf(Array);
     expect(pkg.extensionPack.length).toBeGreaterThan(0);
   });
 
-  test('preserves existing version when rebuilding', async () => {
+  test("preserves existing version when rebuilding", async () => {
     const builder = new ExtensionPackBuilder(logger);
 
     // Create initial package.json with version 1.2.3
-    fs.mkdirSync('./test-output/vscode/python', { recursive: true });
-    fs.writeFileSync(
-      './test-output/vscode/python/package.json',
-      JSON.stringify({ name: 'test', version: '1.2.3' })
-    );
+    fs.mkdirSync("./test-output/vscode/python", { recursive: true });
+    fs.writeFileSync("./test-output/vscode/python/package.json", JSON.stringify({ name: "test", version: "1.2.3" }));
 
     // Rebuild the extension
-    await builder.build('vscode', 'python', './test-output');
+    await builder.build("vscode", "python", "./test-output");
 
     // Version should be preserved
-    const pkg = JSON.parse(fs.readFileSync('./test-output/vscode/python/package.json', 'utf-8'));
-    expect(pkg.version).toBe('1.2.3');
+    const pkg = JSON.parse(fs.readFileSync("./test-output/vscode/python/package.json", "utf-8"));
+    expect(pkg.version).toBe("1.2.3");
   });
 
-  test('uses default version for new extensions', async () => {
+  test("uses default version for new extensions", async () => {
     const builder = new ExtensionPackBuilder(logger);
 
     // Build brand new extension (no existing package.json)
-    await builder.build('vscode', 'golang', './test-output-new');
+    await builder.build("vscode", "golang", "./test-output-new");
 
-    const pkg = JSON.parse(fs.readFileSync('./test-output-new/vscode/golang/package.json', 'utf-8'));
-    expect(pkg.version).toBe('0.0.1'); // Default version
+    const pkg = JSON.parse(fs.readFileSync("./test-output-new/vscode/golang/package.json", "utf-8"));
+    expect(pkg.version).toBe("0.0.1"); // Default version
   });
 });
 
 // tests/build/TemplateGenerator.test.ts
-describe('TemplateGenerator', () => {
-  test('renders package.json template', () => {
+describe("TemplateGenerator", () => {
+  test("renders package.json template", () => {
     const generator = new TemplateGenerator(logger);
-    const result = generator.render('package.json', { name: 'test', version: '1.0.0' });
+    const result = generator.render("package.json", { name: "test", version: "1.0.0" });
 
     const pkg = JSON.parse(result);
-    expect(pkg.name).toBe('test');
-    expect(pkg.version).toBe('1.0.0');
+    expect(pkg.name).toBe("test");
+    expect(pkg.version).toBe("1.0.0");
   });
 
-  test('renders README template with documentation', () => {
+  test("renders README template with documentation", () => {
     const generator = new TemplateGenerator(logger);
-    const result = generator.render('README.md', {
+    const result = generator.render("README.md", {
       documentation: {
-        setup_guide: '# Setup',
-        troubleshooting: '# Troubleshooting'
-      }
+        setup_guide: "# Setup",
+        troubleshooting: "# Troubleshooting",
+      },
     });
 
-    expect(result).toContain('# Setup');
-    expect(result).toContain('# Troubleshooting');
+    expect(result).toContain("# Setup");
+    expect(result).toContain("# Troubleshooting");
   });
 });
 
 // tests/publish/MarketplacePublisher.test.ts
-describe('MarketplacePublisher', () => {
-  test('validates vsix file exists before publish', async () => {
+describe("MarketplacePublisher", () => {
+  test("validates vsix file exists before publish", async () => {
     const publisher = new MarketplacePublisher(logger);
 
-    await expect(
-      publisher.publish('non-existent.vsix', 'vscode')
-    ).rejects.toThrow('VSIX file not found');
+    await expect(publisher.publish("non-existent.vsix", "vscode")).rejects.toThrow("VSIX file not found");
   });
 
-  test('formats authentication error correctly', () => {
+  test("formats authentication error correctly", () => {
     const reporter = new ErrorReporter(logger);
-    const error = new AuthenticationError('Invalid token');
+    const error = new AuthenticationError("Invalid token");
     const formatted = reporter.format(error);
 
-    expect(formatted).toContain('Authentication failed');
-    expect(formatted).toContain('marketplace.visualstudio.com/manage');
+    expect(formatted).toContain("Authentication failed");
+    expect(formatted).toContain("marketplace.visualstudio.com/manage");
   });
 });
 ```
@@ -1121,4 +1111,3 @@ Each pack bundles the essential extensions needed for that language's developmen
 3. **Multi-language Packs**: Support combo packs (e.g., "Full Stack" = TypeScript + Python + Go)
 4. **Analytics**: Track download counts and usage statistics
 5. **Parallel Builds**: Use Taskfile's parallel execution for faster builds across multiple languages
-

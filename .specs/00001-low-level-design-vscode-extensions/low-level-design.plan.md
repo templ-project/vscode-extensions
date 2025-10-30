@@ -45,7 +45,7 @@
     - **Dependencies**: []
     - **Acceptance Criteria**:
       - Directories created: src/config, src/build, src/publish, tests/config, tests/build, tests/publish
-      - .gitignore excludes node_modules, dist, *.vsix
+      - .gitignore excludes node_modules, dist, \*.vsix
 
 ## Story S-002: Logging Infrastructure
 
@@ -659,7 +659,7 @@
     - **Effort**: S
     - **Dependencies**: [S-001]
     - **Acceptance Criteria**:
-      - Uses glob library to expand patterns like dist/**/*.vsix
+      - Uses glob library to expand patterns like dist/\*_/_.vsix
       - Returns array of matching file paths
       - Logs info with count of files found
 
@@ -678,8 +678,8 @@
     - **Effort**: S
     - **Dependencies**: [T-014b]
     - **Acceptance Criteria**:
-      - publish:vscode calls: node src/index.js publish dist/vscode/*.vsix --marketplace vscode
-      - publish:vscodium calls: node src/index.js publish dist/vscodium/*.vsix --marketplace openvsx
+      - publish:vscode calls: node src/index.js publish dist/vscode/\*.vsix --marketplace vscode
+      - publish:vscodium calls: node src/index.js publish dist/vscodium/\*.vsix --marketplace openvsx
       - publish:all depends on both publish tasks
 
   - **Task T-014d**: Write publish command tests

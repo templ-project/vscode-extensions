@@ -17,9 +17,7 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": [
-    "Extension Packs"
-  ],
+  "categories": ["Extension Packs"],
   "keywords": [
     "python",
     "data-science",
@@ -57,9 +55,7 @@
     "njpwerner.autodocstring",
     "littlefoxteam.vscode-python-test-adapter"
   ],
-  "activationEvents": [
-    "onStartupFinished"
-  ],
+  "activationEvents": ["onStartupFinished"],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [

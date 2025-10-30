@@ -79,14 +79,7 @@ describe('Logger Infrastructure', () => {
     });
 
     it('should support all log levels', () => {
-      const levels: Array<pino.LevelWithSilent> = [
-        'fatal',
-        'error',
-        'warn',
-        'info',
-        'debug',
-        'trace',
-      ];
+      const levels: Array<pino.LevelWithSilent> = ['fatal', 'error', 'warn', 'info', 'debug', 'trace'];
 
       levels.forEach((level) => {
         const logger = createLogger({ level });

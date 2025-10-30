@@ -32,7 +32,7 @@ describe('Project Setup', () => {
     const packageJsonPath = resolve(process.cwd(), 'package.json');
     const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
 
-    expect(packageJson.scripts).toHaveProperty('build:new');
+    expect(packageJson.scripts).toHaveProperty('build');
     expect(packageJson.scripts).toHaveProperty('test');
     expect(packageJson.scripts).toHaveProperty('test:coverage');
     expect(packageJson.scripts).toHaveProperty('test:watch');

@@ -8,10 +8,7 @@
     "cpp": {
       "clangd": {
         "clangd.path": "clangd (or absolute path)",
-        "clangd.arguments": [
-          "--header-insertion=iwyu",
-          "--completion-style=detailed"
-        ],
+        "clangd.arguments": ["--header-insertion=iwyu", "--completion-style=detailed"],
         "clangd.semanticHighlighting": true
       },
       "cmake": {
@@ -55,21 +52,15 @@
       },
       "formatting": {
         "python.formatting.provider": "black",
-        "python.formatting.blackArgs": [
-          "--line-length=88"
-        ],
-        "python.sortImports.args": [
-          "--profile=black"
-        ]
+        "python.formatting.blackArgs": ["--line-length=88"],
+        "python.sortImports.args": ["--profile=black"]
       },
       "editor": {
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
           "source.organizeImports": true
         },
-        "editor.rulers": [
-          88
-        ]
+        "editor.rulers": [88]
       },
       "analysis": {
         "python.analysis.typeCheckingMode": "basic",
@@ -114,10 +105,7 @@
         }
       },
       "testing": {
-        "go.testFlags": [
-          "-v",
-          "-race"
-        ],
+        "go.testFlags": ["-v", "-race"],
         "go.testTimeout": "30s",
         "go.coverageDecorator": {
           "type": "gutter",
@@ -133,10 +121,7 @@
       },
       "editor": {
         "editor.renderWhitespace": "trailing",
-        "editor.rulers": [
-          80,
-          120
-        ]
+        "editor.rulers": [80, 120]
       },
       "files": {
         "files.trimTrailingWhitespace": true,
@@ -146,11 +131,7 @@
         "scm.defaultViewMode": "tree"
       },
       "errorLens": {
-        "errorLens.enabledDiagnosticLevels": [
-          "error",
-          "warning",
-          "info"
-        ]
+        "errorLens.enabledDiagnosticLevels": ["error", "warning", "info"]
       },
       "json": {
         "[json]": {
@@ -196,9 +177,7 @@
       "yaml": {
         "yaml.schemas": {
           "https://json.schemastore.org/github-workflow.json": ".github/workflows/*",
-          "https://json.schemastore.org/docker-compose.json": [
-            "docker-compose.yml"
-          ],
+          "https://json.schemastore.org/docker-compose.json": ["docker-compose.yml"],
           "https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json": [
             "k8s/**/*.yaml"
           ]

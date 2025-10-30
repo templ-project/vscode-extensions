@@ -10,187 +10,98 @@
         "name": "Function Definition",
         "prefix": "fn",
         "description": "Function declaration",
-        "applicableLanguages": [
-          "cpp",
-          "python",
-          "golang",
-          "javascript",
-          "typescript",
-          "csharp"
-        ],
+        "applicableLanguages": ["cpp", "python", "golang", "javascript", "typescript", "csharp"],
         "pattern": "Language-specific function declaration syntax"
       },
       {
         "name": "Class Definition",
         "prefix": "cl",
         "description": "Class/Struct declaration",
-        "applicableLanguages": [
-          "cpp",
-          "python",
-          "golang",
-          "javascript",
-          "typescript",
-          "csharp"
-        ],
+        "applicableLanguages": ["cpp", "python", "golang", "javascript", "typescript", "csharp"],
         "pattern": "Language-specific class/struct declaration syntax"
       },
       {
         "name": "Method Definition",
         "prefix": "cm",
         "description": "Class method declaration",
-        "applicableLanguages": [
-          "cpp",
-          "python",
-          "golang",
-          "javascript",
-          "typescript",
-          "csharp"
-        ],
+        "applicableLanguages": ["cpp", "python", "golang", "javascript", "typescript", "csharp"],
         "pattern": "Language-specific method declaration syntax"
       },
       {
         "name": "If Statement",
         "prefix": "if",
         "description": "Simple if statement",
-        "applicableLanguages": [
-          "cpp",
-          "python",
-          "golang",
-          "javascript",
-          "typescript",
-          "csharp"
-        ],
+        "applicableLanguages": ["cpp", "python", "golang", "javascript", "typescript", "csharp"],
         "pattern": "if (condition) { ... }"
       },
       {
         "name": "If-Else Statement",
         "prefix": "ifel",
         "description": "If-else statement",
-        "applicableLanguages": [
-          "cpp",
-          "python",
-          "golang",
-          "javascript",
-          "typescript",
-          "csharp"
-        ],
+        "applicableLanguages": ["cpp", "python", "golang", "javascript", "typescript", "csharp"],
         "pattern": "if (condition) { ... } else { ... }"
       },
       {
         "name": "For Loop",
         "prefix": "for",
         "description": "Standard for loop",
-        "applicableLanguages": [
-          "cpp",
-          "python",
-          "golang",
-          "javascript",
-          "typescript",
-          "csharp"
-        ],
+        "applicableLanguages": ["cpp", "python", "golang", "javascript", "typescript", "csharp"],
         "pattern": "Language-specific for loop syntax"
       },
       {
         "name": "Range/ForEach Loop",
         "prefix": "forr",
         "description": "Range-based/foreach loop",
-        "applicableLanguages": [
-          "cpp",
-          "python",
-          "golang",
-          "javascript",
-          "typescript",
-          "csharp"
-        ],
+        "applicableLanguages": ["cpp", "python", "golang", "javascript", "typescript", "csharp"],
         "pattern": "for (item in collection) or equivalent"
       },
       {
         "name": "Import Statement",
         "prefix": "im",
         "description": "Import/include statement",
-        "applicableLanguages": [
-          "python",
-          "golang",
-          "javascript",
-          "typescript"
-        ],
+        "applicableLanguages": ["python", "golang", "javascript", "typescript"],
         "pattern": "import package or from package import"
       },
       {
         "name": "Print/Log Statement",
         "prefix": "log",
         "description": "Print or log output",
-        "applicableLanguages": [
-          "cpp",
-          "python",
-          "golang",
-          "javascript",
-          "typescript",
-          "csharp"
-        ],
+        "applicableLanguages": ["cpp", "python", "golang", "javascript", "typescript", "csharp"],
         "pattern": "Language-specific print/log syntax"
       },
       {
         "name": "Debug Print",
         "prefix": "debug",
         "description": "Debug logging with variable inspection",
-        "applicableLanguages": [
-          "python",
-          "golang",
-          "javascript",
-          "typescript"
-        ],
+        "applicableLanguages": ["python", "golang", "javascript", "typescript"],
         "pattern": "Language-specific debug output with variable name and value"
       },
       {
         "name": "Test Function",
         "prefix": "test",
         "description": "Test function/method",
-        "applicableLanguages": [
-          "python",
-          "golang",
-          "javascript",
-          "typescript",
-          "csharp"
-        ],
+        "applicableLanguages": ["python", "golang", "javascript", "typescript", "csharp"],
         "pattern": "Language/framework-specific test function"
       },
       {
         "name": "TODO Comment",
         "prefix": "todo",
         "description": "TODO comment marker",
-        "applicableLanguages": [
-          "cpp",
-          "python",
-          "golang",
-          "javascript",
-          "typescript",
-          "csharp"
-        ],
+        "applicableLanguages": ["cpp", "python", "golang", "javascript", "typescript", "csharp"],
         "pattern": "// TODO: or # TODO: depending on language"
       },
       {
         "name": "Main Entry Point",
         "prefix": "main",
         "description": "Main function or entry point",
-        "applicableLanguages": [
-          "cpp",
-          "python",
-          "golang",
-          "csharp"
-        ],
+        "applicableLanguages": ["cpp", "python", "golang", "csharp"],
         "pattern": "Language-specific main function or if __name__ guard"
       },
       {
         "name": "Try-Catch/Error Handling",
         "prefix": "try",
         "description": "Exception/error handling block",
-        "applicableLanguages": [
-          "python",
-          "javascript",
-          "typescript",
-          "csharp"
-        ],
+        "applicableLanguages": ["python", "javascript", "typescript", "csharp"],
         "pattern": "try { ... } catch (e) { ... } or except"
       }
     ],

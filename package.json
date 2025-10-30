@@ -41,18 +41,10 @@
     "version:store": "node scripts/version-manager.js store",
     "watch:all": "npm run watch --workspaces --if-present"
   },
-  "keywords": [
-    "vscode",
-    "vscodium",
-    "extension-pack",
-    "development",
-    "tools"
-  ],
+  "keywords": ["vscode", "vscodium", "extension-pack", "development", "tools"],
   "author": "templ-project",
   "license": "MIT",
-  "workspaces": [
-    "packages/*/*"
-  ],
+  "workspaces": ["packages/*/*"],
   "engines": {
     "node": ">=20.0.0"
   },

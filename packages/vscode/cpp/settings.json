@@ -1,40 +1,40 @@
 {
   "clangd.path": "clangd",
   "clangd.arguments": [
-  "--header-insertion=iwyu",
-  "--completion-style=detailed",
-  "--function-arg-placeholders",
-  "--fallback-style=llvm"
-],
+    "--header-insertion=iwyu",
+    "--completion-style=detailed",
+    "--function-arg-placeholders",
+    "--fallback-style=llvm"
+  ],
   "clangd.semanticHighlighting": true,
   "cmake.configureOnOpen": false,
   "cmake.buildDirectory": "${workspaceFolder}/build",
   "cmake.generator": "Ninja",
   "files.associations": {
-  "*.h": "cpp",
-  "*.hpp": "cpp",
-  "*.cpp": "cpp",
-  "*.cc": "cpp",
-  "*.cxx": "cpp",
-  "*.c++": "cpp",
-  "*.C": "cpp",
-  "*.tpp": "cpp",
-  "*.ipp": "cpp"
-},
+    "*.h": "cpp",
+    "*.hpp": "cpp",
+    "*.cpp": "cpp",
+    "*.cc": "cpp",
+    "*.cxx": "cpp",
+    "*.c++": "cpp",
+    "*.C": "cpp",
+    "*.tpp": "cpp",
+    "*.ipp": "cpp"
+  },
   "clang-format.executable": "clang-format",
   "clang-format.style": "llvm",
   "[cpp]": {
-  "editor.defaultFormatter": "xaver.clang-format",
-  "editor.formatOnSave": true,
-  "editor.formatOnType": true
-},
+    "editor.defaultFormatter": "xaver.clang-format",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true
+  },
   "[c]": {
-  "editor.defaultFormatter": "xaver.clang-format",
-  "editor.formatOnSave": true,
-  "editor.formatOnType": true
-},
+    "editor.defaultFormatter": "xaver.clang-format",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true
+  },
   "editor.suggest.insertMode": "replace",
   "editor.semanticTokenColorCustomizations": {
-  "enabled": true
-}
+    "enabled": true
+  }
 }

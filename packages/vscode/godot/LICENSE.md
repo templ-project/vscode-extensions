@@ -30,37 +30,37 @@ This extension pack installs and manages third-party VSCode extensions. Each ext
   - Description: Complete Godot development support with LSP, GDScript syntax highlighting, and debugging
   - Publisher: geequlim
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;geequlim.godot-tools)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=geequlim.godot-tools)
 - **GDScript** (`jjkim.gdscript`)
   - Description: Syntax highlighting and code completion for GDScript
   - Publisher: jjkim
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;jjkim.gdscript)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=jjkim.gdscript)
 - **Godot Files** (`alfish.godot-files`)
   - Description: Syntax highlighting for Godot files (.tres, .tscn, .godot, etc.)
   - Publisher: alfish
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;alfish.godot-files)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=alfish.godot-files)
 - **Godot Shaders** (`arkii.godot-shaders`)
   - Description: Syntax highlighting and support for Godot shader files
   - Publisher: arkii
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;arkii.godot-shaders)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=arkii.godot-shaders)
 - **Godot Snippets** (`razoric.gdscript-snippets`)
   - Description: Code snippets for GDScript and Godot development
   - Publisher: razoric
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;razoric.gdscript-snippets)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=razoric.gdscript-snippets)
 - **TODO Highlight** (`wayou.vscode-todo-highlight`)
   - Description: Highlight TODOs, FIXMEs, and other annotations in your code
   - Publisher: wayou
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;wayou.vscode-todo-highlight)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight)
 - **Rainbow Brackets** (`2gua.rainbow-brackets`)
   - Description: Provide rainbow colors for the round brackets, the square brackets and the squiggly brackets
   - Publisher: 2gua
   - License: MIT
-  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName&#x3D;2gua.rainbow-brackets)
+  - Marketplace: [View Extension](https://marketplace.visualstudio.com/items?itemName=2gua.rainbow-brackets)
 
 ## Disclaimer
 

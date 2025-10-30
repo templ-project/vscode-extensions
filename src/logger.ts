@@ -87,9 +87,6 @@ export function createLogger(options: LoggerOptions = {}): pino.Logger {
  * configLoader.debug('Loading configuration...');
  * ```
  */
-export function createChildLogger(
-  parent: pino.Logger,
-  context: Record<string, unknown>
-): pino.Logger {
+export function createChildLogger(parent: pino.Logger, context: Record<string, unknown>): pino.Logger {
   return parent.child(context);
 }
