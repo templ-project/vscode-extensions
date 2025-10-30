@@ -5,3 +5,4 @@
  */
 
 export { TemplateGenerator } from "./TemplateGenerator.js";
+export { readExistingVersion, isValidVersion } from "./version-utils.js";
