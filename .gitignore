@@ -1,3 +1,11 @@
+# CwAI
+.cwai
+.github/prompts
+
+# Env
+.env*
+!.env.example
+
 # Logs
 logs
 *.log

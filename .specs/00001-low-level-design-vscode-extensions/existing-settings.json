@@ -1,0 +1,230 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Existing VSCode Settings Configurations",
+  "description": "Inventory of all settings currently defined in extension pack configurations",
+  "version": "1.0.0",
+  "lastUpdated": "2025-10-30",
+  "languages": {
+    "cpp": {
+      "clangd": {
+        "clangd.path": "clangd (or absolute path)",
+        "clangd.arguments": [
+          "--header-insertion=iwyu",
+          "--completion-style=detailed"
+        ],
+        "clangd.semanticHighlighting": true
+      },
+      "cmake": {
+        "cmake.configureOnOpen": false,
+        "cmake.buildDirectory": "${workspaceFolder}/build",
+        "cmake.generator": "Ninja"
+      },
+      "formatting": {
+        "clang-format.executable": "clang-format",
+        "clang-format.style": "llvm"
+      },
+      "editor": {
+        "[cpp]": {
+          "editor.defaultFormatter": "xaver.clang-format",
+          "editor.formatOnSave": true,
+          "editor.formatOnType": true
+        },
+        "[c]": {
+          "editor.defaultFormatter": "xaver.clang-format",
+          "editor.formatOnSave": true
+        }
+      },
+      "files": {
+        "files.associations": {
+          "*.h": "cpp",
+          "*.hpp": "cpp",
+          "*.cpp": "cpp",
+          "*.tpp": "cpp",
+          "*.ipp": "cpp"
+        }
+      }
+    },
+    "python": {
+      "interpreter": {
+        "python.defaultInterpreterPath": "./venv/bin/python"
+      },
+      "linting": {
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.linting.flake8Enabled": true
+      },
+      "formatting": {
+        "python.formatting.provider": "black",
+        "python.formatting.blackArgs": [
+          "--line-length=88"
+        ],
+        "python.sortImports.args": [
+          "--profile=black"
+        ]
+      },
+      "editor": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": true
+        },
+        "editor.rulers": [
+          88
+        ]
+      },
+      "analysis": {
+        "python.analysis.typeCheckingMode": "basic",
+        "python.analysis.autoImportCompletions": true,
+        "python.analysis.diagnosticMode": "workspace"
+      },
+      "testing": {
+        "python.testing.pytestEnabled": true,
+        "python.testing.unittestEnabled": false,
+        "python.testing.autoTestDiscoverOnSaveEnabled": true
+      },
+      "jupyter": {
+        "jupyter.askForKernelRestart": false,
+        "jupyter.interactiveWindow.textEditor.executeSelection": true
+      },
+      "terminal": {
+        "terminal.integrated.env": {
+          "PYTHONPATH": "${workspaceFolder}"
+        }
+      }
+    },
+    "golang": {
+      "language": {
+        "go.useLanguageServer": true,
+        "go.formatTool": "goimports",
+        "go.lintTool": "golangci-lint"
+      },
+      "actions": {
+        "go.lintOnSave": "workspace",
+        "go.vetOnSave": "workspace",
+        "go.buildOnSave": "workspace",
+        "go.testOnSave": false
+      },
+      "editor": {
+        "[go]": {
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          },
+          "editor.tabSize": 4,
+          "editor.insertSpaces": false
+        }
+      },
+      "testing": {
+        "go.testFlags": [
+          "-v",
+          "-race"
+        ],
+        "go.testTimeout": "30s",
+        "go.coverageDecorator": {
+          "type": "gutter",
+          "coveredHighlightColor": "rgba(64,128,128,0.5)"
+        }
+      }
+    }
+  },
+  "generic": {
+    "essential": {
+      "workbench": {
+        "workbench.colorTheme": "Default Dark+"
+      },
+      "editor": {
+        "editor.renderWhitespace": "trailing",
+        "editor.rulers": [
+          80,
+          120
+        ]
+      },
+      "files": {
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true
+      },
+      "scm": {
+        "scm.defaultViewMode": "tree"
+      },
+      "errorLens": {
+        "errorLens.enabledDiagnosticLevels": [
+          "error",
+          "warning",
+          "info"
+        ]
+      },
+      "json": {
+        "[json]": {
+          "editor.defaultFormatter": "vscode.json-language-features",
+          "editor.formatOnSave": true,
+          "editor.tabSize": 2
+        },
+        "[jsonc]": {
+          "editor.defaultFormatter": "vscode.json-language-features",
+          "editor.formatOnSave": true,
+          "editor.tabSize": 2
+        }
+      }
+    },
+    "extended": {
+      "api": {
+        "openapi.completion.enable": true,
+        "openapi.validation.enable": true,
+        "rest-client.enableTelemetry": false,
+        "rest-client.showResponseInDifferentTab": true
+      },
+      "docker": {
+        "docker.attachShellCommand.linuxContainer": "/bin/bash",
+        "docker.attachShellCommand.windowsContainer": "cmd.exe",
+        "docker.showStartPage": false
+      },
+      "kubernetes": {
+        "vs-kubernetes.vs-kubernetes.namespace": "",
+        "vs-kubernetes.outputFormat": "yaml",
+        "vs-kubernetes.autoCleanupOnDebugTerminate": true
+      },
+      "github": {
+        "github.pullRequests.createOnPublishBranch": "never",
+        "github.pullRequests.showInTimeline": true,
+        "githubActions.workflows.pinned.refresh.enabled": true
+      },
+      "git": {
+        "git.enableSmartCommit": true,
+        "git.autofetch": true,
+        "git.autofetchPeriod": 180,
+        "git.confirmSync": false
+      },
+      "yaml": {
+        "yaml.schemas": {
+          "https://json.schemastore.org/github-workflow.json": ".github/workflows/*",
+          "https://json.schemastore.org/docker-compose.json": [
+            "docker-compose.yml"
+          ],
+          "https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json": [
+            "k8s/**/*.yaml"
+          ]
+        },
+        "yaml.format.enable": true,
+        "yaml.validate": true
+      }
+    }
+  },
+  "notes": {
+    "scopes": {
+      "user": "Applied globally to all VSCode workspaces",
+      "workspace": "Applied only to the current workspace"
+    },
+    "patterns": {
+      "languageSpecific": "Use [language] for language-specific settings",
+      "editorConfig": "formatOnSave, tabSize, insertSpaces common patterns",
+      "linting": "Enable linters and configure on-save actions",
+      "formatting": "Set default formatters and format arguments"
+    },
+    "bestPractices": [
+      "Use workspace scope for project-specific settings",
+      "Use user scope for personal preferences",
+      "Document why settings are set to specific values",
+      "Group related settings together",
+      "Use language-specific overrides for consistency"
+    ]
+  }
+}

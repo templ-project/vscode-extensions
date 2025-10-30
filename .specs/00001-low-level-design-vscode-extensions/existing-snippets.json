@@ -1,0 +1,367 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Existing VSCode Snippets Configurations",
+  "description": "Inventory of code snippets currently defined in extension pack configurations",
+  "version": "1.0.0",
+  "lastUpdated": "2025-10-30",
+  "generic": {
+    "snippets": [
+      {
+        "name": "Function Definition",
+        "prefix": "fn",
+        "description": "Function declaration",
+        "applicableLanguages": [
+          "cpp",
+          "python",
+          "golang",
+          "javascript",
+          "typescript",
+          "csharp"
+        ],
+        "pattern": "Language-specific function declaration syntax"
+      },
+      {
+        "name": "Class Definition",
+        "prefix": "cl",
+        "description": "Class/Struct declaration",
+        "applicableLanguages": [
+          "cpp",
+          "python",
+          "golang",
+          "javascript",
+          "typescript",
+          "csharp"
+        ],
+        "pattern": "Language-specific class/struct declaration syntax"
+      },
+      {
+        "name": "Method Definition",
+        "prefix": "cm",
+        "description": "Class method declaration",
+        "applicableLanguages": [
+          "cpp",
+          "python",
+          "golang",
+          "javascript",
+          "typescript",
+          "csharp"
+        ],
+        "pattern": "Language-specific method declaration syntax"
+      },
+      {
+        "name": "If Statement",
+        "prefix": "if",
+        "description": "Simple if statement",
+        "applicableLanguages": [
+          "cpp",
+          "python",
+          "golang",
+          "javascript",
+          "typescript",
+          "csharp"
+        ],
+        "pattern": "if (condition) { ... }"
+      },
+      {
+        "name": "If-Else Statement",
+        "prefix": "ifel",
+        "description": "If-else statement",
+        "applicableLanguages": [
+          "cpp",
+          "python",
+          "golang",
+          "javascript",
+          "typescript",
+          "csharp"
+        ],
+        "pattern": "if (condition) { ... } else { ... }"
+      },
+      {
+        "name": "For Loop",
+        "prefix": "for",
+        "description": "Standard for loop",
+        "applicableLanguages": [
+          "cpp",
+          "python",
+          "golang",
+          "javascript",
+          "typescript",
+          "csharp"
+        ],
+        "pattern": "Language-specific for loop syntax"
+      },
+      {
+        "name": "Range/ForEach Loop",
+        "prefix": "forr",
+        "description": "Range-based/foreach loop",
+        "applicableLanguages": [
+          "cpp",
+          "python",
+          "golang",
+          "javascript",
+          "typescript",
+          "csharp"
+        ],
+        "pattern": "for (item in collection) or equivalent"
+      },
+      {
+        "name": "Import Statement",
+        "prefix": "im",
+        "description": "Import/include statement",
+        "applicableLanguages": [
+          "python",
+          "golang",
+          "javascript",
+          "typescript"
+        ],
+        "pattern": "import package or from package import"
+      },
+      {
+        "name": "Print/Log Statement",
+        "prefix": "log",
+        "description": "Print or log output",
+        "applicableLanguages": [
+          "cpp",
+          "python",
+          "golang",
+          "javascript",
+          "typescript",
+          "csharp"
+        ],
+        "pattern": "Language-specific print/log syntax"
+      },
+      {
+        "name": "Debug Print",
+        "prefix": "debug",
+        "description": "Debug logging with variable inspection",
+        "applicableLanguages": [
+          "python",
+          "golang",
+          "javascript",
+          "typescript"
+        ],
+        "pattern": "Language-specific debug output with variable name and value"
+      },
+      {
+        "name": "Test Function",
+        "prefix": "test",
+        "description": "Test function/method",
+        "applicableLanguages": [
+          "python",
+          "golang",
+          "javascript",
+          "typescript",
+          "csharp"
+        ],
+        "pattern": "Language/framework-specific test function"
+      },
+      {
+        "name": "TODO Comment",
+        "prefix": "todo",
+        "description": "TODO comment marker",
+        "applicableLanguages": [
+          "cpp",
+          "python",
+          "golang",
+          "javascript",
+          "typescript",
+          "csharp"
+        ],
+        "pattern": "// TODO: or # TODO: depending on language"
+      },
+      {
+        "name": "Main Entry Point",
+        "prefix": "main",
+        "description": "Main function or entry point",
+        "applicableLanguages": [
+          "cpp",
+          "python",
+          "golang",
+          "csharp"
+        ],
+        "pattern": "Language-specific main function or if __name__ guard"
+      },
+      {
+        "name": "Try-Catch/Error Handling",
+        "prefix": "try",
+        "description": "Exception/error handling block",
+        "applicableLanguages": [
+          "python",
+          "javascript",
+          "typescript",
+          "csharp"
+        ],
+        "pattern": "try { ... } catch (e) { ... } or except"
+      }
+    ],
+    "notes": "Generic snippets represent common programming constructs that appear across multiple languages with similar semantics but different syntax"
+  },
+  "languages": {
+    "cpp": {
+      "snippets": [
+        {
+          "name": "header_guard",
+          "prefix": "guard",
+          "description": "Header guard template",
+          "pattern": "#ifndef/#define/#endif pattern based on filename",
+          "cppSpecific": true
+        },
+        {
+          "name": "namespace",
+          "prefix": "namespace",
+          "description": "Namespace template",
+          "pattern": "namespace declaration with closing comment",
+          "cppSpecific": true
+        }
+      ],
+      "notes": "C++ snippets focus on modern C++ patterns and boilerplate reduction. Generic snippets (fn, cl, for, forr, main, log, todo) are inherited from generic section."
+    },
+    "python": {
+      "snippets": [
+        {
+          "name": "While Loop",
+          "prefix": "whl",
+          "description": "Python while loop",
+          "pythonSpecific": true
+        },
+        {
+          "name": "From Import",
+          "prefix": "fim",
+          "description": "Python from import statement",
+          "pattern": "from module import name",
+          "pythonSpecific": true
+        }
+      ],
+      "notes": "Python snippets follow PEP 257 docstring conventions and testing best practices. Generic snippets (fn, cl, cm, if, ifel, for, im, log, debug, test, main, try, todo) are inherited from generic section."
+    },
+    "golang": {
+      "snippets": [
+        {
+          "name": "Interface Declaration",
+          "prefix": "inf",
+          "description": "Go interface definition",
+          "pattern": "type InterfaceName interface { Method() }",
+          "goSpecific": true
+        },
+        {
+          "name": "Switch Statement",
+          "prefix": "sw",
+          "description": "Switch statement with cases and default",
+          "goSpecific": true
+        },
+        {
+          "name": "Error Check",
+          "prefix": "err",
+          "description": "Standard Go error checking",
+          "pattern": "if err != nil { return err }",
+          "goSpecific": true
+        },
+        {
+          "name": "Error Check with Log",
+          "prefix": "errl",
+          "description": "Error checking with logging",
+          "pattern": "if err != nil with log.Printf",
+          "goSpecific": true
+        },
+        {
+          "name": "Package Declaration",
+          "prefix": "pkg",
+          "description": "Package declaration",
+          "goSpecific": true
+        },
+        {
+          "name": "Import Block",
+          "prefix": "imb",
+          "description": "Import block with multiple packages",
+          "goSpecific": true
+        },
+        {
+          "name": "Benchmark Function",
+          "prefix": "bench",
+          "description": "Go benchmark function",
+          "pattern": "func BenchmarkName(b *testing.B) with loop",
+          "goSpecific": true
+        },
+        {
+          "name": "Printf Statement",
+          "prefix": "logf",
+          "description": "fmt.Printf statement with formatting",
+          "goSpecific": true
+        },
+        {
+          "name": "Log Statement",
+          "prefix": "logl",
+          "description": "log.Println statement",
+          "goSpecific": true
+        },
+        {
+          "name": "HTTP Handler",
+          "prefix": "handler",
+          "description": "HTTP handler function",
+          "pattern": "func handler(w http.ResponseWriter, r *http.Request)",
+          "goSpecific": true
+        },
+        {
+          "name": "Go Routine",
+          "prefix": "go",
+          "description": "Go routine call",
+          "pattern": "go functionCall(args)",
+          "goSpecific": true
+        },
+        {
+          "name": "Channel Declaration",
+          "prefix": "ch",
+          "description": "Channel declaration",
+          "pattern": "ch := make(chan type, buffer)",
+          "goSpecific": true
+        }
+      ],
+      "notes": "Go snippets follow Go idioms and conventions, including error handling patterns. Generic snippets (fn, cm, cl, if, ifel, for, forr, im, log, debug, test, todo, main) are inherited from generic section."
+    }
+  },
+  "patterns": {
+    "common_prefixes": {
+      "fn": "Function/Method declaration",
+      "cl": "Class/Struct declaration",
+      "cm": "Class Method declaration",
+      "if": "If statement",
+      "ifel": "If-else statement",
+      "for": "For loop",
+      "forr": "Range-based for loop",
+      "err": "Error handling",
+      "log": "Logging/Print statement",
+      "debug": "Debug logging",
+      "test": "Test function",
+      "todo": "TODO comment",
+      "main": "Main function/guard"
+    },
+    "snippet_structure": {
+      "prefix": "Trigger text for tab completion",
+      "description": "Human-readable description",
+      "body": "Array of lines with ${1:placeholder} syntax",
+      "placeholders": "${1:name}, ${2:type}, ${0:final cursor position}",
+      "variables": "${TM_FILENAME}, ${TM_DIRECTORY}, etc."
+    }
+  },
+  "notes": {
+    "design_principles": [
+      "Use consistent prefixes across languages (fn, cl, cm, etc.)",
+      "Include docstrings/comments in snippets for documentation",
+      "Use tab stops ($1, $2, etc.) for easy navigation",
+      "Include common patterns (error handling, testing, logging)",
+      "Follow language-specific conventions and idioms",
+      "Keep snippets simple and focused on one task"
+    ],
+    "tab_completion": [
+      "Type prefix + Tab to trigger snippet",
+      "Tab through placeholders to fill in values",
+      "Shift+Tab to go back to previous placeholder",
+      "${0} marks final cursor position"
+    ],
+    "customization": [
+      "Users can override snippets in User Snippets",
+      "Workspace snippets can provide project-specific patterns",
+      "Extension pack snippets provide sensible defaults"
+    ]
+  }
+}

@@ -53,6 +53,7 @@
   "devDependencies": {
     "@templ-project/eslint": "^1.0.4",
     "@templ-project/prettier": "^1.0.3",
+    "@templ-project/tsconfig": "^0.4.2",
     "@types/node": "^20.10.6",
     "handlebars": "^4.7.8",
     "husky": "^9.1.7",
