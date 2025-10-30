@@ -7,8 +7,10 @@
 import { readdir } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import type pino from 'pino';
-import { ConfigurationError } from '../errors.js';
+import { ConfigurationError, ValidationError } from '../errors.js';
 import type { Collection } from './types.js';
+import { CollectionSchema } from './schemas.js';
+import type { ZodError } from 'zod';
 
 /**
  * Cache for loaded collections to avoid redundant imports
@@ -76,7 +78,9 @@ export class ConfigLoader {
       const module = await import(fileUrl);
 
       // Extract collection from module (support both default and named exports)
-      const collection: Collection | undefined = module.default || module[language];
+      // Try: default export, kebab-case name, camelCase name
+      const camelCaseName = language.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+      const collection: Collection | undefined = module.default || module[language] || module[camelCaseName];
 
       if (!collection) {
         throw new ConfigurationError(
@@ -86,7 +90,7 @@ export class ConfigLoader {
             ide,
             language,
             availableExports: Object.keys(module),
-            hint: `Expected default export or named export '${language}'`,
+            hint: `Expected default export or named export '${language}' or '${camelCaseName}'`,
           },
         );
       }
@@ -196,4 +200,130 @@ export class ConfigLoader {
       keys: Array.from(this.cache.keys()),
     };
   }
+
+  /**
+   * Validate a collection object against the Zod schema
+   *
+   * @param collection - Collection object to validate
+   * @param context - Optional context for error messages (ide, language)
+   * @returns ValidationResult with isValid flag and errors array
+   *
+   * @example
+   * ```typescript
+   * const collection = await configLoader.loadCollection('vscode', 'cpp');
+   * const result = configLoader.validateCollection(collection, { ide: 'vscode', language: 'cpp' });
+   * if (!result.isValid) {
+   *   console.error('Validation errors:', result.errors);
+   * }
+   * ```
+   */
+  validateCollection(
+    collection: unknown,
+    context?: { ide?: string; language?: string },
+  ): ValidationResult {
+    try {
+      // Validate using Zod schema
+      CollectionSchema.parse(collection);
+
+      this.logger.debug({ context }, 'Collection validation passed');
+      return {
+        isValid: true,
+        errors: [],
+      };
+    } catch (error) {
+      // Handle Zod validation errors
+      if (this.isZodError(error)) {
+        const errors = error.issues.map((issue) => {
+          const path = issue.path.length > 0 ? issue.path.join('.') : 'root';
+          return `${path}: ${issue.message}`;
+        });
+
+        this.logger.warn(
+          {
+            context,
+            errors,
+            issueCount: error.issues.length,
+          },
+          'Collection validation failed',
+        );
+
+        return {
+          isValid: false,
+          errors,
+        };
+      }
+
+      // Handle unexpected errors
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      this.logger.error({ err: error, context }, 'Unexpected validation error');
+
+      return {
+        isValid: false,
+        errors: [`Unexpected validation error: ${errorMessage}`],
+      };
+    }
+  }
+
+  /**
+   * Validate and throw if collection is invalid
+   *
+   * Convenience method that validates and throws ValidationError if invalid
+   *
+   * @param collection - Collection object to validate
+   * @param context - Context for error messages (ide, language)
+   * @throws {ValidationError} If validation fails
+   *
+   * @example
+   * ```typescript
+   * const collection = await configLoader.loadCollection('vscode', 'cpp');
+   * configLoader.validateAndThrow(collection, { ide: 'vscode', language: 'cpp' });
+   * // If we reach here, collection is valid
+   * ```
+   */
+  validateAndThrow(collection: unknown, context: { ide: string; language: string }): void {
+    const result = this.validateCollection(collection, context);
+
+    if (!result.isValid) {
+      const validationError = new ValidationError(
+        `Collection validation failed for ${context.ide}/${context.language}`,
+        {
+          ide: context.ide,
+          language: context.language,
+          errors: result.errors,
+          errorCount: result.errors.length,
+        },
+      );
+
+      this.logger.error(
+        {
+          err: validationError,
+          context,
+          errors: result.errors,
+        },
+        'Collection validation failed',
+      );
+
+      throw validationError;
+    }
+  }
+
+  /**
+   * Type guard for Zod errors
+   */
+  private isZodError(error: unknown): error is ZodError {
+    return (
+      typeof error === 'object' &&
+      error !== null &&
+      'issues' in error &&
+      Array.isArray((error as { issues: unknown }).issues)
+    );
+  }
+}
+
+/**
+ * Validation result interface
+ */
+export interface ValidationResult {
+  isValid: boolean;
+  errors: string[];
 }
