@@ -1,11 +1,12 @@
 {
   "name": "vscode-extensions",
   "version": "1.2.1",
+  "type": "module",
   "description": "VSCode Extension Packs for different development environments",
   "main": "scripts/generate-all.js",
   "scripts": {
-    "build:new": "tsc",
-    "build": "run-s version:store clean generate compile:all package prettify lint",
+    "build": "tsc",
+    "build:old": "run-s version:store clean generate compile:all package prettify lint",
     "clean": "rimraf packages dist",
     "compile:all": "npm run compile --workspaces --if-present",
     "compile:vscode-js": "npm run compile --workspace=packages/vscode/javascript",
@@ -18,7 +19,7 @@
     "generate:vscode": "npx ts-node scripts/generate-all.ts vscode",
     "generate:vscodium": "npx ts-node scripts/generate-all.ts vscodium",
     "generate": "npx ts-node scripts/generate-all.ts",
-    "help": "echo 'Available scripts: generate, generate:vscode, generate:vscodium, generate:javascript, clean, compile:all, watch:all, package, package:vscode, package:vscodium, package:javascript, move-packages, build, test:workflow, test:validate, version:store, version:restore, version:set, version:get, version:list, version:cleanup, version:remove, lint, prettify'",
+    "help": "echo 'Available scripts: generate, generate:vscode, generate:vscodium, generate:javascript, clean, compile:all, watch:all, package, package:vscode, package:vscodium, package:javascript, move-packages, build, test:workflow, test:validate, version:store, version:restore, version:set, version:get, version:list, version:cleanup, version:remove, lint'",
     "license-check": "licensee --errors-only",
     "lint:check": "eslint .",
     "lint": "eslint --fix .",

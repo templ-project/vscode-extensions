@@ -1,5 +1,5 @@
 {
-  "extends": "@templ-project/tsconfig/cjs.json",
+  "extends": "@templ-project/tsconfig/esm.json",
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",

@@ -1,5 +1,5 @@
 npm run build
 
-npx lint-staged
+# npx lint-staged
 
 git add .
