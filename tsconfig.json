@@ -1,35 +1,22 @@
 {
+  "extends": "@templ-project/tsconfig/cjs.json",
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "lib": ["ES2022"],
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "allowJs": true,
-    "declaration": true,
     "outDir": "./dist",
-    "rootDir": "./",
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
+    "rootDir": "./src",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
     "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true
+    "noUnusedParameters": false
   },
-  "include": ["scripts/**/*", "configs/typescript/**/*", "configs/shared"],
-  "exclude": ["node_modules", "packages", "dist", "templates"],
-  "ts-node": {
-    "esm": false,
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  }
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "packages",
+    "dist",
+    "templates",
+    "tests"
+  ]
 }

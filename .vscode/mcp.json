@@ -1,0 +1,19 @@
+{
+  "servers": {
+    "language-server": {
+      "command": "/Users/dragosc/go/bin/mcp-language-server",
+      "args": [
+        "--workspace",
+        "../",
+        "--lsp",
+        "typescript-language-server",
+        "--",
+        "--stdio"
+      ]
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
+    }
+  }
+}
