@@ -6,3 +6,5 @@
 
 export { TemplateGenerator } from "./TemplateGenerator.js";
 export { readExistingVersion, isValidVersion } from "./version-utils.js";
+export { ExtensionPackBuilder } from "./ExtensionPackBuilder.js";
+export type { BuildOptions, BuildResult } from "./ExtensionPackBuilder.js";

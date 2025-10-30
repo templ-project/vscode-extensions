@@ -64,6 +64,23 @@ export class TemplateGenerator {
       return str.charAt(0).toUpperCase() + str.slice(1);
     });
 
+    // Helper: Check if value is a string
+    Handlebars.registerHelper("isString", (value: unknown) => {
+      return typeof value === "string";
+    });
+
+    // Helper: Escape JSON for use in JSON files
+    Handlebars.registerHelper("escapeJson", (str: string) => {
+      if (!str) return "";
+      return str.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+    });
+
+    // Helper: Trim whitespace
+    Handlebars.registerHelper("trim", (str: string) => {
+      if (!str) return "";
+      return str.trim();
+    });
+
     this.logger.debug("Handlebars helpers registered");
   }
 

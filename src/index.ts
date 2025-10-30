@@ -6,7 +6,8 @@
 
 import { createLogger, createChildLogger } from './logger.js';
 import { ConfigLoader } from './config/index.js';
-import { TemplateGenerator, readExistingVersion, isValidVersion } from './build/index.js';
+import { TemplateGenerator, readExistingVersion, isValidVersion, ExtensionPackBuilder } from './build/index.js';
+import type { BuildOptions, BuildResult } from './build/index.js';
 
 // Create root logger
 const logger = createLogger();
@@ -20,8 +21,11 @@ const configLoader = new ConfigLoader(logger);
 // Initialize TemplateGenerator (example)
 const templateGenerator = new TemplateGenerator(logger);
 
+// Initialize ExtensionPackBuilder (example)
+const extensionPackBuilder = new ExtensionPackBuilder(logger, templateGenerator);
+
 // Example of creating child loggers for modules (to be used in future stories)
-// const builder = createChildLogger(logger, { module: 'ExtensionPackBuilder' });
 // const publisher = createChildLogger(logger, { module: 'MarketplacePublisher' });
 
-export { createLogger, createChildLogger, ConfigLoader, TemplateGenerator, readExistingVersion, isValidVersion };
+export { createLogger, createChildLogger, ConfigLoader, TemplateGenerator, readExistingVersion, isValidVersion, ExtensionPackBuilder };
+export type { BuildOptions, BuildResult };

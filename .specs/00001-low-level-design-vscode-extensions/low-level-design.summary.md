@@ -2007,3 +2007,196 @@ The version preservation utilities are production-ready and ensure that version 
 - Integration tests against real repository package.json
 
 **Exit Criteria Met**: All acceptance criteria for S-007 satisfied. Given existing package.json with version 1.2.3, when reading version, then 1.2.3 is returned. Version preservation utilities are complete and ready to be used by ExtensionPackBuilder for file generation. Ready to proceed to S-008 (ExtensionPackBuilder - File Generation).
+
+---
+
+# Story S-008 Implementation Summary
+
+**Story**: ExtensionPackBuilder - File Generation
+**Status**: ✅ Complete
+**Date**: November 28, 2025
+
+## Overview
+
+Successfully implemented the ExtensionPackBuilder class that orchestrates the complete extension pack build pipeline. The builder integrates ConfigLoader (S-004/S-005), TemplateGenerator (S-006), and version-utils (S-007) to generate all required files for VSCode/VSCodium extension packs, including package.json, README, CHANGELOG, LICENSE, snippets, settings, keybindings, and logo.
+
+## Actions Taken
+
+### 1. ExtensionPackBuilder Class Implementation
+
+Created `src/build/ExtensionPackBuilder.ts` (592 lines) with comprehensive build orchestration:
+
+**Core Interfaces**:
+- **BuildOptions** - Build configuration input
+  - ide, language, organization, publisher, repositoryUrl, outputDir, logosDir
+
+- **BuildResult** - Build output metadata
+  - packageDir, files[], metadata (ide, language, version, extensionCount)
+
+- **TemplateContext** - Internal template data structure
+  - 20+ fields for Handlebars templates
+
+**Build Pipeline (6 Steps)**:
+1. Determine output directory
+2. Read existing version (preserve from package.json)
+3. Build template context (transform Collection data)
+4. Create directory structure
+5. Generate files (10 files: 7 required + 3 conditional)
+6. Copy logo (language-specific with generic fallback)
+
+**Main Method - `build(collection, options)`**:
+- Returns Promise<BuildResult>
+- Orchestrates all 6 pipeline steps
+- Comprehensive error handling with BuildError
+
+**Helper Methods**:
+- `buildTemplateContext()` - Transforms Collection to 20+ template fields
+- `generateDisplayName()` - Creates display names (cpp→C++, csharp→C#, etc.)
+- `createDirectoryStructure()` - Creates package directories
+- `generateFiles()` - Renders all template files
+- `copyLogo()` - Copies logo with fallback strategy
+
+### 2. Handlebars Helpers Registration
+
+Updated `src/build/TemplateGenerator.ts` with 3 new helpers:
+- `isString(value)` - Type checking for conditionals
+- `escapeJson(str)` - JSON string escaping
+- `trim(str)` - Whitespace trimming
+
+Total helpers: 6 (json, getPublisher, capitalize, isString, escapeJson, trim)
+
+### 3. Comprehensive Test Suite
+
+Created `tests/build/ExtensionPackBuilder.test.ts` with 10 test cases:
+- Complete build for cpp extension
+- Version preservation on rebuild
+- All required files generation
+- Conditional files (snippets, keybindings, settings)
+- Display name formatting
+- Custom organization/publisher
+- Multi-IDE support (vscode, vscodium)
+- Logo error handling
+- Integration test with real cpp collection
+
+All 10 tests passing ✅ (131 total tests across entire suite)
+
+## Files Changed
+
+| File | Purpose | Status |
+|------|---------|--------|
+| `src/build/ExtensionPackBuilder.ts` | Main builder class (592 lines) | ✅ Created |
+| `src/build/TemplateGenerator.ts` | Added 3 helpers | ✅ Modified |
+| `src/build/index.ts` | Export ExtensionPackBuilder | ✅ Modified |
+| `src/index.ts` | Main entry point integration | ✅ Modified |
+| `tests/build/ExtensionPackBuilder.test.ts` | Test suite (10 tests, 450+ lines) | ✅ Created |
+
+## Quality Gates
+
+### Build ✅
+```bash
+$ npm run build
+> tsc
+# No TypeScript errors
+```
+
+### Tests ✅
+```bash
+$ npm test
+> vitest run
+
+Test Files  9 passed (9)
+     Tests  131 passed (131)
+   Duration  963ms
+```
+
+### Typecheck ✅
+```bash
+$ npm run typecheck
+> tsc --noEmit
+# No type errors
+```
+
+## Requirements Coverage
+
+| Requirement | Status | Notes |
+|-------------|--------|-------|
+| Build 'vscode' and 'cpp' extension pack | ✅ Done | build(collection, options) |
+| Generate packages/vscode/cpp/ directory | ✅ Done | createDirectoryStructure() |
+| Generate package.json with extensionPack | ✅ Done | package.json.handlebars |
+| Generate README.md with extension list | ✅ Done | README.md.handlebars |
+| Generate conditional files (snippets, settings, keybindings) | ✅ Done | Conditional generation |
+| Copy logo.png to package directory | ✅ Done | copyLogo() with fallback |
+| Preserve version from existing package.json | ✅ Done | Uses readExistingVersion() |
+| Use pino child logger | ✅ Done | Structured logging |
+| Throw BuildError on failures | ✅ Done | All errors wrapped |
+| Return BuildResult with metadata | ✅ Done | { packageDir, files, metadata } |
+
+## How to Use
+
+### Basic Build
+
+```typescript
+import { createLogger } from './logger.js';
+import { ConfigLoader } from './config/index.js';
+import { TemplateGenerator } from './build/index.js';
+import { ExtensionPackBuilder } from './build/index.js';
+
+const logger = createLogger();
+const configLoader = new ConfigLoader(logger);
+const templateGenerator = new TemplateGenerator(logger);
+const builder = new ExtensionPackBuilder(logger, templateGenerator);
+
+const collection = await configLoader.loadCollection('vscode', 'cpp');
+const result = await builder.build(collection, {
+  ide: 'vscode',
+  language: 'cpp',
+  organization: 'templ-project',
+  publisher: 'templ-project',
+  repositoryUrl: 'https://github.com/templ-project/vscode-extensions',
+});
+
+console.log('Build complete!');
+console.log('Files generated:', result.files.length);
+```
+
+## Files Generated
+
+**Required Files (7)**:
+1. package.json - Extension manifest
+2. README.md - Documentation
+3. CHANGELOG.md - Version history
+4. LICENSE.md - License text
+5. src/extension.ts - Extension entry point
+6. tsconfig.json - TypeScript config
+7. .vscodeignore - Package exclusions
+
+**Conditional Files (3)**:
+8. settings.json - VSCode settings (if exists)
+9. keybindings.json - Keyboard shortcuts (if exists)
+10. snippets/{language}.json - Code snippets (if exists)
+
+**Asset Files (1)**:
+11. logo.png - Extension icon (128x128)
+
+## Next Steps
+
+- **S-009**: VSIX Packaging (package generated files)
+- **S-010**: CLI Entry Point (command-line interface)
+- **S-015**: GitHub Actions CI/CD (automation)
+
+## Deliverables
+
+✅ **Complete and ready for use**:
+- ExtensionPackBuilder with 6-step build pipeline (592 lines)
+- BuildOptions and BuildResult interfaces
+- TemplateContext with 20+ fields
+- Display name generation with special cases
+- Conditional file generation
+- Logo copying with fallback
+- Version preservation integration
+- 3 new Handlebars helpers
+- Comprehensive test suite (10 tests)
+- Integration test with real cpp collection
+- Pino logging and BuildError integration
+
+**Exit Criteria Met**: All acceptance criteria for S-008 satisfied. ExtensionPackBuilder generates complete extension pack directories with all required files. Ready for S-009 (VSIX Packaging) and S-010 (CLI Entry Point).
