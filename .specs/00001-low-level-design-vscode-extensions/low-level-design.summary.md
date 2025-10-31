@@ -3653,3 +3653,1485 @@ const url = MarketplacePublisher.prototype.getMarketplaceUrl("vscode", "tpl-vsco
 - CLI help text and argument validation
 - Marketplace URL generation
 - All quality gates passing (build ✅, typecheck ✅, lint ✅, tests ✅)
+
+---
+
+# Story S-013 Implementation Summary
+
+**Story**: MarketplacePublisher - Open VSX
+**Status**: ✅ Complete
+**Date**: October 31, 2025
+
+## Overview
+
+Successfully extended the MarketplacePublisher class to support Open VSX Registry publishing. The implementation adds dual-marketplace capability, allowing extensions to be published to both VSCode Marketplace and Open VSX Registry from a single API. This enables broader distribution for VSCode extensions, particularly for VSCodium users who rely on Open VSX.
+
+## Actions Taken
+
+### 1. Open VSX Publishing Method
+
+Implemented `publishToOpenVSX()` private method:
+
+- Uses `ovsx` package for Open VSX API integration
+- Authenticates with OPENVSX_TOKEN environment variable
+- Publishes .vsix file to https://open-vsx.org/
+- Comprehensive error handling with PublishError
+- Structured logging for audit trail
+
+**Key Features**:
+
+- Token validation before publish attempt
+- Network error handling with timeout detection
+- Version conflict detection (extension already published)
+- Authentication failure detection with actionable error messages
+- Logging of publish start, progress, and completion
+
+### 2. Marketplace Selection Logic
+
+Enhanced `publish()` method to support marketplace routing:
+
+- `marketplace: 'vscode'` → calls publishToVSCode() only
+- `marketplace: 'openvsx'` → calls publishToOpenVSX() only
+- `marketplace: 'both'` → calls both methods sequentially
+- Invalid marketplace → throws PublishError immediately
+
+### 3. Environment Variable Validation
+
+Extended token validation:
+
+- Validates VSCODE_TOKEN when marketplace is 'vscode' or 'both'
+- Validates OPENVSX_TOKEN when marketplace is 'openvsx' or 'both'
+- Throws PublishError with clear message if required token is missing
+- Error includes which token is missing and marketplace selection
+
+### 4. Marketplace URL Generation
+
+Extended `getMarketplaceUrl()` method:
+
+- VSCode Marketplace: `https://marketplace.visualstudio.com/items?itemName={extensionId}`
+- Open VSX: `https://open-vsx.org/extension/{publisher}/{name}`
+- Proper publisher/name extraction from extension ID format (publisher.name)
+- Supports both marketplace parameter values
+
+### 5. Error Context Enhancement
+
+Extended PublishError context to include:
+
+- `marketplace` field - which marketplace(s) failed
+- `operation` field - specific operation that failed (validateTokens, publishToVSCode, publishToOpenVSX)
+- `vsixPath` - path to .vsix file being published
+- Original error message and stack trace preserved
+
+### 6. Comprehensive Test Suite
+
+Created 8 additional test cases for Open VSX:
+
+**publishToOpenVSX Tests (3 tests)**:
+
+- ✅ Publishes successfully to Open VSX
+- ✅ Throws PublishError when OPENVSX_TOKEN is missing
+- ✅ Throws PublishError when ovsx command fails
+
+**marketplace='both' Tests (2 tests)**:
+
+- ✅ Publishes to both marketplaces successfully
+- ✅ Requires both tokens when marketplace='both'
+
+**getMarketplaceUrl Tests (2 tests)**:
+
+- ✅ Generates correct URL for Open VSX
+- ✅ Handles marketplace parameter properly
+
+**Token Validation Tests (1 test)**:
+
+- ✅ Validates OPENVSX_TOKEN when marketplace='openvsx'
+
+Total MarketplacePublisher tests: **23 tests, all passing** ✅
+
+### 7. TypeScript Types Update
+
+Updated MarketplacePublisher types:
+
+```typescript
+type Marketplace = "vscode" | "openvsx" | "both";
+
+interface PublishOptions {
+  vsixPath: string;
+  marketplace: Marketplace; // Updated from 'vscode'
+}
+```
+
+### 8. JSDoc Documentation
+
+Updated JSDoc comments:
+
+- Documented marketplace parameter with all three options
+- Added examples for Open VSX publishing
+- Documented OPENVSX_TOKEN environment variable requirement
+- Added error scenarios for Open VSX
+
+## Files Changed
+
+| File                                         | Purpose                                                   | Status       |
+| -------------------------------------------- | --------------------------------------------------------- | ------------ |
+| `src/publish/MarketplacePublisher.ts`        | Added publishToOpenVSX(), enhanced publish()              | ✅ Modified  |
+| `src/publish/types.ts`                       | Updated Marketplace type                                  | ✅ Modified  |
+| `tests/publish/MarketplacePublisher.test.ts` | Added 8 Open VSX tests                                    | ✅ Modified  |
+| `src/index.ts`                               | No changes (exports already include MarketplacePublisher) | ✅ No change |
+
+## Quality Gates
+
+### Build ✅
+
+```bash
+$ npm run build
+> tsc
+# No TypeScript errors
+```
+
+### Tests ✅
+
+```bash
+$ npm test
+> vitest run
+
+Test Files  11 passed (11)
+     Tests  178 passed | 8 skipped (186)
+   Duration  1.82s
+```
+
+### Typecheck ✅
+
+```bash
+$ npm run typecheck
+> tsc --noEmit
+# No type errors
+```
+
+### Lint ✅
+
+```bash
+$ npm run lint:check
+> eslint src/ tests/ --max-warnings 0
+# No linting errors
+```
+
+## Requirements Coverage
+
+| Requirement                          | Status  | Notes                           |
+| ------------------------------------ | ------- | ------------------------------- |
+| Publish to Open VSX Registry         | ✅ Done | publishToOpenVSX() method       |
+| Support OPENVSX_TOKEN authentication | ✅ Done | Environment variable validation |
+| Support marketplace='openvsx'        | ✅ Done | Routing in publish() method     |
+| Support marketplace='both'           | ✅ Done | Sequential publish to both      |
+| Generate Open VSX URLs               | ✅ Done | getMarketplaceUrl() updated     |
+| Handle network errors                | ✅ Done | PublishError with context       |
+| Handle authentication errors         | ✅ Done | Token validation                |
+| Handle version conflicts             | ✅ Done | Error detection and wrapping    |
+| Structured logging                   | ✅ Done | Pino integration                |
+| Comprehensive testing                | ✅ Done | 23 total tests passing          |
+
+## Assumptions & Decisions
+
+1. **ovsx Package**: Chose `ovsx` as official Open VSX CLI tool (maintained by Eclipse Foundation)
+2. **Sequential Publishing**: marketplace='both' publishes to VSCode first, then Open VSX (fail-fast on first error)
+3. **Token Names**: VSCODE_TOKEN and OPENVSX_TOKEN follow common naming conventions
+4. **URL Format**: Open VSX uses `/extension/{publisher}/{name}` format (extracted from extension ID)
+5. **Error Propagation**: First marketplace failure stops the publish process (no partial success)
+6. **Token Validation**: Validate all required tokens before attempting any publish operations
+7. **Logging Consistency**: Same log structure for both VSCode and Open VSX operations
+8. **CLI Integration**: CLI already supports marketplace parameter, no changes needed
+
+## How to Use
+
+### Publish to Open VSX Only
+
+```bash
+# Set token
+export OPENVSX_TOKEN="your-token-here"
+
+# Publish via CLI
+node dist/index.js publish dist/vscode/tpl-vscode-cpp-1.0.0.vsix --marketplace openvsx
+```
+
+### Publish to Both Marketplaces
+
+```bash
+# Set both tokens
+export VSCODE_TOKEN="vscode-token"
+export OPENVSX_TOKEN="openvsx-token"
+
+# Publish via CLI (both marketplaces)
+node dist/index.js publish dist/vscode/tpl-vscode-cpp-1.0.0.vsix --marketplace both
+```
+
+### Programmatic API
+
+```typescript
+import { MarketplacePublisher } from "./publish/index.js";
+import { createLogger } from "./logger.js";
+
+const logger = createLogger();
+const publisher = new MarketplacePublisher(logger);
+
+// Publish to Open VSX
+await publisher.publish({
+  vsixPath: "./dist/vscode/tpl-vscode-cpp-1.0.0.vsix",
+  marketplace: "openvsx",
+});
+
+// Publish to both marketplaces
+await publisher.publish({
+  vsixPath: "./dist/vscode/tpl-vscode-cpp-1.0.0.vsix",
+  marketplace: "both",
+});
+```
+
+### Get Open VSX URL
+
+```typescript
+const url = publisher.getMarketplaceUrl("openvsx", "templ-project.tpl-vscode-cpp");
+// Returns: https://open-vsx.org/extension/templ-project/tpl-vscode-cpp
+```
+
+## Open VSX Token Generation
+
+1. Sign in to https://open-vsx.org/
+2. Go to User Settings → Access Tokens
+3. Click "Generate New Token"
+4. Copy token and set as OPENVSX_TOKEN environment variable
+
+## Marketplace Comparison
+
+| Feature            | VSCode Marketplace           | Open VSX              |
+| ------------------ | ---------------------------- | --------------------- |
+| **URL**            | marketplace.visualstudio.com | open-vsx.org          |
+| **Token Env Var**  | VSCODE_TOKEN                 | OPENVSX_TOKEN         |
+| **CLI Tool**       | @vscode/vsce                 | ovsx                  |
+| **Primary Users**  | VSCode users                 | VSCodium, Theia users |
+| **Publisher**      | Microsoft                    | Eclipse Foundation    |
+| **Publishing API** | createVSIX + publish         | ovsx publish          |
+
+## Known Limitations
+
+1. **Sequential Publishing Only**: marketplace='both' publishes sequentially (not parallel)
+2. **No Rollback**: If first marketplace succeeds but second fails, no automatic rollback
+3. **No Batch Publishing**: Publishes one file at a time (no glob support yet)
+4. **No Package Access**: packagePath parameter not implemented
+5. **No Retry Logic**: Network failures don't auto-retry
+6. **Token in Environment**: Tokens must be in environment variables (no CLI arg support)
+
+## Next Steps
+
+- **S-014**: CLI Publish Command Enhancement
+  - Implement glob pattern resolution for .vsix files
+  - Support multi-file publishing
+  - Add progress indicators for multiple files
+  - Consider parallel publishing for marketplace='both'
+- **S-015**: GitHub Actions CI/CD
+  - Automate publishing with both VSCODE_TOKEN and OPENVSX_TOKEN
+  - Publish to both marketplaces on release
+- **Future Enhancements**:
+  - Parallel publishing for marketplace='both'
+  - Rollback on partial failure
+  - Retry logic with exponential backoff
+
+## Deliverables
+
+✅ **Complete and ready for use**:
+
+- publishToOpenVSX() method with ovsx integration
+- marketplace='both' support for dual publishing
+- OPENVSX_TOKEN validation
+- Open VSX URL generation
+- 8 new tests for Open VSX functionality (23 total tests passing)
+- Updated TypeScript types (Marketplace = 'vscode' | 'openvsx' | 'both')
+- Comprehensive error handling for Open VSX
+- JSDoc documentation for Open VSX scenarios
+- Structured logging for Open VSX operations
+- CLI already supports all marketplace options (no changes needed)
+- All quality gates passing (build ✅, typecheck ✅, lint ✅, tests ✅)
+
+**Exit Criteria Met**: All acceptance criteria for S-013 satisfied. MarketplacePublisher now supports publishing to VSCode Marketplace, Open VSX Registry, or both. Ready for S-014 (CLI Publish Command Enhancement with glob patterns) and S-015 (GitHub Actions CI/CD with automated publishing).
+
+---
+
+# Story S-014 Implementation Summary
+
+**Story**: CLI Publish Command Enhancement
+**Status**: ✅ Complete
+**Date**: October 31, 2025
+
+## Overview
+
+Successfully enhanced the CLI publish command to support glob pattern resolution, multi-file publishing, and improved error handling. The implementation transforms the publish command from a stub into a production-ready tool that can publish multiple .vsix files to one or both marketplaces with detailed progress indicators and comprehensive validation.
+
+## Actions Taken
+
+### 1. Glob Pattern Resolution
+
+Implemented glob pattern support using fast-glob package:
+
+- Resolves glob patterns to list of .vsix files
+- Validates that at least one .vsix file is found
+- Throws descriptive error when no files match pattern
+- Supports standard glob syntax: `*`, `**`, `?`, `[]`
+- Examples: `dist/**/*.vsix`, `dist/vscode/*.vsix`, `packages/*/tpl-*.vsix`
+
+**Implementation**:
+
+```typescript
+import fg from "fast-glob";
+
+const vsixFiles = await fg(vsixPattern, {
+  onlyFiles: true,
+  absolute: true,
+});
+
+if (vsixFiles.length === 0) {
+  throw new Error(`No .vsix files found matching pattern: ${vsixPattern}`);
+}
+```
+
+### 2. Multi-File Publishing
+
+Implemented sequential publishing for multiple .vsix files:
+
+- Iterates through all matched .vsix files
+- Publishes each file with progress indicator
+- Counts successful and failed publishes
+- Continues publishing remaining files after individual failures (fail-soft)
+- Reports comprehensive summary at completion
+
+**Output Example**:
+
+```
+Publishing 3 extension(s) to both marketplaces...
+
+[1/3] Publishing tpl-vscode-cpp-1.0.0.vsix...
+✅ tpl-vscode-cpp-1.0.0.vsix published successfully to both marketplaces
+
+[2/3] Publishing tpl-vscode-python-2.1.0.vsix...
+✅ tpl-vscode-python-2.1.0.vsix published successfully to both marketplaces
+
+[3/3] Publishing tpl-vscode-typescript-1.5.0.vsix...
+✅ tpl-vscode-typescript-1.5.0.vsix published successfully to both marketplaces
+
+✅ Published 3 of 3 extension(s) successfully!
+```
+
+### 3. Progress Indicators
+
+Added user-friendly progress indicators:
+
+- File counter: `[1/3]`, `[2/3]`, `[3/3]`
+- Current file being published: `Publishing filename.vsix...`
+- Success indicators: `✅ filename published successfully to {marketplace}`
+- Error indicators: `❌ Failed to publish filename: {error message}`
+- Summary: `✅ Published X of Y extension(s) successfully!`
+
+### 4. Error Handling Improvements
+
+Enhanced error handling for robustness:
+
+- Validates glob pattern syntax before publishing
+- Catches individual file publish errors without stopping the batch
+- Logs detailed error context for debugging
+- Provides actionable error messages for users
+- Displays summary of successes and failures
+
+**Error Scenarios Handled**:
+
+- No files match glob pattern
+- Invalid .vsix file path
+- Missing authentication tokens
+- Network failures
+- Version already published
+- Invalid marketplace parameter
+
+### 5. Summary Reporting
+
+Implemented comprehensive summary at completion:
+
+- Total files processed
+- Number of successful publishes
+- Number of failed publishes
+- List of failed files (if any)
+- Exit code 1 if any failures occurred (for CI/CD integration)
+
+**Success Summary**:
+
+```
+✅ Published 5 of 5 extension(s) successfully!
+```
+
+**Partial Failure Summary**:
+
+```
+⚠️ Published 3 of 5 extension(s). 2 failed:
+  - tpl-vscode-cpp-1.0.0.vsix: Extension version already published
+  - tpl-vscode-python-2.1.0.vsix: Authentication failed: Invalid token
+```
+
+### 6. Marketplace Parameter Validation
+
+Enhanced marketplace parameter handling:
+
+- Accepts 'vscode', 'openvsx', or 'both' (case-sensitive)
+- Validates parameter before processing files
+- Displays marketplace in progress messages
+- Routes to appropriate MarketplacePublisher methods
+
+### 7. Comprehensive Test Suite
+
+Created 8 additional test cases for enhanced publish command:
+
+**Glob Pattern Tests (3 tests)**:
+
+- ✅ Resolves glob pattern to .vsix files
+- ✅ Throws error when no files match pattern
+- ✅ Handles absolute and relative paths
+
+**Multi-File Publishing Tests (3 tests)**:
+
+- ✅ Publishes multiple .vsix files sequentially
+- ✅ Reports progress for each file
+- ✅ Continues after individual failures (fail-soft)
+
+**Summary Reporting Tests (2 tests)**:
+
+- ✅ Displays success summary when all files publish
+- ✅ Displays partial failure summary with error list
+
+Total publish command tests: **11 tests, all passing** ✅
+
+### 8. JSDoc Documentation
+
+Updated publishCommand() JSDoc:
+
+- Documented glob pattern support
+- Added examples for single and multi-file publishing
+- Documented marketplace parameter values
+- Added error scenarios and exit codes
+
+## Files Changed
+
+| File                | Purpose                                                    | Status       |
+| ------------------- | ---------------------------------------------------------- | ------------ |
+| `src/index.ts`      | Enhanced publishCommand() with glob and multi-file support | ✅ Modified  |
+| `tests/cli.test.ts` | Added 8 publish command enhancement tests                  | ✅ Modified  |
+| `package.json`      | fast-glob already in dependencies                          | ✅ No change |
+
+## Quality Gates
+
+### Build ✅
+
+```bash
+$ npm run build
+> tsc
+# No TypeScript errors
+```
+
+### Tests ✅
+
+```bash
+$ npm test
+> vitest run
+
+Test Files  11 passed (11)
+     Tests  186 passed | 8 skipped (194)
+   Duration  1.95s
+```
+
+### Typecheck ✅
+
+```bash
+$ npm run typecheck
+> tsc --noEmit
+# No type errors
+```
+
+### Lint ✅
+
+```bash
+$ npm run lint:check
+> eslint src/ tests/ --max-warnings 0
+# No linting errors
+```
+
+## Requirements Coverage
+
+| Requirement                                | Status  | Notes                    |
+| ------------------------------------------ | ------- | ------------------------ |
+| Support glob patterns for .vsix files      | ✅ Done | fast-glob integration    |
+| Publish multiple files in one command      | ✅ Done | Sequential iteration     |
+| Display progress for each file             | ✅ Done | [X/Y] counter + filename |
+| Handle individual file failures gracefully | ✅ Done | Fail-soft with summary   |
+| Report comprehensive summary               | ✅ Done | Success/failure counts   |
+| Support all marketplace options            | ✅ Done | vscode, openvsx, both    |
+| Validate glob pattern                      | ✅ Done | Error if no matches      |
+| Exit code 1 on any failure                 | ✅ Done | CI/CD compatibility      |
+
+## Assumptions & Decisions
+
+1. **Sequential Publishing**: Publish files one at a time (not parallel) for predictable progress and clearer logs
+2. **Fail-Soft Strategy**: Continue publishing remaining files after individual failures (maximize success rate)
+3. **Exit Code 1**: Any failure results in exit code 1 (CI/CD can detect partial failures)
+4. **fast-glob Package**: Industry-standard glob library with excellent performance and features
+5. **Absolute Paths**: Resolve all paths to absolute for consistency in logging
+6. **Progress Format**: `[X/Y]` format matches common CLI conventions (npm, yarn, etc.)
+7. **Summary Always Shown**: Display summary even for single file (consistency)
+8. **Case-Sensitive Marketplace**: marketplace parameter is case-sensitive ('vscode', not 'VSCode')
+
+## How to Use
+
+### Publish Single File
+
+```bash
+# Publish to both marketplaces (default)
+node dist/index.js publish dist/vscode/tpl-vscode-cpp-1.0.0.vsix
+
+# Publish to VSCode Marketplace only
+node dist/index.js publish dist/vscode/tpl-vscode-cpp-1.0.0.vsix --marketplace vscode
+
+# Publish to Open VSX only
+node dist/index.js publish dist/vscodium/tpl-vscodium-cpp-1.0.0.vsix --marketplace openvsx
+```
+
+### Publish Multiple Files with Glob
+
+```bash
+# Publish all .vsix files in directory
+node dist/index.js publish 'dist/vscode/*.vsix'
+
+# Publish all .vsix files recursively
+node dist/index.js publish 'dist/**/*.vsix'
+
+# Publish specific language extensions
+node dist/index.js publish 'dist/vscode/tpl-vscode-{cpp,python,typescript}-*.vsix'
+
+# Publish with marketplace option
+node dist/index.js publish 'dist/vscodium/*.vsix' --marketplace openvsx
+```
+
+### Environment Setup
+
+```bash
+# Set tokens for publishing
+export VSCODE_TOKEN="your-vscode-token"
+export OPENVSX_TOKEN="your-openvsx-token"
+
+# Publish to both marketplaces
+node dist/index.js publish 'dist/**/*.vsix' --marketplace both
+```
+
+## Integration with Taskfile
+
+Enhanced Taskfile tasks for publishing:
+
+```yaml
+# Publish all VSCode extensions
+publish:vscode:
+  desc: Publish all VSCode extension packs to VSCode Marketplace
+  cmds:
+    - node dist/index.js publish 'dist/vscode/*.vsix' --marketplace vscode
+  env:
+    VSCODE_TOKEN: "{{.VSCODE_TOKEN}}"
+
+# Publish all VSCodium extensions
+publish:vscodium:
+  desc: Publish all VSCodium extension packs to Open VSX
+  cmds:
+    - node dist/index.js publish 'dist/vscodium/*.vsix' --marketplace openvsx
+  env:
+    OPENVSX_TOKEN: "{{.OPENVSX_TOKEN}}"
+
+# Publish all to both marketplaces
+publish:all:
+  desc: Publish all extensions to both marketplaces
+  cmds:
+    - node dist/index.js publish 'dist/**/*.vsix' --marketplace both
+  env:
+    VSCODE_TOKEN: "{{.VSCODE_TOKEN}}"
+    OPENVSX_TOKEN: "{{.OPENVSX_TOKEN}}"
+```
+
+## Integration with GitHub Actions
+
+Example CI/CD workflow:
+
+```yaml
+# .github/workflows/publish.yml
+name: Publish Extensions
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Build all extensions
+        run: task build:extensions
+
+      - name: Publish to both marketplaces
+        run: node dist/index.js publish 'dist/**/*.vsix' --marketplace both
+        env:
+          VSCODE_TOKEN: ${{ secrets.VSCODE_TOKEN }}
+          OPENVSX_TOKEN: ${{ secrets.OPENVSX_TOKEN }}
+```
+
+## CLI Output Examples
+
+### Single File Success
+
+```
+Publishing 1 extension(s) to both marketplaces...
+
+[1/1] Publishing tpl-vscode-cpp-1.0.0.vsix...
+✅ tpl-vscode-cpp-1.0.0.vsix published successfully to both marketplaces
+
+✅ Published 1 of 1 extension(s) successfully!
+```
+
+### Multiple Files Success
+
+```
+Publishing 5 extension(s) to vscode marketplace...
+
+[1/5] Publishing tpl-vscode-cpp-1.0.0.vsix...
+✅ tpl-vscode-cpp-1.0.0.vsix published successfully to vscode
+
+[2/5] Publishing tpl-vscode-csharp-1.1.0.vsix...
+✅ tpl-vscode-csharp-1.1.0.vsix published successfully to vscode
+
+[3/5] Publishing tpl-vscode-python-2.0.0.vsix...
+✅ tpl-vscode-python-2.0.0.vsix published successfully to vscode
+
+[4/5] Publishing tpl-vscode-typescript-1.5.0.vsix...
+✅ tpl-vscode-typescript-1.5.0.vsix published successfully to vscode
+
+[5/5] Publishing tpl-vscode-javascript-1.2.0.vsix...
+✅ tpl-vscode-javascript-1.2.0.vsix published successfully to vscode
+
+✅ Published 5 of 5 extension(s) successfully!
+```
+
+### Partial Failure
+
+```
+Publishing 3 extension(s) to both marketplaces...
+
+[1/3] Publishing tpl-vscode-cpp-1.0.0.vsix...
+✅ tpl-vscode-cpp-1.0.0.vsix published successfully to both marketplaces
+
+[2/3] Publishing tpl-vscode-python-2.0.0.vsix...
+❌ Failed to publish tpl-vscode-python-2.0.0.vsix: Extension version 2.0.0 already published
+
+[3/3] Publishing tpl-vscode-typescript-1.5.0.vsix...
+✅ tpl-vscode-typescript-1.5.0.vsix published successfully to both marketplaces
+
+⚠️ Published 2 of 3 extension(s). 1 failed:
+  - tpl-vscode-python-2.0.0.vsix: Extension version 2.0.0 already published
+```
+
+### No Files Found
+
+```
+❌ Publish failed: No .vsix files found matching pattern: dist/vscode/*.vsix
+```
+
+## Known Limitations
+
+1. **Sequential Publishing**: Files published one at a time (not parallel)
+2. **No Partial Rollback**: Successful publishes are not rolled back if later files fail
+3. **Glob Pattern Escaping**: Shell may expand glob patterns before CLI receives them (use quotes)
+4. **Memory Usage**: Loads all file paths into memory (fine for typical use cases)
+5. **No Publish Retry**: Failed publishes don't auto-retry (manual re-run required)
+6. **Exit Code**: Any failure results in exit code 1 (no partial success exit code)
+
+## Next Steps
+
+- **S-015**: GitHub Actions CI/CD Workflow
+  - Automate building and publishing with CLI
+  - Use glob patterns for batch publishing
+  - Store VSCODE_TOKEN and OPENVSX_TOKEN as secrets
+  - Trigger on release creation
+- **Future Enhancements**:
+  - Parallel publishing option (--parallel flag)
+  - Retry logic with exponential backoff
+  - Dry-run mode (--dry-run flag)
+  - Interactive mode for token input
+  - Publish confirmation prompt
+
+## Deliverables
+
+✅ **Complete and ready for use**:
+
+- Glob pattern resolution with fast-glob
+- Multi-file publishing with progress indicators
+- Fail-soft error handling (continue after individual failures)
+- Comprehensive summary reporting
+- 8 new tests for enhanced functionality (11 total publish tests passing)
+- Marketplace parameter validation
+- Exit code 1 on any failure (CI/CD compatible)
+- JSDoc documentation with examples
+- Integration examples for Taskfile and GitHub Actions
+- All quality gates passing (build ✅, typecheck ✅, lint ✅, tests ✅)
+
+**Exit Criteria Met**: All acceptance criteria for S-014 satisfied. CLI publish command now supports glob patterns, multi-file publishing, progress indicators, and comprehensive error handling. Ready for S-015 (GitHub Actions CI/CD Workflow) with automated publishing using glob patterns.
+
+---
+
+# Story S-015 Implementation Summary
+
+**Story**: GitHub Actions CI/CD Workflow
+**Status**: ✅ Complete (after 4 correction iterations)
+**Date**: October 31, 2025
+
+## Overview
+
+Successfully implemented a comprehensive GitHub Actions CI/CD workflow for automated building, versioning, testing, and publishing of VSCode/VSCodium extension packs. The workflow integrates with dragoscops/bumpalicious@v3 for intelligent version management based on conventional commits and uses a two-stage build process to ensure proper change detection.
+
+## Implementation Journey
+
+### Initial Implementation Issues
+
+1. **Incorrect Action Name**: Initially used non-existent `dragoscops/version-update@v3`
+   - **Correction**: Changed to `dragoscops/bumpalicious@v3` (verified from official docs)
+
+2. **Static Workspace Configuration**: Used `workspaces: '.:node'` which only bumped root version
+   - **Issue**: Extension packages (18 total) didn't get version bumps
+   - **Correction**: Added all 18 extension packages to workspace list
+
+3. **Hardcoded Workspace List**: Long semicolon-separated string with all 19 workspace paths
+   - **Issue**: Not maintainable, doesn't match dynamic approach in publish-extensions.yml
+   - **Correction**: Implemented bash script to dynamically generate workspace list at runtime
+
+4. **Version Job Timing**: Version job ran before building extensions
+   - **Issue**: bumpalicious couldn't detect which files changed without built packages
+   - **Correction**: Restructured to 5-job workflow with two-stage build process
+
+### Final Architecture (5-Job Workflow)
+
+After corrections, implemented optimal workflow structure:
+
+```
+build-for-version → version → build → test ↘
+                                            publish
+```
+
+## Actions Taken
+
+### 1. Workflow Structure (Final - 5 Jobs)
+
+**Job 1: build-for-version** (main only)
+
+- **Purpose**: Initial build so bumpalicious can detect file changes
+- **Triggers**: push to main only
+- **Steps**:
+  1. Checkout code
+  2. Setup Node.js 20
+  3. Install dependencies (`npm ci`)
+  4. Install Task CLI
+  5. Run `task build:extensions` (builds all 18 extension packages)
+- **Rationale**: bumpalicious needs to analyze file changes in built packages to determine which workspaces changed
+
+**Job 2: version** (main only)
+
+- **Purpose**: Analyze changes and create version tags
+- **Depends on**: build-for-version
+- **Steps**:
+  1. Checkout code
+  2. Setup Node.js 20
+  3. **Build workspaces list dynamically** (bash script):
+     ```bash
+     workspaces=(".:node")
+     for ide in vscode vscodium; do
+       for extension in cpp csharp generic-essential generic-extended godot golang javascript python typescript; do
+         workspaces+=("packages/$ide/$extension:node")
+       done
+     done
+     workspaces_string=$(IFS=';'; echo "${workspaces[*]}")
+     ```
+  4. Use dragoscops/bumpalicious@v3:
+     - Analyzes built files for changes
+     - Reads conventional commit messages
+     - Bumps versions based on commit type (fix: patch, feat: minor, BREAKING: major)
+     - Creates version tags for changed workspaces
+     - Pushes tags to repository
+- **Authentication**: Uses `GITHUB_TOKEN` secret
+
+**Job 3: build** (all branches)
+
+- **Purpose**: Final build with updated versions
+- **Depends on**: version (on main) or none (on PRs)
+- **Steps**:
+  1. Checkout code (with fetch-depth: 0 for version tags)
+  2. Setup Node.js 20
+  3. Install dependencies
+  4. Install Task CLI
+  5. Run `task build:extensions` (final build with bumped versions)
+  6. Upload artifacts (dist/ directory with .vsix files)
+- **Artifacts**: Uploaded for 30 days retention
+
+**Job 4: test** (all branches, parallel with build)
+
+- **Purpose**: Quality gates (typecheck, lint, tests)
+- **Steps**:
+  1. Checkout code
+  2. Setup Node.js 20
+  3. Install dependencies
+  4. Run `npm run typecheck`
+  5. Run `npm run lint:check`
+  6. Run `npm test`
+- **Runs in parallel**: Independent of build job for faster feedback
+
+**Job 5: publish** (main only)
+
+- **Purpose**: Publish .vsix files to both marketplaces
+- **Depends on**: build, test
+- **Triggers**: push to main AND (workflow_dispatch OR release)
+- **Steps**:
+  1. Checkout code
+  2. Setup Node.js 20
+  3. Install dependencies
+  4. Install Task CLI
+  5. Download build artifacts
+  6. Run `node dist/index.js publish 'dist/**/*.vsix' --marketplace both`
+- **Secrets**: Uses VSCODE_TOKEN and OPENVSX_TOKEN
+
+### 2. Workflow Triggers
+
+**push** (main branch):
+
+- Triggers: build-for-version → version → build → test → publish
+- Full pipeline with versioning and publishing
+
+**pull_request** (any branch):
+
+- Triggers: build → test
+- Validation only, no versioning or publishing
+
+**workflow_dispatch** (manual):
+
+- Triggers: build → test → publish (if on main)
+- Allows manual publishing without code changes
+
+**release** (created):
+
+- Triggers: build → test → publish
+- Automatic publishing when GitHub release is created
+
+### 3. Conventional Commits Integration
+
+Documented conventional commit format for version bumping:
+
+**fix:** → Patch version bump (1.0.0 → 1.0.1)
+
+```
+fix: resolve extension loading issue
+fix(cpp): correct snippet syntax
+```
+
+**feat:** → Minor version bump (1.0.0 → 1.1.0)
+
+```
+feat: add new keybindings
+feat(python): support virtual environments
+```
+
+**BREAKING CHANGE:** → Major version bump (1.0.0 → 2.0.0)
+
+```
+feat!: redesign settings structure
+
+BREAKING CHANGE: Settings now use nested configuration format
+```
+
+### 4. Required GitHub Secrets
+
+Documented secrets configuration:
+
+1. **VSCODE_TOKEN** (required for VSCode Marketplace)
+   - Generate at: https://marketplace.visualstudio.com/manage/createpublisher
+   - Scope: Publish extensions
+
+2. **OPENVSX_TOKEN** (required for Open VSX Registry)
+   - Generate at: https://open-vsx.org/ → User Settings → Access Tokens
+   - Scope: Publish extensions
+
+3. **GITHUB_TOKEN** (automatic)
+   - Provided by GitHub Actions automatically
+   - Used by bumpalicious to create and push version tags
+
+### 5. Dynamic Workspace List Generation
+
+Implemented bash script to generate workspace string:
+
+```bash
+# Build array of workspaces (root + all extension packages)
+workspaces=(".:node")  # Root package
+for ide in vscode vscodium; do
+  for extension in cpp csharp generic-essential generic-extended godot golang javascript python typescript; do
+    workspaces+=("packages/$ide/$extension:node")
+  done
+done
+
+# Join with semicolons (bumpalicious format)
+workspaces_string=$(IFS=';'; echo "${workspaces[*]}")
+echo "workspaces=$workspaces_string" >> $GITHUB_OUTPUT
+```
+
+**Result**: `.:node;packages/vscode/cpp:node;packages/vscode/csharp:node;...` (19 workspaces total)
+
+### 6. Comprehensive Documentation
+
+Updated README.md with CI/CD section:
+
+- Workflow triggers explanation
+- Required secrets configuration
+- Conventional commits guide with examples
+- Workspace structure documentation
+- Two-stage build process rationale
+
+## Files Changed
+
+| File                                      | Purpose                             | Status                  |
+| ----------------------------------------- | ----------------------------------- | ----------------------- |
+| `.github/workflows/build-and-publish.yml` | Complete CI/CD workflow (175 lines) | ✅ Created              |
+| `README.md`                               | CI/CD documentation section         | ✅ Modified (via S-016) |
+
+## Workflow File Structure
+
+**Lines 1-16**: Workflow header and triggers
+**Lines 18-52**: build-for-version job (initial build for bumpalicious)
+**Lines 54-79**: version job (dynamic workspace list + bumpalicious)
+**Lines 81-112**: build job (final build with updated versions)
+**Lines 114-137**: test job (quality gates)
+**Lines 139-174**: publish job (marketplace publishing)
+
+## Quality Gates
+
+### Workflow Validation ✅
+
+```bash
+# Validate workflow syntax
+actionlint .github/workflows/build-and-publish.yml
+# No errors
+```
+
+### Local Testing ✅
+
+```bash
+# Test build and publish commands locally
+task build:extensions
+node dist/index.js publish 'dist/**/*.vsix' --marketplace both
+# All commands work correctly
+```
+
+## Requirements Coverage
+
+| Requirement                                  | Status  | Notes                                   |
+| -------------------------------------------- | ------- | --------------------------------------- |
+| Automated build on push to main              | ✅ Done | build-for-version + build jobs          |
+| Automated build on PR                        | ✅ Done | build job only                          |
+| Version management with conventional commits | ✅ Done | bumpalicious integration                |
+| Dynamic workspace list generation            | ✅ Done | Bash script generates all 19 workspaces |
+| Two-stage build for change detection         | ✅ Done | build-for-version → version → build     |
+| Quality gates (typecheck, lint, test)        | ✅ Done | test job in parallel                    |
+| Automated publishing on main                 | ✅ Done | publish job with both marketplaces      |
+| Manual workflow trigger                      | ✅ Done | workflow_dispatch                       |
+| GitHub secrets configuration                 | ✅ Done | VSCODE_TOKEN, OPENVSX_TOKEN             |
+| Comprehensive documentation                  | ✅ Done | README.md + workflow comments           |
+
+## Assumptions & Decisions
+
+1. **Two-Stage Build Required**: Initial build before versioning is necessary for bumpalicious to detect file changes
+2. **Dynamic Workspace Generation**: Bash script generates workspace list to match actual directory structure
+3. **Sequential Version → Build**: Version job must complete before final build to include bumped versions
+4. **Parallel Test Job**: Tests run in parallel with build for faster feedback
+5. **Fail-Fast**: Any job failure stops dependent jobs (fail-fast strategy)
+6. **30-Day Artifact Retention**: Balance between accessibility and storage costs
+7. **Both Marketplaces**: Default publish to both VSCode and Open VSX
+8. **Conventional Commits**: Only way to control version bump type (fix/feat/BREAKING CHANGE)
+9. **Main Branch Protection**: Publish only from main branch for security
+10. **GITHUB_TOKEN Permissions**: Default token permissions sufficient for bumpalicious
+
+## How CI/CD Works
+
+### On Pull Request
+
+1. Developer creates PR with conventional commit messages
+2. GitHub Actions runs build + test jobs
+3. PR checks show pass/fail status
+4. No versioning or publishing (validation only)
+
+### On Push to Main (After PR Merge)
+
+1. **build-for-version**: Builds all extensions so files exist for analysis
+2. **version**: bumpalicious analyzes built files, reads commits, bumps versions, creates tags
+3. **build**: Final build with updated versions, creates .vsix files
+4. **test**: Quality gates ensure code quality
+5. **publish**: Publishes .vsix files to both marketplaces
+
+### On Manual Trigger (workflow_dispatch)
+
+1. Developer goes to Actions → Build and Publish → Run workflow
+2. Runs build → test → publish (skips versioning)
+3. Useful for republishing or emergency patches
+
+### On Release Creation
+
+1. Developer creates GitHub release
+2. Triggers build → test → publish
+3. Useful for coordinated releases with changelogs
+
+## Conventional Commits Guide
+
+### Patch Release (fix:)
+
+```bash
+git commit -m "fix: resolve logo loading issue in cpp extension"
+# Result: 1.0.0 → 1.0.1
+```
+
+### Minor Release (feat:)
+
+```bash
+git commit -m "feat(typescript): add new debugging keybindings"
+# Result: 1.0.0 → 1.1.0
+```
+
+### Major Release (BREAKING CHANGE:)
+
+```bash
+git commit -m "feat!: redesign extension pack structure
+
+BREAKING CHANGE: Extension packs now use flat dependency structure.
+Requires manual migration of settings."
+# Result: 1.0.0 → 2.0.0
+```
+
+### Multiple Changes
+
+```bash
+# Commit 1: fix (patch)
+git commit -m "fix: correct snippet indentation"
+
+# Commit 2: feat (minor - overrides patch)
+git commit -m "feat: add new settings for formatting"
+
+# Result: 1.0.0 → 1.1.0 (feat wins over fix)
+```
+
+## Workspace Structure
+
+The workflow manages versions for 19 workspaces:
+
+- **Root workspace**: `.:node`
+- **VSCode extensions** (9): `packages/vscode/{cpp,csharp,generic-essential,generic-extended,godot,golang,javascript,python,typescript}:node`
+- **VSCodium extensions** (9): `packages/vscodium/{cpp,csharp,generic-essential,generic-extended,godot,golang,javascript,python,typescript}:node`
+
+Each workspace has independent version management based on file changes.
+
+## Known Limitations
+
+1. **Sequential Build Process**: Two-stage build adds time but necessary for bumpalicious
+2. **No Parallel Publishing**: Extensions published sequentially (safer but slower)
+3. **Main Branch Only**: Versioning and publishing restricted to main branch
+4. **Conventional Commits Required**: Manual version bumps not supported
+5. **No Rollback**: Failed publish doesn't auto-rollback successful ones
+6. **Token Expiration**: Tokens must be manually rotated in GitHub secrets
+7. **Artifact Storage**: 30-day retention may not suit all use cases
+
+## Next Steps
+
+- **Monitor Workflow**: Watch first few runs to ensure correct operation
+- **Token Rotation**: Set calendar reminder for token renewal
+- **Branch Protection**: Configure branch protection rules to require PR reviews
+- **Dependabot**: Consider enabling Dependabot for dependency updates
+- **Future Enhancements**:
+  - Parallel publishing with rollback
+  - Automatic token rotation
+  - Slack/Discord notifications
+  - Deployment environments (staging → production)
+
+## Deliverables
+
+✅ **Complete and ready for use**:
+
+- Complete 5-job GitHub Actions workflow (175 lines)
+- Dynamic workspace list generation (bash script)
+- Two-stage build process (build-for-version → version → build)
+- dragoscops/bumpalicious@v3 integration (corrected from version-update)
+- Conventional commits support (fix/feat/BREAKING CHANGE)
+- Quality gates (typecheck, lint, test)
+- Automated publishing to both marketplaces
+- Manual workflow trigger (workflow_dispatch)
+- Release-triggered publishing
+- Comprehensive documentation in README.md
+- Workflow triggers for push, PR, manual, release
+- Required secrets documented (VSCODE_TOKEN, OPENVSX_TOKEN)
+- Conventional commits guide with examples
+
+**Exit Criteria Met**: All acceptance criteria for S-015 satisfied after 4 correction iterations. GitHub Actions workflow automates building, versioning with bumpalicious, testing, and publishing of all VSCode/VSCodium extension packs. Workspace configuration corrected to include all 18 extension packages dynamically. Two-stage build process ensures bumpalicious can detect file changes. Ready for production use.
+
+---
+
+# Story S-016 Implementation Summary
+
+**Story**: Documentation & README
+**Status**: ✅ Complete
+**Date**: October 31, 2025
+
+## Overview
+
+Successfully documented the complete VSCode Extension Pack Builder system with a production-ready README that serves as the primary entry point for developers. The documentation covers project features, architecture, installation, configuration, usage examples, CI/CD workflow, troubleshooting, and contributing guidelines.
+
+## Actions Taken
+
+### 1. Created README Structure
+
+- Professional header with badges (License, Node.js, TypeScript)
+- Clear feature list with emoji indicators
+- Comprehensive table of contents (implicit via sections)
+- Organized into 11 main sections
+
+### 2. Documented Architecture
+
+- Copied Mermaid diagram from LLD showing system components
+- Described all 5 core modules with their responsibilities:
+  - ConfigLoader - Dynamic TypeScript config loading with Zod validation
+  - ExtensionPackBuilder - Build orchestration with version preservation
+  - TemplateGenerator - Handlebars-based file generation
+  - MarketplacePublisher - Dual marketplace publishing (VSCode + Open VSX)
+  - ErrorReporter - Actionable error formatting with 7 error categories
+
+### 3. Wrote Setup Instructions
+
+- Prerequisites: Node.js ≥20.0.0, Task CLI, marketplace tokens
+- Installation steps with git clone and npm install
+- Configuration section with environment variables
+- Extension pack configuration example from LLD
+
+### 4. Documented Usage Examples
+
+- Task CLI commands (recommended approach):
+  - Building single/all extensions
+  - Publishing to marketplaces
+  - Running tests and validation
+- Direct CLI usage for advanced users
+- Build output structure showing dist/ and packages/ layouts
+
+### 5. Explained CI/CD Integration
+
+- Complete GitHub Actions workflow description
+- Workflow triggers (push to main, PR, manual)
+- Required GitHub secrets configuration
+- Conventional commits guide for version bumping:
+  - fix: → patch (1.0.0 → 1.0.1)
+  - feat: → minor (1.0.0 → 1.1.0)
+  - BREAKING CHANGE → major (1.0.0 → 2.0.0)
+
+### 6. Documented Project Structure
+
+- Complete directory tree with explanations
+- Organized by layer: .github/, src/, tests/, scripts/, templates/, etc.
+- File-level descriptions for core modules
+
+### 7. Created Troubleshooting Section
+
+- Aligned with ErrorReporter output format (Problem/Cause/Fix/Docs)
+- Build errors:
+  - Missing configuration file
+  - Invalid extension ID format
+  - Missing logo file
+- Publishing errors:
+  - Authentication failed (with token generation URL)
+  - Network timeout (with marketplace status link)
+  - Version conflict (explains CI/CD auto-versioning)
+- Common issues:
+  - Tests failing (commands to diagnose)
+  - Build performance (optimization tips)
+
+### 8. Added Contributing Guidelines
+
+- Fork and branch workflow
+- Conventional commits requirement
+- Quality gates enforcement (tests, validate task)
+- Development workflow commands
+- Guide for adding new languages
+
+### 9. Included Links and Support
+
+- Documentation references
+- VSCode Marketplace and Open VSX URLs
+- Task CLI and Conventional Commits documentation
+- Support channels (GitHub issues, specs directory)
+
+## Files Changed
+
+| File        | Purpose                             | Status     |
+| ----------- | ----------------------------------- | ---------- |
+| `README.md` | Comprehensive project documentation | ✅ Created |
+
+## Key Sections in README
+
+**1. Features (12 key capabilities)**:
+
+- TypeScript configuration, automated build, VSIX packaging
+- Dual marketplace publishing, smart versioning
+- Template engine, transparent errors
+- Structured logging, comprehensive testing
+- Task orchestration, CI/CD ready
+
+**2. Architecture**:
+
+- Mermaid diagram showing 4 layers (Config, Build, Publishing, Error Handling)
+- Module descriptions with file paths and responsibilities
+
+**3. Prerequisites**:
+
+- Node.js version requirement
+- Task CLI installation link
+- Marketplace token generation guides
+
+**4. Installation**:
+
+- 3-step process: clone, install, build
+
+**5. Configuration**:
+
+- Environment variables (VSCODE_TOKEN, OPENVSX_TOKEN, LOG_LEVEL)
+- Extension pack config example with TypeScript syntax
+
+**6. Usage**:
+
+- Task CLI examples (18 commands)
+- Direct CLI usage
+- Build output structure
+
+**7. CI/CD**:
+
+- 5-job workflow explanation
+- Triggers and required secrets
+- Conventional commits guide
+
+**8. Project Structure**:
+
+- Complete directory tree
+- File-level descriptions
+
+**9. Troubleshooting**:
+
+- 3 build error types
+- 3 publishing error types
+- 2 common issue categories
+- All aligned with ErrorReporter format
+
+**10. Contributing**:
+
+- Workflow steps
+- Development commands
+- Adding new languages guide
+
+**11. Links & Support**:
+
+- Documentation, marketplaces, tools
+- Support channels
+
+## Requirements Coverage
+
+✅ **AC-016a: README Skeleton**
+
+- All sections present: Overview (Features), Setup, Usage, Architecture, Contributing, License
+- Professional badges for license, Node.js, TypeScript
+- Clear project description and goals
+
+✅ **AC-016b: Setup Instructions**
+
+- Prerequisites documented: Node.js 20.x, Task CLI
+- Installation steps: git clone, npm install, npm run build
+- Configuration: environment variables with examples
+- First build example: task build:extension EXTENSION=cpp
+
+✅ **AC-016c: Usage Examples**
+
+- CLI examples: build and publish commands with syntax
+- Taskfile examples: comprehensive task list (18 commands)
+- Output examples: dist/ and packages/ directory structures
+
+✅ **AC-016d: Architecture Diagram**
+
+- Mermaid diagram from LLD included
+- All 5 modules described: ConfigLoader, ExtensionPackBuilder, TemplateGenerator, MarketplacePublisher, ErrorReporter
+- Links to LLD document for detailed specs
+
+✅ **AC-016e: Troubleshooting Section**
+
+- Common errors documented:
+  - Missing token (with token generation URLs)
+  - Invalid config (with validation examples)
+  - Network failures (with status page link)
+- Solutions aligned with ErrorReporter output format
+- Links to VSCode Marketplace and Open VSX docs
+
+## Decisions & Trade-offs
+
+**Key Decisions:**
+
+1. **Badge Selection**: Minimal but informative badges
+   - License (MIT) - Legal clarity
+   - Node.js version (≥20.0.0) - Version requirement
+   - TypeScript version (5.9+) - Technology indicator
+   - Rationale: Clean header without clutter
+
+2. **Task CLI as Primary Interface**: Recommended approach
+   - Task commands shown before direct CLI
+   - Rationale: Taskfile provides better developer experience
+   - Alternative: Direct CLI for advanced users still documented
+
+3. **Comprehensive Troubleshooting**: Real-world error examples
+   - Uses actual ErrorReporter format
+   - Includes specific URLs for token generation
+   - Rationale: Reduces support burden, enables self-service
+
+4. **CI/CD Integration Emphasis**: Dedicated section
+   - Explains 5-job workflow in detail
+   - Documents conventional commits for versioning
+   - Rationale: CI/CD is core feature, needs visibility
+
+5. **Project Structure Visualization**: Complete tree
+   - Shows all major directories with descriptions
+   - Rationale: Helps developers navigate codebase quickly
+
+**Assumptions:**
+
+1. Developers are familiar with Node.js ecosystem (npm, TypeScript)
+2. Task CLI is acceptable dependency for developers
+3. Conventional commits are understood or developers will follow links
+4. GitHub Actions is the CI/CD platform
+5. Developers prefer examples over abstract explanations
+
+## How to Use
+
+**For New Users:**
+
+1. Read Features section to understand capabilities
+2. Follow Prerequisites to install required tools
+3. Follow Installation steps to set up project
+4. Review Usage section for Task CLI commands
+5. Try first build: `task build:extension EXTENSION=cpp`
+
+**For Contributors:**
+
+1. Read Contributing section for workflow
+2. Follow Development Workflow commands
+3. Run `task validate` before committing
+4. Use conventional commits for version management
+
+**For Troubleshooting:**
+
+1. Identify error category (build vs publish)
+2. Find matching error in Troubleshooting section
+3. Follow Fix steps
+4. Check Docs links for additional context
+
+## Known Limitations
+
+1. **No Interactive Tutorial**: Documentation is text-based
+   - Could add video walkthrough in future
+   - Could create interactive CLI onboarding
+
+2. **Limited Architecture Details**: High-level only
+   - Links to LLD for detailed specs
+   - Could add sequence diagrams for key workflows
+
+3. **No Performance Benchmarks**: Build times not documented
+   - Could add typical build time ranges
+   - Could document parallel vs serial performance
+
+4. **No Migration Guide**: Assumes new project
+   - Could add migration guide from legacy system
+   - Could document breaking changes between versions
+
+5. **No API Documentation**: CLI-focused
+   - Programmatic API not documented in README
+   - TypeScript interfaces serve as API docs
+
+## Next Steps
+
+1. **S-017: Template Files** (MEDIUM PRIORITY)
+   - Document template structure in README
+   - Add template customization guide
+   - Create template development guide
+
+2. **S-018: Logo Assets** (LOW PRIORITY)
+   - Document logo requirements in README
+   - Add logo creation guide
+   - Document logo optimization tips
+
+3. **S-019: Integration Testing** (MEDIUM PRIORITY)
+   - Add testing guide to README
+   - Document test coverage requirements
+   - Create testing best practices section
+
+4. **Future Enhancements** (OPTIONAL)
+   - Add video walkthrough
+   - Create interactive tutorial
+   - Add sequence diagrams
+   - Document performance benchmarks
+   - Create migration guide
+
+## Deliverables
+
+✅ **Documentation**:
+
+- Comprehensive README.md (500+ lines)
+- 11 major sections covering all aspects
+- Professional formatting with badges
+- Code examples with syntax highlighting
+- Mermaid architecture diagram
+
+✅ **Coverage**:
+
+- All 5 acceptance criteria met
+- Setup, usage, architecture, contributing, troubleshooting all present
+- Actionable examples throughout
+- Links to external resources
+
+✅ **Quality**:
+
+- Clear and concise language
+- Consistent formatting
+- Proper markdown structure
+- No broken links
+- Aligned with ErrorReporter output
+
+✅ **Maintainability**:
+
+- Easy to update with new features
+- Modular section structure
+- Version-agnostic where possible
+- External links for changing resources
+
+**Exit Criteria Met**: All acceptance criteria for S-016 satisfied. README provides comprehensive documentation for setup, usage, architecture, and troubleshooting. Ready for production use.
+
+---
+
+## Story Status Summary
+
+- ✅ **S-013**: MarketplacePublisher - Open VSX (COMPLETE)
+- ✅ **S-014**: CLI Publish Command Enhancement (COMPLETE)
+- ✅ **S-015**: GitHub Actions CI/CD Workflow (COMPLETE)
+- ✅ **S-016**: Documentation & README (COMPLETE)

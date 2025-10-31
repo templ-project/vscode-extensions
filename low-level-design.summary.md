@@ -1124,8 +1124,341 @@ gh run rerun <run-id> --failed
 
 ---
 
+## S-016: Documentation & README
+
+**Status:** ✅ COMPLETE
+**Date Completed:** 2024-10-31
+**Implementation Approach:** Created comprehensive README with all required sections covering setup, usage, architecture, CI/CD, and troubleshooting
+
+### Overview
+
+Successfully documented the complete VSCode Extension Pack Builder system with a production-ready README that serves as the primary entry point for developers. The documentation covers project features, architecture, installation, configuration, usage examples, CI/CD workflow, troubleshooting, and contributing guidelines.
+
+### Actions Taken
+
+1. **Created README Structure**
+   - Professional header with badges (License, Node.js, TypeScript)
+   - Clear feature list with emoji indicators
+   - Comprehensive table of contents (implicit via sections)
+   - Organized into 11 main sections
+
+2. **Documented Architecture**
+   - Copied Mermaid diagram from LLD showing system components
+   - Described all 5 core modules with their responsibilities:
+     - ConfigLoader - Dynamic TypeScript config loading with Zod validation
+     - ExtensionPackBuilder - Build orchestration with version preservation
+     - TemplateGenerator - Handlebars-based file generation
+     - MarketplacePublisher - Dual marketplace publishing (VSCode + Open VSX)
+     - ErrorReporter - Actionable error formatting with 7 error categories
+
+3. **Wrote Setup Instructions**
+   - Prerequisites: Node.js ≥20.0.0, Task CLI, marketplace tokens
+   - Installation steps with git clone and npm install
+   - Configuration section with environment variables
+   - Extension pack configuration example from LLD
+
+4. **Documented Usage Examples**
+   - Task CLI commands (recommended approach):
+     - Building single/all extensions
+     - Publishing to marketplaces
+     - Running tests and validation
+   - Direct CLI usage for advanced users
+   - Build output structure showing dist/ and packages/ layouts
+
+5. **Explained CI/CD Integration**
+   - Complete GitHub Actions workflow description
+   - Workflow triggers (push to main, PR, manual)
+   - Required GitHub secrets configuration
+   - Conventional commits guide for version bumping:
+     - fix: → patch (1.0.0 → 1.0.1)
+     - feat: → minor (1.0.0 → 1.1.0)
+     - BREAKING CHANGE → major (1.0.0 → 2.0.0)
+
+6. **Documented Project Structure**
+   - Complete directory tree with explanations
+   - Organized by layer: .github/, src/, tests/, scripts/, templates/, etc.
+   - File-level descriptions for core modules
+
+7. **Created Troubleshooting Section**
+   - Aligned with ErrorReporter output format (Problem/Cause/Fix/Docs)
+   - Build errors:
+     - Missing configuration file
+     - Invalid extension ID format
+     - Missing logo file
+   - Publishing errors:
+     - Authentication failed (with token generation URL)
+     - Network timeout (with marketplace status link)
+     - Version conflict (explains CI/CD auto-versioning)
+   - Common issues:
+     - Tests failing (commands to diagnose)
+     - Build performance (optimization tips)
+
+8. **Added Contributing Guidelines**
+   - Fork and branch workflow
+   - Conventional commits requirement
+   - Quality gates enforcement (tests, validate task)
+   - Development workflow commands
+   - Guide for adding new languages
+
+9. **Included Links and Support**
+   - Documentation references
+   - VSCode Marketplace and Open VSX URLs
+   - Task CLI and Conventional Commits documentation
+   - Support channels (GitHub issues, specs directory)
+
+### Files Changed
+
+| File        | Purpose                             | Status     |
+| ----------- | ----------------------------------- | ---------- |
+| `README.md` | Comprehensive project documentation | ✅ Created |
+
+### Key Sections in README
+
+**1. Features (12 key capabilities)**:
+
+- TypeScript configuration, automated build, VSIX packaging
+- Dual marketplace publishing, smart versioning
+- Template engine, transparent errors
+- Structured logging, comprehensive testing
+- Task orchestration, CI/CD ready
+
+**2. Architecture**:
+
+- Mermaid diagram showing 4 layers (Config, Build, Publishing, Error Handling)
+- Module descriptions with file paths and responsibilities
+
+**3. Prerequisites**:
+
+- Node.js version requirement
+- Task CLI installation link
+- Marketplace token generation guides
+
+**4. Installation**:
+
+- 3-step process: clone, install, build
+
+**5. Configuration**:
+
+- Environment variables (VSCODE_TOKEN, OPENVSX_TOKEN, LOG_LEVEL)
+- Extension pack config example with TypeScript syntax
+
+**6. Usage**:
+
+- Task CLI examples (18 commands)
+- Direct CLI usage
+- Build output structure
+
+**7. CI/CD**:
+
+- 5-job workflow explanation
+- Triggers and required secrets
+- Conventional commits guide
+
+**8. Project Structure**:
+
+- Complete directory tree
+- File-level descriptions
+
+**9. Troubleshooting**:
+
+- 3 build error types
+- 3 publishing error types
+- 2 common issue categories
+- All aligned with ErrorReporter format
+
+**10. Contributing**:
+
+- Workflow steps
+- Development commands
+- Adding new languages guide
+
+**11. Links & Support**:
+
+- Documentation, marketplaces, tools
+- Support channels
+
+### Requirements Coverage
+
+✅ **AC-016a: README Skeleton**
+
+- All sections present: Overview (Features), Setup, Usage, Architecture, Contributing, License
+- Professional badges for license, Node.js, TypeScript
+- Clear project description and goals
+
+✅ **AC-016b: Setup Instructions**
+
+- Prerequisites documented: Node.js 20.x, Task CLI
+- Installation steps: git clone, npm install, npm run build
+- Configuration: environment variables with examples
+- First build example: task build:extension EXTENSION=cpp
+
+✅ **AC-016c: Usage Examples**
+
+- CLI examples: build and publish commands with syntax
+- Taskfile examples: comprehensive task list (18 commands)
+- Output examples: dist/ and packages/ directory structures
+
+✅ **AC-016d: Architecture Diagram**
+
+- Mermaid diagram from LLD included
+- All 5 modules described: ConfigLoader, ExtensionPackBuilder, TemplateGenerator, MarketplacePublisher, ErrorReporter
+- Links to LLD document for detailed specs
+
+✅ **AC-016e: Troubleshooting Section**
+
+- Common errors documented:
+  - Missing token (with token generation URLs)
+  - Invalid config (with validation examples)
+  - Network failures (with status page link)
+- Solutions aligned with ErrorReporter output format
+- Links to VSCode Marketplace and Open VSX docs
+
+### Decisions & Trade-offs
+
+**Key Decisions:**
+
+1. **Badge Selection**: Minimal but informative badges
+   - License (MIT) - Legal clarity
+   - Node.js version (≥20.0.0) - Version requirement
+   - TypeScript version (5.9+) - Technology indicator
+   - Rationale: Clean header without clutter
+
+2. **Task CLI as Primary Interface**: Recommended approach
+   - Task commands shown before direct CLI
+   - Rationale: Taskfile provides better developer experience
+   - Alternative: Direct CLI for advanced users still documented
+
+3. **Comprehensive Troubleshooting**: Real-world error examples
+   - Uses actual ErrorReporter format
+   - Includes specific URLs for token generation
+   - Rationale: Reduces support burden, enables self-service
+
+4. **CI/CD Integration Emphasis**: Dedicated section
+   - Explains 5-job workflow in detail
+   - Documents conventional commits for versioning
+   - Rationale: CI/CD is core feature, needs visibility
+
+5. **Project Structure Visualization**: Complete tree
+   - Shows all major directories with descriptions
+   - Rationale: Helps developers navigate codebase quickly
+
+**Assumptions:**
+
+1. Developers are familiar with Node.js ecosystem (npm, TypeScript)
+2. Task CLI is acceptable dependency for developers
+3. Conventional commits are understood or developers will follow links
+4. GitHub Actions is the CI/CD platform
+5. Developers prefer examples over abstract explanations
+
+### How to Use
+
+**For New Users:**
+
+1. Read Features section to understand capabilities
+2. Follow Prerequisites to install required tools
+3. Follow Installation steps to set up project
+4. Review Usage section for Task CLI commands
+5. Try first build: `task build:extension EXTENSION=cpp`
+
+**For Contributors:**
+
+1. Read Contributing section for workflow
+2. Follow Development Workflow commands
+3. Run `task validate` before committing
+4. Use conventional commits for version management
+
+**For Troubleshooting:**
+
+1. Identify error category (build vs publish)
+2. Find matching error in Troubleshooting section
+3. Follow Fix steps
+4. Check Docs links for additional context
+
+### Known Limitations
+
+1. **No Interactive Tutorial**: Documentation is text-based
+   - Could add video walkthrough in future
+   - Could create interactive CLI onboarding
+
+2. **Limited Architecture Details**: High-level only
+   - Links to LLD for detailed specs
+   - Could add sequence diagrams for key workflows
+
+3. **No Performance Benchmarks**: Build times not documented
+   - Could add typical build time ranges
+   - Could document parallel vs serial performance
+
+4. **No Migration Guide**: Assumes new project
+   - Could add migration guide from legacy system
+   - Could document breaking changes between versions
+
+5. **No API Documentation**: CLI-focused
+   - Programmatic API not documented in README
+   - TypeScript interfaces serve as API docs
+
+### Next Steps
+
+1. **S-017: Template Files** (MEDIUM PRIORITY)
+   - Document template structure in README
+   - Add template customization guide
+   - Create template development guide
+
+2. **S-018: Logo Assets** (LOW PRIORITY)
+   - Document logo requirements in README
+   - Add logo creation guide
+   - Document logo optimization tips
+
+3. **S-019: Integration Testing** (MEDIUM PRIORITY)
+   - Add testing guide to README
+   - Document test coverage requirements
+   - Create testing best practices section
+
+4. **Future Enhancements** (OPTIONAL)
+   - Add video walkthrough
+   - Create interactive tutorial
+   - Add sequence diagrams
+   - Document performance benchmarks
+   - Create migration guide
+
+### Deliverables
+
+✅ **Documentation**:
+
+- Comprehensive README.md (500+ lines)
+- 11 major sections covering all aspects
+- Professional formatting with badges
+- Code examples with syntax highlighting
+- Mermaid architecture diagram
+
+✅ **Coverage**:
+
+- All 5 acceptance criteria met
+- Setup, usage, architecture, contributing, troubleshooting all present
+- Actionable examples throughout
+- Links to external resources
+
+✅ **Quality**:
+
+- Clear and concise language
+- Consistent formatting
+- Proper markdown structure
+- No broken links
+- Aligned with ErrorReporter output
+
+✅ **Maintainability**:
+
+- Easy to update with new features
+- Modular section structure
+- Version-agnostic where possible
+- External links for changing resources
+
+**Exit Criteria Met**: All acceptance criteria for S-016 satisfied. README provides comprehensive documentation for setup, usage, architecture, and troubleshooting. Ready for production use.
+
+---
+
 ## Story Status Summary
 
 - ✅ **S-013**: MarketplacePublisher - Open VSX (COMPLETE)
 - ✅ **S-014**: CLI Publish Command Enhancement (COMPLETE)
 - ✅ **S-015**: GitHub Actions CI/CD Workflow (COMPLETE)
+- ✅ **S-016**: Documentation & README (COMPLETE)
