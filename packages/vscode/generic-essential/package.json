@@ -1,6 +1,6 @@
 {
   "name": "tpl-vscode-generic-essential",
-  "displayName": "Templ Project Generic Essential Extension Pack",
+  "displayName": "Generic Essential Extension Pack for Vscode",
   "description": "Essential productivity extensions for general development in VSCode",
   "version": "1.2.0",
   "publisher": "templ-project",
@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "productivity",
     "general",
@@ -25,9 +27,10 @@
     "git",
     "debugging",
     "editing",
+    "extension-pack",
+    "development",
     "vscode",
-    "generic-essential",
-    "extension-pack"
+    "generic-essential"
   ],
   "extensionPack": [
     "github.copilot",
@@ -72,7 +75,9 @@
     "tamasfe.even-better-toml",
     "redhat.vscode-yaml"
   ],
-  "activationEvents": ["onStartupFinished"],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "keybindings": [
@@ -93,11 +98,11 @@
     "commands": [
       {
         "command": "templ-project.generic-essential-vscode.applySettings",
-        "title": "Apply Templ Project Generic Essential Extension Pack Settings"
+        "title": "Apply Generic Essential Extension Pack for Vscode Settings"
       },
       {
         "command": "templ-project.generic-essential-vscode.resetSettings",
-        "title": "Reset Templ Project Generic Essential Extension Pack Settings"
+        "title": "Reset Generic Essential Extension Pack for Vscode Settings"
       }
     ]
   },

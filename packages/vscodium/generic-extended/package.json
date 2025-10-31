@@ -1,6 +1,6 @@
 {
   "name": "tpl-vscodium-generic-extended",
-  "displayName": "Templ Project Generic Extended Extension Pack",
+  "displayName": "Generic Extended Extension Pack for Vscodium",
   "description": "Extended developer tools for API development, containerization, and Git forge integration in VSCodium (Open VSX compatible)",
   "version": "1.2.0",
   "publisher": "templ-project",
@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "api",
     "swagger",
@@ -30,9 +32,10 @@
     "bitbucket",
     "forge",
     "extended",
+    "extension-pack",
+    "development",
     "vscodium",
-    "generic-extended",
-    "extension-pack"
+    "generic-extended"
   ],
   "extensionPack": [
     "42crunch.vscode-openapi",
@@ -58,7 +61,9 @@
     "github.vscode-github-actions",
     "formulahendry.code-runner"
   ],
-  "activationEvents": ["onStartupFinished"],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "keybindings": [
@@ -106,11 +111,11 @@
     "commands": [
       {
         "command": "templ-project.generic-extended-vscodium.applySettings",
-        "title": "Apply Templ Project Generic Extended Extension Pack Settings"
+        "title": "Apply Generic Extended Extension Pack for Vscodium Settings"
       },
       {
         "command": "templ-project.generic-extended-vscodium.resetSettings",
-        "title": "Reset Templ Project Generic Extended Extension Pack Settings"
+        "title": "Reset Generic Extended Extension Pack for Vscodium Settings"
       }
     ]
   },

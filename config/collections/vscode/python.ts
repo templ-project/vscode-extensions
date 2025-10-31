@@ -208,7 +208,7 @@ export const python: Collection = {
       when: 'editorTextFocus && editorLangId == python',
     },
     {
-      key: 'shift+enter',
+      key: 'ctrl+shift+enter',
       command: 'jupyter.execSelectionInteractive',
       description: 'Execute selection in Jupyter',
       when: 'editorTextFocus && editorLangId == python',

@@ -1,6 +1,6 @@
 {
   "name": "tpl-vscode-python",
-  "displayName": "Templ Project Python Extension Pack",
+  "displayName": "Python Extension Pack for Vscode",
   "description": "Essential Python development environment for VSCode - comprehensive tooling for modern Python development, data science, and web applications",
   "version": "1.2.0",
   "publisher": "templ-project",
@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "python",
     "data-science",
@@ -26,9 +28,10 @@
     "testing",
     "jupyter",
     "machine-learning",
+    "extension-pack",
+    "development",
     "vscode",
-    "python",
-    "extension-pack"
+    "python"
   ],
   "extensionPack": [
     "ms-python.python",
@@ -40,8 +43,14 @@
     "njpwerner.autodocstring",
     "littlefoxteam.vscode-python-test-adapter"
   ],
-  "extensionDependencies": ["ms-python.python", "ms-python.black-formatter", "ms-python.isort"],
-  "activationEvents": ["onStartupFinished"],
+  "extensionDependencies": [
+    "ms-python.python",
+    "ms-python.black-formatter",
+    "ms-python.isort"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [
@@ -95,11 +104,11 @@
     "commands": [
       {
         "command": "templ-project.python-vscode.applySettings",
-        "title": "Apply Templ Project Python Extension Pack Settings"
+        "title": "Apply Python Extension Pack for Vscode Settings"
       },
       {
         "command": "templ-project.python-vscode.resetSettings",
-        "title": "Reset Templ Project Python Extension Pack Settings"
+        "title": "Reset Python Extension Pack for Vscode Settings"
       }
     ]
   },

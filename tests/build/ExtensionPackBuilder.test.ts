@@ -401,7 +401,7 @@ describe('ExtensionPackBuilder', () => {
   describe('Integration with real configuration', () => {
     it('should build cpp extension from actual config file', async () => {
       // Import real cpp collection
-      const cppConfigPath = resolve(process.cwd(), 'scripts/configs/collections/vscode/cpp.ts');
+      const cppConfigPath = resolve(process.cwd(), 'config/collections/vscode/cpp.ts');
       const cppModule = await import(`file://${cppConfigPath}`);
       const cppCollection: Collection = cppModule.cpp;
 

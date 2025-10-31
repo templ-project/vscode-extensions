@@ -1,7 +1,7 @@
 /**
  * ConfigLoader - Dynamically loads TypeScript collection files
  *
- * Loads and caches Collection configurations from scripts/configs/collections/{ide}/{language}.ts
+ * Loads and caches Collection configurations from config/collections/{ide}/{language}.ts
  */
 
 import { readdir } from 'node:fs/promises';
@@ -29,7 +29,7 @@ export class ConfigLoader {
    * Create a new ConfigLoader instance
    *
    * @param logger - Parent pino logger instance
-   * @param configRoot - Root directory for config files (default: scripts/configs/collections)
+   * @param configRoot - Root directory for config files (default: config/collections)
    *
    * @example
    * ```typescript
@@ -41,7 +41,7 @@ export class ConfigLoader {
   constructor(logger: pino.Logger, configRoot?: string) {
     this.logger = logger.child({ module: 'ConfigLoader' });
     this.cache = new Map();
-    this.configRoot = configRoot || join(process.cwd(), 'scripts/configs/collections');
+    this.configRoot = configRoot || join(process.cwd(), 'config/collections');
     this.logger.debug({ configRoot: this.configRoot }, 'ConfigLoader initialized');
   }
 

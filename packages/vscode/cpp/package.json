@@ -1,6 +1,6 @@
 {
   "name": "tpl-vscode-cpp",
-  "displayName": "Templ Project Cpp Extension Pack",
+  "displayName": "C++ Extension Pack for Vscode",
   "description": "Essential C/C++ development environment for VSCode - modern tooling with clang-based language server, CMake/XMake build systems, and advanced debugging",
   "version": "1.0.0",
   "publisher": "templ-project",
@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "cpp",
     "c++",
@@ -28,9 +30,10 @@
     "native",
     "systems",
     "embedded",
+    "extension-pack",
+    "development",
     "vscode",
-    "cpp",
-    "extension-pack"
+    "cpp"
   ],
   "extensionPack": [
     "llvm-vs-code-extensions.vscode-clangd",
@@ -42,8 +45,14 @@
     "cschlosser.doxdocgen",
     "webfreak.debug"
   ],
-  "extensionDependencies": ["llvm-vs-code-extensions.vscode-clangd", "twxs.cmake", "xaver.clang-format"],
-  "activationEvents": ["onStartupFinished"],
+  "extensionDependencies": [
+    "llvm-vs-code-extensions.vscode-clangd",
+    "twxs.cmake",
+    "xaver.clang-format"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [
@@ -82,11 +91,11 @@
     "commands": [
       {
         "command": "templ-project.cpp-vscode.applySettings",
-        "title": "Apply Templ Project Cpp Extension Pack Settings"
+        "title": "Apply C++ Extension Pack for Vscode Settings"
       },
       {
         "command": "templ-project.cpp-vscode.resetSettings",
-        "title": "Reset Templ Project Cpp Extension Pack Settings"
+        "title": "Reset C++ Extension Pack for Vscode Settings"
       }
     ]
   },

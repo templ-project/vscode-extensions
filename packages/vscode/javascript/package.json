@@ -1,6 +1,6 @@
 {
   "name": "tpl-vscode-javascript",
-  "displayName": "Templ Project Javascript Extension Pack",
+  "displayName": "JavaScript Extension Pack for Vscode",
   "description": "Essential JavaScript development environment for VSCode - runtime-agnostic tools for modern JavaScript development",
   "version": "1.2.0",
   "publisher": "templ-project",
@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "javascript",
     "es6",
@@ -26,9 +28,10 @@
     "development",
     "linting",
     "formatting",
+    "extension-pack",
+    "development",
     "vscode",
-    "javascript",
-    "extension-pack"
+    "javascript"
   ],
   "extensionPack": [
     "dbaeumer.vscode-eslint",
@@ -47,7 +50,9 @@
     "ms-vscode.js-debug",
     "mgmcdermott.vscode-language-babel"
   ],
-  "activationEvents": ["onStartupFinished"],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [
@@ -71,11 +76,11 @@
     "commands": [
       {
         "command": "templ-project.javascript-vscode.applySettings",
-        "title": "Apply Templ Project Javascript Extension Pack Settings"
+        "title": "Apply JavaScript Extension Pack for Vscode Settings"
       },
       {
         "command": "templ-project.javascript-vscode.resetSettings",
-        "title": "Reset Templ Project Javascript Extension Pack Settings"
+        "title": "Reset JavaScript Extension Pack for Vscode Settings"
       }
     ]
   },

@@ -1,6 +1,6 @@
 {
   "name": "tpl-vscode-golang",
-  "displayName": "Templ Project Golang Extension Pack",
+  "displayName": "Go Extension Pack for Vscode",
   "description": "Essential Go development environment for VSCode - comprehensive tooling for modern Go development",
   "version": "1.2.0",
   "publisher": "templ-project",
@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "golang",
     "go",
@@ -25,9 +27,10 @@
     "development",
     "testing",
     "microservices",
+    "extension-pack",
+    "development",
     "vscode",
-    "golang",
-    "extension-pack"
+    "golang"
   ],
   "extensionPack": [
     "golang.go",
@@ -39,8 +42,12 @@
     "neverik.go-critic",
     "quillaja.goasm"
   ],
-  "extensionDependencies": ["golang.go"],
-  "activationEvents": ["onStartupFinished"],
+  "extensionDependencies": [
+    "golang.go"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [
@@ -79,11 +86,11 @@
     "commands": [
       {
         "command": "templ-project.golang-vscode.applySettings",
-        "title": "Apply Templ Project Golang Extension Pack Settings"
+        "title": "Apply Go Extension Pack for Vscode Settings"
       },
       {
         "command": "templ-project.golang-vscode.resetSettings",
-        "title": "Reset Templ Project Golang Extension Pack Settings"
+        "title": "Reset Go Extension Pack for Vscode Settings"
       }
     ]
   },

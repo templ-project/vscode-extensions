@@ -1,6 +1,6 @@
 {
   "name": "tpl-vscode-godot",
-  "displayName": "Templ Project Godot Extension Pack",
+  "displayName": "Godot Extension Pack for Vscode",
   "description": "Essential extensions for Godot game development with GDScript support, debugging, and enhanced productivity tools",
   "version": "1.0.0",
   "publisher": "templ-project",
@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "godot",
     "gdscript",
@@ -26,9 +28,10 @@
     "3d",
     "2d",
     "shaders",
+    "extension-pack",
+    "development",
     "vscode",
-    "godot",
-    "extension-pack"
+    "godot"
   ],
   "extensionPack": [
     "geequlim.godot-tools",
@@ -39,8 +42,13 @@
     "wayou.vscode-todo-highlight",
     "2gua.rainbow-brackets"
   ],
-  "extensionDependencies": ["geequlim.godot-tools", "jjkim.gdscript"],
-  "activationEvents": ["onStartupFinished"],
+  "extensionDependencies": [
+    "geequlim.godot-tools",
+    "jjkim.gdscript"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [
@@ -80,11 +88,11 @@
     "commands": [
       {
         "command": "templ-project.godot-vscode.applySettings",
-        "title": "Apply Templ Project Godot Extension Pack Settings"
+        "title": "Apply Godot Extension Pack for Vscode Settings"
       },
       {
         "command": "templ-project.godot-vscode.resetSettings",
-        "title": "Reset Templ Project Godot Extension Pack Settings"
+        "title": "Reset Godot Extension Pack for Vscode Settings"
       }
     ]
   },

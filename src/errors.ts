@@ -18,7 +18,7 @@ export interface ErrorContext {
  * ```typescript
  * throw new ConfigurationError(
  *   'Configuration file not found',
- *   { configPath: 'scripts/configs/collections/vscode/cpp.ts' }
+ *   { configPath: 'config/collections/vscode/cpp.ts' }
  * );
  * ```
  */
