@@ -63,42 +63,42 @@
       {
         "key": "ctrl+shift+p",
         "command": "python.execInTerminal",
-        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
+        "when": "editorTextFocus && editorLangId == python"
       },
       {
         "key": "f5",
         "command": "python.debugInTerminal",
-        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
+        "when": "editorTextFocus && editorLangId == python"
       },
       {
-        "key": "ctrl+shift+&#x60;",
+        "key": "ctrl+shift+`",
         "command": "python.createTerminal",
-        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
+        "when": "editorTextFocus && editorLangId == python"
       },
       {
         "key": "ctrl+shift+i",
         "command": "python.sortImports",
-        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
+        "when": "editorTextFocus && editorLangId == python"
       },
       {
         "key": "ctrl+shift+f",
         "command": "editor.action.formatDocument",
-        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
+        "when": "editorTextFocus && editorLangId == python"
       },
       {
         "key": "ctrl+shift+t",
         "command": "python.runAllTests",
-        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
+        "when": "editorTextFocus && editorLangId == python"
       },
       {
         "key": "ctrl+shift+r",
         "command": "python.runCurrentFile",
-        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
+        "when": "editorTextFocus && editorLangId == python"
       },
       {
         "key": "ctrl+shift+enter",
         "command": "jupyter.execSelectionInteractive",
-        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
+        "when": "editorTextFocus && editorLangId == python"
       }
     ],
     "commands": [

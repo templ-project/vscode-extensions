@@ -65,7 +65,7 @@
       {
         "key": "f12",
         "command": "editor.action.revealDefinition",
-        "when": "editorHasDefinitionProvider &amp;&amp; editorTextFocus"
+        "when": "editorHasDefinitionProvider && editorTextFocus"
       }
     ],
     "commands": [

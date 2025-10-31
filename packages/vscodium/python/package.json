@@ -86,22 +86,22 @@
       {
         "key": "ctrl+shift+p",
         "command": "python.execInTerminal",
-        "when": "editorLangId &#x3D;&#x3D; python"
+        "when": "editorLangId == python"
       },
       {
         "key": "f5",
         "command": "python.debugInTerminal",
-        "when": "editorLangId &#x3D;&#x3D; python"
+        "when": "editorLangId == python"
       },
       {
         "key": "shift+enter",
         "command": "jupyter.execSelectionInteractive",
-        "when": "editorLangId &#x3D;&#x3D; python"
+        "when": "editorLangId == python"
       },
       {
         "key": "ctrl+shift+enter",
         "command": "jupyter.runallcellsabove.palette",
-        "when": "editorLangId &#x3D;&#x3D; python"
+        "when": "editorLangId == python"
       }
     ],
     "commands": [

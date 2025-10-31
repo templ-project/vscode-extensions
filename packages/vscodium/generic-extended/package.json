@@ -70,7 +70,7 @@
       {
         "key": "ctrl+alt+r",
         "command": "rest-client.request",
-        "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; &#x27;http&#x27;"
+        "when": "editorTextFocus && editorLangId == 'http'"
       },
       {
         "key": "ctrl+alt+e",
@@ -80,32 +80,32 @@
       {
         "key": "ctrl+shift+d ctrl+shift+b",
         "command": "docker.images.build",
-        "when": "resourceExtname &#x3D;&#x3D; &#x27;.dockerfile&#x27; || resourceFilename &#x3D;&#x3D; &#x27;Dockerfile&#x27;"
+        "when": "resourceExtname == '.dockerfile' || resourceFilename == 'Dockerfile'"
       },
       {
         "key": "ctrl+shift+d ctrl+shift+r",
         "command": "docker.containers.run",
-        "when": "focusedView &#x3D;&#x3D; &#x27;dockerContainers&#x27;"
+        "when": "focusedView == 'dockerContainers'"
       },
       {
         "key": "ctrl+shift+k ctrl+shift+a",
         "command": "kubernetes.portForward",
-        "when": "focusedView &#x3D;&#x3D; &#x27;extension.vsKubernetesExplorer&#x27;"
+        "when": "focusedView == 'extension.vsKubernetesExplorer'"
       },
       {
         "key": "ctrl+shift+k ctrl+shift+l",
         "command": "kubernetes.logs",
-        "when": "focusedView &#x3D;&#x3D; &#x27;extension.vsKubernetesExplorer&#x27;"
+        "when": "focusedView == 'extension.vsKubernetesExplorer'"
       },
       {
         "key": "ctrl+shift+g ctrl+shift+p",
         "command": "github.pullRequests.refresh",
-        "when": "focusedView &#x3D;&#x3D; &#x27;github:pullRequests&#x27;"
+        "when": "focusedView == 'github:pullRequests'"
       },
       {
         "key": "ctrl+shift+g ctrl+shift+i",
         "command": "github.pullRequests.openQuery",
-        "when": "focusedView &#x3D;&#x3D; &#x27;github:pullRequests&#x27;"
+        "when": "focusedView == 'github:pullRequests'"
       }
     ],
     "commands": [

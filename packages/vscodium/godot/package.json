@@ -61,12 +61,12 @@
       {
         "key": "f5",
         "command": "godot.debugger.debug",
-        "when": "resourceExtname &#x3D;&#x3D; .gd"
+        "when": "resourceExtname == .gd"
       },
       {
         "key": "ctrl+f5",
         "command": "godot.debugger.debug_without_debugging",
-        "when": "resourceExtname &#x3D;&#x3D; .gd"
+        "when": "resourceExtname == .gd"
       },
       {
         "key": "shift+f5",
