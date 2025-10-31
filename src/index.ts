@@ -9,6 +9,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Command } from 'commander';
+import { glob } from 'glob';
 import { TemplateGenerator, readExistingVersion, isValidVersion, ExtensionPackBuilder } from './build/index.js';
 import type { BuildOptions, BuildResult } from './build/index.js';
 import { ConfigLoader } from './config/index.js';
@@ -101,6 +102,25 @@ async function buildCommand(
 }
 
 /**
+ * Resolve glob pattern to list of .vsix files
+ */
+async function resolveGlobPattern(pattern: string): Promise<string[]> {
+  logger.debug({ pattern }, 'Resolving glob pattern');
+
+  const files = await glob(pattern, {
+    nodir: true,
+    absolute: true,
+  });
+
+  // Filter to only .vsix files
+  const vsixFiles = files.filter((file) => file.endsWith('.vsix'));
+
+  logger.info({ pattern, count: vsixFiles.length, files: vsixFiles }, 'Glob pattern resolved');
+
+  return vsixFiles;
+}
+
+/**
  * Publish command handler
  */
 async function publishCommand(vsixPattern: string, options: { marketplace?: string }): Promise<void> {
@@ -116,11 +136,13 @@ async function publishCommand(vsixPattern: string, options: { marketplace?: stri
       process.exit(1);
     }
 
-    // Get PAT from environment based on marketplace
-    let pat: string | undefined;
+    // Get PATs from environment based on marketplace
+    let vscodePat: string | undefined;
+    let openvsxPat: string | undefined;
+
     if (marketplace === 'vscode' || marketplace === 'both') {
-      pat = process.env.VSCODE_TOKEN;
-      if (!pat) {
+      vscodePat = process.env.VSCODE_TOKEN;
+      if (!vscodePat) {
         console.error('❌ Error: VSCODE_TOKEN environment variable is required for VSCode Marketplace publishing');
         console.error('   Generate a token at: https://marketplace.visualstudio.com/manage');
         console.error('   Required scopes: Marketplace: Acquire, Marketplace: Publish');
@@ -129,53 +151,194 @@ async function publishCommand(vsixPattern: string, options: { marketplace?: stri
     }
 
     if (marketplace === 'openvsx' || marketplace === 'both') {
-      const openvsxPat = process.env.OPENVSX_TOKEN;
+      openvsxPat = process.env.OPENVSX_TOKEN;
       if (!openvsxPat) {
         console.error('❌ Error: OPENVSX_TOKEN environment variable is required for Open VSX publishing');
         console.error('   Generate a token at: https://open-vsx.org/user-settings/tokens');
         process.exit(1);
       }
-      // For 'openvsx' only, use OPENVSX_TOKEN
-      if (marketplace === 'openvsx') {
-        pat = openvsxPat;
-      }
     }
 
-    // TODO: Implement glob pattern resolution in S-014
-    // For now, assume vsixPattern is a direct file path
-    const vsixPath = vsixPattern;
+    // Resolve glob pattern to list of .vsix files
+    const vsixFiles = await resolveGlobPattern(vsixPattern);
 
-    // Publish based on marketplace
-    if (marketplace === 'both') {
-      console.log('⚠️  Publishing to both marketplaces not yet implemented (will be completed in S-014)');
-      console.log('   Please publish to vscode and openvsx separately for now.');
+    if (vsixFiles.length === 0) {
+      console.error(`❌ No .vsix files found matching pattern: ${vsixPattern}`);
       process.exit(1);
     }
 
-    // Publish to single marketplace
-    const result = await marketplacePublisher.publish({
-      pat: pat!,
-      vsixPath,
-      marketplace,
-    });
+    console.log(`📦 Found ${vsixFiles.length} .vsix file(s) to publish`);
+    console.log();
+
+    // Track results
+    interface PublishAttempt {
+      vsixPath: string;
+      marketplace: 'vscode' | 'openvsx';
+      success: boolean;
+      result?: {
+        extensionId: string;
+        version: string;
+        url: string;
+      };
+      error?: string;
+    }
+
+    const attempts: PublishAttempt[] = [];
+    let totalSuccessful = 0;
+    let totalFailed = 0;
+
+    // Publish each file
+    for (let i = 0; i < vsixFiles.length; i++) {
+      const vsixPath = vsixFiles[i];
+      const fileNum = i + 1;
+
+      console.log(`📄 [${fileNum}/${vsixFiles.length}] Publishing: ${vsixPath}`);
+
+      // Publish based on marketplace selection
+      if (marketplace === 'both') {
+        // Publish to VSCode Marketplace first
+        console.log(`   ➤ Publishing to VSCode Marketplace...`);
+        try {
+          const result = await marketplacePublisher.publish({
+            pat: vscodePat!,
+            vsixPath,
+            marketplace: 'vscode',
+          });
+
+          attempts.push({
+            vsixPath,
+            marketplace: 'vscode',
+            success: true,
+            result: {
+              extensionId: result.extensionId!,
+              version: result.version,
+              url: result.url,
+            },
+          });
+
+          console.log(`   ✅ VSCode: Published ${result.extensionId} v${result.version}`);
+          console.log(`      URL: ${result.url}`);
+          totalSuccessful++;
+        } catch (error) {
+          const errorMsg = error instanceof Error ? error.message : String(error);
+          attempts.push({
+            vsixPath,
+            marketplace: 'vscode',
+            success: false,
+            error: errorMsg,
+          });
+
+          console.log(`   ❌ VSCode: ${errorMsg}`);
+          totalFailed++;
+        }
+
+        // Then publish to Open VSX
+        console.log(`   ➤ Publishing to Open VSX...`);
+        try {
+          const result = await marketplacePublisher.publish({
+            pat: openvsxPat!,
+            vsixPath,
+            marketplace: 'openvsx',
+          });
+
+          attempts.push({
+            vsixPath,
+            marketplace: 'openvsx',
+            success: true,
+            result: {
+              extensionId: result.extensionId!,
+              version: result.version,
+              url: result.url,
+            },
+          });
+
+          console.log(`   ✅ Open VSX: Published ${result.extensionId} v${result.version}`);
+          console.log(`      URL: ${result.url}`);
+          totalSuccessful++;
+        } catch (error) {
+          const errorMsg = error instanceof Error ? error.message : String(error);
+          attempts.push({
+            vsixPath,
+            marketplace: 'openvsx',
+            success: false,
+            error: errorMsg,
+          });
+
+          console.log(`   ❌ Open VSX: ${errorMsg}`);
+          totalFailed++;
+        }
+      } else {
+        // Publish to single marketplace
+        const pat = marketplace === 'vscode' ? vscodePat! : openvsxPat!;
+
+        try {
+          const result = await marketplacePublisher.publish({
+            pat,
+            vsixPath,
+            marketplace: marketplace as 'vscode' | 'openvsx',
+          });
+
+          attempts.push({
+            vsixPath,
+            marketplace: marketplace as 'vscode' | 'openvsx',
+            success: true,
+            result: {
+              extensionId: result.extensionId!,
+              version: result.version,
+              url: result.url,
+            },
+          });
+
+          console.log(`   ✅ Published ${result.extensionId} v${result.version}`);
+          console.log(`      URL: ${result.url}`);
+          totalSuccessful++;
+        } catch (error) {
+          const errorMsg = error instanceof Error ? error.message : String(error);
+          attempts.push({
+            vsixPath,
+            marketplace: marketplace as 'vscode' | 'openvsx',
+            success: false,
+            error: errorMsg,
+          });
+
+          console.log(`   ❌ Failed: ${errorMsg}`);
+          totalFailed++;
+        }
+      }
+
+      console.log();
+    }
+
+    // Print summary report
+    console.log('═══════════════════════════════════════════════════════════');
+    console.log('📊 PUBLISH SUMMARY');
+    console.log('═══════════════════════════════════════════════════════════');
+    console.log(`✅ Successful: ${totalSuccessful}`);
+    console.log(`❌ Failed: ${totalFailed}`);
+    console.log(`📦 Total attempts: ${attempts.length}`);
+    console.log('═══════════════════════════════════════════════════════════');
+
+    if (totalFailed > 0) {
+      console.log();
+      console.log('Failed publishes:');
+      for (const attempt of attempts.filter((a) => !a.success)) {
+        console.log(`  • ${attempt.marketplace}: ${attempt.vsixPath}`);
+        console.log(`    Error: ${attempt.error}`);
+      }
+    }
 
     logger.info(
       {
-        marketplace: result.marketplace,
-        extensionId: result.extensionId,
-        version: result.version,
-        url: result.url,
+        total: attempts.length,
+        successful: totalSuccessful,
+        failed: totalFailed,
+        attempts,
       },
-      'Publish completed successfully',
+      'Publish command completed',
     );
 
-    console.log(`✅ Publish successful!`);
-    console.log(`   Extension: ${result.extensionId}`);
-    console.log(`   Version: ${result.version}`);
-    console.log(`   Marketplace: ${result.marketplace}`);
-    console.log(`   URL: ${result.url}`);
-
-    process.exit(0);
+    // Exit with appropriate code
+    process.exit(totalFailed > 0 ? 1 : 0);
   } catch (error) {
     logger.error({ err: error, vsixPattern }, 'Publish command failed');
 
@@ -234,8 +397,8 @@ function main(): void {
   // Publish command
   program
     .command('publish')
-    .description('Publish extension pack to marketplace')
-    .argument('<vsix-path>', 'Path to .vsix file (e.g., dist/vscode/tpl-vscode-cpp-1.0.0.vsix)')
+    .description('Publish extension pack(s) to marketplace')
+    .argument('<vsix-pattern>', 'Path or glob pattern to .vsix file(s) (e.g., dist/vscode/*.vsix)')
     .option('-m, --marketplace <name>', 'Target marketplace (vscode, openvsx, or both)', 'vscode')
     .action(publishCommand);
 

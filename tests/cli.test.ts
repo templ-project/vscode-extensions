@@ -98,8 +98,8 @@ describe('CLI', () => {
       const result = await runCLI(['publish', '--help']);
 
       expect(result.code).toBe(0);
-      expect(result.stdout).toContain('Publish extension pack to marketplace');
-      expect(result.stdout).toContain('<vsix-path>');
+      expect(result.stdout).toContain('Publish extension pack(s) to marketplace');
+      expect(result.stdout).toContain('<vsix-pattern>');
       expect(result.stdout).toContain('--marketplace');
     });
   });
@@ -198,6 +198,34 @@ describe('CLI', () => {
 
       expect(result.code).toBe(0);
       expect(result.stdout).toContain('(default: "vscode")');
+    });
+
+    it('should handle glob patterns for .vsix files', async () => {
+      // Pattern with no matches should fail after token validation
+      // Set token to bypass token check
+      process.env.VSCODE_TOKEN = 'test-token';
+      const result = await runCLI(['publish', 'nonexistent/**/*.vsix', '--marketplace', 'vscode']);
+      delete process.env.VSCODE_TOKEN;
+
+      expect(result.code).toBe(1);
+      expect(result.stderr).toContain('No .vsix files found');
+    });
+
+    it('should support "both" marketplace option', async () => {
+      // Help text should mention 'both'
+      const result = await runCLI(['publish', '--help']);
+
+      expect(result.code).toBe(0);
+      expect(result.stdout).toContain('both');
+    });
+
+    it('should require both tokens for "both" marketplace', async () => {
+      // Without OPENVSX_TOKEN, should fail
+      delete process.env.OPENVSX_TOKEN;
+      const result = await runCLI(['publish', 'dist/test.vsix', '--marketplace', 'both']);
+
+      expect(result.code).toBe(1);
+      expect(result.stderr).toMatch(/VSCODE_TOKEN|OPENVSX_TOKEN/);
     });
   });
 
