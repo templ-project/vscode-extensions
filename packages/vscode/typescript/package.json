@@ -1,8 +1,8 @@
 {
   "name": "tpl-vscode-typescript",
-  "displayName": "Templ Project Typescript Extension Pack",
+  "displayName": "TypeScript Extension Pack for Vscode",
   "description": "Essential TypeScript development environment for VSCode - comprehensive tooling for type-safe development",
-  "version": "1.2.1",
+  "version": "1.2.0",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -27,9 +27,10 @@
     "linting",
     "formatting",
     "intellisense",
+    "extension-pack",
+    "development",
     "vscode",
-    "typescript",
-    "extension-pack"
+    "typescript"
   ],
   "extensionPack": [
     "ms-vscode.vscode-typescript-next",
@@ -70,11 +71,11 @@
     "commands": [
       {
         "command": "templ-project.typescript-vscode.applySettings",
-        "title": "Apply Templ Project Typescript Extension Pack Settings"
+        "title": "Apply TypeScript Extension Pack for Vscode Settings"
       },
       {
         "command": "templ-project.typescript-vscode.resetSettings",
-        "title": "Reset Templ Project Typescript Extension Pack Settings"
+        "title": "Reset TypeScript Extension Pack for Vscode Settings"
       }
     ]
   },

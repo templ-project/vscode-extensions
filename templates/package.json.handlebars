@@ -40,7 +40,7 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-{{#if snippets}}
+{{#if (hasKeys snippets)}}
     "snippets": [
       {
         "language": "{{language}}",

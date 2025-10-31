@@ -1,3 +1,11 @@
+# CwAI
+.cwai
+.github/prompts
+
+# Env
+.env*
+!.env.example
+
 # Logs
 logs
 *.log
@@ -141,3 +149,8 @@ vite.config.ts.timestamp-*
 # Extension pack generated files
 dist/
 *.vsix
+
+packages/
+!packages/**/package.json
+
+.task/

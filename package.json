@@ -1,48 +1,31 @@
 {
   "name": "vscode-extensions",
   "version": "1.2.1",
+  "type": "module",
   "description": "VSCode Extension Packs for different development environments",
-  "main": "scripts/generate-all.js",
-  "scripts": {
-    "build": "run-s version:store clean generate compile:all package prettify lint",
-    "clean": "rimraf packages dist",
-    "compile:all": "npm run compile --workspaces --if-present",
-    "compile:vscode-js": "npm run compile --workspace=packages/vscode/javascript",
-    "compile:vscodium-js": "npm run compile --workspace=packages/vscodium/javascript",
-    "generate:vscode": "npx ts-node scripts/generate-all.ts vscode",
-    "generate:vscodium": "npx ts-node scripts/generate-all.ts vscodium",
-    "generate": "npx ts-node scripts/generate-all.ts",
-    "help": "echo 'Available scripts: generate, generate:vscode, generate:vscodium, generate:javascript, clean, compile:all, watch:all, package, package:vscode, package:vscodium, package:javascript, move-packages, build, test:workflow, test:validate, version:store, version:restore, version:set, version:get, version:list, version:cleanup, version:remove, lint, prettify'",
-    "lint": "eslint --fix --no-warn-ignored '**/*.{ts,js,json,md,yml}'",
-    "prettify": "prettier --write **/*.{ts,js,json,md}; prettier --write **/*.yml --parser yaml",
-    "move-packages": "node scripts/move-packages.js",
-    "package:javascript": "node scripts/package-all.js '' javascript",
-    "package:vscode": "node scripts/package-all.js vscode",
-    "package:vscodium": "node scripts/package-all.js vscodium",
-    "package": "node scripts/package-all.js",
-    "test:validate": "node scripts/validate-generated.js",
-    "test:workflow": "run-s version:store clean generate compile:all",
-    "version:cleanup": "node scripts/version-manager.js cleanup",
-    "version:get": "node scripts/version-manager.js get",
-    "version:list": "node scripts/version-manager.js list",
-    "version:remove": "node scripts/version-manager.js remove",
-    "version:restore": "node scripts/version-manager.js restore",
-    "version:set": "node scripts/version-manager.js set",
-    "version:store": "node scripts/version-manager.js store",
-    "watch:all": "npm run watch --workspaces --if-present"
+  "main": "dist/index.js",
+  "bin": {
+    "vscode-ext-builder": "dist/index.js"
   },
-  "keywords": [
-    "vscode",
-    "vscodium",
-    "extension-pack",
-    "development",
-    "tools"
-  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf packages dist",
+    "dev": "tsc --watch",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint --fix .",
+    "lint:check": "eslint .",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "validate": "npm run typecheck && npm run lint:check && npm run format:check && npm test",
+    "compile:packages": "npm run compile --workspaces --if-present"
+  },
+  "keywords": ["vscode", "vscodium", "extension-pack", "development", "tools"],
   "author": "templ-project",
   "license": "MIT",
-  "workspaces": [
-    "packages/*/*"
-  ],
+  "workspaces": ["packages/*/*"],
   "engines": {
     "node": ">=20.0.0"
   },
@@ -50,17 +33,30 @@
     "type": "git",
     "url": "https://github.com/templ-project/vscode-extensions"
   },
-  "devDependencies": {
-    "@templ-project/eslint": "^1.0.4",
-    "@templ-project/prettier": "^1.0.3",
-    "@types/node": "^20.10.6",
+  "dependencies": {
+    "@jscpd/badge-reporter": "^4.0.1",
+    "@templ-project/eslint": "^1.2.2",
+    "@templ-project/prettier": "^1.0.6",
+    "@templ-project/tsconfig": "^0.4.2",
+    "@templ-project/vitest": "^0.3.2",
+    "@types/node": "^24.9.2",
+    "@vitest/coverage-v8": "^4.0.5",
+    "@vscode/vsce": "^3.2.1",
+    "commander": "^14.0.2",
+    "glob": "^11.0.3",
     "handlebars": "^4.7.8",
     "husky": "^9.1.7",
-    "lint-staged": "^16.1.6",
+    "jscpd": "^4.0.5",
+    "lint-staged": "^16.2.6",
     "npm-run-all2": "^8.0.4",
-    "rimraf": "^6.0.1",
+    "ovsx": "^0.10.6",
+    "pino": "^10.1.0",
+    "pino-pretty": "^13.1.2",
+    "rimraf": "^6.1.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3",
-    "yaml": "^2.3.4"
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.5",
+    "yaml": "^2.8.1",
+    "zod": "^4.1.12"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "tpl-vscodium-godot",
-  "displayName": "Templ Project Godot Extension Pack",
+  "displayName": "Godot Extension Pack for Vscodium",
   "description": "Essential extensions for Godot game development with GDScript support, debugging, and enhanced productivity tools",
   "version": "1.0.0",
   "publisher": "templ-project",
@@ -28,9 +28,10 @@
     "3d",
     "2d",
     "shaders",
+    "extension-pack",
+    "development",
     "vscodium",
-    "godot",
-    "extension-pack"
+    "godot"
   ],
   "extensionPack": [
     "geequlim.godot-tools",
@@ -87,11 +88,11 @@
     "commands": [
       {
         "command": "templ-project.godot-vscodium.applySettings",
-        "title": "Apply Templ Project Godot Extension Pack Settings"
+        "title": "Apply Godot Extension Pack for Vscodium Settings"
       },
       {
         "command": "templ-project.godot-vscodium.resetSettings",
-        "title": "Reset Templ Project Godot Extension Pack Settings"
+        "title": "Reset Godot Extension Pack for Vscodium Settings"
       }
     ]
   },

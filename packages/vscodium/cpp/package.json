@@ -1,6 +1,6 @@
 {
   "name": "tpl-vscodium-cpp",
-  "displayName": "Templ Project Cpp Extension Pack",
+  "displayName": "C++ Extension Pack for Vscodium",
   "description": "Essential C/C++ development environment for VSCodium - modern tooling with clang-based language server, CMake/XMake build systems, and advanced debugging",
   "version": "1.0.0",
   "publisher": "templ-project",
@@ -30,9 +30,10 @@
     "native",
     "systems",
     "embedded",
+    "extension-pack",
+    "development",
     "vscodium",
-    "cpp",
-    "extension-pack"
+    "cpp"
   ],
   "extensionPack": [
     "llvm-vs-code-extensions.vscode-clangd",
@@ -90,11 +91,11 @@
     "commands": [
       {
         "command": "templ-project.cpp-vscodium.applySettings",
-        "title": "Apply Templ Project Cpp Extension Pack Settings"
+        "title": "Apply C++ Extension Pack for Vscodium Settings"
       },
       {
         "command": "templ-project.cpp-vscodium.resetSettings",
-        "title": "Reset Templ Project Cpp Extension Pack Settings"
+        "title": "Reset C++ Extension Pack for Vscodium Settings"
       }
     ]
   },

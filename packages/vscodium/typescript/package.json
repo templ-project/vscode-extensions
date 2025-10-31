@@ -1,8 +1,8 @@
 {
   "name": "tpl-vscodium-typescript",
-  "displayName": "Templ Project Typescript Extension Pack",
+  "displayName": "TypeScript Extension Pack for Vscodium",
   "description": "Essential TypeScript development environment for VSCodium - comprehensive tooling for type-safe development using open-source alternatives",
-  "version": "1.2.1",
+  "version": "1.2.0",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -27,9 +27,10 @@
     "linting",
     "formatting",
     "intellisense",
+    "extension-pack",
+    "development",
     "vscodium",
-    "typescript",
-    "extension-pack"
+    "typescript"
   ],
   "extensionPack": [
     "ms-vscode.vscode-typescript-next",
@@ -70,11 +71,11 @@
     "commands": [
       {
         "command": "templ-project.typescript-vscodium.applySettings",
-        "title": "Apply Templ Project Typescript Extension Pack Settings"
+        "title": "Apply TypeScript Extension Pack for Vscodium Settings"
       },
       {
         "command": "templ-project.typescript-vscodium.resetSettings",
-        "title": "Reset Templ Project Typescript Extension Pack Settings"
+        "title": "Reset TypeScript Extension Pack for Vscodium Settings"
       }
     ]
   },

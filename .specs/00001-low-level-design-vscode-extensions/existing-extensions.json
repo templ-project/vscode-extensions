@@ -1,0 +1,649 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Existing VSCode Extension Configurations",
+  "description": "Inventory of all extension configurations currently defined in the project",
+  "version": "1.0.0",
+  "lastUpdated": "2025-10-30",
+  "languages": {
+    "cpp": {
+      "configFile": "scripts/configs/collections/vscode/cpp.ts",
+      "extensionFile": "scripts/configs/extensions/cpp/index.ts",
+      "required": [
+        {
+          "id": "llvm-vs-code-extensions.vscode-clangd",
+          "name": "clangd",
+          "description": "C/C++ completion, navigation, and insights",
+          "publisher": "LLVM Extensions",
+          "license": "Apache-2.0",
+          "why": "Provides excellent C/C++ language server with clang-based IntelliSense"
+        },
+        {
+          "id": "twxs.cmake",
+          "name": "CMake",
+          "description": "CMake language support for Visual Studio Code",
+          "publisher": "twxs",
+          "license": "MIT",
+          "why": "Essential CMake language support with syntax highlighting"
+        },
+        {
+          "id": "ms-vscode.cmake-tools",
+          "name": "CMake Tools",
+          "description": "Extended CMake support in Visual Studio Code",
+          "publisher": "Microsoft",
+          "license": "MIT",
+          "why": "Advanced CMake integration with build system support"
+        },
+        {
+          "id": "tboox.xmake-vscode",
+          "name": "XMake",
+          "description": "Extended XMake support in Visual Studio Code",
+          "publisher": "tboox",
+          "license": "Apache-2.0",
+          "why": "Modern build system support for XMake"
+        },
+        {
+          "id": "xaver.clang-format",
+          "name": "Clang-Format",
+          "description": "Use Clang-Format in Visual Studio Code",
+          "publisher": "xaver",
+          "license": "MIT",
+          "why": "Essential code formatting for C/C++ using clang-format"
+        }
+      ],
+      "optional": [
+        {
+          "id": "jeff-hykin.better-cpp-syntax",
+          "name": "Better C++ Syntax",
+          "description": "The bleeding edge of the C++ syntax",
+          "publisher": "Jeff Hykin",
+          "license": "MIT",
+          "why": "Enhanced C++ syntax highlighting with modern C++ features"
+        },
+        {
+          "id": "cschlosser.doxdocgen",
+          "name": "Doxygen Documentation Generator",
+          "description": "Let me generate Doxygen documentation from your source code",
+          "publisher": "Christoph Schlosser",
+          "license": "MIT",
+          "why": "Automated documentation generation using Doxygen standards"
+        },
+        {
+          "id": "webfreak.debug",
+          "name": "Native Debug",
+          "description": "GDB, LLDB & Mago-MI Debugger support for VSCode",
+          "publisher": "WebFreak",
+          "license": "Unlicense",
+          "why": "Advanced debugging support with GDB and LLDB integration"
+        }
+      ]
+    },
+    "typescript": {
+      "configFile": "scripts/configs/collections/vscode/typescript.ts",
+      "extensionFile": "scripts/configs/extensions/typescript/index.ts",
+      "required": [
+        {
+          "id": "ms-vscode.vscode-typescript-next",
+          "name": "TypeScript Language Features",
+          "description": "Enhanced TypeScript language support with auto-import",
+          "publisher": "Microsoft",
+          "license": "MIT",
+          "why": "Enhanced TypeScript language support and auto-import functionality"
+        },
+        {
+          "id": "GregorBiswanger.json2ts",
+          "name": "json2ts",
+          "description": "Convert JSON object to typescript interfaces",
+          "publisher": "Gregor Biswanger",
+          "license": "MIT",
+          "why": "Convert JSON to TypeScript interfaces for rapid development"
+        }
+      ],
+      "optional": []
+    },
+    "python": {
+      "configFile": "scripts/configs/collections/vscode/python.ts",
+      "extensionFile": "scripts/configs/extensions/python/index.ts",
+      "required": [
+        {
+          "id": "ms-python.python",
+          "name": "Python",
+          "description": "Python language support with IntelliSense, debugging, linting, formatting",
+          "publisher": "Microsoft",
+          "license": "MIT",
+          "why": "Official Python language support with comprehensive development tools"
+        },
+        {
+          "id": "ms-toolsai.jupyter",
+          "name": "Jupyter",
+          "description": "Jupyter notebook support with Intellisense and debugging",
+          "publisher": "Microsoft",
+          "license": "MIT",
+          "why": "Interactive Python development with Jupyter notebooks"
+        },
+        {
+          "id": "ms-python.black-formatter",
+          "name": "Black Formatter",
+          "description": "Formatting support for Python files using Black",
+          "publisher": "Microsoft",
+          "license": "MIT",
+          "why": "Consistent Python code formatting with Black"
+        },
+        {
+          "id": "ms-python.isort",
+          "name": "isort",
+          "description": "Import organization support using isort",
+          "publisher": "Microsoft",
+          "license": "MIT",
+          "why": "Automatic import sorting and organization"
+        },
+        {
+          "id": "ms-python.pylint",
+          "name": "Pylint",
+          "description": "Linting support for Python files using Pylint",
+          "publisher": "Microsoft",
+          "license": "MIT",
+          "why": "Comprehensive Python code analysis and quality checking"
+        },
+        {
+          "id": "ms-python.flake8",
+          "name": "Flake8",
+          "description": "Linting support for Python files using Flake8",
+          "publisher": "Microsoft",
+          "license": "MIT",
+          "why": "Fast Python style guide enforcement"
+        },
+        {
+          "id": "njpwerner.autodocstring",
+          "name": "autoDocstring",
+          "description": "Generates python docstrings automatically",
+          "publisher": "Nils Werner",
+          "license": "MIT",
+          "why": "Automatic generation of Python docstrings"
+        },
+        {
+          "id": "littlefoxteam.vscode-python-test-adapter",
+          "name": "Python Test Explorer",
+          "description": "Run your Python tests in the Sidebar",
+          "publisher": "Little Fox Team",
+          "license": "MIT",
+          "why": "Visual test runner for unittest and pytest"
+        }
+      ],
+      "optional": []
+    },
+    "golang": {
+      "configFile": "scripts/configs/collections/vscode/golang.ts",
+      "extensionFile": "scripts/configs/extensions/golang/index.ts",
+      "required": [
+        {
+          "id": "golang.go",
+          "name": "Go",
+          "description": "Rich Go language support for Visual Studio Code",
+          "publisher": "Go Team at Google",
+          "license": "MIT",
+          "why": "Official Go language support with IntelliSense, debugging, and testing"
+        },
+        {
+          "id": "766b.go-outliner",
+          "name": "Go Outliner",
+          "description": "Go code outline explorer",
+          "publisher": "766b",
+          "license": "MIT",
+          "why": "Navigate Go code structure with enhanced outline view"
+        },
+        {
+          "id": "premparihar.gotestexplorer",
+          "name": "Go Test Explorer",
+          "description": "Go Test Explorer for Visual Studio Code",
+          "publisher": "Prem Parihar",
+          "license": "MIT",
+          "why": "Visual test runner and explorer for Go tests"
+        },
+        {
+          "id": "davidbarratt.go-fill-struct",
+          "name": "Go Fill Struct",
+          "description": "Fill struct literals with default values",
+          "publisher": "David Barratt",
+          "license": "MIT",
+          "why": "Automatically fill Go struct literals with zero values"
+        },
+        {
+          "id": "karyan40024.gotmpl-syntax-highlighter",
+          "name": "Go Template Syntax Highlighter",
+          "description": "Go Template Syntax Highlighter",
+          "publisher": "karyan40024",
+          "license": "MIT",
+          "why": "Enhanced syntax highlighting for Go template files"
+        },
+        {
+          "id": "msyrus.go-doc",
+          "name": "Go Doc",
+          "description": "Show documentation of go symbols and packages",
+          "publisher": "msyrus",
+          "license": "MIT",
+          "why": "Quick access to Go documentation"
+        },
+        {
+          "id": "neverik.go-critic",
+          "name": "Go Critic",
+          "description": "Integration for the go-critic golang linter",
+          "publisher": "neverik",
+          "license": "MIT",
+          "why": "Advanced Go linting with go-critic"
+        },
+        {
+          "id": "quillaja.goasm",
+          "name": "Go Asm",
+          "description": "Syntax highlighting & autocomplete for Go assembly",
+          "publisher": "quillaja",
+          "license": "MIT",
+          "why": "Syntax highlighting for Go assembly language"
+        }
+      ],
+      "optional": []
+    },
+    "javascript": {
+      "configFile": "scripts/configs/collections/vscode/javascript.ts",
+      "extensionFile": "scripts/configs/extensions/javascript/index.ts",
+      "required": [
+        {
+          "id": "dbaeumer.vscode-eslint",
+          "name": "ESLint",
+          "description": "Integrates ESLint JavaScript linting into VS Code",
+          "publisher": "Microsoft",
+          "license": "MIT",
+          "why": "Essential for JavaScript code quality and error detection"
+        },
+        {
+          "id": "esbenp.prettier-vscode",
+          "name": "Prettier",
+          "description": "Code formatter using prettier",
+          "publisher": "Prettier",
+          "license": "MIT",
+          "why": "Automatic code formatting for consistent style"
+        },
+        {
+          "id": "ms-vscode.js-debug",
+          "name": "JavaScript Debugger",
+          "description": "Built-in JavaScript debugger for VS Code",
+          "publisher": "Microsoft",
+          "license": "MIT",
+          "why": "Essential debugging capabilities for JavaScript"
+        },
+        {
+          "id": "wix.vscode-import-cost",
+          "name": "Import Cost",
+          "description": "Display import/require package size in the editor",
+          "publisher": "Wix",
+          "license": "MIT",
+          "why": "Helps optimize bundle size by showing cost of imports"
+        },
+        {
+          "id": "WallabyJs.quokka-vscode",
+          "name": "Quokka.js",
+          "description": "JavaScript and TypeScript playground",
+          "publisher": "Wallaby.js",
+          "license": "Commercial",
+          "why": "Live JavaScript playground for rapid prototyping"
+        },
+        {
+          "id": "mgmcdermott.vscode-language-babel",
+          "name": "Babel JavaScript",
+          "description": "Syntax highlighting for today's JavaScript",
+          "publisher": "Michael McDermott",
+          "license": "MIT",
+          "why": "Enhanced syntax highlighting for modern JavaScript and JSX"
+        },
+        {
+          "id": "oven.bun-vscode",
+          "name": "Bun for Visual Studio Code",
+          "description": "VS Code extension for Bun",
+          "publisher": "Oven",
+          "license": "MIT",
+          "why": "Official Bun runtime support with debugging"
+        },
+        {
+          "id": "denoland.vscode-deno",
+          "name": "Deno",
+          "description": "Deno support for Visual Studio Code",
+          "publisher": "Deno Land Inc.",
+          "license": "MIT",
+          "why": "Official Deno runtime support with TypeScript integration"
+        }
+      ],
+      "optional": [
+        {
+          "id": "VisualStudioExptTeam.vscodeintellicode",
+          "name": "IntelliCode",
+          "description": "AI-assisted development for JavaScript",
+          "publisher": "Microsoft",
+          "license": "MIT",
+          "why": "AI-powered code completion (VSCode only)",
+          "vscodeOnly": true
+        }
+      ]
+    },
+    "csharp": {
+      "configFile": "scripts/configs/collections/vscode/csharp.ts",
+      "extensionFile": "scripts/configs/extensions/csharp/index.ts",
+      "required": [
+        {
+          "id": "ms-dotnettools.csharp",
+          "name": "C#",
+          "description": "Base language support for C#",
+          "publisher": "Microsoft",
+          "license": "MIT",
+          "why": "Essential C# language support with IntelliSense and debugging"
+        },
+        {
+          "id": "ms-dotnettools.csdevkit",
+          "name": "C# Dev Kit",
+          "description": "Official C# extension from Microsoft",
+          "publisher": "Microsoft",
+          "license": "MIT",
+          "why": "Advanced C# development features including project system and testing"
+        }
+      ],
+      "optional": [
+        {
+          "id": "kreativ-software.csharpextensions",
+          "name": "C# Extensions",
+          "description": "C# IDE Extensions for VSCode",
+          "publisher": "Kreativ Software",
+          "license": "MIT",
+          "why": "Additional C# productivity features"
+        },
+        {
+          "id": "formulahendry.dotnet-test-explorer",
+          "name": ".NET Core Test Explorer",
+          "description": "Test Explorer for .NET Core",
+          "publisher": "Jun Han",
+          "license": "MIT",
+          "why": "Visual test runner for .NET unit tests"
+        },
+        {
+          "id": "jorgeserrano.vscode-csharp-snippets",
+          "name": "C# Snippets",
+          "description": "C# Snippets for Visual Studio Code",
+          "publisher": "Jorge Serrano",
+          "license": "MIT",
+          "why": "Comprehensive collection of C# code snippets"
+        },
+        {
+          "id": "josefpihrt-vscode.roslynator",
+          "name": "Roslynator",
+          "description": "500+ analyzers, refactorings and fixes for C#",
+          "publisher": "Josef Pihrt",
+          "license": "MIT",
+          "why": "Advanced C# code analysis and refactoring using Roslyn"
+        }
+      ]
+    },
+    "godot": {
+      "configFile": "scripts/configs/collections/vscode/godot.ts",
+      "extensionFile": "scripts/configs/extensions/godot/index.ts",
+      "required": [
+        {
+          "id": "geequlim.godot-tools",
+          "name": "Godot Tools",
+          "description": "Complete Godot development support with LSP",
+          "publisher": "geequlim",
+          "license": "MIT",
+          "why": "Essential extension providing comprehensive Godot development support"
+        },
+        {
+          "id": "jjkim.gdscript",
+          "name": "GDScript",
+          "description": "Syntax highlighting and code completion for GDScript",
+          "publisher": "jjkim",
+          "license": "MIT",
+          "why": "Additional GDScript syntax highlighting and IntelliSense"
+        }
+      ],
+      "optional": [
+        {
+          "id": "alfish.godot-files",
+          "name": "Godot Files",
+          "description": "Syntax highlighting for Godot files",
+          "publisher": "alfish",
+          "license": "MIT",
+          "why": "Support for .tres, .tscn, .godot file formats"
+        },
+        {
+          "id": "arkii.godot-shaders",
+          "name": "Godot Shaders",
+          "description": "Syntax highlighting for Godot shader files",
+          "publisher": "arkii",
+          "license": "MIT",
+          "why": "Essential for shader development in Godot"
+        },
+        {
+          "id": "razoric.gdscript-snippets",
+          "name": "Godot Snippets",
+          "description": "Code snippets for GDScript",
+          "publisher": "razoric",
+          "license": "MIT",
+          "why": "Useful code snippets for common GDScript patterns"
+        },
+        {
+          "id": "wayou.vscode-todo-highlight",
+          "name": "TODO Highlight",
+          "description": "Highlight TODOs, FIXMEs, and annotations",
+          "publisher": "wayou",
+          "license": "MIT",
+          "why": "Track TODO comments in game development code"
+        },
+        {
+          "id": "2gua.rainbow-brackets",
+          "name": "Rainbow Brackets",
+          "description": "Rainbow colors for brackets",
+          "publisher": "2gua",
+          "license": "MIT",
+          "why": "Improves code readability by color-coding bracket pairs"
+        }
+      ]
+    }
+  },
+  "generic": {
+    "essential": {
+      "configFile": "scripts/configs/collections/vscode/generic-essential.ts",
+      "ai": [
+        {
+          "id": "GitHub.copilot",
+          "name": "GitHub Copilot",
+          "description": "AI-powered code completion",
+          "publisher": "GitHub",
+          "license": "Commercial",
+          "why": "AI assistance for code generation and completion"
+        }
+      ],
+      "cvs": [
+        {
+          "id": "eamodio.gitlens",
+          "name": "GitLens",
+          "description": "Enhanced Git integration",
+          "publisher": "GitKraken",
+          "license": "MIT",
+          "why": "Git supercharging with history visualization"
+        }
+      ],
+      "productivity": [
+        {
+          "id": "aaron-bond.better-comments",
+          "name": "Better Comments",
+          "why": "Enhanced comment visibility and organization"
+        },
+        {
+          "id": "alefragnani.Bookmarks",
+          "name": "Bookmarks",
+          "why": "Quick navigation within large codebases"
+        },
+        {
+          "id": "streetsidesoftware.code-spell-checker",
+          "name": "Code Spell Checker",
+          "why": "Prevent typos in code and comments"
+        },
+        {
+          "id": "mikestead.dotenv",
+          "name": "DotENV",
+          "why": ".env file support"
+        },
+        {
+          "id": "EditorConfig.EditorConfig",
+          "name": "EditorConfig",
+          "why": "EditorConfig support"
+        },
+        {
+          "id": "usernamehw.errorlens",
+          "name": "Error Lens",
+          "why": "Inline diagnostics display"
+        },
+        {
+          "id": "christian-kohler.path-intellisense",
+          "name": "Path Intellisense",
+          "why": "Path autocomplete"
+        },
+        {
+          "id": "Gruntfuggly.todo-tree",
+          "name": "TODO Tree",
+          "why": "Track TODOs across project"
+        },
+        {
+          "id": "pflannery.vscode-versionlens",
+          "name": "Version Lens",
+          "why": "Package version information"
+        },
+        {
+          "id": "mrmlnc.vscode-json5",
+          "name": "JSON5",
+          "why": "JSON5 syntax support"
+        },
+        {
+          "id": "yzhang.markdown-all-in-one",
+          "name": "Markdown All in One",
+          "why": "Comprehensive Markdown editing"
+        },
+        {
+          "id": "DavidAnson.vscode-markdownlint",
+          "name": "markdownlint",
+          "why": "Markdown linting"
+        },
+        {
+          "id": "bierner.markdown-mermaid",
+          "name": "Markdown Mermaid",
+          "why": "Mermaid diagrams in Markdown"
+        },
+        {
+          "id": "darkriszty.markdown-table-prettify",
+          "name": "Markdown Table Prettifier",
+          "why": "Format markdown tables"
+        },
+        {
+          "id": "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
+          "name": "Mermaid Syntax Highlighting",
+          "why": "Mermaid syntax highlighting"
+        },
+        {
+          "id": "tamasfe.even-better-toml",
+          "name": "Even Better TOML",
+          "why": "TOML support"
+        },
+        {
+          "id": "redhat.vscode-yaml",
+          "name": "YAML",
+          "why": "YAML language support"
+        }
+      ],
+      "optional": [
+        {
+          "id": "shardulm94.trailing-spaces",
+          "name": "Trailing Spaces",
+          "why": "Highlight trailing whitespace"
+        }
+      ]
+    },
+    "extended": {
+      "configFile": "scripts/configs/collections/vscode/generic-extended.ts",
+      "api": [
+        {
+          "id": "42Crunch.vscode-openapi",
+          "name": "OpenAPI (Swagger) Editor",
+          "why": "OpenAPI/Swagger editing with validation"
+        },
+        {
+          "id": "humao.rest-client",
+          "name": "REST Client",
+          "why": "Test APIs with .http files"
+        }
+      ],
+      "docker": [
+        {
+          "id": "ms-azuretools.vscode-docker",
+          "name": "Docker",
+          "why": "Official Docker extension"
+        },
+        {
+          "id": "exiasr.hadolint",
+          "name": "Better Dockerfile",
+          "why": "Enhanced Dockerfile syntax (optional)"
+        }
+      ],
+      "kubernetes": [
+        {
+          "id": "ms-kubernetes-tools.vscode-kubernetes-tools",
+          "name": "Kubernetes",
+          "why": "Official Kubernetes extension"
+        },
+        {
+          "id": "Tim-Koehler.helm-intellisense",
+          "name": "Helm Intellisense",
+          "why": "Helm template support"
+        },
+        {
+          "id": "ipedrazas.kubernetes-snippets",
+          "name": "Kubernetes Snippets",
+          "why": "Kubernetes YAML snippets (optional)"
+        },
+        {
+          "id": "vscoss.vscode-ansible",
+          "name": "Kubernetes YAML Formatter",
+          "why": "YAML formatting (optional)"
+        }
+      ],
+      "github": [
+        {
+          "id": "GitHub.vscode-pull-request-github",
+          "name": "GitHub Pull Requests",
+          "why": "Manage GitHub PRs in VSCode"
+        },
+        {
+          "id": "github.vscode-github-actions",
+          "name": "GitHub Actions",
+          "why": "GitHub Actions workflow support"
+        },
+        {
+          "id": "github.vscode-github-issue-notebooks",
+          "name": "GitHub Issue Notebooks",
+          "why": "Work with issues in notebook format (optional)"
+        },
+        {
+          "id": "mhutchie.git-graph",
+          "name": "Git Graph",
+          "why": "Visualize Git history (optional)"
+        }
+      ],
+      "productivity": [
+        {
+          "id": "formulahendry.code-runner",
+          "name": "Code Runner",
+          "why": "Quick code execution (optional)"
+        },
+        {
+          "id": "sonarsource.sonarlint-vscode",
+          "name": "SonarLint",
+          "why": "Code quality analysis (optional)"
+        }
+      ]
+    }
+  }
+}

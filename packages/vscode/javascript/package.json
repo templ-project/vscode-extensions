@@ -1,8 +1,8 @@
 {
   "name": "tpl-vscode-javascript",
-  "displayName": "Templ Project Javascript Extension Pack",
+  "displayName": "JavaScript Extension Pack for Vscode",
   "description": "Essential JavaScript development environment for VSCode - runtime-agnostic tools for modern JavaScript development",
-  "version": "1.2.1",
+  "version": "1.2.0",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -28,9 +28,10 @@
     "development",
     "linting",
     "formatting",
+    "extension-pack",
+    "development",
     "vscode",
-    "javascript",
-    "extension-pack"
+    "javascript"
   ],
   "extensionPack": [
     "dbaeumer.vscode-eslint",
@@ -75,11 +76,11 @@
     "commands": [
       {
         "command": "templ-project.javascript-vscode.applySettings",
-        "title": "Apply Templ Project Javascript Extension Pack Settings"
+        "title": "Apply JavaScript Extension Pack for Vscode Settings"
       },
       {
         "command": "templ-project.javascript-vscode.resetSettings",
-        "title": "Reset Templ Project Javascript Extension Pack Settings"
+        "title": "Reset JavaScript Extension Pack for Vscode Settings"
       }
     ]
   },

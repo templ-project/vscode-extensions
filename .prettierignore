@@ -1,0 +1,20 @@
+# Ignore files that don't need formatting
+LICENSE
+.gitignore
+.editorconfig
+.eslintignore
+.jscpd.json
+.prettierignore
+.github/
+.husky/
+node_modules/
+dist/
+coverage/
+.jscpd/
+*.lock
+*.log
+.env*
+.nvmrc
+*.yml
+*.yaml
+Dockerfile

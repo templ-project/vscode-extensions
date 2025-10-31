@@ -1,8 +1,8 @@
 {
   "name": "tpl-vscode-python",
-  "displayName": "Templ Project Python Extension Pack",
+  "displayName": "Python Extension Pack for Vscode",
   "description": "Essential Python development environment for VSCode - comprehensive tooling for modern Python development, data science, and web applications",
-  "version": "1.2.1",
+  "version": "1.2.0",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -28,9 +28,10 @@
     "testing",
     "jupyter",
     "machine-learning",
+    "extension-pack",
+    "development",
     "vscode",
-    "python",
-    "extension-pack"
+    "python"
   ],
   "extensionPack": [
     "ms-python.python",
@@ -103,11 +104,11 @@
     "commands": [
       {
         "command": "templ-project.python-vscode.applySettings",
-        "title": "Apply Templ Project Python Extension Pack Settings"
+        "title": "Apply Python Extension Pack for Vscode Settings"
       },
       {
         "command": "templ-project.python-vscode.resetSettings",
-        "title": "Reset Templ Project Python Extension Pack Settings"
+        "title": "Reset Python Extension Pack for Vscode Settings"
       }
     ]
   },

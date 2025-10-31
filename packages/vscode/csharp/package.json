@@ -1,6 +1,6 @@
 {
   "name": "tpl-vscode-csharp",
-  "displayName": "Templ Project Csharp Extension Pack",
+  "displayName": "C# Extension Pack for Vscode",
   "description": "Essential C# development environment for VSCode - comprehensive .NET tooling with IntelliSense, debugging, testing, and modern C# features",
   "version": "1.0.0",
   "publisher": "templ-project",
@@ -30,9 +30,10 @@
     "maui",
     "testing",
     "nuget",
+    "extension-pack",
+    "development",
     "vscode",
-    "csharp",
-    "extension-pack"
+    "csharp"
   ],
   "extensionPack": [
     "ms-dotnettools.csharp",
@@ -92,11 +93,11 @@
     "commands": [
       {
         "command": "templ-project.csharp-vscode.applySettings",
-        "title": "Apply Templ Project Csharp Extension Pack Settings"
+        "title": "Apply C# Extension Pack for Vscode Settings"
       },
       {
         "command": "templ-project.csharp-vscode.resetSettings",
-        "title": "Reset Templ Project Csharp Extension Pack Settings"
+        "title": "Reset C# Extension Pack for Vscode Settings"
       }
     ]
   },
