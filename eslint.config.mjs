@@ -14,6 +14,7 @@ export default [
       'tmp.*',
       '**/tmp',
       '*.tmp',
+      '*.md',
     ],
   },
   ...templEslintConfig,

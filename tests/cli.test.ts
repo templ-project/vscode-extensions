@@ -173,6 +173,15 @@ describe('CLI', () => {
       expect(result.stderr).toContain('required');
     });
 
+    it('should require OPENVSX_TOKEN environment variable for openvsx marketplace', async () => {
+      // Without token, should fail immediately
+      const result = await runCLI(['publish', 'dist/vscodium/test.vsix', '--marketplace', 'openvsx']);
+
+      expect(result.code).toBe(1);
+      expect(result.stderr).toContain('OPENVSX_TOKEN');
+      expect(result.stderr).toContain('required');
+    });
+
     it('should support --marketplace flag with vscode', async () => {
       // Help text shows it supports --marketplace option
       const result = await runCLI(['publish', '--help']);

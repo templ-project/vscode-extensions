@@ -6,6 +6,7 @@
 
 import { basename } from 'node:path';
 import { publishVSIX } from '@vscode/vsce';
+import { publish as publishOVSX } from 'ovsx';
 import type pino from 'pino';
 import { PublishError, NetworkError, VersionConflictError } from '../errors.js';
 import type { PublishOptions, PublishResult, Marketplace } from './types.js';
@@ -72,7 +73,7 @@ export class MarketplacePublisher {
     if (marketplace === 'vscode') {
       return await this.publishToVSCodeMarketplace(pat, vsixPath);
     } else if (marketplace === 'openvsx') {
-      throw new PublishError('Open VSX publishing not yet implemented (S-013)', { marketplace: 'openvsx', vsixPath });
+      return await this.publishToOpenVSX(pat, vsixPath);
     } else {
       throw new PublishError(`Unknown marketplace: ${marketplace}`, { marketplace, vsixPath });
     }
@@ -180,6 +181,121 @@ export class MarketplacePublisher {
       // Generic publish error
       throw new PublishError(`Failed to publish to VSCode Marketplace: ${errorMessage}`, {
         marketplace: 'vscode',
+        vsixPath,
+        cause: errorMessage,
+      });
+    }
+  }
+
+  /**
+   * Publish to Open VSX Registry using ovsx
+   *
+   * @param pat - Personal Access Token from https://open-vsx.org/user-settings/tokens
+   * @param vsixPath - Path to .vsix file
+   * @returns Promise resolving to PublishResult
+   * @throws {PublishError} For authentication or API errors
+   * @throws {NetworkError} For network failures
+   * @throws {VersionConflictError} For version conflicts
+   */
+  private async publishToOpenVSX(pat: string, vsixPath: string): Promise<PublishResult> {
+    this.logger.info({ vsixPath }, 'Publishing to Open VSX Registry');
+
+    try {
+      // Extract extension metadata from .vsix filename
+      // Expected format: publisher-name-version.vsix (e.g., tpl-vscodium-cpp-1.0.0.vsix)
+      const filename = basename(vsixPath);
+      const match = filename.match(/^(.+?)-(\d+\.\d+\.\d+)\.vsix$/);
+
+      if (!match) {
+        throw new PublishError(`Invalid .vsix filename format: ${filename}`, {
+          vsixPath,
+          expectedFormat: 'publisher-name-version.vsix',
+          hint: 'Ensure .vsix file follows naming convention',
+        });
+      }
+
+      const [, nameWithPublisher, version] = match;
+
+      // Publish using ovsx
+      // The publish function handles authentication and upload
+      await publishOVSX({
+        extensionFile: vsixPath,
+        pat,
+        // registryUrl defaults to https://open-vsx.org
+      });
+
+      this.logger.info({ vsixPath, version, marketplace: 'openvsx' }, 'Successfully published to Open VSX Registry');
+
+      // Construct result
+      const result: PublishResult = {
+        marketplace: 'openvsx',
+        vsixPath,
+        extensionId: nameWithPublisher.replace(/-/g, '.'), // Convert tpl-vscodium-cpp to tpl.vscodium.cpp
+        version,
+        url: `https://open-vsx.org/extension/${nameWithPublisher.replace(/-/g, '/')}`,
+        isUpdate: true, // We can't easily determine this without querying the API
+      };
+
+      return result;
+    } catch (error) {
+      // Handle different error types from ovsx
+      const errorMessage = error instanceof Error ? error.message : String(error);
+
+      this.logger.error({ err: error, vsixPath, marketplace: 'openvsx' }, 'Failed to publish to Open VSX Registry');
+
+      // Authentication errors
+      if (
+        errorMessage.includes('401') ||
+        errorMessage.includes('403') ||
+        errorMessage.includes('Unauthorized') ||
+        errorMessage.includes('Forbidden') ||
+        errorMessage.includes('authentication') ||
+        errorMessage.includes('Invalid access token')
+      ) {
+        throw new PublishError('Authentication failed: Invalid or expired Personal Access Token', {
+          marketplace: 'openvsx',
+          vsixPath,
+          hint: 'Generate a new token at https://open-vsx.org/user-settings/tokens',
+          requiredScopes: ['Publish extensions'],
+          cause: errorMessage,
+        });
+      }
+
+      // Version conflict errors
+      if (
+        errorMessage.includes('already exists') ||
+        errorMessage.includes('is already published') ||
+        errorMessage.includes('version')
+      ) {
+        const version = basename(vsixPath).match(/(\d+\.\d+\.\d+)/)?.[1] || 'unknown';
+        throw new VersionConflictError(`Version ${version} already exists on Open VSX Registry`, {
+          version,
+          marketplace: 'openvsx',
+          vsixPath,
+          hint: 'Version managed by dragoscops/version-update@v3 GitHub Action',
+          note: 'This error should not occur in normal CI/CD workflow',
+        });
+      }
+
+      // Network errors
+      if (
+        errorMessage.includes('ECONNREFUSED') ||
+        errorMessage.includes('ETIMEDOUT') ||
+        errorMessage.includes('ENOTFOUND') ||
+        errorMessage.includes('network') ||
+        errorMessage.includes('timeout')
+      ) {
+        throw new NetworkError('Network error when connecting to Open VSX Registry', {
+          marketplace: 'openvsx',
+          vsixPath,
+          cause: errorMessage,
+          hint: 'Check internet connection and Open VSX status at https://open-vsx.org',
+        });
+      }
+
+      // Generic publish error
+      throw new PublishError(`Failed to publish to Open VSX Registry: ${errorMessage}`, {
+        marketplace: 'openvsx',
         vsixPath,
         cause: errorMessage,
       });
