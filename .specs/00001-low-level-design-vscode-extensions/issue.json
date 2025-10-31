@@ -3,10 +3,7 @@
   "id": 1,
   "title": "Low level design VSCode Extensions",
   "description": "Low level design VSCode Extensions - This project is a VSCode/VSCodium extension pack builder gone wrong. The design is wrong, the implementation is wrong, the publish scripts work only when they want to. Please write a LLD for a tool that packs vscode(ium) extensions. You should cover:\\n- configuration for each extension pack\\n  - what other extensions to contain\\n  - what snipets, custom settings, key bindigings to contain\\n  - documentation for what the extension does\\n  - (if possible) MCP server configuration (especially if the extension is for a language server)\\n  - configuration files - you are free too chose but should be comprehensible - can even be a set of multiple tools/languages (JSON, TOML, YAML, Markdown, TypeScript) for better readability of the content",
-  "labels": [
-    "epic",
-    "lld"
-  ],
+  "labels": ["epic", "lld"],
   "created_at": "2025-10-30T14:11:19.549139Z",
   "updated_at": "2025-10-30T14:11:19.549139Z",
   "comments": []
