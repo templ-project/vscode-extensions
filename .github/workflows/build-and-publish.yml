@@ -1,0 +1,179 @@
+# Build and Publish Extension Packs
+#
+# This workflow automates the build and publish process for VSCode/VSCodium extension packs.
+# It consists of five jobs:
+#   1. build-for-version - Builds extensions so bumpalicious can detect changes
+#   2. version - Updates versions for changed extensions and creates tags (main branch only)
+#   3. build - Builds all extension packs with updated versions and uploads .vsix artifacts
+#   4. test - Runs test suite
+#   5. publish - Publishes extension packs to marketplaces (main branch only)
+
+name: Build and Publish Extension Packs
+
+on:
+  push:
+    branches: [main]
+  pull_request: {}
+  workflow_dispatch: {}
+
+jobs:
+  build-for-version:
+    name: Build Extensions for Version Detection
+    runs-on: ubuntu-latest
+    # Only run on push to main branch
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Task CLI
+        run: |
+          sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+
+      - name: Build all extension packs
+        run: task build:extensions
+
+  version:
+    name: Update Versions
+    runs-on: ubuntu-latest
+    needs: [build-for-version]
+    # Only run version updates on push to main branch after initial build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch full git history for version-update action
+          fetch-depth: 0
+          # Use PAT with repo scope for pushing version updates
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build workspaces list
+        id: workspaces
+        run: |
+          workspaces=(".:node")
+          for ide in vscode vscodium; do
+            for extension in cpp csharp generic-essential generic-extended godot golang javascript python typescript; do
+              workspaces+=("packages/$ide/$extension:node")
+            done
+          done
+          workspaces_string=$(IFS=';'; echo "${workspaces[*]}")
+          echo "workspaces=$workspaces_string" >> $GITHUB_OUTPUT
+
+      - name: Update versions for changed extensions
+        uses: dragoscops/bumpalicious@v3
+        with:
+          # Workspace configuration: dynamically built list of all extension packs
+          workspaces: ${{ steps.workspaces.outputs.workspaces }}
+          # GitHub token for tagging and commits
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    name: Build Extension Packs
+    runs-on: ubuntu-latest
+    # Run after version job (on main) or immediately (on PRs)
+    needs: [version]
+    # Always run build job, even on PRs where version is skipped
+    if: always() && (needs.version.result == 'success' || needs.version.result == 'skipped')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Pull latest changes including version updates from version job
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Task CLI
+        run: |
+          sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+
+      - name: Build all extension packs
+        run: task build:extensions
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: extension-packs
+          path: dist/**/*.vsix
+          retention-days: 30
+          if-no-files-found: error
+
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run typecheck
+        run: npm run typecheck
+
+      - name: Run lint
+        run: npm run lint:check
+
+      - name: Run tests
+        run: npm test
+
+  publish:
+    name: Publish to Marketplaces
+    runs-on: ubuntu-latest
+    # Only run on push to main branch after build and test succeed
+    needs: [build, test]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: extension-packs
+          path: dist
+
+      - name: Install Task CLI
+        run: |
+          sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+
+      - name: Publish all extension packs
+        env:
+          VSCODE_TOKEN: ${{ secrets.VSCODE_MARKETPLACE_TOKEN }}
+          OPENVSX_TOKEN: ${{ secrets.OPENVSX_TOKEN }}
+        run: task publish:all
