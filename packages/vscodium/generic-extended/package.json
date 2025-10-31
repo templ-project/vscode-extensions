@@ -2,7 +2,7 @@
   "name": "tpl-vscodium-generic-extended",
   "displayName": "Templ Project Generic Extended Extension Pack",
   "description": "Extended developer tools for API development, containerization, and Git forge integration in VSCodium (Open VSX compatible)",
-  "version": "1.2.1",
+  "version": "1.2.0",
   "publisher": "templ-project",
   "repository": {
     "type": "git",

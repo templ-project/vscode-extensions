@@ -228,7 +228,7 @@ export class ExtensionPackBuilder {
 
     try {
       // Step 1: Determine output directory
-      const packageDir = join(outputDir, 'packages', ide, language);
+      const packageDir = join(outputDir, ide, language);
       this.logger.debug({ packageDir }, 'Output directory determined');
 
       // Step 2: Read existing version (or default to 0.0.1)

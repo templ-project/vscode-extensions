@@ -2,7 +2,7 @@
   "name": "tpl-vscodium-typescript",
   "displayName": "Templ Project Typescript Extension Pack",
   "description": "Essential TypeScript development environment for VSCodium - comprehensive tooling for type-safe development using open-source alternatives",
-  "version": "1.2.1",
+  "version": "1.2.0",
   "publisher": "templ-project",
   "repository": {
     "type": "git",

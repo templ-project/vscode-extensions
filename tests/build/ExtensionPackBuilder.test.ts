@@ -92,7 +92,7 @@ describe('ExtensionPackBuilder', () => {
       });
 
       // Verify result structure
-      expect(result.packageDir).toBe(join(tempDir, 'packages', 'vscode', 'cpp'));
+      expect(result.packageDir).toBe(join(tempDir, 'vscode', 'cpp'));
       expect(result.files).toContain('package.json');
       expect(result.files).toContain('README.md');
       expect(result.files).toContain('src/extension.ts');

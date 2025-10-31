@@ -14,10 +14,20 @@ tasks:
     desc: Build the CLI (TypeScript compilation)
     cmds:
       - npm run build
+    generates:
+      - dist/**/*.js
+      - dist/**/*.d.ts
+    sources:
+      - src/**/*.ts
+      - templates/**/*
+      - tests/**/*.ts
+      - tsconfig.json
+      - package.json
 
   build:extension:
     desc: Build extension pack for both IDEs (use EXTENSION=cpp)
     deps:
+      - task: build:cli
       - task: build:extension:vscode
         vars:
           EXTENSION: '{{.EXTENSION}}'
