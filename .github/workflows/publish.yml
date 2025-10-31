@@ -19,9 +19,9 @@ on:
         type: boolean
         default: true
     secrets:
-      VSCODE_MARKETPLACE_TOKEN:
+      VSCE_PAT:
         required: true
-      OPENVSX_TOKEN:
+      OVSX_PAT:
         required: true
   workflow_dispatch:
     inputs:
@@ -93,10 +93,10 @@ jobs:
 
       - name: Publish to VSCode Marketplace
         env:
-          VSCODE_TOKEN: ${{ secrets.VSCODE_MARKETPLACE_TOKEN }}
+          VSCODE_TOKEN: ${{ secrets.VSCE_PAT }}
         run: task publish:vscode
 
       - name: Publish to Open VSX
         env:
-          OPENVSX_TOKEN: ${{ secrets.OPENVSX_TOKEN }}
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
         run: task publish:vscodium

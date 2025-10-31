@@ -77,7 +77,7 @@ jobs:
           # Workspace configuration: dynamically built list of all extension packs
           workspaces: ${{ steps.workspaces.outputs.workspaces }}
           # GitHub token for tagging and commits
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GH_TOKEN }}
 
   build:
     name: Build Extension Packs
@@ -150,5 +150,5 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     uses: ./.github/workflows/publish.yml
     secrets:
-      VSCODE_MARKETPLACE_TOKEN: ${{ secrets.VSCODE_MARKETPLACE_TOKEN }}
-      OPENVSX_TOKEN: ${{ secrets.OPENVSX_TOKEN }}
+      VSCE_PAT: ${{ secrets.VSCE_PAT }}
+      OVSX_PAT: ${{ secrets.OVSX_PAT }}
