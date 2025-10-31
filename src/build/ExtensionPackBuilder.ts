@@ -6,7 +6,8 @@
  */
 
 import { mkdir, copyFile } from 'node:fs/promises';
-import { join, dirname } from 'node:path';
+import { join, dirname, resolve } from 'node:path';
+import { createVSIX } from '@vscode/vsce';
 import type pino from 'pino';
 import type { Collection } from '../config/types.js';
 import { BuildError } from '../errors.js';
@@ -35,7 +36,7 @@ export interface BuildOptions {
 
   /**
    * Publisher name for marketplace
-   * @default '@templ-project'
+   * @default 'templ-project'
    */
   publisher?: string;
 
@@ -56,6 +57,12 @@ export interface BuildOptions {
    * @default 'logos'
    */
   logosDir?: string;
+
+  /**
+   * Whether to package the extension into a .vsix file
+   * @default false
+   */
+  packageVSIX?: boolean;
 }
 
 /**
@@ -71,6 +78,11 @@ export interface BuildResult {
    * List of files generated
    */
   files: string[];
+
+  /**
+   * Path to generated .vsix file (if packaging was enabled)
+   */
+  vsixPath?: string;
 
   /**
    * Extension pack metadata
@@ -206,7 +218,7 @@ export class ExtensionPackBuilder {
       ide,
       language,
       organization = 'templ-project',
-      publisher = '@templ-project',
+      publisher = 'templ-project',
       repositoryUrl = 'https://github.com/templ-project/vscode-extensions',
       outputDir = process.cwd(),
       logosDir = 'logos',
@@ -245,12 +257,19 @@ export class ExtensionPackBuilder {
       await this.copyLogo(logosDir, packageDir, language);
       files.push('logo.png');
 
+      // Step 7: Package to .vsix (optional)
+      let vsixPath: string | undefined;
+      if (options.packageVSIX) {
+        vsixPath = await this.package(packageDir, options);
+      }
+
       this.logger.info(
         {
           ide,
           language,
           packageDir,
           fileCount: files.length,
+          vsixPath,
         },
         'Extension pack build completed',
       );
@@ -258,6 +277,7 @@ export class ExtensionPackBuilder {
       return {
         packageDir,
         files,
+        vsixPath,
         metadata: {
           ide,
           language,
@@ -626,6 +646,62 @@ export class ExtensionPackBuilder {
           packageDir,
           language,
           originalError: errorMessage,
+        },
+      );
+    }
+  }
+
+  /**
+   * Package extension pack into a .vsix file
+   *
+   * @param packageDir - Path to the extension pack directory
+   * @param options - Build options containing IDE information
+   * @returns Path to the generated .vsix file
+   * @throws {BuildError} If packaging fails
+   */
+  async package(packageDir: string, options: BuildOptions): Promise<string> {
+    const { ide } = options;
+    const distDir = resolve(process.cwd(), 'dist', ide);
+
+    this.logger.info(
+      { packageDir, distDir },
+      'Starting VSIX packaging',
+    );
+
+    try {
+      // Create dist/{ide} directory if it doesn't exist
+      await mkdir(distDir, { recursive: true });
+      this.logger.debug({ distDir }, 'Distribution directory created');
+
+      // Package extension using @vscode/vsce
+      // Extension packs don't need dependencies or pre-publish steps
+      const vsixPath = await createVSIX({
+        cwd: packageDir,
+        packagePath: distDir,
+        useYarn: false,
+        dependencies: false, // Skip dependency installation
+        preRelease: false,
+        ignoreFile: undefined, // Use default .vscodeignore
+        skipLicense: false,
+        allowUnusedFilesPattern: false,
+        allowMissingRepository: false,
+      });
+
+      this.logger.info(
+        { vsixPath, packageDir, distDir },
+        'VSIX packaging completed successfully',
+      );
+
+      return vsixPath;
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      throw new BuildError(
+        `Failed to package extension to .vsix: ${errorMessage}`,
+        {
+          packageDir,
+          distDir,
+          originalError: errorMessage,
+          hint: 'Ensure package.json is valid and all required files exist',
         },
       );
     }
