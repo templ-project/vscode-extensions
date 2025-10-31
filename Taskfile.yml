@@ -188,12 +188,12 @@ tasks:
 
   publish:vscode:
     cmds:
-      - '{{.CLI}} publish {{.DIST_DIR}}/vscode/*.vsix --marketplace vscode'
+      - '{{.CLI}} publish "{{.DIST_DIR}}/vscode/*.vsix" --marketplace vscode'
     desc: Publish all VSCode extension packs to VSCode Marketplace
 
   publish:vscodium:
     cmds:
-      - '{{.CLI}} publish {{.DIST_DIR}}/vscodium/*.vsix --marketplace openvsx'
+      - '{{.CLI}} publish "{{.DIST_DIR}}/vscodium/*.vsix" --marketplace openvsx'
     desc: Publish all VSCodium extension packs to Open VSX
 
   # =============================================================================

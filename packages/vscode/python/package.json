@@ -96,7 +96,7 @@
         "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
       },
       {
-        "key": "shift+enter",
+        "key": "ctrl+shift+enter",
         "command": "jupyter.execSelectionInteractive",
         "when": "editorTextFocus &amp;&amp; editorLangId &#x3D;&#x3D; python"
       }
