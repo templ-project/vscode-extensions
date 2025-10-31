@@ -31,7 +31,7 @@ export const typescript: Collection = {
 ### Development Tools
 - **TypeScript Snippets**: Essential TypeScript code snippets
 
-### Productivity Tools (Optional)  
+### Productivity Tools (Optional)
 - **json2ts**: Convert JSON objects to TypeScript interfaces
 - **TypeScript Hero**: Enhanced TypeScript tooling with auto-import organization
 
@@ -40,6 +40,62 @@ export const typescript: Collection = {
 This collection is optimized for VSCodium and uses only open-source extensions available through the Open VSX Registry. All essential TypeScript development capabilities are included through open-source alternatives.
 
 ## Configuration
+
+### MCP Language Server Setup (Optional - Advanced)
+
+The Model Context Protocol (MCP) Language Server enhances TypeScript development with additional context-aware features. This works with VSCodium as well.
+
+#### Installation
+1. Install mcp-language-server:
+\`\`\`bash
+# Using Go
+go install github.com/isaacphi/mcp-language-server@latest
+
+# Or download from releases
+# https://github.com/isaacphi/mcp-language-server/releases
+\`\`\`
+
+2. Install typescript-language-server:
+\`\`\`bash
+npm install -g typescript-language-server typescript
+\`\`\`
+
+#### Configuration
+Create a \`.vscode/mcp.json\` file in your workspace:
+\`\`\`json
+{
+  "servers": {
+    "language-server": {
+      "command": "mcp-language-server",
+      "args": [
+        "--workspace", "\${workspaceFolder}",
+        "--lsp", "typescript-language-server",
+        "--", "--stdio"
+      ]
+    }
+  }
+}
+\`\`\`
+
+**Note**: Replace \`mcp-language-server\` with the full path if it's not in your PATH:
+- macOS/Linux: \`/Users/username/go/bin/mcp-language-server\` or \`~/go/bin/mcp-language-server\`
+- Windows: \`C:\\Users\\username\\go\\bin\\mcp-language-server.exe\`
+
+#### Features
+- Enhanced context-aware completions
+- Cross-file type analysis
+- Advanced refactoring suggestions
+- Integration with TypeScript language server
+
+#### Troubleshooting
+- Ensure both \`mcp-language-server\` and \`typescript-language-server\` are in your PATH
+- Check MCP server logs in Output panel (View > Output > MCP)
+- Verify \`.vscode/mcp.json\` syntax is correct
+- Restart VSCodium after configuration changes
+
+For more information:
+- MCP Language Server: https://github.com/isaacphi/mcp-language-server
+- TypeScript Language Server: https://github.com/typescript-language-server/typescript-language-server
 
 ### TypeScript Setup
 Create a \`tsconfig.json\` file in your project root:

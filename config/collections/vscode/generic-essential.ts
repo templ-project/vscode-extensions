@@ -122,6 +122,18 @@ export const genericEssential: Collection = {
       description: 'JSON with Comments file formatting settings using built-in formatter',
       scope: 'workspace',
     },
+
+    // MCP (Model Context Protocol) Settings
+    'mcp.servers.enabled': {
+      value: true,
+      description: 'Enable MCP servers for enhanced GitHub integration',
+      scope: 'workspace',
+    },
+    'mcp.trace.server': {
+      value: 'off',
+      description: 'Trace MCP server communication (off, messages, verbose)',
+      scope: 'workspace',
+    },
   },
 
   keybindings: [
@@ -181,7 +193,49 @@ git config --global user.email "your.email@example.com"
 ## GitHub Copilot Setup
 1. Sign in to GitHub Copilot through VSCode
 2. Accept the license terms
-3. Start coding with AI assistance`,
+3. Start coding with AI assistance
+
+## GitHub MCP Server Setup (Optional - Advanced)
+
+The GitHub Model Context Protocol (MCP) Server provides enhanced GitHub integration with context-aware features.
+
+### Prerequisites
+- Active GitHub Copilot subscription
+- GitHub account with appropriate permissions
+
+### Configuration
+Create a \`.vscode/mcp.json\` file in your workspace:
+\`\`\`json
+{
+  "servers": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
+    }
+  }
+}
+\`\`\`
+
+### Features
+- Enhanced GitHub repository context
+- AI-powered code understanding across repositories
+- Intelligent issue and PR analysis
+- Cross-repository code search and navigation
+- Contextual suggestions based on GitHub data
+
+### Authentication
+The GitHub MCP server uses your existing GitHub Copilot authentication. No additional setup required.
+
+### Troubleshooting
+- Ensure GitHub Copilot is active and authenticated
+- Check MCP server logs in Output panel (View > Output > MCP)
+- Verify \`.vscode/mcp.json\` syntax is correct
+- Restart VSCode after configuration changes
+- Check GitHub Copilot subscription status
+
+For more information:
+- GitHub MCP Server: https://github.com/github/github-mcp-server
+- Model Context Protocol: https://modelcontextprotocol.io`,
 
     troubleshooting: `# Common Issues and Solutions
 

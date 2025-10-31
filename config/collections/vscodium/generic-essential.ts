@@ -125,6 +125,30 @@ git config --global user.email "your.email@example.com"
 3. Set up API keys in Continue settings
 4. Start coding with AI assistance
 
+## GitHub MCP Server Setup (Optional - Advanced)
+
+**Note**: The GitHub MCP Server requires GitHub Copilot, which is not available in VSCodium. This feature is designed for VSCode users. VSCodium users should use Continue AI or other open-source AI assistants.
+
+If you have access to GitHub Copilot (via VSCode), you can configure the GitHub MCP server for enhanced GitHub integration:
+
+Create a \`.vscode/mcp.json\` file:
+\`\`\`json
+{
+  "servers": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
+    }
+  }
+}
+\`\`\`
+
+**VSCodium Users**: Continue AI provides similar contextual code understanding through open-source models. Configure Continue with your preferred AI provider for comparable functionality.
+
+For more information:
+- GitHub MCP Server: https://github.com/github/github-mcp-server (VSCode only)
+- Continue AI: https://continue.dev (VSCodium compatible)
+
 ## VSCodium vs VSCode
 - VSCodium uses Open VSX Registry instead of Microsoft Marketplace
 - Some Microsoft extensions may not be available
