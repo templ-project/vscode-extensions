@@ -78,6 +78,12 @@ export class TemplateGenerator {
       return str.trim();
     });
 
+    // Helper: Check if object has keys
+    Handlebars.registerHelper('hasKeys', (obj: unknown) => {
+      if (!obj || typeof obj !== 'object') return false;
+      return Object.keys(obj).length > 0;
+    });
+
     this.logger.debug('Handlebars helpers registered');
   }
 

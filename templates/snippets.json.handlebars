@@ -1,17 +1,17 @@
 {
 {{#each snippets}}
   "{{@key}}": {
-    "prefix": "{{prefix}}",
+    "prefix": "{{this.prefix}}",
     "body": [
-{{#if (isString body)}}
-      "{{{escapeJson (trim body)}}}"
+{{#if (isString this.body)}}
+      {{{json this.body}}}
 {{else}}
-{{#each body}}
-      "{{{escapeJson this}}}"{{#unless @last}},{{/unless}}
+{{#each this.body}}
+      {{{json this}}}{{#unless @last}},{{/unless}}
 {{/each}}
 {{/if}}
     ],
-    "description": "{{description}}"
+    "description": "{{this.description}}"
   }{{#unless @last}},{{/unless}}
 {{/each}}
 }

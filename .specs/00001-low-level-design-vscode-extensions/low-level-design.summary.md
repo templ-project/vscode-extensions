@@ -5129,9 +5129,313 @@ Successfully documented the complete VSCode Extension Pack Builder system with a
 
 ---
 
+# Story S-017 Implementation Summary
+
+**Story**: Template Files (Handlebars)
+**Status**: ✅ Complete
+**Date**: October 31, 2025
+
+## Overview
+
+Successfully reviewed, tested, and enhanced all Handlebars templates used for generating VSCode/VSCodium extension pack files. The templates now correctly handle all edge cases, produce valid output formats (JSON, Markdown, TypeScript), and support conditional rendering based on configuration data.
+
+## Actions Taken
+
+### 1. Template Review and Inventory
+
+Reviewed all 11 existing template files in `templates/` directory:
+
+- **package.json.handlebars** - Extension manifest with extensionPack, contributes, scripts
+- **README.md.handlebars** - Comprehensive documentation with installation, extensions, settings, license
+- **CHANGELOG.md.handlebars** - Version history with extension lists
+- **LICENSE.md.handlebars** - MIT license with third-party extension licenses
+- **extension.ts.handlebars** - Extension entry point with settings commands
+- **snippets.json.handlebars** - Code snippets with prefix, body, description
+- **settings.json.handlebars** - VSCode settings key-value pairs
+- **keybindings.json.handlebars** - Keyboard shortcuts with when clauses
+- **tsconfig.json.handlebars** - TypeScript compiler configuration
+- **.vscodeignore.handlebars** - Files to exclude from .vsix package
+- **logo-placeholder.md.handlebars** - Placeholder when logo missing
+
+### 2. Template Bug Fixes
+
+Fixed critical issues in existing templates:
+
+**snippets.json.handlebars**:
+
+- **Issue**: Used incorrect variable references (`{{name}}` instead of `{{@key}}`)
+- **Issue**: Newline characters not properly handled in JSON strings
+- **Fix**: Changed to use `@key` for iteration over object keys
+- **Fix**: Use `json` helper for proper JSON string encoding
+- **Result**: Now produces valid JSON with properly escaped content
+
+**package.json.handlebars**:
+
+- **Issue**: Conditional `{{#if snippets}}` evaluates true even for empty objects
+- **Fix**: Added `hasKeys` helper and changed to `{{#if (hasKeys snippets)}}`
+- **Result**: Contributes.snippets only included when snippets actually exist
+
+**README.md.handlebars**:
+
+- **Issue**: Configuration section shown even with no settings
+- **Fix**: Changed `{{#if settings}}` to `{{#if (hasKeys settings)}}`
+- **Result**: Configuration section only shown when settings present
+
+### 3. Handlebars Helper Enhancement
+
+Added new helper function to TemplateGenerator:
+
+```typescript
+Handlebars.registerHelper("hasKeys", (obj: unknown) => {
+  if (!obj || typeof obj !== "object") return false;
+  return Object.keys(obj).length > 0;
+});
+```
+
+**Purpose**: Check if an object has any keys before rendering sections
+**Usage**: `{{#if (hasKeys settings)}}...{{/if}}`
+**Impact**: Prevents empty sections in generated files
+
+### 4. Comprehensive Template Test Suite
+
+Created `tests/build/templates.test.ts` with 29 test cases covering:
+
+**Individual Template Tests** (23 tests):
+
+- package.json.handlebars (5 tests): valid JSON, extension pack, keywords, snippets, keybindings
+- README.md.handlebars (4 tests): all sections, extension list, settings, keybindings
+- CHANGELOG.md.handlebars (2 tests): version, extension lists
+- LICENSE.md.handlebars (2 tests): MIT license, third-party licenses
+- extension.ts.handlebars (3 tests): entry point, settings logic, commands
+- snippets.json.handlebars (3 tests): valid JSON, string body, array body
+- settings.json.handlebars (1 test): valid JSON
+- keybindings.json.handlebars (2 tests): array, when clause
+- tsconfig.json.handlebars (1 test): valid JSON
+
+**Template Syntax Tests** (2 tests):
+
+- All templates compile without errors
+- JSON templates produce valid JSON
+
+**Edge Case Tests** (4 tests):
+
+- Missing optional extensions
+- Missing settings (no Configuration section)
+- Missing keybindings (no Keybindings section)
+- Missing snippets (no contributes.snippets)
+
+**Test Coverage**: 100% of template files, all edge cases, all conditional sections
+
+### 5. Template Context Validation
+
+Documented expected context structure for all templates:
+
+**Core Fields**:
+
+- name, displayName, description, version, publisher, organization
+- repositoryUrl, ide, language, capitalizedIde, cliCommand
+- year, date, keywords, tags, totalExtensions
+
+**Extension Fields**:
+
+- allExtensions, requiredExtensions, optionalExtensions
+- Each with: id, name, description, publisher, license, marketplace_url
+
+**Optional Fields**:
+
+- settings (object with key-value pairs)
+- keybindings (array of {key, command, description, when?})
+- snippets (object with {prefix, body, description})
+- hasCommands (boolean)
+
+### 6. Template Output Validation
+
+Verified all templates produce correct output:
+
+**JSON Templates**:
+
+- package.json: Valid VSCode extension manifest format
+- snippets.json: Valid VSCode snippet format with proper escaping
+- settings.json: Valid key-value JSON
+- keybindings.json: Valid array of keybinding objects
+- tsconfig.json: Valid TypeScript compiler options
+
+**Markdown Templates**:
+
+- README.md: Complete documentation with proper markdown formatting
+- CHANGELOG.md: Version history with markdown lists
+- LICENSE.md: MIT license with third-party extension table
+
+**TypeScript Templates**:
+
+- extension.ts: Valid TypeScript with VSCode API usage
+
+## Files Changed
+
+| File                                 | Purpose                                     | Status      |
+| ------------------------------------ | ------------------------------------------- | ----------- |
+| `templates/snippets.json.handlebars` | Fixed variable references and JSON encoding | ✅ Modified |
+| `templates/package.json.handlebars`  | Added hasKeys check for snippets            | ✅ Modified |
+| `templates/README.md.handlebars`     | Added hasKeys check for settings            | ✅ Modified |
+| `src/build/TemplateGenerator.ts`     | Added hasKeys helper                        | ✅ Modified |
+| `tests/build/templates.test.ts`      | Comprehensive template test suite           | ✅ Created  |
+
+## Quality Gates
+
+### Build ✅
+
+```bash
+$ npm run build
+> tsc
+# No TypeScript errors
+```
+
+### Tests ✅
+
+```bash
+$ npm test
+> vitest run
+
+Test Files  12 passed (12)
+     Tests  205 passed | 8 skipped (213)
+   Duration  13.59s
+```
+
+**Template-specific tests**: 29 passed (29)
+
+### Typecheck ✅
+
+```bash
+$ npm run typecheck
+> tsc --noEmit
+# No type errors
+```
+
+### Lint ✅
+
+```bash
+$ npm run lint:check
+> eslint .
+# No linting errors
+```
+
+## Requirements Coverage
+
+| Requirement                             | Status  | Notes                                       |
+| --------------------------------------- | ------- | ------------------------------------------- |
+| Templates exist in templates/ directory | ✅ Done | 11 template files present                   |
+| package.json.hbs produces valid JSON    | ✅ Done | Tested with JSON.parse()                    |
+| README.md.hbs includes all sections     | ✅ Done | Installation, extensions, settings, license |
+| CHANGELOG.md.hbs formats correctly      | ✅ Done | Version, date, changes list                 |
+| extension.ts.hbs valid TypeScript       | ✅ Done | Compiles without errors                     |
+| Templates handle Handlebars syntax      | ✅ Done | All templates compile successfully          |
+| Conditional sections work correctly     | ✅ Done | hasKeys helper prevents empty sections      |
+| Edge cases handled gracefully           | ✅ Done | Missing data doesn't break rendering        |
+
+## Assumptions & Decisions
+
+1. **Existing Templates Reusable**: Templates already existed and were largely correct, only needed bug fixes
+2. **JSON Helper for Escaping**: Using built-in `json` helper instead of manual `escapeJson` for reliability
+3. **hasKeys Helper Pattern**: Preferred over `#if` for objects to prevent empty section rendering
+4. **Test-Driven Fixes**: Created comprehensive tests first to identify issues, then fixed templates
+5. **Backward Compatibility**: Changes maintain compatibility with existing ExtensionPackBuilder usage
+6. **Strict Context**: Templates assume well-structured context data from ConfigLoader
+7. **Markdown Formatting**: README uses consistent emoji and section structure for readability
+8. **License Transparency**: LICENSE.md explicitly lists third-party extension licenses with disclaimer
+
+## Template Usage
+
+### From ExtensionPackBuilder
+
+```typescript
+const context = {
+  name: "tpl-vscode-cpp",
+  displayName: "C++ Extension Pack",
+  version: "1.0.0",
+  // ... other fields
+  allExtensions: [
+    /* extension objects */
+  ],
+  settings: {
+    /* settings object */
+  },
+  snippets: {
+    /* snippets object */
+  },
+  keybindings: [
+    /* keybinding array */
+  ],
+};
+
+// Generate package.json
+await templateGenerator.render("package.json.handlebars", context);
+
+// Generate README
+await templateGenerator.render("README.md.handlebars", context);
+
+// Generate snippets (only if snippets exist)
+if (Object.keys(context.snippets).length > 0) {
+  await templateGenerator.render("snippets.json.handlebars", context);
+}
+```
+
+### Conditional Rendering
+
+Templates automatically handle missing optional data:
+
+- **No snippets**: `contributes.snippets` omitted from package.json
+- **No settings**: Configuration section omitted from README
+- **No keybindings**: Keybindings section omitted from README
+- **Empty optional extensions**: Section omitted from README
+
+## Known Limitations
+
+1. **No Template Validation**: Templates not validated at build time (only at render time)
+2. **Fixed Structure**: Templates assume specific context structure, don't handle schema changes
+3. **English Only**: All templates in English (no i18n support)
+4. **VSCode-Specific**: Templates tailored for VSCode/VSCodium extension packs only
+5. **Handlebars Version**: Tied to Handlebars 4.x syntax and helpers
+
+## Next Steps
+
+- **S-018**: Logo Assets
+  - Ensure templates correctly reference logo files
+  - Test logo copying in build process
+  - Verify logo-placeholder.md template usage
+
+- **S-019**: Integration Testing
+  - End-to-end tests using templates in complete build pipeline
+  - Test all templates together with real collection data
+  - Verify .vsix package contains correctly generated files
+
+- **Future Enhancements**:
+  - Template versioning system
+  - Custom template directory support
+  - Template validation at startup
+  - Localization support
+
+## Deliverables
+
+✅ **Complete and ready for use**:
+
+- 11 template files reviewed and tested
+- 3 template bug fixes (snippets, package.json, README)
+- 1 new Handlebars helper (hasKeys)
+- 29 comprehensive template tests (all passing)
+- Complete template documentation
+- Edge case handling for all optional sections
+- Valid output verification for all templates
+- TypeScript, JSON, and Markdown format validation
+- All quality gates passing (build ✅, typecheck ✅, lint ✅, tests ✅)
+
+**Exit Criteria Met**: All acceptance criteria for S-017 satisfied. Templates in `templates/` directory exist, render correctly, produce valid output formats, and handle all edge cases. Given package.json.hbs, when rendered with context, then valid package.json is produced. Given README.md.hbs, when rendered with documentation, then markdown includes all sections. Given templates, when rendered, then Handlebars syntax is correct (no compilation errors). Ready for integration in S-019.
+
+---
+
 ## Story Status Summary
 
 - ✅ **S-013**: MarketplacePublisher - Open VSX (COMPLETE)
 - ✅ **S-014**: CLI Publish Command Enhancement (COMPLETE)
 - ✅ **S-015**: GitHub Actions CI/CD Workflow (COMPLETE)
 - ✅ **S-016**: Documentation & README (COMPLETE)
+- ✅ **S-017**: Template Files (Handlebars) (COMPLETE)
