@@ -427,6 +427,27 @@ task build:extension EXTENSION=cpp
 
 # Use parallel builds (automatic in Task CLI)
 task build:extensions:vscode  # Builds 9 extensions in parallel
+task build:extensions:vscodium  # Parallel builds for VSCodium
+
+# Benchmark build performance
+task perf:benchmark:build  # Benchmark 3 extensions
+task perf:benchmark:parallel  # Compare serial vs parallel builds
+```
+
+**Performance Features**:
+
+- **Template Caching**: Templates are compiled once and cached for reuse across multiple builds
+- **Parallel Execution**: Task CLI automatically parallelizes independent build tasks
+- **Cache Statistics**: Track cache hit rates and performance metrics
+- **Efficient Builds**: Only changed extensions need rebuilding (version management via CI/CD)
+
+```typescript
+// Check template cache statistics
+import { TemplateGenerator } from "./build";
+
+const stats = generator.getCacheStats();
+console.log(`Cache hit rate: ${stats.hitRate.toFixed(2)}%`);
+console.log(`Templates cached: ${stats.size}`);
 ```
 
 ## Contributing

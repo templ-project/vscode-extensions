@@ -1,0 +1,104 @@
+{
+  "name": "tpl-vscode-cpp",
+  "displayName": "C++ Extension Pack for Vscode",
+  "description": "Essential C/C++ development environment for VSCode - modern tooling with clang-based language server, CMake/XMake build systems, and advanced debugging",
+  "version": "0.0.1",
+  "publisher": "templ-project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/templ-project/vscode-extensions",
+    "directory": "packages/vscode/cpp"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "icon": "logo.png",
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "dark"
+  },
+  "categories": ["Extension Packs"],
+  "keywords": [
+    "cpp",
+    "c++",
+    "c",
+    "clang",
+    "cmake",
+    "xmake",
+    "native",
+    "systems",
+    "embedded",
+    "extension-pack",
+    "development",
+    "vscode",
+    "cpp"
+  ],
+  "extensionPack": [
+    "llvm-vs-code-extensions.vscode-clangd",
+    "twxs.cmake",
+    "xaver.clang-format",
+    "ms-vscode.cmake-tools",
+    "tboox.xmake-vscode",
+    "jeff-hykin.better-cpp-syntax",
+    "cschlosser.doxdocgen",
+    "webfreak.debug"
+  ],
+  "extensionDependencies": ["llvm-vs-code-extensions.vscode-clangd", "twxs.cmake", "xaver.clang-format"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "cpp",
+        "path": "./snippets/cpp.json"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "ctrl+shift+f",
+        "command": "clang-format.format",
+        "when": "editorTextFocus &amp;&amp; (editorLangId &#x3D;&#x3D; &#x27;cpp&#x27; || editorLangId &#x3D;&#x3D; &#x27;c&#x27;)"
+      },
+      {
+        "key": "ctrl+shift+i",
+        "command": "clangd.switchheadersource",
+        "when": "editorTextFocus &amp;&amp; (editorLangId &#x3D;&#x3D; &#x27;cpp&#x27; || editorLangId &#x3D;&#x3D; &#x27;c&#x27;)"
+      },
+      {
+        "key": "f12",
+        "command": "editor.action.revealDefinition",
+        "when": "editorTextFocus &amp;&amp; (editorLangId &#x3D;&#x3D; &#x27;cpp&#x27; || editorLangId &#x3D;&#x3D; &#x27;c&#x27;)"
+      },
+      {
+        "key": "ctrl+f12",
+        "command": "editor.action.goToReferences",
+        "when": "editorTextFocus &amp;&amp; (editorLangId &#x3D;&#x3D; &#x27;cpp&#x27; || editorLangId &#x3D;&#x3D; &#x27;c&#x27;)"
+      },
+      {
+        "key": "ctrl+shift+o",
+        "command": "workbench.action.gotoSymbol",
+        "when": "editorTextFocus &amp;&amp; (editorLangId &#x3D;&#x3D; &#x27;cpp&#x27; || editorLangId &#x3D;&#x3D; &#x27;c&#x27;)"
+      }
+    ],
+    "commands": [
+      {
+        "command": "templ-project.cpp-vscode.applySettings",
+        "title": "Apply C++ Extension Pack for Vscode Settings"
+      },
+      {
+        "command": "templ-project.cpp-vscode.resetSettings",
+        "title": "Reset C++ Extension Pack for Vscode Settings"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.0"
+  }
+}

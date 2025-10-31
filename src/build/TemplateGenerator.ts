@@ -20,10 +20,22 @@ import { BuildError } from '../errors.js';
  * await generator.renderToFile('package.json.handlebars', context, './output/package.json');
  * ```
  */
+/**
+ * Cache statistics for tracking template cache performance.
+ */
+export interface CacheStats {
+  hits: number;
+  misses: number;
+  size: number;
+  hitRate: number;
+}
+
 export class TemplateGenerator {
   private readonly logger: Logger;
   private readonly templateCache = new Map<string, HandlebarsTemplateDelegate>();
   private readonly templatesDir: string;
+  private cacheHits = 0;
+  private cacheMisses = 0;
 
   /**
    * Creates a new TemplateGenerator instance.
@@ -99,15 +111,22 @@ export class TemplateGenerator {
     // Check cache first
     const cached = this.templateCache.get(templateName);
     if (cached) {
-      this.logger.debug({ templateName }, 'Template loaded from cache');
+      this.cacheHits++;
+      this.logger.debug(
+        { templateName, cacheHits: this.cacheHits, cacheMisses: this.cacheMisses },
+        'Template loaded from cache (hit)',
+      );
       return cached;
     }
+
+    // Cache miss - load from file
+    this.cacheMisses++;
 
     // Load template from file
     const templatePath = join(this.templatesDir, templateName);
 
     try {
-      this.logger.debug({ templatePath }, 'Loading template from file');
+      this.logger.debug({ templatePath, cacheMisses: this.cacheMisses }, 'Loading template from file (miss)');
       const templateContent = await readFile(templatePath, 'utf-8');
 
       // Compile template
@@ -119,7 +138,7 @@ export class TemplateGenerator {
       // Cache compiled template
       this.templateCache.set(templateName, compiled);
 
-      this.logger.debug({ templateName }, 'Template compiled and cached');
+      this.logger.debug({ templateName, cacheSize: this.templateCache.size }, 'Template compiled and cached');
       return compiled;
     } catch (error) {
       this.logger.error({ err: error, templatePath }, 'Failed to load or compile template');
@@ -219,17 +238,58 @@ export class TemplateGenerator {
 
   /**
    * Clears the template cache. Useful for testing or when templates change at runtime.
+   * Also resets cache statistics.
    */
   clearCache(): void {
     const cacheSize = this.templateCache.size;
     this.templateCache.clear();
-    this.logger.debug({ cacheSize }, 'Template cache cleared');
+    this.cacheHits = 0;
+    this.cacheMisses = 0;
+    this.logger.debug({ cacheSize }, 'Template cache and statistics cleared');
   }
 
   /**
    * Returns the number of cached templates.
+   *
+   * @deprecated Use getCacheStats() for detailed cache information
    */
   getCacheSize(): number {
     return this.templateCache.size;
+  }
+
+  /**
+   * Returns detailed cache statistics including hits, misses, size, and hit rate.
+   *
+   * @returns Cache statistics object
+   *
+   * @example
+   * ```typescript
+   * const stats = generator.getCacheStats();
+   * console.log(`Cache hit rate: ${stats.hitRate.toFixed(2)}%`);
+   * console.log(`Total requests: ${stats.hits + stats.misses}`);
+   * ```
+   */
+  getCacheStats(): CacheStats {
+    const totalRequests = this.cacheHits + this.cacheMisses;
+    const hitRate = totalRequests > 0 ? (this.cacheHits / totalRequests) * 100 : 0;
+
+    const stats: CacheStats = {
+      hits: this.cacheHits,
+      misses: this.cacheMisses,
+      size: this.templateCache.size,
+      hitRate,
+    };
+
+    this.logger.debug(
+      {
+        hits: stats.hits,
+        misses: stats.misses,
+        size: stats.size,
+        hitRate: stats.hitRate.toFixed(2) + '%',
+      },
+      'Cache statistics',
+    );
+
+    return stats;
   }
 }

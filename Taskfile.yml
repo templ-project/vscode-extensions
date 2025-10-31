@@ -99,6 +99,7 @@ tasks:
       - task: build:extension:vscode
         vars: {EXTENSION: typescript}
     desc: Build all VSCode extension packs
+    # Note: Task runs dependencies in parallel by default when safe
 
   build:extensions:vscodium:
     deps:
@@ -121,6 +122,7 @@ tasks:
       - task: build:extension:vscodium
         vars: {EXTENSION: typescript}
     desc: Build all VSCodium extension packs
+    # Note: Task runs dependencies in parallel by default when safe
 
   # =============================================================================
   # Utility Tasks
@@ -183,6 +185,52 @@ tasks:
     cmds:
       - '{{.CLI}} publish {{.DIST_DIR}}/vscodium/*.vsix --marketplace openvsx'
     desc: Publish all VSCodium extension packs to Open VSX
+
+  # =============================================================================
+  # Performance Tasks
+  # =============================================================================
+
+  perf:benchmark:build:
+    cmds:
+      - echo "🔬 Benchmarking build performance..."
+      - echo ""
+      - echo "📊 Building 3 extensions (cpp, typescript, python) for VSCode..."
+      - time task build:extension:vscode EXTENSION=cpp
+      - time task build:extension:vscode EXTENSION=typescript
+      - time task build:extension:vscode EXTENSION=python
+      - echo ""
+      - echo "✅ Benchmark complete. Check timing results above."
+    desc: Benchmark build performance for sample extensions
+    silent: false
+
+  perf:benchmark:parallel:
+    cmds:
+      - echo "🔬 Comparing serial vs parallel build performance..."
+      - echo ""
+      - echo "📊 Serial build (3 extensions)..."
+      - task: clean
+      - |
+        start_time=$(date +%s)
+        task build:extension:vscode EXTENSION=cpp
+        task build:extension:vscode EXTENSION=typescript
+        task build:extension:vscode EXTENSION=python
+        end_time=$(date +%s)
+        serial_duration=$((end_time - start_time))
+        echo "⏱️  Serial build took: ${serial_duration}s"
+        echo ""
+      - echo "📊 Parallel build (3 extensions via deps)..."
+      - task: clean
+      - |
+        start_time=$(date +%s)
+        task build:extensions:vscode
+        end_time=$(date +%s)
+        parallel_duration=$((end_time - start_time))
+        echo "⏱️  Parallel build took: ${parallel_duration}s"
+        echo ""
+        speedup=$(echo "scale=2; $serial_duration / $parallel_duration" | bc)
+        echo "🚀 Speedup: ${speedup}x"
+    desc: Compare serial vs parallel build performance
+    silent: false
 
   # =============================================================================
   # Test Tasks

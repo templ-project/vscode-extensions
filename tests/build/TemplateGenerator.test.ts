@@ -279,6 +279,81 @@ Extensions:
       await generator.render('t3.handlebars', {});
       expect(generator.getCacheSize()).toBe(3);
     });
+
+    test('getCacheStats tracks hits and misses correctly', async () => {
+      const templatePath = join(templatesDir, 'stats.handlebars');
+      await writeFile(templatePath, 'Hello {{name}}');
+
+      const generator = new TemplateGenerator(logger, templatesDir);
+
+      // First render - cache miss
+      await generator.render('stats.handlebars', { name: 'World' });
+      let stats = generator.getCacheStats();
+      expect(stats.hits).toBe(0);
+      expect(stats.misses).toBe(1);
+      expect(stats.size).toBe(1);
+      expect(stats.hitRate).toBe(0);
+
+      // Second render - cache hit
+      await generator.render('stats.handlebars', { name: 'Alice' });
+      stats = generator.getCacheStats();
+      expect(stats.hits).toBe(1);
+      expect(stats.misses).toBe(1);
+      expect(stats.size).toBe(1);
+      expect(stats.hitRate).toBe(50); // 1 hit out of 2 requests = 50%
+
+      // Third render - cache hit
+      await generator.render('stats.handlebars', { name: 'Bob' });
+      stats = generator.getCacheStats();
+      expect(stats.hits).toBe(2);
+      expect(stats.misses).toBe(1);
+      expect(stats.size).toBe(1);
+      expect(stats.hitRate).toBeCloseTo(66.67, 1); // 2 hits out of 3 requests ≈ 66.67%
+    });
+
+    test('clearCache resets cache statistics', async () => {
+      const templatePath = join(templatesDir, 'reset.handlebars');
+      await writeFile(templatePath, 'Test');
+
+      const generator = new TemplateGenerator(logger, templatesDir);
+
+      // Build up some cache stats
+      await generator.render('reset.handlebars', {});
+      await generator.render('reset.handlebars', {});
+      await generator.render('reset.handlebars', {});
+
+      let stats = generator.getCacheStats();
+      expect(stats.hits).toBe(2);
+      expect(stats.misses).toBe(1);
+
+      // Clear cache - should reset stats
+      generator.clearCache();
+      stats = generator.getCacheStats();
+      expect(stats.hits).toBe(0);
+      expect(stats.misses).toBe(0);
+      expect(stats.size).toBe(0);
+      expect(stats.hitRate).toBe(0);
+    });
+
+    test('getCacheStats with multiple templates', async () => {
+      const t1Path = join(templatesDir, 't1.handlebars');
+      const t2Path = join(templatesDir, 't2.handlebars');
+      await writeFile(t1Path, 'Template 1');
+      await writeFile(t2Path, 'Template 2');
+
+      const generator = new TemplateGenerator(logger, templatesDir);
+
+      // Load t1 twice, t2 once
+      await generator.render('t1.handlebars', {});
+      await generator.render('t1.handlebars', {});
+      await generator.render('t2.handlebars', {});
+
+      const stats = generator.getCacheStats();
+      expect(stats.hits).toBe(1); // Second t1 render was a hit
+      expect(stats.misses).toBe(2); // First t1 and first t2 were misses
+      expect(stats.size).toBe(2); // Two templates cached
+      expect(stats.hitRate).toBeCloseTo(33.33, 1); // 1 hit out of 3 requests
+    });
   });
 
   describe('Edge Cases', () => {
