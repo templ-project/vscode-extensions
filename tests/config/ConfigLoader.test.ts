@@ -3,10 +3,10 @@
  */
 
 import { beforeEach, describe, expect, it } from 'vitest';
-import { createLogger } from '../../src/logger.js';
 import { ConfigLoader } from '../../src/config/ConfigLoader.js';
-import { ConfigurationError } from '../../src/errors.js';
 import type { Collection } from '../../src/config/types.js';
+import { ConfigurationError } from '../../src/errors.js';
+import { createLogger } from '../../src/logger.js';
 
 describe('ConfigLoader', () => {
   let logger: ReturnType<typeof createLogger>;

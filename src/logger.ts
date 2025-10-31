@@ -96,9 +96,9 @@ export const parentLogger = createLogger();
 
 // TODO: since this was not part of the LLD, treat it later, when code is matured enough
 export class Loggable {
-    protected log: pino.Logger;
+  protected log: pino.Logger;
 
-    constructor() {
-        this.log = parentLogger.child({ module: this.constructor.name });
-    }
+  constructor() {
+    this.log = parentLogger.child({ module: this.constructor.name });
+  }
 }

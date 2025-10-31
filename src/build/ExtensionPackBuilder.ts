@@ -6,13 +6,13 @@
  */
 
 import { mkdir, copyFile } from 'node:fs/promises';
-import { join, dirname, resolve } from 'node:path';
+import { join, resolve } from 'node:path';
 import { createVSIX } from '@vscode/vsce';
 import type pino from 'pino';
 import type { Collection } from '../config/types.js';
 import { BuildError } from '../errors.js';
-import { readExistingVersion } from './version-utils.js';
 import type { TemplateGenerator } from './TemplateGenerator.js';
+import { readExistingVersion } from './version-utils.js';
 
 /**
  * Build options for extension pack generation
@@ -294,15 +294,12 @@ export class ExtensionPackBuilder {
 
       // Wrap other errors in BuildError
       const errorMessage = error instanceof Error ? error.message : String(error);
-      const buildError = new BuildError(
-        `Extension pack build failed: ${errorMessage}`,
-        {
-          ide,
-          language,
-          organization,
-          originalError: errorMessage,
-        },
-      );
+      const buildError = new BuildError(`Extension pack build failed: ${errorMessage}`, {
+        ide,
+        language,
+        organization,
+        originalError: errorMessage,
+      });
 
       this.logger.error({ err: buildError, ide, language }, 'Build failed with unexpected error');
       throw buildError;
@@ -350,19 +347,10 @@ export class ExtensionPackBuilder {
     const allExtensions = [...requiredExtensions, ...optionalExtensions];
 
     // Keywords: combine tags with common extension pack keywords
-    const keywords = [
-      ...collection.tags,
-      'extension-pack',
-      'development',
-      ide,
-      language,
-    ];
+    const keywords = [...collection.tags, 'extension-pack', 'development', ide, language];
 
     // Convert snippets array to object for template
-    const snippetsObject: Record<
-      string,
-      { prefix: string; description: string; body: string | string[] }
-    > = {};
+    const snippetsObject: Record<string, { prefix: string; description: string; body: string | string[] }> = {};
     for (const snippet of collection.snippets) {
       snippetsObject[snippet.name] = {
         prefix: snippet.prefix,
@@ -467,59 +455,36 @@ export class ExtensionPackBuilder {
       this.logger.debug({ packageDir, subdirs }, 'Directory structure created');
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error);
-      throw new BuildError(
-        `Failed to create directory structure: ${errorMessage}`,
-        {
-          packageDir,
-          originalError: errorMessage,
-        },
-      );
+      throw new BuildError(`Failed to create directory structure: ${errorMessage}`, {
+        packageDir,
+        originalError: errorMessage,
+      });
     }
   }
 
   /**
    * Generate all extension pack files
    */
-  private async generateFiles(
-    packageDir: string,
-    context: TemplateContext,
-    language: string,
-  ): Promise<string[]> {
+  private async generateFiles(packageDir: string, context: TemplateContext, language: string): Promise<string[]> {
     this.logger.debug({ packageDir }, 'Generating extension pack files');
 
     const files: string[] = [];
 
     try {
       // 1. Generate package.json
-      await this.templateGenerator.renderToFile(
-        'package.json.handlebars',
-        context,
-        join(packageDir, 'package.json'),
-      );
+      await this.templateGenerator.renderToFile('package.json.handlebars', context, join(packageDir, 'package.json'));
       files.push('package.json');
 
       // 2. Generate README.md
-      await this.templateGenerator.renderToFile(
-        'README.md.handlebars',
-        context,
-        join(packageDir, 'README.md'),
-      );
+      await this.templateGenerator.renderToFile('README.md.handlebars', context, join(packageDir, 'README.md'));
       files.push('README.md');
 
       // 3. Generate CHANGELOG.md
-      await this.templateGenerator.renderToFile(
-        'CHANGELOG.md.handlebars',
-        context,
-        join(packageDir, 'CHANGELOG.md'),
-      );
+      await this.templateGenerator.renderToFile('CHANGELOG.md.handlebars', context, join(packageDir, 'CHANGELOG.md'));
       files.push('CHANGELOG.md');
 
       // 4. Generate LICENSE.md
-      await this.templateGenerator.renderToFile(
-        'LICENSE.md.handlebars',
-        context,
-        join(packageDir, 'LICENSE.md'),
-      );
+      await this.templateGenerator.renderToFile('LICENSE.md.handlebars', context, join(packageDir, 'LICENSE.md'));
       files.push('LICENSE.md');
 
       // 5. Generate extension.ts
@@ -531,19 +496,11 @@ export class ExtensionPackBuilder {
       files.push('src/extension.ts');
 
       // 6. Generate tsconfig.json
-      await this.templateGenerator.renderToFile(
-        'tsconfig.json.handlebars',
-        context,
-        join(packageDir, 'tsconfig.json'),
-      );
+      await this.templateGenerator.renderToFile('tsconfig.json.handlebars', context, join(packageDir, 'tsconfig.json'));
       files.push('tsconfig.json');
 
       // 7. Generate .vscodeignore
-      await this.templateGenerator.renderToFile(
-        '.vscodeignore.handlebars',
-        context,
-        join(packageDir, '.vscodeignore'),
-      );
+      await this.templateGenerator.renderToFile('.vscodeignore.handlebars', context, join(packageDir, '.vscodeignore'));
       files.push('.vscodeignore');
 
       // 8. Generate settings.json (if settings exist)
@@ -581,25 +538,18 @@ export class ExtensionPackBuilder {
       return files;
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error);
-      throw new BuildError(
-        `Failed to generate extension pack files: ${errorMessage}`,
-        {
-          packageDir,
-          filesGenerated: files,
-          originalError: errorMessage,
-        },
-      );
+      throw new BuildError(`Failed to generate extension pack files: ${errorMessage}`, {
+        packageDir,
+        filesGenerated: files,
+        originalError: errorMessage,
+      });
     }
   }
 
   /**
    * Copy logo file to extension pack directory
    */
-  private async copyLogo(
-    logosDir: string,
-    packageDir: string,
-    language: string,
-  ): Promise<void> {
+  private async copyLogo(logosDir: string, packageDir: string, language: string): Promise<void> {
     this.logger.debug({ logosDir, packageDir, language }, 'Copying logo file');
 
     try {
@@ -616,22 +566,19 @@ export class ExtensionPackBuilder {
           this.logger.info({ sourcePath, destPath }, 'Logo copied successfully');
           copied = true;
           break;
-        } catch (error) {
+        } catch {
           // Try next logo
           this.logger.debug({ sourcePath }, 'Logo file not found, trying next option');
         }
       }
 
       if (!copied) {
-        throw new BuildError(
-          `No logo found for language '${language}'`,
-          {
-            logosDir,
-            language,
-            triedFiles: logoFilenames,
-            hint: 'Ensure logo file exists in logos/ directory',
-          },
-        );
+        throw new BuildError(`No logo found for language '${language}'`, {
+          logosDir,
+          language,
+          triedFiles: logoFilenames,
+          hint: 'Ensure logo file exists in logos/ directory',
+        });
       }
     } catch (error) {
       if (error instanceof BuildError) {
@@ -639,15 +586,12 @@ export class ExtensionPackBuilder {
       }
 
       const errorMessage = error instanceof Error ? error.message : String(error);
-      throw new BuildError(
-        `Failed to copy logo: ${errorMessage}`,
-        {
-          logosDir,
-          packageDir,
-          language,
-          originalError: errorMessage,
-        },
-      );
+      throw new BuildError(`Failed to copy logo: ${errorMessage}`, {
+        logosDir,
+        packageDir,
+        language,
+        originalError: errorMessage,
+      });
     }
   }
 
@@ -663,10 +607,7 @@ export class ExtensionPackBuilder {
     const { ide } = options;
     const distDir = resolve(process.cwd(), 'dist', ide);
 
-    this.logger.info(
-      { packageDir, distDir },
-      'Starting VSIX packaging',
-    );
+    this.logger.info({ packageDir, distDir }, 'Starting VSIX packaging');
 
     try {
       // Create dist/{ide} directory if it doesn't exist
@@ -687,23 +628,17 @@ export class ExtensionPackBuilder {
         allowMissingRepository: false,
       });
 
-      this.logger.info(
-        { vsixPath, packageDir, distDir },
-        'VSIX packaging completed successfully',
-      );
+      this.logger.info({ vsixPath, packageDir, distDir }, 'VSIX packaging completed successfully');
 
       return vsixPath;
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error);
-      throw new BuildError(
-        `Failed to package extension to .vsix: ${errorMessage}`,
-        {
-          packageDir,
-          distDir,
-          originalError: errorMessage,
-          hint: 'Ensure package.json is valid and all required files exist',
-        },
-      );
+      throw new BuildError(`Failed to package extension to .vsix: ${errorMessage}`, {
+        packageDir,
+        distDir,
+        originalError: errorMessage,
+        hint: 'Ensure package.json is valid and all required files exist',
+      });
     }
   }
 }

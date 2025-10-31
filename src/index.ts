@@ -5,15 +5,17 @@
  * This module provides a CLI for building and publishing VSCode/VSCodium extension packs.
  */
 
-import { Command } from 'commander';
 import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { createLogger, createChildLogger } from './logger.js';
-import { ConfigLoader } from './config/index.js';
+import { fileURLToPath } from 'node:url';
+import { Command } from 'commander';
 import { TemplateGenerator, readExistingVersion, isValidVersion, ExtensionPackBuilder } from './build/index.js';
 import type { BuildOptions, BuildResult } from './build/index.js';
-import { BuildError } from './errors.js';
+import { ConfigLoader } from './config/index.js';
+import { BuildError, PublishError, NetworkError, VersionConflictError } from './errors.js';
+import { createLogger, createChildLogger } from './logger.js';
+import { MarketplacePublisher } from './publish/index.js';
+import type { Marketplace } from './publish/index.js';
 
 // Get package.json for version
 const __filename = fileURLToPath(import.meta.url);
@@ -27,6 +29,7 @@ const logger = createLogger();
 const configLoader = new ConfigLoader(logger);
 const templateGenerator = new TemplateGenerator(logger);
 const extensionPackBuilder = new ExtensionPackBuilder(logger, templateGenerator);
+const marketplacePublisher = new MarketplacePublisher(logger);
 
 /**
  * Build command handler
@@ -34,7 +37,7 @@ const extensionPackBuilder = new ExtensionPackBuilder(logger, templateGenerator)
 async function buildCommand(
   ide: string,
   language: string,
-  options: { output?: string; logosDir?: string; package?: boolean }
+  options: { output?: string; logosDir?: string; package?: boolean },
 ): Promise<void> {
   try {
     logger.info({ ide, language, options }, 'Starting build command');
@@ -69,7 +72,7 @@ async function buildCommand(
         fileCount: result.files.length,
         vsixPath: result.vsixPath,
       },
-      'Build completed successfully'
+      'Build completed successfully',
     );
 
     console.log(`✅ Build successful!`);
@@ -98,20 +101,111 @@ async function buildCommand(
 }
 
 /**
- * Publish command handler (stub for S-012/S-013)
+ * Publish command handler
  */
-async function publishCommand(
-  vsixPattern: string,
-  options: { marketplace?: string }
-): Promise<void> {
-  logger.info({ vsixPattern, marketplace: options.marketplace }, 'Publish command called (not yet implemented)');
+async function publishCommand(vsixPattern: string, options: { marketplace?: string }): Promise<void> {
+  try {
+    const marketplace = (options.marketplace || 'both') as Marketplace;
 
-  console.log('📦 Publish command');
-  console.log(`   Pattern: ${vsixPattern}`);
-  console.log(`   Marketplace: ${options.marketplace || 'both'}`);
-  console.log('\n⚠️  Publishing not yet implemented (will be completed in S-012/S-013)');
+    logger.info({ vsixPattern, marketplace }, 'Starting publish command');
 
-  process.exit(0);
+    // Validate marketplace option
+    if (!['vscode', 'openvsx', 'both'].includes(marketplace)) {
+      logger.error({ marketplace }, 'Invalid marketplace specified');
+      console.error(`Error: Marketplace must be 'vscode', 'openvsx', or 'both', got '${marketplace}'`);
+      process.exit(1);
+    }
+
+    // Get PAT from environment based on marketplace
+    let pat: string | undefined;
+    if (marketplace === 'vscode' || marketplace === 'both') {
+      pat = process.env.VSCODE_TOKEN;
+      if (!pat) {
+        console.error('❌ Error: VSCODE_TOKEN environment variable is required for VSCode Marketplace publishing');
+        console.error('   Generate a token at: https://marketplace.visualstudio.com/manage');
+        console.error('   Required scopes: Marketplace: Acquire, Marketplace: Publish');
+        process.exit(1);
+      }
+    }
+
+    if (marketplace === 'openvsx' || marketplace === 'both') {
+      const openvsxPat = process.env.OPENVSX_TOKEN;
+      if (!openvsxPat) {
+        console.error('❌ Error: OPENVSX_TOKEN environment variable is required for Open VSX publishing');
+        console.error('   Generate a token at: https://open-vsx.org/user-settings/tokens');
+        process.exit(1);
+      }
+      // For 'openvsx' only, use OPENVSX_TOKEN
+      if (marketplace === 'openvsx') {
+        pat = openvsxPat;
+      }
+    }
+
+    // TODO: Implement glob pattern resolution in S-014
+    // For now, assume vsixPattern is a direct file path
+    const vsixPath = vsixPattern;
+
+    // Publish based on marketplace
+    if (marketplace === 'both') {
+      console.log('⚠️  Publishing to both marketplaces not yet implemented (will be completed in S-014)');
+      console.log('   Please publish to vscode and openvsx separately for now.');
+      process.exit(1);
+    }
+
+    // Publish to single marketplace
+    const result = await marketplacePublisher.publish({
+      pat: pat!,
+      vsixPath,
+      marketplace,
+    });
+
+    logger.info(
+      {
+        marketplace: result.marketplace,
+        extensionId: result.extensionId,
+        version: result.version,
+        url: result.url,
+      },
+      'Publish completed successfully',
+    );
+
+    console.log(`✅ Publish successful!`);
+    console.log(`   Extension: ${result.extensionId}`);
+    console.log(`   Version: ${result.version}`);
+    console.log(`   Marketplace: ${result.marketplace}`);
+    console.log(`   URL: ${result.url}`);
+
+    process.exit(0);
+  } catch (error) {
+    logger.error({ err: error, vsixPattern }, 'Publish command failed');
+
+    if (error instanceof PublishError) {
+      console.error(`❌ Publish failed: ${error.message}`);
+      if (error.context) {
+        console.error('   Details:');
+        for (const [key, value] of Object.entries(error.context)) {
+          if (key !== 'cause') {
+            console.error(`   - ${key}: ${value}`);
+          }
+        }
+      }
+    } else if (error instanceof NetworkError) {
+      console.error(`❌ Network error: ${error.message}`);
+      if (error.context.hint) {
+        console.error(`   ${error.context.hint}`);
+      }
+    } else if (error instanceof VersionConflictError) {
+      console.error(`❌ Version conflict: ${error.message}`);
+      if (error.context.hint) {
+        console.error(`   ${error.context.hint}`);
+      }
+    } else {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      console.error(`❌ Publish failed: ${errorMessage}`);
+    }
+
+    process.exit(1);
+  }
 }
 
 /**
@@ -140,9 +234,9 @@ function main(): void {
   // Publish command
   program
     .command('publish')
-    .description('Publish extension packs to marketplaces (stub)')
-    .argument('<vsix-pattern>', 'Glob pattern for .vsix files (e.g., dist/vscode/*.vsix)')
-    .option('-m, --marketplace <name>', 'Target marketplace (vscode, openvsx, or both)', 'both')
+    .description('Publish extension pack to marketplace')
+    .argument('<vsix-path>', 'Path to .vsix file (e.g., dist/vscode/tpl-vscode-cpp-1.0.0.vsix)')
+    .option('-m, --marketplace <name>', 'Target marketplace (vscode, openvsx, or both)', 'vscode')
     .action(publishCommand);
 
   // Parse arguments
@@ -155,5 +249,15 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 }
 
 // Export for library usage
-export { createLogger, createChildLogger, ConfigLoader, TemplateGenerator, readExistingVersion, isValidVersion, ExtensionPackBuilder };
+export {
+  createLogger,
+  createChildLogger,
+  ConfigLoader,
+  TemplateGenerator,
+  readExistingVersion,
+  isValidVersion,
+  ExtensionPackBuilder,
+  MarketplacePublisher,
+};
 export type { BuildOptions, BuildResult };
+export type { Marketplace, PublishOptions, PublishResult } from './publish/index.js';

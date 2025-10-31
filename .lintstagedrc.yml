@@ -21,6 +21,7 @@
 '**/*.{yml,yaml}':
   - 'npx prettier --write --parser yaml'
   - 'npx eslint --fix --no-warn-ignored'
+
 # TypeScript compilation check
 # '**/*.ts':
 #   - 'npx tsc --noEmit'

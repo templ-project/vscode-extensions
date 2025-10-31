@@ -1,8 +1,8 @@
-import { readFile, writeFile } from "node:fs/promises";
-import { join } from "node:path";
-import Handlebars from "handlebars";
-import type { Logger } from "pino";
-import { BuildError } from "../errors.js";
+import { readFile, writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
+import Handlebars from 'handlebars';
+import type { Logger } from 'pino';
+import { BuildError } from '../errors.js';
 
 /**
  * TemplateGenerator renders Handlebars templates with provided context data.
@@ -31,17 +31,14 @@ export class TemplateGenerator {
    * @param logger - Pino logger for debug and error logging
    * @param templatesDir - Directory containing Handlebars templates (default: 'templates/')
    */
-  constructor(logger: Logger, templatesDir = "templates") {
-    this.logger = logger.child({ module: "TemplateGenerator" });
+  constructor(logger: Logger, templatesDir = 'templates') {
+    this.logger = logger.child({ module: 'TemplateGenerator' });
     this.templatesDir = templatesDir;
 
     // Register Handlebars helpers
     this.registerHelpers();
 
-    this.logger.debug(
-      { templatesDir: this.templatesDir },
-      "TemplateGenerator initialized"
-    );
+    this.logger.debug({ templatesDir: this.templatesDir }, 'TemplateGenerator initialized');
   }
 
   /**
@@ -49,39 +46,39 @@ export class TemplateGenerator {
    */
   private registerHelpers(): void {
     // Helper: JSON stringify for use in templates
-    Handlebars.registerHelper("json", (context) => {
+    Handlebars.registerHelper('json', (context) => {
       return JSON.stringify(context);
     });
 
     // Helper: Get publisher from extension ID (format: publisher.extension)
-    Handlebars.registerHelper("getPublisher", (extensionId: string) => {
-      return extensionId.split(".")[0] || "Unknown";
+    Handlebars.registerHelper('getPublisher', (extensionId: string) => {
+      return extensionId.split('.')[0] || 'Unknown';
     });
 
     // Helper: Capitalize first letter
-    Handlebars.registerHelper("capitalize", (str: string) => {
-      if (!str) return "";
+    Handlebars.registerHelper('capitalize', (str: string) => {
+      if (!str) return '';
       return str.charAt(0).toUpperCase() + str.slice(1);
     });
 
     // Helper: Check if value is a string
-    Handlebars.registerHelper("isString", (value: unknown) => {
-      return typeof value === "string";
+    Handlebars.registerHelper('isString', (value: unknown) => {
+      return typeof value === 'string';
     });
 
     // Helper: Escape JSON for use in JSON files
-    Handlebars.registerHelper("escapeJson", (str: string) => {
-      if (!str) return "";
-      return str.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+    Handlebars.registerHelper('escapeJson', (str: string) => {
+      if (!str) return '';
+      return str.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
     });
 
     // Helper: Trim whitespace
-    Handlebars.registerHelper("trim", (str: string) => {
-      if (!str) return "";
+    Handlebars.registerHelper('trim', (str: string) => {
+      if (!str) return '';
       return str.trim();
     });
 
-    this.logger.debug("Handlebars helpers registered");
+    this.logger.debug('Handlebars helpers registered');
   }
 
   /**
@@ -92,13 +89,11 @@ export class TemplateGenerator {
    * @returns Compiled Handlebars template function
    * @throws {BuildError} If template file cannot be read or compiled
    */
-  private async loadTemplate(
-    templateName: string
-  ): Promise<HandlebarsTemplateDelegate> {
+  private async loadTemplate(templateName: string): Promise<HandlebarsTemplateDelegate> {
     // Check cache first
     const cached = this.templateCache.get(templateName);
     if (cached) {
-      this.logger.debug({ templateName }, "Template loaded from cache");
+      this.logger.debug({ templateName }, 'Template loaded from cache');
       return cached;
     }
 
@@ -106,8 +101,8 @@ export class TemplateGenerator {
     const templatePath = join(this.templatesDir, templateName);
 
     try {
-      this.logger.debug({ templatePath }, "Loading template from file");
-      const templateContent = await readFile(templatePath, "utf-8");
+      this.logger.debug({ templatePath }, 'Loading template from file');
+      const templateContent = await readFile(templatePath, 'utf-8');
 
       // Compile template
       const compiled = Handlebars.compile(templateContent, {
@@ -118,22 +113,16 @@ export class TemplateGenerator {
       // Cache compiled template
       this.templateCache.set(templateName, compiled);
 
-      this.logger.debug({ templateName }, "Template compiled and cached");
+      this.logger.debug({ templateName }, 'Template compiled and cached');
       return compiled;
     } catch (error) {
-      this.logger.error(
-        { err: error, templatePath },
-        "Failed to load or compile template"
-      );
+      this.logger.error({ err: error, templatePath }, 'Failed to load or compile template');
 
-      throw new BuildError(
-        `Failed to load template: ${templateName}`,
-        {
-          templatePath,
-          templatesDir: this.templatesDir,
-          error: error instanceof Error ? error.message : String(error),
-        }
-      );
+      throw new BuildError(`Failed to load template: ${templateName}`, {
+        templatePath,
+        templatesDir: this.templatesDir,
+        error: error instanceof Error ? error.message : String(error),
+      });
     }
   }
 
@@ -154,16 +143,13 @@ export class TemplateGenerator {
    * ```
    */
   async render(templateName: string, context: Record<string, unknown>): Promise<string> {
-    this.logger.debug({ templateName, contextKeys: Object.keys(context) }, "Rendering template");
+    this.logger.debug({ templateName, contextKeys: Object.keys(context) }, 'Rendering template');
 
     try {
       const template = await this.loadTemplate(templateName);
       const output = template(context);
 
-      this.logger.debug(
-        { templateName, outputLength: output.length },
-        "Template rendered successfully"
-      );
+      this.logger.debug({ templateName, outputLength: output.length }, 'Template rendered successfully');
 
       return output;
     } catch (error) {
@@ -173,19 +159,13 @@ export class TemplateGenerator {
       }
 
       // Otherwise, wrap rendering error in BuildError
-      this.logger.error(
-        { err: error, templateName },
-        "Template rendering failed"
-      );
+      this.logger.error({ err: error, templateName }, 'Template rendering failed');
 
-      throw new BuildError(
-        `Failed to render template: ${templateName}`,
-        {
-          templateName,
-          contextKeys: Object.keys(context),
-          error: error instanceof Error ? error.message : String(error),
-        }
-      );
+      throw new BuildError(`Failed to render template: ${templateName}`, {
+        templateName,
+        contextKeys: Object.keys(context),
+        error: error instanceof Error ? error.message : String(error),
+      });
     }
   }
 
@@ -206,24 +186,14 @@ export class TemplateGenerator {
    * );
    * ```
    */
-  async renderToFile(
-    templateName: string,
-    context: Record<string, unknown>,
-    outputPath: string
-  ): Promise<void> {
-    this.logger.debug(
-      { templateName, outputPath },
-      "Rendering template to file"
-    );
+  async renderToFile(templateName: string, context: Record<string, unknown>, outputPath: string): Promise<void> {
+    this.logger.debug({ templateName, outputPath }, 'Rendering template to file');
 
     try {
       const output = await this.render(templateName, context);
-      await writeFile(outputPath, output, "utf-8");
+      await writeFile(outputPath, output, 'utf-8');
 
-      this.logger.debug(
-        { templateName, outputPath, size: output.length },
-        "Template written to file successfully"
-      );
+      this.logger.debug({ templateName, outputPath, size: output.length }, 'Template written to file successfully');
     } catch (error) {
       // If error is already a BuildError, re-throw it
       if (error instanceof BuildError) {
@@ -231,19 +201,13 @@ export class TemplateGenerator {
       }
 
       // Otherwise, wrap file writing error in BuildError
-      this.logger.error(
-        { err: error, templateName, outputPath },
-        "Failed to write rendered template to file"
-      );
+      this.logger.error({ err: error, templateName, outputPath }, 'Failed to write rendered template to file');
 
-      throw new BuildError(
-        `Failed to write template to file: ${outputPath}`,
-        {
-          templateName,
-          outputPath,
-          error: error instanceof Error ? error.message : String(error),
-        }
-      );
+      throw new BuildError(`Failed to write template to file: ${outputPath}`, {
+        templateName,
+        outputPath,
+        error: error instanceof Error ? error.message : String(error),
+      });
     }
   }
 
@@ -253,7 +217,7 @@ export class TemplateGenerator {
   clearCache(): void {
     const cacheSize = this.templateCache.size;
     this.templateCache.clear();
-    this.logger.debug({ cacheSize }, "Template cache cleared");
+    this.logger.debug({ cacheSize }, 'Template cache cleared');
   }
 
   /**

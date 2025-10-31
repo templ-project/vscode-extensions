@@ -7,10 +7,10 @@
 import { readdir } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import type pino from 'pino';
-import { ConfigurationError, ValidationError } from '../errors.js';
-import type { Collection } from './types.js';
-import { CollectionSchema } from './schemas.js';
 import type { ZodError } from 'zod';
+import { ConfigurationError, ValidationError } from '../errors.js';
+import { CollectionSchema } from './schemas.js';
+import type { Collection } from './types.js';
 
 /**
  * Cache for loaded collections to avoid redundant imports
@@ -83,16 +83,13 @@ export class ConfigLoader {
       const collection: Collection | undefined = module.default || module[language] || module[camelCaseName];
 
       if (!collection) {
-        throw new ConfigurationError(
-          `Collection not found in module: ${configPath}`,
-          {
-            configPath,
-            ide,
-            language,
-            availableExports: Object.keys(module),
-            hint: `Expected default export or named export '${language}' or '${camelCaseName}'`,
-          },
-        );
+        throw new ConfigurationError(`Collection not found in module: ${configPath}`, {
+          configPath,
+          ide,
+          language,
+          availableExports: Object.keys(module),
+          hint: `Expected default export or named export '${language}' or '${camelCaseName}'`,
+        });
       }
 
       // Cache the loaded collection
@@ -109,16 +106,13 @@ export class ConfigLoader {
 
       // Wrap other errors in ConfigurationError
       const errorMessage = error instanceof Error ? error.message : String(error);
-      const configError = new ConfigurationError(
-        `Failed to load collection: ${errorMessage}`,
-        {
-          configPath,
-          ide,
-          language,
-          originalError: errorMessage,
-          cause: error,
-        },
-      );
+      const configError = new ConfigurationError(`Failed to load collection: ${errorMessage}`, {
+        configPath,
+        ide,
+        language,
+        originalError: errorMessage,
+        cause: error,
+      });
 
       this.logger.error({ err: configError, ide, language, configPath }, 'Failed to load collection');
       throw configError;
@@ -152,15 +146,12 @@ export class ConfigLoader {
       return languages.sort();
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error);
-      const configError = new ConfigurationError(
-        `Failed to list collections for IDE '${ide}': ${errorMessage}`,
-        {
-          idePath,
-          ide,
-          originalError: errorMessage,
-          cause: error,
-        },
-      );
+      const configError = new ConfigurationError(`Failed to list collections for IDE '${ide}': ${errorMessage}`, {
+        idePath,
+        ide,
+        originalError: errorMessage,
+        cause: error,
+      });
 
       this.logger.error({ err: configError, ide, idePath }, 'Failed to list collections');
       throw configError;
@@ -217,10 +208,7 @@ export class ConfigLoader {
    * }
    * ```
    */
-  validateCollection(
-    collection: unknown,
-    context?: { ide?: string; language?: string },
-  ): ValidationResult {
+  validateCollection(collection: unknown, context?: { ide?: string; language?: string }): ValidationResult {
     try {
       // Validate using Zod schema
       CollectionSchema.parse(collection);

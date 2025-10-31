@@ -4,11 +4,11 @@
  * Tests the command-line interface for building and publishing extension packs.
  */
 
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { spawn } from 'node:child_process';
 import { join } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { describe, it, expect } from 'vitest';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -48,7 +48,8 @@ describe('CLI', () => {
       // Commander exits with code 1 when no command given but shows help
       expect(result.code).toBe(1);
       expect(result.stderr).toContain('Build and publish VSCode/VSCodium extension packs');
-    });    it('should display help with --help flag', async () => {
+    });
+    it('should display help with --help flag', async () => {
       const result = await runCLI(['--help']);
 
       expect(result.code).toBe(0);
@@ -97,8 +98,8 @@ describe('CLI', () => {
       const result = await runCLI(['publish', '--help']);
 
       expect(result.code).toBe(0);
-      expect(result.stdout).toContain('Publish extension packs');
-      expect(result.stdout).toContain('<vsix-pattern>');
+      expect(result.stdout).toContain('Publish extension pack to marketplace');
+      expect(result.stdout).toContain('<vsix-path>');
       expect(result.stdout).toContain('--marketplace');
     });
   });
@@ -162,27 +163,32 @@ describe('CLI', () => {
     }, 30000);
   });
 
-  describe('publish command (stub)', () => {
-    it('should execute publish command stub', async () => {
-      const result = await runCLI(['publish', 'dist/vscode/*.vsix']);
+  describe('publish command', () => {
+    it('should require VSCODE_TOKEN environment variable', async () => {
+      // Without token, should fail immediately
+      const result = await runCLI(['publish', 'dist/vscode/test.vsix', '--marketplace', 'vscode']);
 
-      expect(result.code).toBe(0);
-      expect(result.stdout).toContain('Publish command');
-      expect(result.stdout).toContain('not yet implemented');
+      expect(result.code).toBe(1);
+      expect(result.stderr).toContain('VSCODE_TOKEN');
+      expect(result.stderr).toContain('required');
     });
 
-    it('should support --marketplace flag', async () => {
-      const result = await runCLI(['publish', 'dist/vscode/*.vsix', '--marketplace', 'vscode']);
+    it('should support --marketplace flag with vscode', async () => {
+      // Help text shows it supports --marketplace option
+      const result = await runCLI(['publish', '--help']);
 
       expect(result.code).toBe(0);
+      expect(result.stdout).toContain('--marketplace');
       expect(result.stdout).toContain('vscode');
+      expect(result.stdout).toContain('openvsx');
     });
 
-    it('should default marketplace to "both"', async () => {
-      const result = await runCLI(['publish', 'dist/vscode/*.vsix']);
+    it('should default marketplace to vscode', async () => {
+      // Help text shows default is vscode
+      const result = await runCLI(['publish', '--help']);
 
       expect(result.code).toBe(0);
-      expect(result.stdout).toContain('both');
+      expect(result.stdout).toContain('(default: "vscode")');
     });
   });
 

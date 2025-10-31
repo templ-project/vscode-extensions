@@ -2,9 +2,9 @@
  * Tests for logger factory and configuration
  */
 
+import type * as pino from 'pino';
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { createLogger, createChildLogger } from '../src/logger.js';
-import type * as pino from 'pino';
 
 describe('Logger Infrastructure', () => {
   let originalLogLevel: string | undefined;

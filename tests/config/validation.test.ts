@@ -3,10 +3,10 @@
  */
 
 import { describe, expect, it, beforeEach } from 'vitest';
-import { createLogger } from '../../src/logger.js';
 import { ConfigLoader } from '../../src/config/ConfigLoader.js';
+import type { Collection } from '../../src/config/types.js';
 import { ValidationError } from '../../src/errors.js';
-import type { Collection, Extension } from '../../src/config/types.js';
+import { createLogger } from '../../src/logger.js';
 
 describe('ConfigLoader Validation', () => {
   let logger: ReturnType<typeof createLogger>;

@@ -3,7 +3,6 @@
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';
-import { createLogger } from '../src/logger.js';
 import { ErrorReporter } from '../src/error-reporter.js';
 import {
   ConfigurationError,
@@ -14,6 +13,7 @@ import {
   NetworkError,
   VersionConflictError,
 } from '../src/errors.js';
+import { createLogger } from '../src/logger.js';
 
 describe('ErrorReporter', () => {
   let reporter: ErrorReporter;

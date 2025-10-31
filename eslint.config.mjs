@@ -4,6 +4,7 @@ export default [
   {
     ignores: [
       '.project.md',
+      '**/.specs/**/*',
       '**/node_modules/**/*',
       '**/venv/**/*.*',
       '**/vitest.config.js',

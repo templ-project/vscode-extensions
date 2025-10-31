@@ -4,15 +4,15 @@
  * Tests the complete build pipeline for generating extension pack files
  */
 
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { mkdtemp, rm, readFile, access } from 'node:fs/promises';
-import { join, resolve } from 'node:path';
+import { mkdtemp, rm, readFile, access, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { createLogger } from '../../src/logger.js';
+import { join, resolve } from 'node:path';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { ExtensionPackBuilder } from '../../src/build/ExtensionPackBuilder.js';
 import { TemplateGenerator } from '../../src/build/TemplateGenerator.js';
 import type { Collection } from '../../src/config/types.js';
 import { BuildError } from '../../src/errors.js';
+import { createLogger } from '../../src/logger.js';
 
 describe('ExtensionPackBuilder', () => {
   let tempDir: string;
@@ -339,9 +339,7 @@ describe('ExtensionPackBuilder', () => {
         logosDir: resolve(process.cwd(), 'logos'),
       });
 
-      const packageJson = JSON.parse(
-        await readFile(join(result.packageDir, 'package.json'), 'utf-8'),
-      );
+      const packageJson = JSON.parse(await readFile(join(result.packageDir, 'package.json'), 'utf-8'));
       expect(packageJson.publisher).toBe('@my-org');
     });
 
@@ -403,10 +401,7 @@ describe('ExtensionPackBuilder', () => {
   describe('Integration with real configuration', () => {
     it('should build cpp extension from actual config file', async () => {
       // Import real cpp collection
-      const cppConfigPath = resolve(
-        process.cwd(),
-        'scripts/configs/collections/vscode/cpp.ts',
-      );
+      const cppConfigPath = resolve(process.cwd(), 'scripts/configs/collections/vscode/cpp.ts');
       const cppModule = await import(`file://${cppConfigPath}`);
       const cppCollection: Collection = cppModule.cpp;
 
@@ -426,9 +421,7 @@ describe('ExtensionPackBuilder', () => {
       expect(result.files).toContain('settings.json');
 
       // Verify package.json has all required fields
-      const packageJson = JSON.parse(
-        await readFile(join(result.packageDir, 'package.json'), 'utf-8'),
-      );
+      const packageJson = JSON.parse(await readFile(join(result.packageDir, 'package.json'), 'utf-8'));
       expect(packageJson.name).toBe('tpl-vscode-cpp');
       expect(packageJson.extensionPack).toBeInstanceOf(Array);
       expect(packageJson.extensionPack.length).toBeGreaterThan(0);
@@ -624,6 +617,3 @@ describe('ExtensionPackBuilder', () => {
     });
   });
 });
-
-// Helper to write files (needed for version preservation test)
-import { writeFile } from 'node:fs/promises';
