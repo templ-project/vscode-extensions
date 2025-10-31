@@ -1,9 +1,9 @@
 [
 {{#each keybindings}}
   {
-    "key": "{{key}}",
+    "key": "{{{key}}}",
     "command": "{{command}}"{{#if when}},
-    "when": "{{when}}"{{/if}}
+    "when": "{{{when}}}"{{/if}}
   }{{#unless @last}},{{/unless}}
 {{/each}}
 ]
