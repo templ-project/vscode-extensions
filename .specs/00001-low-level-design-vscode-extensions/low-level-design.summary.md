@@ -2769,3 +2769,399 @@ tasks:
 - Integration-ready for Taskfile
 
 **Exit Criteria Met**: All acceptance criteria for S-010 satisfied. Given `node src/index.js build vscode cpp`, when executing, then cpp extension pack is built. Ready for S-011 (Taskfile Configuration) and subsequent publishing stories.
+
+---
+
+# Story S-011 Implementation Summary
+
+**Story**: Taskfile Configuration (Build Orchestration)
+**Status**: ✅ Complete
+**Date**: October 31, 2025
+
+## Overview
+
+Successfully implemented a smart, KISS-principle Task configuration using go-task/task for build orchestration. The Taskfile provides a clean variable-based task pattern that eliminates code duplication while supporting individual extension builds, composite builds for all extensions, and utility tasks for testing, linting, formatting, and validation.
+
+## Actions Taken
+
+### 1. Task Runner Selection
+
+Selected **go-task/task v3** for build orchestration:
+- Modern alternative to Make with cleaner YAML syntax
+- First-class support for task dependencies with variables
+- Built-in parallel execution
+- Cross-platform compatibility (macOS, Linux, Windows)
+- Excellent developer experience with `task --list`
+
+### 2. Smart Variable-Based Design
+
+Implemented KISS principle using task variables instead of duplicate tasks:
+
+**Before (Anti-Pattern)** - 18+ duplicate tasks:
+```yaml
+build:cpp:vscode:
+  cmds: [node dist/index.js build vscode cpp --output ./packages --package]
+build:cpp:vscodium:
+  cmds: [node dist/index.js build vscodium cpp --output ./packages --package]
+build:typescript:vscode:
+  cmds: [node dist/index.js build vscode typescript --output ./packages --package]
+# ... 15 more duplicate tasks
+```
+
+**After (KISS)** - Single pattern with variables:
+```yaml
+build:extension:ide:
+  cmds: ['{{.CLI}} build {{.IDE}} {{.EXTENSION}} --output {{.OUTPUT_DIR}} --package']
+  internal: true
+  requires: [IDE, EXTENSION]
+
+build:extension:vscode:
+  cmds:
+    - task: build:extension:ide
+      vars: {EXTENSION: '{{.EXTENSION}}', IDE: vscode}
+  requires: [EXTENSION]
+```
+
+### 3. Core Build Tasks
+
+Implemented hierarchical build tasks using deps with vars:
+
+**build:cli**: TypeScript compilation
+```yaml
+build:cli:
+  desc: Build the CLI (TypeScript compilation)
+  cmds: [npm run build]
+```
+
+**build:extension**: Build for both IDEs
+```yaml
+build:extension:
+  desc: Build extension pack for both IDEs (use EXTENSION=cpp)
+  deps:
+    - task: build:extension:vscode
+      vars: {EXTENSION: '{{.EXTENSION}}'}
+    - task: build:extension:vscodium
+      vars: {EXTENSION: '{{.EXTENSION}}'}
+  requires: [EXTENSION]
+```
+
+**build:extensions**: Build all extensions
+```yaml
+build:extensions:
+  deps:
+    - build:extensions:vscode
+    - build:extensions:vscodium
+  desc: Build all extension packs (VSCode + VSCodium)
+
+build:extensions:vscode:
+  deps:
+    - task: build:extension:vscode
+      vars: {EXTENSION: cpp}
+    - task: build:extension:vscode
+      vars: {EXTENSION: csharp}
+    # ... 7 more extensions
+```
+
+### 4. Dynamic Extension Listing
+
+Implemented dynamic extension list extraction using yq:
+
+```yaml
+build:extensions:list:silent:
+  cmds:
+    - echo "📦 Available VSCode extensions:"
+    - yq '.tasks["build:extensions:vscode"] | .[] | map(.vars.EXTENSION)' Taskfile.yml | sed 's/^/  /'
+    - echo ""
+    - echo "📦 Available VSCodium extensions:"
+    - yq '.tasks["build:extensions:vscodium"] | .[] | map(.vars.EXTENSION)' Taskfile.yml | sed 's/^/  /'
+    - echo ""
+    - echo "💡 Usage examples:"
+    - echo "  task build:extension EXTENSION=cpp"
+    - echo "  task build:extension:vscode EXTENSION=typescript"
+    - echo "  task build:extensions"
+  silent: true
+```
+
+**Benefits**:
+- No hardcoded extension lists
+- Single source of truth (extracts from build:extensions:vscode/vscodium deps)
+- Separate lists for VSCode and VSCodium (doesn't assume they're identical)
+- User-friendly output with examples
+
+### 5. Utility Tasks
+
+Implemented comprehensive utility tasks:
+
+**Clean**:
+```yaml
+clean:
+  cmds:
+    - rm -rf {{.OUTPUT_DIR}}
+    - rm -rf {{.DIST_DIR}}/vscode/*.vsix
+    - rm -rf {{.DIST_DIR}}/vscodium/*.vsix
+    - echo "✨ Cleaned packages/ and dist/ directories"
+  desc: Clean generated files and build artifacts
+```
+
+**Testing**:
+```yaml
+test: [npm test]
+test:coverage: [npm run test:coverage]
+test:watch: [npm run test:watch]
+```
+
+**Code Quality**:
+```yaml
+lint: [npm run lint:check]
+lint:fix: [npm run lint]
+format: [npm run format:check]
+format:fix: [npm run format]
+typecheck: [npm run typecheck]
+```
+
+**Composite Validation**:
+```yaml
+validate:
+  deps: [build:cli, typecheck, lint, format, test]
+  desc: Run all validation checks
+```
+
+### 6. Publish Task Stubs
+
+Created placeholder tasks for S-012/S-013:
+
+```yaml
+publish:vscode:
+  cmds: ['{{.CLI}} publish {{.DIST_DIR}}/vscode/*.vsix --marketplace vscode']
+  desc: Publish all VSCode extension packs to VSCode Marketplace
+
+publish:vscodium:
+  cmds: ['{{.CLI}} publish {{.DIST_DIR}}/vscodium/*.vsix --marketplace openvsx']
+  desc: Publish all VSCodium extension packs to Open VSX
+
+publish:all:
+  deps: [publish:vscode, publish:vscodium]
+  desc: Publish all extension packs to all marketplaces
+```
+
+### 7. Alphabetical Organization
+
+Applied consistent alphabetical ordering throughout:
+- **Task properties**: cmds, deps, desc, requires, silent, vars (A-Z)
+- **Task definitions**: All tasks sorted alphabetically
+- **Benefits**: Easier navigation, consistent structure, better maintainability
+
+### 8. Runtime Configuration
+
+Configured CLI to use tsx for TypeScript runtime:
+
+```yaml
+vars:
+  CLI: npx tsx src/index.ts
+  DIST_DIR: ./dist
+  OUTPUT_DIR: ./packages
+```
+
+**Why tsx?**
+- ConfigLoader loads `.ts` files from `scripts/configs/collections/`
+- Config files aren't compiled by tsconfig (only `src/**/*`)
+- tsx handles TypeScript execution at runtime
+- Eliminates need to compile config files separately
+
+## Files Changed
+
+| File | Purpose | Status |
+|------|---------|--------|
+| `Taskfile.yml` | Complete task automation with smart variable pattern | ✅ Created |
+
+## Quality Gates
+
+### Task List ✅
+```bash
+$ task --list
+task: Available tasks for this project:
+* build:cli:                        Build the CLI (TypeScript compilation)
+* build:extension:                  Build extension pack for both IDEs (use EXTENSION=cpp)
+* build:extension:vscode:           Build extension pack for VSCode (use EXTENSION=cpp)
+* build:extension:vscodium:         Build extension pack for VSCodium (use EXTENSION=cpp)
+* build:extensions:                 Build all extension packs (VSCode + VSCodium)
+* build:extensions:list:            List available extensions to build
+* build:extensions:vscode:          Build all VSCode extension packs
+* build:extensions:vscodium:        Build all VSCodium extension packs
+* clean:                            Clean generated files and build artifacts
+* default:                          Show help (default task)
+* format:                           Check code formatting
+* format:fix:                       Format code
+* help:                             Show available tasks
+* lint:                             Run linter
+* lint:fix:                         Run linter with auto-fix
+* publish:all:                      Publish all extension packs to all marketplaces
+* publish:vscode:                   Publish all VSCode extension packs to VSCode Marketplace
+* publish:vscodium:                 Publish all VSCodium extension packs to Open VSX
+* test:                             Run all tests
+* test:coverage:                    Run tests with coverage report
+* test:watch:                       Run tests in watch mode
+* typecheck:                        Run TypeScript type checking
+* validate:                         Run all validation checks (typecheck, lint, format, test)
+```
+
+### Extension List ✅
+```bash
+$ task build:extensions:list
+📦 Available VSCode extensions:
+  - cpp
+  - csharp
+  - generic-essential
+  - generic-extended
+  - godot
+  - golang
+  - javascript
+  - python
+  - typescript
+
+📦 Available VSCodium extensions:
+  - cpp
+  - csharp
+  - generic-essential
+  - generic-extended
+  - godot
+  - golang
+  - javascript
+  - python
+  - typescript
+
+💡 Usage examples:
+  task build:extension EXTENSION=cpp
+  task build:extension:vscode EXTENSION=typescript
+  task build:extensions
+```
+
+### Single Extension Build ✅
+```bash
+$ task build:extension EXTENSION=cpp
+task: [build:extension:ide] npx tsx src/index.ts build vscode cpp --output ./packages --package
+task: [build:extension:ide] npx tsx src/index.ts build vscodium cpp --output ./packages --package
+
+# VSCode build
+[16:26:07.180] INFO: Starting build command
+✅ Build successful!
+   Package directory: packages/packages/vscode/cpp
+   Files generated: 11
+   VSIX file: /path/to/dist/vscode/tpl-vscode-cpp-0.0.1.vsix
+
+# VSCodium build
+[16:26:10.522] INFO: Starting build command
+✅ Build successful!
+   Package directory: packages/packages/vscodium/cpp
+   Files generated: 11
+   VSIX file: /path/to/dist/vscodium/tpl-vscodium-cpp-0.0.1.vsix
+```
+
+## Requirements Coverage
+
+| Requirement | Status | Notes |
+|-------------|--------|-------|
+| Support individual extension builds: `task build:cpp:vscode` | ✅ Done | Simplified to `task build:extension EXTENSION=cpp` (cleaner) |
+| Support composite builds: `task build:all:vscode`, `task build:all` | ✅ Done | `task build:extensions:vscode`, `task build:extensions` |
+| Include test and clean tasks | ✅ Done | test, test:coverage, test:watch, clean |
+| Integrate with S-010 CLI | ✅ Done | All build tasks call CLI with proper args |
+| List available extensions | ✅ Done | `task build:extensions:list` dynamically extracts from deps |
+
+## Assumptions & Decisions
+
+1. **Variable Pattern Over Duplication**: Eliminated 18+ duplicate tasks by using EXTENSION variable with task deps
+2. **Alphabetical Ordering**: All properties and tasks sorted A-Z for easier navigation
+3. **Dynamic Extension List**: Extract from build:extensions:vscode/vscodium deps using yq (single source of truth)
+4. **Separate IDE Lists**: VSCode and VSCodium extension lists extracted separately (no assumption they're identical)
+5. **tsx Runtime**: Use tsx to run CLI directly from `src/index.ts` (config files in `scripts/` aren't compiled)
+6. **Internal Task Pattern**: `build:extension:ide` marked as internal (implementation detail, not shown in help)
+7. **Dependency-Based Composition**: Use deps with vars instead of shell loops (leverages Task's parallelization)
+8. **Stub Publish Tasks**: Ready for S-012/S-013 implementation
+9. **Composite Validation**: `task validate` runs all quality checks (build, typecheck, lint, format, test)
+10. **KISS Principle**: Work less, not useless - minimal tasks with maximum reusability
+
+## How to Use
+
+### List Available Extensions
+```bash
+task build:extensions:list
+```
+
+### Build Single Extension (Both IDEs)
+```bash
+task build:extension EXTENSION=cpp
+task build:extension EXTENSION=typescript
+```
+
+### Build Single Extension (Specific IDE)
+```bash
+task build:extension:vscode EXTENSION=python
+task build:extension:vscodium EXTENSION=golang
+```
+
+### Build All Extensions
+```bash
+# Build all extensions for both IDEs
+task build:extensions
+
+# Build all VSCode extensions only
+task build:extensions:vscode
+
+# Build all VSCodium extensions only
+task build:extensions:vscodium
+```
+
+### Run Quality Checks
+```bash
+# Run all checks
+task validate
+
+# Individual checks
+task typecheck
+task lint
+task format
+task test
+task test:coverage
+```
+
+### Clean Build Artifacts
+```bash
+task clean
+```
+
+### Get Help
+```bash
+# List all tasks
+task --list
+
+# Or
+task help
+```
+
+## Known Limitations
+
+1. **Config File Runtime**: Requires tsx to load `.ts` config files (not compiled by tsconfig)
+2. **No Incremental Builds**: Each build is full (no dependency tracking)
+3. **Serial Extension Builds**: Extensions build serially within IDE groups (could parallelize with `parallel: true`)
+4. **Publish Stubs**: Publish tasks are placeholders (will be implemented in S-012/S-013)
+
+## Next Steps
+
+- **S-012**: MarketplacePublisher - VSCode Marketplace (implement `publish:vscode` task)
+- **S-013**: MarketplacePublisher - Open VSX (implement `publish:vscodium` task)
+- **S-014**: CLI Publish Command (glob resolution for publish tasks)
+- **S-015**: GitHub Actions CI/CD (use Taskfile in CI workflows)
+
+## Deliverables
+
+✅ **Complete and ready for use**:
+- Smart variable-based Taskfile (KISS principle applied)
+- 25+ tasks covering build, test, lint, format, typecheck, validate, clean
+- Individual extension builds with EXTENSION variable
+- Composite builds for all extensions (vscode, vscodium, both)
+- Dynamic extension listing with yq
+- Alphabetically organized for easy navigation
+- Integration with S-010 CLI
+- Publish task stubs ready for S-012/S-013
+- Validated with successful cpp extension build
+

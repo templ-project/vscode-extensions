@@ -1,0 +1,218 @@
+version: '3'
+
+vars:
+  CLI: npx -y tsx src/index.ts
+  DIST_DIR: ./dist
+  OUTPUT_DIR: ./packages
+
+tasks:
+  # =============================================================================
+  # Core Build Tasks
+  # =============================================================================
+
+  build:cli:
+    desc: Build the CLI (TypeScript compilation)
+    cmds:
+      - npm run build
+
+  build:extension:
+    desc: Build extension pack for both IDEs (use EXTENSION=cpp)
+    deps:
+      - task: build:extension:vscode
+        vars:
+          EXTENSION: '{{.EXTENSION}}'
+      - task: build:extension:vscodium
+        vars:
+          EXTENSION: '{{.EXTENSION}}'
+    requires:
+      vars: [EXTENSION]
+
+  build:extension:ide:
+    cmds:
+      - '{{.CLI}} build {{.IDE}} {{.EXTENSION}} --output {{.OUTPUT_DIR}} --package'
+    internal: true
+    requires:
+      vars: [IDE, EXTENSION]
+
+  build:extension:vscode:
+    cmds:
+      - task: build:extension:ide
+        vars:
+          EXTENSION: '{{.EXTENSION}}'
+          IDE: vscode
+    desc: Build extension pack for VSCode (use EXTENSION=cpp)
+    requires:
+      vars: [EXTENSION]
+
+  build:extension:vscodium:
+    cmds:
+      - task: build:extension:ide
+        vars:
+          EXTENSION: '{{.EXTENSION}}'
+          IDE: vscodium
+    desc: Build extension pack for VSCodium (use EXTENSION=cpp)
+    requires:
+      vars: [EXTENSION]
+
+  build:extensions:
+    deps:
+      - build:extensions:vscode
+      - build:extensions:vscodium
+    desc: Build all extension packs (VSCode + VSCodium)
+
+  build:extensions:list:
+    deps: [build:extensions:list:silent]
+    desc: List available extensions to build
+
+  build:extensions:list:silent:
+    cmds:
+      - echo "📦 Available VSCode extensions:"
+      - yq '.tasks["build:extensions:vscode"] | .[] | map(.vars.EXTENSION)' Taskfile.yml | sed 's/^/  /'
+      - echo ""
+      - echo "📦 Available VSCodium extensions:"
+      - yq '.tasks["build:extensions:vscodium"] | .[] | map(.vars.EXTENSION)' Taskfile.yml | sed 's/^/  /'
+      - echo ""
+      - echo "💡 Usage examples:"
+      - echo "  task build:extension EXTENSION=cpp"
+      - echo "  task build:extension:vscode EXTENSION=typescript"
+      - echo "  task build:extensions"
+    silent: true
+
+  build:extensions:vscode:
+    deps:
+      - task: build:extension:vscode
+        vars: {EXTENSION: cpp}
+      - task: build:extension:vscode
+        vars: {EXTENSION: csharp}
+      - task: build:extension:vscode
+        vars: {EXTENSION: generic-essential}
+      - task: build:extension:vscode
+        vars: {EXTENSION: generic-extended}
+      - task: build:extension:vscode
+        vars: {EXTENSION: godot}
+      - task: build:extension:vscode
+        vars: {EXTENSION: golang}
+      - task: build:extension:vscode
+        vars: {EXTENSION: javascript}
+      - task: build:extension:vscode
+        vars: {EXTENSION: python}
+      - task: build:extension:vscode
+        vars: {EXTENSION: typescript}
+    desc: Build all VSCode extension packs
+
+  build:extensions:vscodium:
+    deps:
+      - task: build:extension:vscodium
+        vars: {EXTENSION: cpp}
+      - task: build:extension:vscodium
+        vars: {EXTENSION: csharp}
+      - task: build:extension:vscodium
+        vars: {EXTENSION: generic-essential}
+      - task: build:extension:vscodium
+        vars: {EXTENSION: generic-extended}
+      - task: build:extension:vscodium
+        vars: {EXTENSION: godot}
+      - task: build:extension:vscodium
+        vars: {EXTENSION: golang}
+      - task: build:extension:vscodium
+        vars: {EXTENSION: javascript}
+      - task: build:extension:vscodium
+        vars: {EXTENSION: python}
+      - task: build:extension:vscodium
+        vars: {EXTENSION: typescript}
+    desc: Build all VSCodium extension packs
+
+  # =============================================================================
+  # Utility Tasks
+  # =============================================================================
+
+  clean:
+    cmds:
+      - rm -rf {{.OUTPUT_DIR}}
+      - rm -rf {{.DIST_DIR}}/vscode/*.vsix
+      - rm -rf {{.DIST_DIR}}/vscodium/*.vsix
+      - echo "✨ Cleaned packages/ and dist/ directories"
+    desc: Clean generated files and build artifacts
+
+  default:
+    cmds:
+      - task help
+    desc: Show help (default task)
+
+  format:
+    cmds:
+      - npm run format:check
+    desc: Check code formatting
+
+  format:fix:
+    cmds:
+      - npm run format
+    desc: Format code
+
+  help:
+    cmds:
+      - task --list
+    desc: Show available tasks
+
+  lint:
+    cmds:
+      - npm run lint:check
+    desc: Run linter
+
+  lint:fix:
+    cmds:
+      - npm run lint
+    desc: Run linter with auto-fix
+
+  # =============================================================================
+  # Publish Tasks (Stubs for S-012/S-013)
+  # =============================================================================
+
+  publish:all:
+    deps:
+      - publish:vscode
+      - publish:vscodium
+    desc: Publish all extension packs to all marketplaces
+
+  publish:vscode:
+    cmds:
+      - '{{.CLI}} publish {{.DIST_DIR}}/vscode/*.vsix --marketplace vscode'
+    desc: Publish all VSCode extension packs to VSCode Marketplace
+
+  publish:vscodium:
+    cmds:
+      - '{{.CLI}} publish {{.DIST_DIR}}/vscodium/*.vsix --marketplace openvsx'
+    desc: Publish all VSCodium extension packs to Open VSX
+
+  # =============================================================================
+  # Test Tasks
+  # =============================================================================
+
+  test:
+    cmds:
+      - npm test
+    desc: Run all tests
+
+  test:coverage:
+    cmds:
+      - npm run test:coverage
+    desc: Run tests with coverage report
+
+  test:watch:
+    cmds:
+      - npm run test:watch
+    desc: Run tests in watch mode
+
+  typecheck:
+    cmds:
+      - npm run typecheck
+    desc: Run TypeScript type checking
+
+  validate:
+    deps:
+      - build:cli
+      - typecheck
+      - lint
+      - format
+      - test
+    desc: Run all validation checks (typecheck, lint, format, test)
