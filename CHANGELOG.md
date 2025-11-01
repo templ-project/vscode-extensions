@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.1 (2025-11-01)
+
+### Bug Fixes
+
+* fixed vscodium closure extension ([b4612a8](https://github.com/templ-project/vscode-extensions/commit/b4612a83c452c6ffcebce1a6e9c6653896e691f7))
+
 ## 1.6.0 (2025-11-01)
 
 ### Features
