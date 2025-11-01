@@ -124,6 +124,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # Ensure line endings are normalized according to .gitattributes
+          fetch-depth: 1
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
