@@ -1,4 +1,4 @@
-import { json2ts, typescriptLanguageVSCodium as typescriptLanguage } from '../../extensions/typescript';
+import { typescriptLanguageVSCodium as typescriptLanguage } from '../../extensions/typescript';
 import { Collection } from '../../shared/types';
 
 import { typescript as typescriptVSCode } from '../vscode/typescript';
@@ -8,7 +8,7 @@ export const typescript: Collection = {
   description:
     'Essential TypeScript development environment for VSCodium - comprehensive tooling for type-safe development using open-source alternatives',
 
-  required_extensions: [typescriptLanguage, json2ts],
+  required_extensions: [typescriptLanguage],
 
   documentation: {
     setup_guide: `# TypeScript Extension Pack Setup (VSCodium)
