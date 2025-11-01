@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.2 (2025-11-01)
+
+### Bug Fixes
+
+* only suppress version conflicts, report all other publish errors ([0c2c59a](https://github.com/templ-project/vscode-extensions/commit/0c2c59aa8cc73f5e64d28af2a6c3995398a7f9f7))
+
 ## 1.5.1 (2025-11-01)
 
 ### Child Workspaces
