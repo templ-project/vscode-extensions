@@ -2,7 +2,7 @@
   "name": "tpl-vscode-godot",
   "displayName": "Godot Extension Pack for Vscode",
   "description": "Essential extensions for Godot game development with GDScript support, debugging, and enhanced productivity tools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "templ-project",
   "repository": {
     "type": "git",

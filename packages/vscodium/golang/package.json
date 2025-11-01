@@ -2,7 +2,7 @@
   "name": "tpl-vscodium-golang",
   "displayName": "Go Extension Pack for Vscodium",
   "description": "Essential Go development environment for VSCodium - comprehensive tooling for modern Go development using open-source alternatives",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "publisher": "templ-project",
   "repository": {
     "type": "git",

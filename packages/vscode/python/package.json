@@ -2,7 +2,7 @@
   "name": "tpl-vscode-python",
   "displayName": "Python Extension Pack for Vscode",
   "description": "Essential Python development environment for VSCode - comprehensive tooling for modern Python development, data science, and web applications",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
