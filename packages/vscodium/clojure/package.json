@@ -1,0 +1,116 @@
+{
+  "name": "tpl-vscodium-clojure",
+  "displayName": "Clojure Extension Pack for Vscodium",
+  "description": "Essential Clojure &amp; ClojureScript development environment for VSCodium - comprehensive REPL-driven development tooling",
+  "version": "0.0.1",
+  "publisher": "templ-project",
+  "__configHash": "c0dd0a25cc9d809c1a441908fa6eae056b0b772d97c46e4f45bceb72a0ffdf70",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/templ-project/vscode-extensions",
+    "directory": "packages/vscodium/clojure"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "icon": "logo.png",
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "dark"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "keywords": [
+    "clojure",
+    "clojurescript",
+    "lisp",
+    "repl",
+    "functional-programming",
+    "interactive-development",
+    "extension-pack",
+    "development",
+    "vscodium",
+    "clojure"
+  ],
+  "extensionPack": [
+    "betterthantomorrow.calva",
+    "betterthantomorrow.clojure-lsp",
+    "shaunlebron.vscode-parinfer",
+    "2gua.rainbow-brackets",
+    "rafaeldelboni.clojure-snippets"
+  ],
+  "extensionDependencies": [
+    "betterthantomorrow.calva",
+    "betterthantomorrow.clojure-lsp"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "clojure",
+        "path": "./snippets/clojure.json"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "ctrl+alt+c enter",
+        "command": "calva.jackIn",
+        "when": "editorLangId == clojure || editorLangId == clojurescript"
+      },
+      {
+        "key": "ctrl+alt+c ctrl+alt+c",
+        "command": "calva.connect",
+        "when": "editorLangId == clojure || editorLangId == clojurescript"
+      },
+      {
+        "key": "ctrl+enter",
+        "command": "calva.evaluateCurrentTopLevelForm",
+        "when": "editorLangId == clojure || editorLangId == clojurescript"
+      },
+      {
+        "key": "ctrl+alt+c space",
+        "command": "calva.evaluateSelection",
+        "when": "editorLangId == clojure || editorLangId == clojurescript"
+      },
+      {
+        "key": "ctrl+alt+c ctrl+alt+n",
+        "command": "calva.loadFile",
+        "when": "editorLangId == clojure || editorLangId == clojurescript"
+      },
+      {
+        "key": "ctrl+alt+c t",
+        "command": "calva.runNamespaceTests",
+        "when": "editorLangId == clojure || editorLangId == clojurescript"
+      },
+      {
+        "key": "ctrl+alt+c ctrl+t",
+        "command": "calva.runAllTests",
+        "when": "editorLangId == clojure || editorLangId == clojurescript"
+      }
+    ],
+    "commands": [
+      {
+        "command": "templ-project.clojure-vscodium.applySettings",
+        "title": "Apply Clojure Extension Pack for Vscodium Settings"
+      },
+      {
+        "command": "templ-project.clojure-vscodium.resetSettings",
+        "title": "Reset Clojure Extension Pack for Vscodium Settings"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.0"
+  }
+}

@@ -452,6 +452,19 @@ console.log(`Templates cached: ${stats.size}`);
 
 ## Contributing
 
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for comprehensive development guidelines, including:
+
+- **Development Environment Setup**: Install dependencies and configure your environment
+- **Understanding the Codebase**: Architecture, data flow, and key concepts
+- **Adding a New Language Extension Pack**: Complete step-by-step guide
+- **Configuration Reference**: Collection, Extension, Setting, Snippet interfaces
+- **Build System**: How templates work and version preservation
+- **Testing**: Writing and running tests
+- **Publishing**: How to publish to marketplaces
+- **Code Style and Standards**: TypeScript, formatting, and commit conventions
+
+### Quick Contribution Steps
+
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Follow conventional commits for version management
@@ -479,13 +492,7 @@ npm run format
 task validate
 ```
 
-### Adding a New Language
-
-1. Create configuration file: `scripts/configs/collections/{ide}/{language}.ts`
-2. Add extension definitions: `scripts/configs/extensions/{language}/index.ts`
-3. Add logo: `logos/{language}-logo.png` (128x128 PNG)
-4. Update Taskfile.yml with new build tasks
-5. Test the build: `task build:extension EXTENSION={language}`
+For detailed information on adding new languages, working with extensions, and understanding the build system, please refer to [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 

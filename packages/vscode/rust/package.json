@@ -1,0 +1,101 @@
+{
+  "name": "tpl-vscode-rust",
+  "displayName": "Rust Extension Pack for Vscode",
+  "description": "Essential Rust development environment for VSCode - comprehensive tooling for modern systems programming",
+  "version": "0.0.1",
+  "publisher": "templ-project",
+  "__configHash": "f3dd9de8005de2f009bc22889294a489bffcf68e2b23dcfa494dd348d5b91864",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/templ-project/vscode-extensions",
+    "directory": "packages/vscode/rust"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "icon": "logo.png",
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "dark"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "keywords": [
+    "rust",
+    "cargo",
+    "development",
+    "systems-programming",
+    "debugging",
+    "toml",
+    "extension-pack",
+    "development",
+    "vscode",
+    "rust"
+  ],
+  "extensionPack": [
+    "rust-lang.rust-analyzer",
+    "vadimcn.vscode-lldb",
+    "serayuzgur.crates",
+    "tamasfe.even-better-toml",
+    "usernamehw.errorlens"
+  ],
+  "extensionDependencies": [
+    "rust-lang.rust-analyzer",
+    "vadimcn.vscode-lldb"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "rust",
+        "path": "./snippets/rust.json"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "ctrl+shift+b",
+        "command": "rust-analyzer.run",
+        "when": "editorLangId == rust"
+      },
+      {
+        "key": "ctrl+shift+t",
+        "command": "rust-analyzer.openCargoToml",
+        "when": "editorLangId == rust"
+      },
+      {
+        "key": "ctrl+shift+d",
+        "command": "rust-analyzer.openDocs",
+        "when": "editorLangId == rust"
+      },
+      {
+        "key": "f5",
+        "command": "workbench.action.debug.start",
+        "when": "editorLangId == rust"
+      }
+    ],
+    "commands": [
+      {
+        "command": "templ-project.rust-vscode.applySettings",
+        "title": "Apply Rust Extension Pack for Vscode Settings"
+      },
+      {
+        "command": "templ-project.rust-vscode.resetSettings",
+        "title": "Reset Rust Extension Pack for Vscode Settings"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.0"
+  }
+}

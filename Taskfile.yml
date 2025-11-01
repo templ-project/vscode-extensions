@@ -93,6 +93,8 @@ tasks:
   build:extensions:vscode:
     cmds:
       - task: build:extension:vscode
+        vars: {EXTENSION: clojure}
+      - task: build:extension:vscode
         vars: {EXTENSION: cpp}
       - task: build:extension:vscode
         vars: {EXTENSION: csharp}
@@ -109,13 +111,19 @@ tasks:
       - task: build:extension:vscode
         vars: {EXTENSION: python}
       - task: build:extension:vscode
+        vars: {EXTENSION: rust}
+      - task: build:extension:vscode
         vars: {EXTENSION: typescript}
+      - task: build:extension:vscode
+        vars: {EXTENSION: zig}
     desc: Build all VSCode extension packs
     # Note: Using cmds instead of deps to run sequentially and avoid file contention
 
   build:extensions:vscodium:
     cmds:
       - task: build:extension:vscodium
+        vars: {EXTENSION: clojure}
+      - task: build:extension:vscodium
         vars: {EXTENSION: cpp}
       - task: build:extension:vscodium
         vars: {EXTENSION: csharp}
@@ -132,7 +140,11 @@ tasks:
       - task: build:extension:vscodium
         vars: {EXTENSION: python}
       - task: build:extension:vscodium
+        vars: {EXTENSION: rust}
+      - task: build:extension:vscodium
         vars: {EXTENSION: typescript}
+      - task: build:extension:vscodium
+        vars: {EXTENSION: zig}
     desc: Build all VSCodium extension packs
     # Note: Using cmds instead of deps to run sequentially and avoid file contention
 

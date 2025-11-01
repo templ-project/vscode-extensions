@@ -1,0 +1,99 @@
+{
+  "name": "tpl-vscode-zig",
+  "displayName": "Zig Extension Pack for Vscode",
+  "description": "Essential Zig development environment for VSCode - comprehensive tooling for modern systems programming",
+  "version": "0.0.1",
+  "publisher": "templ-project",
+  "__configHash": "77ac047452ac10bd2d0d24b5aba7a40e858f1a7ede56d5a170dd3e00c95f2276",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/templ-project/vscode-extensions",
+    "directory": "packages/vscode/zig"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "icon": "logo.png",
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "dark"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "keywords": [
+    "zig",
+    "zls",
+    "development",
+    "systems-programming",
+    "debugging",
+    "build",
+    "extension-pack",
+    "development",
+    "vscode",
+    "zig"
+  ],
+  "extensionPack": [
+    "ziglang.vscode-zig",
+    "vadimcn.vscode-lldb",
+    "usernamehw.errorlens"
+  ],
+  "extensionDependencies": [
+    "ziglang.vscode-zig",
+    "vadimcn.vscode-lldb"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "zig",
+        "path": "./snippets/zig.json"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "ctrl+shift+b",
+        "command": "zig.build",
+        "when": "editorLangId == zig"
+      },
+      {
+        "key": "ctrl+shift+t",
+        "command": "zig.test",
+        "when": "editorLangId == zig"
+      },
+      {
+        "key": "f5",
+        "command": "workbench.action.debug.start",
+        "when": "editorLangId == zig"
+      },
+      {
+        "key": "ctrl+shift+d",
+        "command": "zig.openDocs",
+        "when": "editorLangId == zig"
+      }
+    ],
+    "commands": [
+      {
+        "command": "templ-project.zig-vscode.applySettings",
+        "title": "Apply Zig Extension Pack for Vscode Settings"
+      },
+      {
+        "command": "templ-project.zig-vscode.resetSettings",
+        "title": "Reset Zig Extension Pack for Vscode Settings"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.0"
+  }
+}

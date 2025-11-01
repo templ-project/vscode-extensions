@@ -1,0 +1,99 @@
+{
+  "name": "tpl-vscodium-zig",
+  "displayName": "Zig Extension Pack for Vscodium",
+  "description": "Essential Zig development environment for VSCodium - comprehensive tooling for modern systems programming",
+  "version": "0.0.1",
+  "publisher": "templ-project",
+  "__configHash": "66be828edbb4c7a4d7e1d470a2b9e0a15acd4f074bea1dc868e5a9fdb9394f8e",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/templ-project/vscode-extensions",
+    "directory": "packages/vscodium/zig"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "icon": "logo.png",
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "dark"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "keywords": [
+    "zig",
+    "zls",
+    "development",
+    "systems-programming",
+    "debugging",
+    "build",
+    "extension-pack",
+    "development",
+    "vscodium",
+    "zig"
+  ],
+  "extensionPack": [
+    "ziglang.vscode-zig",
+    "vadimcn.vscode-lldb",
+    "usernamehw.errorlens"
+  ],
+  "extensionDependencies": [
+    "ziglang.vscode-zig",
+    "vadimcn.vscode-lldb"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "zig",
+        "path": "./snippets/zig.json"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "ctrl+shift+b",
+        "command": "zig.build",
+        "when": "editorLangId == zig"
+      },
+      {
+        "key": "ctrl+shift+t",
+        "command": "zig.test",
+        "when": "editorLangId == zig"
+      },
+      {
+        "key": "f5",
+        "command": "workbench.action.debug.start",
+        "when": "editorLangId == zig"
+      },
+      {
+        "key": "ctrl+shift+d",
+        "command": "zig.openDocs",
+        "when": "editorLangId == zig"
+      }
+    ],
+    "commands": [
+      {
+        "command": "templ-project.zig-vscodium.applySettings",
+        "title": "Apply Zig Extension Pack for Vscodium Settings"
+      },
+      {
+        "command": "templ-project.zig-vscodium.resetSettings",
+        "title": "Reset Zig Extension Pack for Vscodium Settings"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.0"
+  }
+}
