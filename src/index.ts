@@ -216,7 +216,11 @@ async function publishCommand(vsixPattern: string, options: { marketplace?: stri
             },
           });
 
-          console.log(`   ✅ VSCode: Published ${result.extensionId} v${result.version}`);
+          if (result.isUpdate) {
+            console.log(`   ✅ VSCode: Published ${result.extensionId} v${result.version}`);
+          } else {
+            console.log(`   ⏭️  VSCode: Skipped ${result.extensionId} v${result.version} (already published)`);
+          }
           console.log(`      URL: ${result.url}`);
           totalSuccessful++;
         } catch (error) {
@@ -252,7 +256,11 @@ async function publishCommand(vsixPattern: string, options: { marketplace?: stri
             },
           });
 
-          console.log(`   ✅ Open VSX: Published ${result.extensionId} v${result.version}`);
+          if (result.isUpdate) {
+            console.log(`   ✅ Open VSX: Published ${result.extensionId} v${result.version}`);
+          } else {
+            console.log(`   ⏭️  Open VSX: Skipped ${result.extensionId} v${result.version} (already published)`);
+          }
           console.log(`      URL: ${result.url}`);
           totalSuccessful++;
         } catch (error) {
@@ -289,7 +297,11 @@ async function publishCommand(vsixPattern: string, options: { marketplace?: stri
             },
           });
 
-          console.log(`   ✅ Published ${result.extensionId} v${result.version}`);
+          if (result.isUpdate) {
+            console.log(`   ✅ Published ${result.extensionId} v${result.version}`);
+          } else {
+            console.log(`   ⏭️  Skipped ${result.extensionId} v${result.version} (already published)`);
+          }
           console.log(`      URL: ${result.url}`);
           totalSuccessful++;
         } catch (error) {

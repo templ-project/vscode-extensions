@@ -39,6 +39,70 @@ export class MarketplacePublisher {
   }
 
   /**
+   * Check if a specific version exists on VSCode Marketplace
+   *
+   * @param extensionId - Extension identifier (publisher.name)
+   * @param version - Version to check
+   * @returns Promise resolving to true if version exists, false otherwise
+   */
+  private async checkVSCodeMarketplaceVersion(extensionId: string, version: string): Promise<boolean> {
+    try {
+      const url = `https://marketplace.visualstudio.com/items?itemName=${extensionId}`;
+      this.logger.debug({ extensionId, version, url }, 'Checking VSCode Marketplace version');
+
+      // Use fetch to get the extension page
+      const response = await fetch(url);
+      if (!response.ok) {
+        this.logger.debug({ extensionId, status: response.status }, 'Extension not found on VSCode Marketplace');
+        return false;
+      }
+
+      const html = await response.text();
+
+      // Check if the version appears in the page HTML
+      // The marketplace page includes version information in the HTML
+      const versionPattern = new RegExp(`"version"\\s*:\\s*"${version.replace(/\./g, '\\.')}"`, 'i');
+      const exists = versionPattern.test(html);
+
+      this.logger.debug({ extensionId, version, exists }, 'VSCode Marketplace version check result');
+      return exists;
+    } catch (error) {
+      this.logger.warn(
+        { err: error, extensionId, version },
+        'Failed to check VSCode Marketplace version, assuming it does not exist',
+      );
+      return false;
+    }
+  }
+
+  /**
+   * Check if a specific version exists on Open VSX
+   *
+   * @param extensionId - Extension identifier (publisher.name)
+   * @param version - Version to check
+   * @returns Promise resolving to true if version exists, false otherwise
+   */
+  private async checkOpenVSXVersion(extensionId: string, version: string): Promise<boolean> {
+    try {
+      const [publisher, name] = extensionId.split('.');
+      const apiUrl = `https://open-vsx.org/api/${publisher}/${name}/${version}`;
+      this.logger.debug({ extensionId, version, apiUrl }, 'Checking Open VSX version');
+
+      const response = await fetch(apiUrl);
+      const exists = response.ok;
+
+      this.logger.debug({ extensionId, version, exists, status: response.status }, 'Open VSX version check result');
+      return exists;
+    } catch (error) {
+      this.logger.warn(
+        { err: error, extensionId, version },
+        'Failed to check Open VSX version, assuming it does not exist',
+      );
+      return false;
+    }
+  }
+
+  /**
    * Publish a .vsix file to the specified marketplace
    *
    * @param options - Publishing options including PAT, vsix path, and marketplace
@@ -107,6 +171,29 @@ export class MarketplacePublisher {
       }
 
       const [, nameWithPublisher, version] = match;
+      const extensionId = nameWithPublisher.replace(/-/g, '.'); // Convert tpl-vscode-cpp to tpl.vscode.cpp
+
+      // Check if version already exists on marketplace
+      const versionExists = await this.checkVSCodeMarketplaceVersion(extensionId, version);
+
+      if (versionExists) {
+        this.logger.info(
+          { vsixPath, version, extensionId, marketplace: 'vscode' },
+          'Version already exists on VSCode Marketplace, skipping publish',
+        );
+
+        // Return result without publishing
+        const result: PublishResult = {
+          marketplace: 'vscode',
+          vsixPath,
+          extensionId,
+          version,
+          url: `https://marketplace.visualstudio.com/items?itemName=${extensionId}`,
+          isUpdate: false,
+        };
+
+        return result;
+      }
 
       // Publish using vsce
       // The publishVSIX function handles authentication and upload
@@ -122,10 +209,10 @@ export class MarketplacePublisher {
       const result: PublishResult = {
         marketplace: 'vscode',
         vsixPath,
-        extensionId: nameWithPublisher.replace(/-/g, '.'), // Convert tpl-vscode-cpp to tpl.vscode.cpp
+        extensionId,
         version,
-        url: `https://marketplace.visualstudio.com/items?itemName=${nameWithPublisher.replace(/-/g, '.')}`,
-        isUpdate: true, // We can't easily determine this without querying the API
+        url: `https://marketplace.visualstudio.com/items?itemName=${extensionId}`,
+        isUpdate: true,
       };
 
       return result;
@@ -215,6 +302,29 @@ export class MarketplacePublisher {
       }
 
       const [, nameWithPublisher, version] = match;
+      const extensionId = nameWithPublisher.replace(/-/g, '.'); // Convert tpl-vscodium-cpp to tpl.vscodium.cpp
+
+      // Check if version already exists on Open VSX
+      const versionExists = await this.checkOpenVSXVersion(extensionId, version);
+
+      if (versionExists) {
+        this.logger.info(
+          { vsixPath, version, extensionId, marketplace: 'openvsx' },
+          'Version already exists on Open VSX Registry, skipping publish',
+        );
+
+        // Return result without publishing
+        const result: PublishResult = {
+          marketplace: 'openvsx',
+          vsixPath,
+          extensionId,
+          version,
+          url: `https://open-vsx.org/extension/${nameWithPublisher.replace(/-/g, '/')}`,
+          isUpdate: false,
+        };
+
+        return result;
+      }
 
       // Publish using ovsx
       // The publish function handles authentication and upload
@@ -230,10 +340,10 @@ export class MarketplacePublisher {
       const result: PublishResult = {
         marketplace: 'openvsx',
         vsixPath,
-        extensionId: nameWithPublisher.replace(/-/g, '.'), // Convert tpl-vscodium-cpp to tpl.vscodium.cpp
+        extensionId,
         version,
         url: `https://open-vsx.org/extension/${nameWithPublisher.replace(/-/g, '/')}`,
-        isUpdate: true, // We can't easily determine this without querying the API
+        isUpdate: true,
       };
 
       return result;
