@@ -11,9 +11,10 @@ tasks:
   # =============================================================================
 
   build:cli:
-    desc: Build the CLI (TypeScript compilation)
     cmds:
       - npm run build
+    desc: Build the CLI (TypeScript compilation)
+    deps: [clean]
     generates:
       - dist/**/*.js
       - dist/**/*.d.ts
@@ -66,6 +67,7 @@ tasks:
 
   build:extensions:
     deps:
+      - build:cli
       - build:extensions:vscode
       - build:extensions:vscodium
     desc: Build all extension packs (VSCode + VSCodium)
@@ -140,9 +142,7 @@ tasks:
 
   clean:
     cmds:
-      - rm -rf {{.OUTPUT_DIR}}
-      - rm -rf {{.DIST_DIR}}/vscode/*.vsix
-      - rm -rf {{.DIST_DIR}}/vscodium/*.vsix
+      - rm -rf {{.DIST_DIR}}
       - echo "✨ Cleaned packages/ and dist/ directories"
     desc: Clean generated files and build artifacts
 

@@ -356,16 +356,23 @@ export class MarketplacePublisher {
         });
       }
 
-      // Version conflict errors
+      // Version conflict errors - these should be suppressed (not thrown)
       if (errorMessage.includes('already exists') || errorMessage.includes('version') || errorMessage.includes('409')) {
         const version = basename(vsixPath).match(/(\d+\.\d+\.\d+)/)?.[1] || 'unknown';
-        throw new VersionConflictError(`Version ${version} already exists on VSCode Marketplace`, {
-          version,
+        this.logger.info(
+          { vsixPath, version, marketplace: 'vscode' },
+          'Version already exists on VSCode Marketplace (detected during upload), skipping',
+        );
+        // Return successful result - version conflict is not an error
+        const { extensionId } = await this.extractVsixMetadata(vsixPath);
+        return {
           marketplace: 'vscode',
           vsixPath,
-          hint: 'Version managed by dragoscops/version-update@v3 GitHub Action',
-          note: 'This error should not occur in normal CI/CD workflow',
-        });
+          extensionId,
+          version,
+          url: `https://marketplace.visualstudio.com/items?itemName=${extensionId}`,
+          isUpdate: false,
+        };
       }
 
       // Network errors
@@ -384,13 +391,13 @@ export class MarketplacePublisher {
         });
       }
 
-      // All other errors are treated as validation/dependency errors
-      // This catches dependency resolution errors, malformed package errors, etc.
+      // All other errors should be reported (not suppressed)
+      // This catches real upload failures, API errors, etc.
       throw new PublishError(`Failed to publish to VSCode Marketplace: ${errorMessage}`, {
         marketplace: 'vscode',
         vsixPath,
         cause: errorMessage,
-        hint: 'This may be a validation error. Check extension dependencies, package.json format, and marketplace requirements.',
+        hint: 'Check the error message for details. Common issues: authentication errors, API errors, or marketplace issues.',
       });
     }
   }
@@ -453,15 +460,16 @@ export class MarketplacePublisher {
       const extensionAvailable = await this.verifyOpenVSXExtension(extensionId, version);
 
       if (!extensionAvailable) {
-        throw new PublishError(
-          `Extension uploaded but failed Open VSX validation. The extension may have dependency issues or other validation errors.`,
+        // Log a warning but don't throw - the extension may have been intentionally rejected
+        // due to validation issues (e.g., unresolvable dependencies)
+        this.logger.warn(
           {
-            marketplace: 'openvsx',
             vsixPath,
             extensionId,
             version,
-            hint: 'Check https://open-vsx.org for validation errors. Common issues: unresolvable dependencies, invalid package.json, missing required fields.',
+            marketplace: 'openvsx',
           },
+          'Extension uploaded but not available on Open VSX. This may indicate validation failure (e.g., dependency issues). Check https://open-vsx.org for details.',
         );
       }
 
@@ -507,20 +515,27 @@ export class MarketplacePublisher {
         });
       }
 
-      // Version conflict errors
+      // Version conflict errors - these should be suppressed (not thrown)
       if (
         errorMessage.includes('already exists') ||
         errorMessage.includes('is already published') ||
         errorMessage.includes('version')
       ) {
         const version = basename(vsixPath).match(/(\d+\.\d+\.\d+)/)?.[1] || 'unknown';
-        throw new VersionConflictError(`Version ${version} already exists on Open VSX Registry`, {
-          version,
+        this.logger.info(
+          { vsixPath, version, marketplace: 'openvsx' },
+          'Version already exists on Open VSX Registry (detected during upload), skipping',
+        );
+        // Return successful result - version conflict is not an error
+        const { publisher, name: extensionName, extensionId } = await this.extractVsixMetadata(vsixPath);
+        return {
           marketplace: 'openvsx',
           vsixPath,
-          hint: 'Version managed by dragoscops/version-update@v3 GitHub Action',
-          note: 'This error should not occur in normal CI/CD workflow',
-        });
+          extensionId,
+          version,
+          url: `https://open-vsx.org/extension/${publisher}/${extensionName}`,
+          isUpdate: false,
+        };
       }
 
       // Network errors
@@ -539,13 +554,13 @@ export class MarketplacePublisher {
         });
       }
 
-      // All other errors are treated as validation/dependency errors
-      // This catches dependency resolution errors, malformed package errors, etc.
+      // All other errors should be reported (not suppressed)
+      // This catches real upload failures, API errors, etc.
       throw new PublishError(`Failed to publish to Open VSX Registry: ${errorMessage}`, {
         marketplace: 'openvsx',
         vsixPath,
         cause: errorMessage,
-        hint: 'This may be a validation error. Check extension dependencies, package.json format, and marketplace requirements.',
+        hint: 'Check the error message for details. Common issues: authentication errors, API errors, or marketplace issues.',
       });
     }
   }

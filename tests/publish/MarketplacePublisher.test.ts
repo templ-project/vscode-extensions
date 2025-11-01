@@ -3,7 +3,7 @@
  */
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { PublishError, NetworkError, VersionConflictError } from '../../src/errors.js';
+import { PublishError, NetworkError } from '../../src/errors.js';
 import { createLogger } from '../../src/logger.js';
 import { MarketplacePublisher } from '../../src/publish/MarketplacePublisher.js';
 import type { PublishOptions } from '../../src/publish/types.js';
@@ -132,21 +132,19 @@ describe('MarketplacePublisher', () => {
         }
       });
 
-      it('should throw VersionConflictError for version already exists (409)', async () => {
+      it('should return success for version already exists (409)', async () => {
         vi.mocked(publishVSIX).mockRejectedValue(new Error('409 Conflict: version already exists'));
 
-        await expect(publisher.publish(validOptions)).rejects.toThrow(VersionConflictError);
-        await expect(publisher.publish(validOptions)).rejects.toThrow('already exists');
+        const result = await publisher.publish(validOptions);
 
-        try {
-          await publisher.publish(validOptions);
-        } catch (error) {
-          expect(error).toBeInstanceOf(VersionConflictError);
-          if (error instanceof VersionConflictError) {
-            expect(error.context.version).toBe('1.0.0');
-            expect(error.context.marketplace).toBe('vscode');
-          }
-        }
+        expect(result).toEqual({
+          marketplace: 'vscode',
+          vsixPath: validOptions.vsixPath,
+          extensionId: 'templ-project.tpl-vscode-cpp',
+          version: '1.0.0',
+          url: 'https://marketplace.visualstudio.com/items?itemName=templ-project.tpl-vscode-cpp',
+          isUpdate: false,
+        });
       });
 
       it('should throw NetworkError for connection timeout', async () => {
@@ -196,7 +194,7 @@ describe('MarketplacePublisher', () => {
           expect(error).toBeInstanceOf(PublishError);
           if (error instanceof PublishError) {
             expect(error.message).toContain('GregorBiswanger.json2ts');
-            expect(error.context.hint).toContain('validation error');
+            expect(error.context.hint).toContain('Check the error message for details');
           }
         }
       });
@@ -267,21 +265,19 @@ describe('MarketplacePublisher', () => {
         await expect(publisher.publish(openvsxOptions)).rejects.toThrow('Authentication failed');
       });
 
-      it('should throw VersionConflictError for version already exists', async () => {
+      it('should return success for version already exists', async () => {
         vi.mocked(publishOVSX).mockRejectedValue(new Error('Extension version 1.0.0 is already published'));
 
-        await expect(publisher.publish(openvsxOptions)).rejects.toThrow(VersionConflictError);
-        await expect(publisher.publish(openvsxOptions)).rejects.toThrow('already exists');
+        const result = await publisher.publish(openvsxOptions);
 
-        try {
-          await publisher.publish(openvsxOptions);
-        } catch (error) {
-          expect(error).toBeInstanceOf(VersionConflictError);
-          if (error instanceof VersionConflictError) {
-            expect(error.context.version).toBe('1.0.0');
-            expect(error.context.marketplace).toBe('openvsx');
-          }
-        }
+        expect(result).toEqual({
+          marketplace: 'openvsx',
+          vsixPath: openvsxOptions.vsixPath,
+          extensionId: 'templ-project.tpl-vscodium-cpp',
+          version: '1.0.0',
+          url: 'https://open-vsx.org/extension/templ-project/tpl-vscodium-cpp',
+          isUpdate: false,
+        });
       });
 
       it('should throw NetworkError for connection timeout', async () => {
@@ -331,12 +327,12 @@ describe('MarketplacePublisher', () => {
           expect(error).toBeInstanceOf(PublishError);
           if (error instanceof PublishError) {
             expect(error.message).toContain('GregorBiswanger.json2ts');
-            expect(error.context.hint).toContain('validation error');
+            expect(error.context.hint).toContain('Check the error message for details');
           }
         }
       });
 
-      it('should throw PublishError when extension fails post-publish validation', async () => {
+      it('should log warning when extension fails post-publish validation', async () => {
         // Use fake timers to skip the 2-second wait
         vi.useFakeTimers();
 
@@ -346,28 +342,36 @@ describe('MarketplacePublisher', () => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         vi.spyOn(publisher as any, 'verifyOpenVSXExtension').mockResolvedValue(false);
 
+        // Spy on logger.warn to verify warning is logged
+        const warnSpy = vi.spyOn(logger, 'warn');
+
         // Start the publish (it will wait 2 seconds before verifying)
         const publishPromise = publisher.publish(openvsxOptions);
-
-        // Attach error handler immediately to prevent unhandled rejection
-        publishPromise.catch(() => {
-          // Error will be caught below
-        });
 
         // Fast-forward time by 2 seconds
         await vi.advanceTimersByTimeAsync(2000);
 
-        // Catch the rejection and verify error details
-        try {
-          await publishPromise;
-          expect.fail('Expected publish to throw an error');
-        } catch (error) {
-          expect(error).toBeInstanceOf(PublishError);
-          if (error instanceof PublishError) {
-            expect(error.message).toContain('uploaded but failed');
-            expect(error.context.hint).toContain('Check https://open-vsx.org');
-          }
-        }
+        // Should succeed despite validation failure
+        const result = await publishPromise;
+
+        // Verify result is successful
+        expect(result).toEqual({
+          marketplace: 'openvsx',
+          vsixPath: openvsxOptions.vsixPath,
+          extensionId: 'templ-project.tpl-vscodium-cpp',
+          version: '1.0.0',
+          url: 'https://open-vsx.org/extension/templ-project/tpl-vscodium-cpp',
+          isUpdate: true,
+        });
+
+        // Verify warning was logged
+        expect(warnSpy).toHaveBeenCalledWith(
+          expect.objectContaining({
+            vsixPath: openvsxOptions.vsixPath,
+            marketplace: 'openvsx',
+          }),
+          expect.stringContaining('not available on Open VSX'),
+        );
 
         vi.useRealTimers();
       });
