@@ -4,6 +4,7 @@
   "description": "Essential JavaScript development environment for VSCodium - runtime-agnostic tools using open-source alternatives",
   "version": "1.2.3",
   "publisher": "templ-project",
+  "__configHash": "c5b4fe487f57c875168cad07c15280baca7a49f044b46ee4032ca2c4052b9692",
   "repository": {
     "type": "git",
     "url": "https://github.com/templ-project/vscode-extensions",

@@ -4,6 +4,7 @@
   "description": "Essential extensions for Godot game development with GDScript support, debugging, and enhanced productivity tools",
   "version": "1.0.3",
   "publisher": "templ-project",
+  "__configHash": "d1c3399f1000fabdcda65c4c291ecb4325642da6ba9c0bcccc5b11ee4cd122b2",
   "repository": {
     "type": "git",
     "url": "https://github.com/templ-project/vscode-extensions",

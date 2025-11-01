@@ -4,6 +4,7 @@
   "description": "Essential Go development environment for VSCode - comprehensive tooling for modern Go development",
   "version": "1.2.3",
   "publisher": "templ-project",
+  "__configHash": "3d77f0bc01f8430a547570c82e97fd42afd33014082e7880de3082a0e4d0a717",
   "repository": {
     "type": "git",
     "url": "https://github.com/templ-project/vscode-extensions",

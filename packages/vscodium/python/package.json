@@ -4,6 +4,7 @@
   "description": "Essential Python development extensions for VSCodium, including language support, debugging, formatting, and testing tools",
   "version": "1.2.3",
   "publisher": "templ-project",
+  "__configHash": "0c148badacfc705d7a5585a12432b6d11d3aeb6568355b59417037351c0b7feb",
   "repository": {
     "type": "git",
     "url": "https://github.com/templ-project/vscode-extensions",

@@ -1,5 +1,6 @@
-npm run build
-
 npx lint-staged
+
+npm run build
+task build:extensions
 
 git add .

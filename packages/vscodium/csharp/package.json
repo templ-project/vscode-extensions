@@ -4,6 +4,7 @@
   "description": "Essential C# development environment for VSCodium - comprehensive .NET tooling with IntelliSense, debugging, testing, and modern C# features",
   "version": "1.0.3",
   "publisher": "templ-project",
+  "__configHash": "8be8b5b88a478d449cb4635e81d902a5458e33dd16e3052c40a9c1bb0b437a94",
   "repository": {
     "type": "git",
     "url": "https://github.com/templ-project/vscode-extensions",

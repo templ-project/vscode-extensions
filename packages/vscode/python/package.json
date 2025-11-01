@@ -4,6 +4,7 @@
   "description": "Essential Python development environment for VSCode - comprehensive tooling for modern Python development, data science, and web applications",
   "version": "1.2.3",
   "publisher": "templ-project",
+  "__configHash": "84950da2e9de6da3d3bd3b63d145cb7cfc1243bc1ee0bef7d1a69c4179aba2c2",
   "repository": {
     "type": "git",
     "url": "https://github.com/templ-project/vscode-extensions",

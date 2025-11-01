@@ -5,6 +5,7 @@
  * complete extension pack directories with all required files.
  */
 
+import { createHash } from 'node:crypto';
 import { mkdir, copyFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { createVSIX } from '@vscode/vsce';
@@ -322,6 +323,9 @@ export class ExtensionPackBuilder {
   ): TemplateContext {
     const { ide, language, organization, publisher, repositoryUrl, version } = metadata;
 
+    // Calculate config hash for version tracking
+    const configHash = this.calculateConfigHash(collection);
+
     // Generate display name (capitalize first letter of each word)
     const displayName = this.generateDisplayName(language, ide);
     const capitalizedIde = ide.charAt(0).toUpperCase() + ide.slice(1);
@@ -380,6 +384,9 @@ export class ExtensionPackBuilder {
       date,
       year,
 
+      // Config hash for version tracking
+      configHash,
+
       // Collection data
       description: collection.description,
       tags: collection.tags,
@@ -407,6 +414,45 @@ export class ExtensionPackBuilder {
       // Flags
       hasCommands,
     };
+  }
+
+  /**
+   * Calculate SHA256 hash of collection configuration
+   * This creates a deterministic hash based on the extension's configuration,
+   * allowing version detection based on config changes
+   */
+  private calculateConfigHash(collection: Collection): string {
+    // Create a stable, deterministic representation of the collection
+    // Sort keys and arrays to ensure consistent hashing
+    const stableConfig = {
+      description: collection.description,
+      tags: [...collection.tags].sort(),
+      required_extensions: [...collection.required_extensions]
+        .sort((a, b) => a.id.localeCompare(b.id))
+        .map((ext) => ({
+          id: ext.id,
+          name: ext.name,
+          why_required: ext.why_required,
+        })),
+      optional_extensions: [...collection.optional_extensions]
+        .sort((a, b) => a.id.localeCompare(b.id))
+        .map((ext) => ({
+          id: ext.id,
+          name: ext.name,
+          why_recommended: ext.why_recommended,
+        })),
+      settings: collection.settings,
+      keybindings: [...collection.keybindings].sort((a, b) => a.key.localeCompare(b.key)),
+      snippets: [...collection.snippets].sort((a, b) => a.name.localeCompare(b.name)),
+    };
+
+    // Convert to stable JSON string and hash
+    const configString = JSON.stringify(stableConfig, null, 0);
+    const hash = createHash('sha256').update(configString).digest('hex');
+
+    this.logger.debug({ hash, configLength: configString.length }, 'Calculated config hash');
+
+    return hash;
   }
 
   /**

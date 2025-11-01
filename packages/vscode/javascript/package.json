@@ -4,6 +4,7 @@
   "description": "Essential JavaScript development environment for VSCode - runtime-agnostic tools for modern JavaScript development",
   "version": "1.2.3",
   "publisher": "templ-project",
+  "__configHash": "c05777547a0330342be50afad821928113e71f9101db50fef8c3d31b100c24c6",
   "repository": {
     "type": "git",
     "url": "https://github.com/templ-project/vscode-extensions",

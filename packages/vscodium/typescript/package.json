@@ -4,6 +4,7 @@
   "description": "Essential TypeScript development environment for VSCodium - comprehensive tooling for type-safe development using open-source alternatives",
   "version": "1.2.3",
   "publisher": "templ-project",
+  "__configHash": "c9255e07ab4d621ed20952c55e4f1d94806deda1a51c4f25690d4d11be172925",
   "repository": {
     "type": "git",
     "url": "https://github.com/templ-project/vscode-extensions",

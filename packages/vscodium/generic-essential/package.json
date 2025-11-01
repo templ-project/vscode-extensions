@@ -4,6 +4,7 @@
   "description": "Essential productivity extensions for general development in VSCodium (JSON support built-in)",
   "version": "1.2.3",
   "publisher": "templ-project",
+  "__configHash": "8ee58f19585d3e5089dea714a6e01899c18373c69ad8ac13ec30847ff2465678",
   "repository": {
     "type": "git",
     "url": "https://github.com/templ-project/vscode-extensions",

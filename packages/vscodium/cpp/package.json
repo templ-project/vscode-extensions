@@ -4,6 +4,7 @@
   "description": "Essential C/C++ development environment for VSCodium - modern tooling with clang-based language server, CMake/XMake build systems, and advanced debugging",
   "version": "1.0.3",
   "publisher": "templ-project",
+  "__configHash": "48c74d7e86f02609a54989dfa0370ebcdb36b31220843b78cd6263fc11c8ad25",
   "repository": {
     "type": "git",
     "url": "https://github.com/templ-project/vscode-extensions",

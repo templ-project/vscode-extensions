@@ -4,6 +4,7 @@
   "description": "Essential TypeScript development environment for VSCode - comprehensive tooling for type-safe development",
   "version": "1.2.3",
   "publisher": "templ-project",
+  "__configHash": "0e7c227d2a9cdfb7ad60ecc7597aab7b9a5af2cf6e6fd15b7a80e80e41c2a484",
   "repository": {
     "type": "git",
     "url": "https://github.com/templ-project/vscode-extensions",
