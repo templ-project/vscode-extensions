@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.2 (2025-11-01)
+
+### Bug Fixes
+
+* OVSX token ([111bd9f](https://github.com/templ-project/vscode-extensions/commit/111bd9fe974fa1ddd61802bdd573c0c9308b0707))
+* OVSX token ([809df8f](https://github.com/templ-project/vscode-extensions/commit/809df8f575bb3a29ab68f3f649e3469e8810593a))
+
 ## 1.3.1 (2025-11-01)
 
 ### Child Workspaces
