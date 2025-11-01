@@ -107,6 +107,7 @@ describe('Template Files', () => {
       },
     },
     hasCommands: true,
+    configHash: '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef',
   };
 
   describe('package.json.handlebars', () => {
