@@ -1,5 +1,35 @@
 # Changelog
 
+## 1.3.3 (2025-11-01)
+
+### Child Workspaces
+
+The following workspaces are included in this release:
+
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/cpp` - v1.0.3
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/csharp` - v1.0.3
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/generic-essential` - v1.2.3
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/generic-extended` - v1.2.3
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/godot` - v1.0.3
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/golang` - v1.2.3
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/javascript` - v1.2.3
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/python` - v1.2.3
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/typescript` - v1.2.3
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/cpp` - v1.0.3
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/csharp` - v1.0.3
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/generic-essential` - v1.2.3
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/generic-extended` - v1.2.3
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/godot` - v1.0.3
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/golang` - v1.2.3
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/javascript` - v1.2.3
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/python` - v1.2.3
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/typescript` - v1.2.3
+
+
+### Bug Fixes
+
+* extract extension metadata from .vsix file instead of filename parsing ([4b1d50b](https://github.com/templ-project/vscode-extensions/commit/4b1d50b1f2345bf9bc9ae406266cfd02128f7bed))
+
 ## 1.3.2 (2025-11-01)
 
 ### Bug Fixes

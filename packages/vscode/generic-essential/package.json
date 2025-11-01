@@ -2,7 +2,7 @@
   "name": "tpl-vscode-generic-essential",
   "displayName": "Generic Essential Extension Pack for Vscode",
   "description": "Essential productivity extensions for general development in VSCode",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "publisher": "templ-project",
   "repository": {
     "type": "git",

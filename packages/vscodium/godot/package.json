@@ -2,7 +2,7 @@
   "name": "tpl-vscodium-godot",
   "displayName": "Godot Extension Pack for Vscodium",
   "description": "Essential extensions for Godot game development with GDScript support, debugging, and enhanced productivity tools",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "templ-project",
   "repository": {
     "type": "git",

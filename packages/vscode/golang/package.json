@@ -2,7 +2,7 @@
   "name": "tpl-vscode-golang",
   "displayName": "Go Extension Pack for Vscode",
   "description": "Essential Go development environment for VSCode - comprehensive tooling for modern Go development",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
