@@ -4,10 +4,12 @@
  * Handles authentication, error reporting, and marketplace-specific publishing logic.
  */
 
+import { createReadStream } from 'node:fs';
 import { basename } from 'node:path';
 import { publishVSIX } from '@vscode/vsce';
 import { publish as publishOVSX } from 'ovsx';
 import type pino from 'pino';
+import { Parse as unzip } from 'unzipper';
 import { PublishError, NetworkError, VersionConflictError } from '../errors.js';
 import type { PublishOptions, PublishResult, Marketplace } from './types.js';
 
@@ -36,6 +38,68 @@ export class MarketplacePublisher {
   constructor(logger: pino.Logger) {
     this.logger = logger.child({ module: 'MarketplacePublisher' });
     this.logger.debug('MarketplacePublisher initialized');
+  }
+
+  /**
+   * Extract extension metadata from .vsix file
+   *
+   * @param vsixPath - Path to .vsix file
+   * @returns Promise resolving to { publisher, name, version, extensionId }
+   */
+  private async extractVsixMetadata(vsixPath: string): Promise<{
+    publisher: string;
+    name: string;
+    version: string;
+    extensionId: string;
+  }> {
+    try {
+      // .vsix files are zip archives containing extension/package.json
+      const stream = createReadStream(vsixPath).pipe(unzip());
+
+      for await (const entry of stream) {
+        if (entry.path === 'extension/package.json') {
+          const content = await entry.buffer();
+          const packageJson = JSON.parse(content.toString('utf-8'));
+
+          const publisher = packageJson.publisher;
+          const name = packageJson.name;
+          const version = packageJson.version;
+
+          if (!publisher || !name || !version) {
+            throw new PublishError('Invalid package.json in .vsix file: missing publisher, name, or version', {
+              vsixPath,
+              publisher,
+              name,
+              version,
+            });
+          }
+
+          return {
+            publisher,
+            name,
+            version,
+            extensionId: `${publisher}.${name}`,
+          };
+        } else {
+          entry.autodrain();
+        }
+      }
+
+      throw new PublishError('Could not find extension/package.json in .vsix file', {
+        vsixPath,
+      });
+    } catch (error) {
+      if (error instanceof PublishError) {
+        throw error;
+      }
+      throw new PublishError(
+        `Failed to extract metadata from .vsix file: ${error instanceof Error ? error.message : String(error)}`,
+        {
+          vsixPath,
+          cause: error instanceof Error ? error.message : String(error),
+        },
+      );
+    }
   }
 
   /**
@@ -157,21 +221,8 @@ export class MarketplacePublisher {
     this.logger.info({ vsixPath }, 'Publishing to VSCode Marketplace');
 
     try {
-      // Extract extension metadata from .vsix filename
-      // Expected format: publisher-name-version.vsix (e.g., tpl-vscode-cpp-1.0.0.vsix)
-      const filename = basename(vsixPath);
-      const match = filename.match(/^(.+?)-(\d+\.\d+\.\d+)\.vsix$/);
-
-      if (!match) {
-        throw new PublishError(`Invalid .vsix filename format: ${filename}`, {
-          vsixPath,
-          expectedFormat: 'publisher-name-version.vsix',
-          hint: 'Ensure .vsix file follows naming convention',
-        });
-      }
-
-      const [, nameWithPublisher, version] = match;
-      const extensionId = nameWithPublisher.replace(/-/g, '.'); // Convert tpl-vscode-cpp to tpl.vscode.cpp
+      // Extract extension metadata from .vsix file
+      const { extensionId, version } = await this.extractVsixMetadata(vsixPath);
 
       // Check if version already exists on marketplace
       const versionExists = await this.checkVSCodeMarketplaceVersion(extensionId, version);
@@ -288,21 +339,8 @@ export class MarketplacePublisher {
     this.logger.info({ vsixPath }, 'Publishing to Open VSX Registry');
 
     try {
-      // Extract extension metadata from .vsix filename
-      // Expected format: publisher-name-version.vsix (e.g., tpl-vscodium-cpp-1.0.0.vsix)
-      const filename = basename(vsixPath);
-      const match = filename.match(/^(.+?)-(\d+\.\d+\.\d+)\.vsix$/);
-
-      if (!match) {
-        throw new PublishError(`Invalid .vsix filename format: ${filename}`, {
-          vsixPath,
-          expectedFormat: 'publisher-name-version.vsix',
-          hint: 'Ensure .vsix file follows naming convention',
-        });
-      }
-
-      const [, nameWithPublisher, version] = match;
-      const extensionId = nameWithPublisher.replace(/-/g, '.'); // Convert tpl-vscodium-cpp to tpl.vscodium.cpp
+      // Extract extension metadata from .vsix file
+      const { publisher, name: extensionName, extensionId, version } = await this.extractVsixMetadata(vsixPath);
 
       // Check if version already exists on Open VSX
       const versionExists = await this.checkOpenVSXVersion(extensionId, version);
@@ -319,7 +357,7 @@ export class MarketplacePublisher {
           vsixPath,
           extensionId,
           version,
-          url: `https://open-vsx.org/extension/${nameWithPublisher.replace(/-/g, '/')}`,
+          url: `https://open-vsx.org/extension/${publisher}/${extensionName}`,
           isUpdate: false,
         };
 
@@ -342,7 +380,7 @@ export class MarketplacePublisher {
         vsixPath,
         extensionId,
         version,
-        url: `https://open-vsx.org/extension/${nameWithPublisher.replace(/-/g, '/')}`,
+        url: `https://open-vsx.org/extension/${publisher}/${extensionName}`,
         isUpdate: true,
       };
 
