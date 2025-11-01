@@ -59,9 +59,13 @@ describe('MarketplacePublisher', () => {
     vi.spyOn(publisher as any, 'checkVSCodeMarketplaceVersion').mockResolvedValue(false);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.spyOn(publisher as any, 'checkOpenVSXVersion').mockResolvedValue(false);
+    // Mock verifyOpenVSXExtension to return true by default (extension is available)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    vi.spyOn(publisher as any, 'verifyOpenVSXExtension').mockResolvedValue(true);
   });
   afterEach(() => {
     vi.restoreAllMocks();
+    vi.useRealTimers();
   });
 
   describe('Constructor', () => {
@@ -208,6 +212,7 @@ describe('MarketplacePublisher', () => {
       it('should publish to Open VSX Registry successfully', async () => {
         // Mock successful publish
         vi.mocked(publishOVSX).mockResolvedValue([]);
+        // verifyOpenVSXExtension is already mocked to return true in beforeEach
 
         const result = await publisher.publish(openvsxOptions);
 
@@ -329,6 +334,42 @@ describe('MarketplacePublisher', () => {
             expect(error.context.hint).toContain('validation error');
           }
         }
+      });
+
+      it('should throw PublishError when extension fails post-publish validation', async () => {
+        // Use fake timers to skip the 2-second wait
+        vi.useFakeTimers();
+
+        // Mock successful upload
+        vi.mocked(publishOVSX).mockResolvedValue([]);
+        // Mock failed verification (extension not available after upload)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        vi.spyOn(publisher as any, 'verifyOpenVSXExtension').mockResolvedValue(false);
+
+        // Start the publish (it will wait 2 seconds before verifying)
+        const publishPromise = publisher.publish(openvsxOptions);
+
+        // Attach error handler immediately to prevent unhandled rejection
+        publishPromise.catch(() => {
+          // Error will be caught below
+        });
+
+        // Fast-forward time by 2 seconds
+        await vi.advanceTimersByTimeAsync(2000);
+
+        // Catch the rejection and verify error details
+        try {
+          await publishPromise;
+          expect.fail('Expected publish to throw an error');
+        } catch (error) {
+          expect(error).toBeInstanceOf(PublishError);
+          if (error instanceof PublishError) {
+            expect(error.message).toContain('uploaded but failed');
+            expect(error.context.hint).toContain('Check https://open-vsx.org');
+          }
+        }
+
+        vi.useRealTimers();
       });
     });
 

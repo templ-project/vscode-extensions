@@ -194,6 +194,42 @@ export class MarketplacePublisher {
   }
 
   /**
+   * Verify that an extension is actually available on Open VSX after publishing
+   * This is needed because Open VSX validates extensions asynchronously
+   *
+   * @param extensionId - Extension identifier (publisher.name)
+   * @param version - Version to verify
+   * @returns Promise resolving to true if extension is available and valid, false otherwise
+   */
+  private async verifyOpenVSXExtension(extensionId: string, version: string): Promise<boolean> {
+    try {
+      const [publisher, name] = extensionId.split('.');
+      const apiUrl = `https://open-vsx.org/api/${publisher}/${name}/${version}`;
+      this.logger.debug({ extensionId, version, apiUrl }, 'Verifying Open VSX extension');
+
+      const response = await fetch(apiUrl);
+
+      if (!response.ok) {
+        this.logger.warn(
+          { extensionId, version, status: response.status },
+          'Extension not found on Open VSX after publish',
+        );
+        return false;
+      }
+
+      // Check the response to see if there are any validation errors
+      const data = await response.json();
+      this.logger.debug({ extensionId, version, data }, 'Open VSX extension data');
+
+      // If we got valid JSON data back, the extension is available
+      return true;
+    } catch (error) {
+      this.logger.error({ err: error, extensionId, version }, 'Failed to verify Open VSX extension');
+      return false;
+    }
+  }
+
+  /**
    * Publish a .vsix file to the specified marketplace
    *
    * @param options - Publishing options including PAT, vsix path, and marketplace
@@ -295,6 +331,11 @@ export class MarketplacePublisher {
 
       return result;
     } catch (error) {
+      // Re-throw errors that are already properly typed
+      if (error instanceof PublishError || error instanceof VersionConflictError || error instanceof NetworkError) {
+        throw error;
+      }
+
       // Handle different error types from vsce
       const errorMessage = error instanceof Error ? error.message : String(error);
 
@@ -401,6 +442,29 @@ export class MarketplacePublisher {
         // registryUrl defaults to https://open-vsx.org
       });
 
+      this.logger.info({ vsixPath, version, marketplace: 'openvsx' }, 'Upload complete, verifying extension');
+
+      // Verify the extension is actually available after publish
+      // Open VSX validates extensions asynchronously, so we need to check
+      // Wait a bit for validation to complete
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      // Check if the extension is actually available
+      const extensionAvailable = await this.verifyOpenVSXExtension(extensionId, version);
+
+      if (!extensionAvailable) {
+        throw new PublishError(
+          `Extension uploaded but failed Open VSX validation. The extension may have dependency issues or other validation errors.`,
+          {
+            marketplace: 'openvsx',
+            vsixPath,
+            extensionId,
+            version,
+            hint: 'Check https://open-vsx.org for validation errors. Common issues: unresolvable dependencies, invalid package.json, missing required fields.',
+          },
+        );
+      }
+
       this.logger.info({ vsixPath, version, marketplace: 'openvsx' }, 'Successfully published to Open VSX Registry');
 
       // Construct result
@@ -415,6 +479,11 @@ export class MarketplacePublisher {
 
       return result;
     } catch (error) {
+      // Re-throw errors that are already properly typed
+      if (error instanceof PublishError || error instanceof VersionConflictError || error instanceof NetworkError) {
+        throw error;
+      }
+
       // Handle different error types from ovsx
       const errorMessage = error instanceof Error ? error.message : String(error);
 
