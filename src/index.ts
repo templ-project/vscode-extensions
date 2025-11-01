@@ -151,9 +151,9 @@ async function publishCommand(vsixPattern: string, options: { marketplace?: stri
     }
 
     if (marketplace === 'openvsx' || marketplace === 'both') {
-      openvsxPat = process.env.OPENVSX_TOKEN;
+      openvsxPat = process.env.OVSX_PAT;
       if (!openvsxPat) {
-        console.error('❌ Error: OPENVSX_TOKEN environment variable is required for Open VSX publishing');
+        console.error('❌ Error: OVSX_PAT environment variable is required for Open VSX publishing');
         console.error('   Generate a token at: https://open-vsx.org/user-settings/tokens');
         process.exit(1);
       }
