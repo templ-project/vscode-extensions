@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.0 (2025-11-01)
+
+### Features
+
+* add post-publish verification for Open VSX ([dab4f7e](https://github.com/templ-project/vscode-extensions/commit/dab4f7e92a2816861004d9a91ef5e8237e2eeb1a))
+
 ## 1.4.1 (2025-11-01)
 
 ## 1.4.0 (2025-11-01)
