@@ -89,7 +89,7 @@ tasks:
     silent: true
 
   build:extensions:vscode:
-    deps:
+    cmds:
       - task: build:extension:vscode
         vars: {EXTENSION: cpp}
       - task: build:extension:vscode
@@ -109,10 +109,10 @@ tasks:
       - task: build:extension:vscode
         vars: {EXTENSION: typescript}
     desc: Build all VSCode extension packs
-    # Note: Task runs dependencies in parallel by default when safe
+    # Note: Using cmds instead of deps to run sequentially and avoid file contention
 
   build:extensions:vscodium:
-    deps:
+    cmds:
       - task: build:extension:vscodium
         vars: {EXTENSION: cpp}
       - task: build:extension:vscodium
@@ -132,7 +132,7 @@ tasks:
       - task: build:extension:vscodium
         vars: {EXTENSION: typescript}
     desc: Build all VSCodium extension packs
-    # Note: Task runs dependencies in parallel by default when safe
+    # Note: Using cmds instead of deps to run sequentially and avoid file contention
 
   # =============================================================================
   # Utility Tasks
