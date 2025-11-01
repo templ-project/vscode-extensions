@@ -1,10 +1,10 @@
 {
   "name": "tpl-vscodium-clojure",
   "displayName": "Clojure Extension Pack for Vscodium",
-  "description": "Essential Clojure &amp; ClojureScript development environment for VSCodium - comprehensive REPL-driven development tooling",
+  "description": "Essential Clojure &amp; ClojureScript development environment for VSCodium - comprehensive REPL-driven development tooling (limited extensions)",
   "version": "0.0.1",
   "publisher": "templ-project",
-  "__configHash": "c0dd0a25cc9d809c1a441908fa6eae056b0b772d97c46e4f45bceb72a0ffdf70",
+  "__configHash": "15c9479b6526b0b7bf478d887887e5673fa9e471eebb5b9dd8741100b4b43600",
   "repository": {
     "type": "git",
     "url": "https://github.com/templ-project/vscode-extensions",
@@ -35,14 +35,10 @@
   ],
   "extensionPack": [
     "betterthantomorrow.calva",
-    "betterthantomorrow.clojure-lsp",
-    "shaunlebron.vscode-parinfer",
-    "2gua.rainbow-brackets",
-    "rafaeldelboni.clojure-snippets"
+    "shaunlebron.vscode-parinfer"
   ],
   "extensionDependencies": [
-    "betterthantomorrow.calva",
-    "betterthantomorrow.clojure-lsp"
+    "betterthantomorrow.calva"
   ],
   "activationEvents": [
     "onStartupFinished"

@@ -1,10 +1,4 @@
-import {
-  calvaVSCodium,
-  clojureLSPVSCodium,
-  parinferVSCodium,
-  rainbowBracketsVSCodium,
-  clojureSnippetsVSCodium,
-} from '../../extensions/clojure';
+import { calvaVSCodium, parinferVSCodium } from '../../extensions/clojure';
 import { Collection } from '../../shared/types';
 import { clojure as clojureVSCode } from '../vscode/clojure';
 
@@ -12,11 +6,11 @@ export const clojure: Collection = {
   ...clojureVSCode,
 
   description:
-    'Essential Clojure & ClojureScript development environment for VSCodium - comprehensive REPL-driven development tooling',
+    'Essential Clojure & ClojureScript development environment for VSCodium - comprehensive REPL-driven development tooling (limited extensions)',
 
-  required_extensions: [calvaVSCodium, clojureLSPVSCodium],
+  required_extensions: [calvaVSCodium],
 
-  optional_extensions: [parinferVSCodium, rainbowBracketsVSCodium, clojureSnippetsVSCodium],
+  optional_extensions: [parinferVSCodium],
 
   documentation: {
     ...clojureVSCode.documentation,
@@ -29,22 +23,26 @@ ${clojureVSCode.documentation.setup_guide}
 
 This extension pack is configured for VSCodium and uses Open VSX Registry instead of the Visual Studio Marketplace.
 
-### Extension Sources
+### Available Extensions on Open VSX
 
-All extensions are installed from Open VSX Registry (https://open-vsx.org/):
-- Calva: betterthantomorrow.calva
+**Included in this pack:**
+- Calva: betterthantomorrow.calva (required)
+- Parinfer: shaunlebron.vscode-parinfer (optional)
+
+**Not available on Open VSX (from VSCode version):**
 - Clojure LSP: betterthantomorrow.clojure-lsp
-- Parinfer: shaunlebron.vscode-parinfer
 - Rainbow Brackets: 2gua.rainbow-brackets
 - Clojure Snippets: rafaeldelboni.clojure-snippets
 
+**Good news:** Calva includes built-in LSP support via clojure-lsp, so the separate Clojure LSP extension is not necessary. You'll have full language server features (navigation, refactoring, diagnostics) through Calva alone.
+
 ### Compatibility
 
-VSCodium is fully compatible with all Clojure development tools and workflows. All features work identically to VSCode.
+VSCodium is fully compatible with all Clojure development tools and workflows. The core development experience with Calva works identically to VSCode.
 
 ### Installation Notes
 
-Extensions are installed from Open VSX, which may have slightly different update schedules than the VS Code Marketplace. All core functionality remains the same.
+Extensions are installed from Open VSX Registry (https://open-vsx.org/), which may have slightly different update schedules than the VS Code Marketplace. All core functionality remains the same.
 `,
 
     troubleshooting: `# Troubleshooting Clojure Development (VSCodium)

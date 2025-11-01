@@ -82,6 +82,9 @@ export const clojureSnippets: Extension = {
 
 // ============================================================================
 // Open VSX (VSCodium) Extensions
+// Note: Only Calva and Parinfer are available on Open VSX.
+// Other extensions (clojure-lsp, rainbow-brackets, clojure-snippets) are not
+// published to Open VSX and cannot be included in VSCodium extension pack.
 // ============================================================================
 
 export const calvaVSCodium: Extension = {
@@ -89,22 +92,7 @@ export const calvaVSCodium: Extension = {
   marketplace_url: 'https://open-vsx.org/extension/betterthantomorrow/calva',
 };
 
-export const clojureLSPVSCodium: Extension = {
-  ...baseClojureLSP,
-  marketplace_url: 'https://open-vsx.org/extension/betterthantomorrow/clojure-lsp',
-};
-
 export const parinferVSCodium: Extension = {
   ...baseParinfer,
   marketplace_url: 'https://open-vsx.org/extension/shaunlebron/vscode-parinfer',
-};
-
-export const rainbowBracketsVSCodium: Extension = {
-  ...baseRainbowBrackets,
-  marketplace_url: 'https://open-vsx.org/extension/2gua/rainbow-brackets',
-};
-
-export const clojureSnippetsVSCodium: Extension = {
-  ...baseClojureSnippets,
-  marketplace_url: 'https://open-vsx.org/extension/rafaeldelboni/clojure-snippets',
 };
