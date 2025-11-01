@@ -1,0 +1,115 @@
+{
+  "name": "tpl-vscode-generic-essential",
+  "displayName": "Generic Essential Extension Pack for Vscode",
+  "description": "Essential productivity extensions for general development in VSCode",
+  "version": "1.2.1",
+  "publisher": "templ-project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/templ-project/vscode-extensions",
+    "directory": "packages/vscode/generic-essential"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "icon": "logo.png",
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "dark"
+  },
+  "categories": ["Extension Packs"],
+  "keywords": [
+    "productivity",
+    "general",
+    "essential",
+    "git",
+    "debugging",
+    "editing",
+    "extension-pack",
+    "development",
+    "vscode",
+    "generic-essential"
+  ],
+  "extensionPack": [
+    "github.copilot",
+    "eamodio.gitlens",
+    "aaron-bond.better-comments",
+    "alefragnani.bookmarks",
+    "streetsidesoftware.code-spell-checker",
+    "mikestead.dotenv",
+    "editorconfig.editorconfig",
+    "usernamehw.errorlens",
+    "christian-kohler.path-intellisense",
+    "gruntfuggly.todo-tree",
+    "pflannery.vscode-versionlens",
+    "mrmlnc.vscode-json5",
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+    "darkriszty.markdown-table-prettify",
+    "bierner.markdown-mermaid",
+    "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
+    "tamasfe.even-better-toml",
+    "redhat.vscode-yaml",
+    "shardulm94.trailing-spaces"
+  ],
+  "extensionDependencies": [
+    "github.copilot",
+    "eamodio.gitlens",
+    "aaron-bond.better-comments",
+    "alefragnani.bookmarks",
+    "streetsidesoftware.code-spell-checker",
+    "mikestead.dotenv",
+    "editorconfig.editorconfig",
+    "usernamehw.errorlens",
+    "christian-kohler.path-intellisense",
+    "gruntfuggly.todo-tree",
+    "pflannery.vscode-versionlens",
+    "mrmlnc.vscode-json5",
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+    "darkriszty.markdown-table-prettify",
+    "bierner.markdown-mermaid",
+    "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
+    "tamasfe.even-better-toml",
+    "redhat.vscode-yaml"
+  ],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "keybindings": [
+      {
+        "key": "ctrl+shift+b",
+        "command": "bookmarks.toggle",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+shift+j",
+        "command": "bookmarks.jumpToNext"
+      },
+      {
+        "key": "ctrl+shift+k",
+        "command": "bookmarks.jumpToPrevious"
+      }
+    ],
+    "commands": [
+      {
+        "command": "templ-project.generic-essential-vscode.applySettings",
+        "title": "Apply Generic Essential Extension Pack for Vscode Settings"
+      },
+      {
+        "command": "templ-project.generic-essential-vscode.resetSettings",
+        "title": "Reset Generic Essential Extension Pack for Vscode Settings"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.0"
+  }
+}

@@ -150,7 +150,8 @@ vite.config.ts.timestamp-*
 dist/
 *.vsix
 
-packages/
+packages/**/*
+!packages/**/
 !packages/**/package.json
 
 .task/

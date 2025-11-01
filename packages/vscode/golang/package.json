@@ -1,0 +1,101 @@
+{
+  "name": "tpl-vscode-golang",
+  "displayName": "Go Extension Pack for Vscode",
+  "description": "Essential Go development environment for VSCode - comprehensive tooling for modern Go development",
+  "version": "1.2.1",
+  "publisher": "templ-project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/templ-project/vscode-extensions",
+    "directory": "packages/vscode/golang"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "icon": "logo.png",
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "dark"
+  },
+  "categories": ["Extension Packs"],
+  "keywords": [
+    "golang",
+    "go",
+    "backend",
+    "development",
+    "testing",
+    "microservices",
+    "extension-pack",
+    "development",
+    "vscode",
+    "golang"
+  ],
+  "extensionPack": [
+    "golang.go",
+    "766b.go-outliner",
+    "premparihar.gotestexplorer",
+    "davidbarratt.go-fill-struct",
+    "karyan40024.gotmpl-syntax-highlighter",
+    "msyrus.go-doc",
+    "neverik.go-critic",
+    "quillaja.goasm"
+  ],
+  "extensionDependencies": ["golang.go"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "golang",
+        "path": "./snippets/golang.json"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "ctrl+shift+t",
+        "command": "go.test.package",
+        "when": "editorTextFocus && editorLangId == go"
+      },
+      {
+        "key": "ctrl+shift+f",
+        "command": "editor.action.formatDocument",
+        "when": "editorTextFocus && editorLangId == go"
+      },
+      {
+        "key": "ctrl+shift+r",
+        "command": "go.test.file",
+        "when": "editorTextFocus && editorLangId == go"
+      },
+      {
+        "key": "f12",
+        "command": "editor.action.revealDefinition",
+        "when": "editorTextFocus && editorLangId == go"
+      },
+      {
+        "key": "shift+f12",
+        "command": "editor.action.goToReferences",
+        "when": "editorTextFocus && editorLangId == go"
+      }
+    ],
+    "commands": [
+      {
+        "command": "templ-project.golang-vscode.applySettings",
+        "title": "Apply Go Extension Pack for Vscode Settings"
+      },
+      {
+        "command": "templ-project.golang-vscode.resetSettings",
+        "title": "Reset Go Extension Pack for Vscode Settings"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "typescript": "^4.9.0"
+  }
+}

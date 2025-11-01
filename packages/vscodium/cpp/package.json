@@ -1,13 +1,13 @@
 {
-  "name": "tpl-vscode-cpp",
-  "displayName": "C++ Extension Pack for Vscode",
-  "description": "Essential C/C++ development environment for VSCode - modern tooling with clang-based language server, CMake/XMake build systems, and advanced debugging",
+  "name": "tpl-vscodium-cpp",
+  "displayName": "C++ Extension Pack for Vscodium",
+  "description": "Essential C/C++ development environment for VSCodium - modern tooling with clang-based language server, CMake/XMake build systems, and advanced debugging",
   "version": "1.0.1",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
     "url": "https://github.com/templ-project/vscode-extensions",
-    "directory": "packages/vscode/cpp"
+    "directory": "packages/vscodium/cpp"
   },
   "engines": {
     "vscode": "^1.75.0"
@@ -30,7 +30,7 @@
     "embedded",
     "extension-pack",
     "development",
-    "vscode",
+    "vscodium",
     "cpp"
   ],
   "extensionPack": [
@@ -82,12 +82,12 @@
     ],
     "commands": [
       {
-        "command": "templ-project.cpp-vscode.applySettings",
-        "title": "Apply C++ Extension Pack for Vscode Settings"
+        "command": "templ-project.cpp-vscodium.applySettings",
+        "title": "Apply C++ Extension Pack for Vscodium Settings"
       },
       {
-        "command": "templ-project.cpp-vscode.resetSettings",
-        "title": "Reset C++ Extension Pack for Vscode Settings"
+        "command": "templ-project.cpp-vscodium.resetSettings",
+        "title": "Reset C++ Extension Pack for Vscodium Settings"
       }
     ]
   },

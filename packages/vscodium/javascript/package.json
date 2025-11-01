@@ -1,13 +1,13 @@
 {
-  "name": "tpl-vscode-typescript",
-  "displayName": "TypeScript Extension Pack for Vscode",
-  "description": "Essential TypeScript development environment for VSCode - comprehensive tooling for type-safe development",
+  "name": "tpl-vscodium-javascript",
+  "displayName": "JavaScript Extension Pack for Vscodium",
+  "description": "Essential JavaScript development environment for VSCodium - runtime-agnostic tools using open-source alternatives",
   "version": "1.2.1",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
     "url": "https://github.com/templ-project/vscode-extensions",
-    "directory": "packages/vscode/typescript"
+    "directory": "packages/vscodium/javascript"
   },
   "engines": {
     "vscode": "^1.75.0"
@@ -19,26 +19,41 @@
   },
   "categories": ["Extension Packs"],
   "keywords": [
-    "typescript",
-    "types",
+    "javascript",
+    "es6",
+    "frontend",
+    "web",
     "development",
     "linting",
     "formatting",
-    "intellisense",
     "extension-pack",
     "development",
-    "vscode",
-    "typescript"
+    "vscodium",
+    "javascript"
   ],
-  "extensionPack": ["ms-vscode.vscode-typescript-next", "GregorBiswanger.json2ts"],
-  "extensionDependencies": ["ms-vscode.vscode-typescript-next", "GregorBiswanger.json2ts"],
+  "extensionPack": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-vscode.js-debug",
+    "mgmcdermott.vscode-language-babel",
+    "wix.vscode-import-cost",
+    "WallabyJs.quokka-vscode",
+    "oven.bun-vscode",
+    "denoland.vscode-deno"
+  ],
+  "extensionDependencies": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-vscode.js-debug",
+    "mgmcdermott.vscode-language-babel"
+  ],
   "activationEvents": ["onStartupFinished"],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [
       {
-        "language": "typescript",
-        "path": "./snippets/typescript.json"
+        "language": "javascript",
+        "path": "./snippets/javascript.json"
       }
     ],
     "keybindings": [
@@ -51,21 +66,16 @@
         "key": "ctrl+shift+e",
         "command": "eslint.executeAutofix",
         "when": "editorTextFocus"
-      },
-      {
-        "key": "f12",
-        "command": "editor.action.revealDefinition",
-        "when": "editorHasDefinitionProvider && editorTextFocus"
       }
     ],
     "commands": [
       {
-        "command": "templ-project.typescript-vscode.applySettings",
-        "title": "Apply TypeScript Extension Pack for Vscode Settings"
+        "command": "templ-project.javascript-vscodium.applySettings",
+        "title": "Apply JavaScript Extension Pack for Vscodium Settings"
       },
       {
-        "command": "templ-project.typescript-vscode.resetSettings",
-        "title": "Reset TypeScript Extension Pack for Vscode Settings"
+        "command": "templ-project.javascript-vscodium.resetSettings",
+        "title": "Reset JavaScript Extension Pack for Vscodium Settings"
       }
     ]
   },

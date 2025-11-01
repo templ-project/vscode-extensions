@@ -1,13 +1,13 @@
 {
-  "name": "tpl-vscode-typescript",
-  "displayName": "TypeScript Extension Pack for Vscode",
-  "description": "Essential TypeScript development environment for VSCode - comprehensive tooling for type-safe development",
+  "name": "tpl-vscodium-typescript",
+  "displayName": "TypeScript Extension Pack for Vscodium",
+  "description": "Essential TypeScript development environment for VSCodium - comprehensive tooling for type-safe development using open-source alternatives",
   "version": "1.2.1",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
     "url": "https://github.com/templ-project/vscode-extensions",
-    "directory": "packages/vscode/typescript"
+    "directory": "packages/vscodium/typescript"
   },
   "engines": {
     "vscode": "^1.75.0"
@@ -27,7 +27,7 @@
     "intellisense",
     "extension-pack",
     "development",
-    "vscode",
+    "vscodium",
     "typescript"
   ],
   "extensionPack": ["ms-vscode.vscode-typescript-next", "GregorBiswanger.json2ts"],
@@ -60,12 +60,12 @@
     ],
     "commands": [
       {
-        "command": "templ-project.typescript-vscode.applySettings",
-        "title": "Apply TypeScript Extension Pack for Vscode Settings"
+        "command": "templ-project.typescript-vscodium.applySettings",
+        "title": "Apply TypeScript Extension Pack for Vscodium Settings"
       },
       {
-        "command": "templ-project.typescript-vscode.resetSettings",
-        "title": "Reset TypeScript Extension Pack for Vscode Settings"
+        "command": "templ-project.typescript-vscodium.resetSettings",
+        "title": "Reset TypeScript Extension Pack for Vscodium Settings"
       }
     ]
   },
