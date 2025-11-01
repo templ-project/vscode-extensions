@@ -1,5 +1,39 @@
 # Changelog
 
+## 1.4.0 (2025-11-01)
+
+### Child Workspaces
+
+The following workspaces are included in this release:
+
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/cpp` - v1.1.0
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/csharp` - v1.1.0
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/generic-essential` - v1.3.0
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/generic-extended` - v1.3.0
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/godot` - v1.1.0
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/golang` - v1.3.0
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/javascript` - v1.3.0
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/python` - v1.3.0
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/typescript` - v1.3.0
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/cpp` - v1.1.0
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/csharp` - v1.1.0
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/generic-essential` - v1.3.0
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/generic-extended` - v1.3.0
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/godot` - v1.1.0
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/golang` - v1.3.0
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/javascript` - v1.3.0
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/python` - v1.3.0
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/typescript` - v1.3.0
+
+
+### Features
+
+* add SHA256 config hash to package.json for version tracking ([1df621a](https://github.com/templ-project/vscode-extensions/commit/1df621a90a16ad58e7d473f5afbdc6b7e4d0327b))
+
+### Bug Fixes
+
+* add configHash to template test fixtures ([9000596](https://github.com/templ-project/vscode-extensions/commit/90005963299d6435619c5e0d7023f2e7b3d6acd4))
+
 ## 1.3.4 (2025-11-01)
 
 ### Bug Fixes
