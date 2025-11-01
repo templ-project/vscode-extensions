@@ -173,12 +173,12 @@ describe('CLI', () => {
       expect(result.stderr).toContain('required');
     });
 
-    it('should require OPENVSX_TOKEN environment variable for openvsx marketplace', async () => {
+    it('should require OVSX_PAT environment variable for openvsx marketplace', async () => {
       // Without token, should fail immediately
       const result = await runCLI(['publish', 'dist/vscodium/test.vsix', '--marketplace', 'openvsx']);
 
       expect(result.code).toBe(1);
-      expect(result.stderr).toContain('OPENVSX_TOKEN');
+      expect(result.stderr).toContain('OVSX_PAT');
       expect(result.stderr).toContain('required');
     });
 
@@ -220,12 +220,12 @@ describe('CLI', () => {
     });
 
     it('should require both tokens for "both" marketplace', async () => {
-      // Without OPENVSX_TOKEN, should fail
-      delete process.env.OPENVSX_TOKEN;
+      // Without OVSX_PAT, should fail
+      delete process.env.OVSX_PAT;
       const result = await runCLI(['publish', 'dist/test.vsix', '--marketplace', 'both']);
 
       expect(result.code).toBe(1);
-      expect(result.stderr).toMatch(/VSCODE_TOKEN|OPENVSX_TOKEN/);
+      expect(result.stderr).toMatch(/VSCODE_TOKEN|OVSX_PAT/);
     });
   });
 
