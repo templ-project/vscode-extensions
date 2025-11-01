@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.4 (2025-11-01)
+
+### Bug Fixes
+
+* properly handle unzipper stream to prevent hanging ([233e4f8](https://github.com/templ-project/vscode-extensions/commit/233e4f83c44f30912a048216d9bea277e1a6691e))
+
 ## 1.3.3 (2025-11-01)
 
 ### Child Workspaces
