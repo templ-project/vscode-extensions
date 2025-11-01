@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.5.1 (2025-11-01)
+
+### Child Workspaces
+
+The following workspaces are included in this release:
+
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/typescript` - v1.3.1
+
+
+### Bug Fixes
+
+* removed GregorBiswanger.json2ts from vscodium - not supported it seems ([33759bb](https://github.com/templ-project/vscode-extensions/commit/33759bbcf0757c9368161c133d2b637a5cd4ae0a))
+
 ## 1.5.0 (2025-11-01)
 
 ### Features
