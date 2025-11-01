@@ -39,9 +39,14 @@ jobs:
   publish:
     name: Publish to Marketplaces
     runs-on: ubuntu-latest
+    outputs:
+      release-created: ${{ steps.create-release.outputs.created }}
+      release-tag: ${{ steps.create-release.outputs.tag }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -90,6 +95,66 @@ jobs:
           fi
           echo "Found .vsix files:"
           find dist -name '*.vsix' -type f
+
+      - name: Generate release notes
+        id: release-notes
+        run: |
+          echo "Generating release notes..."
+
+          # Get list of all VSIX files with their sizes
+          echo "## Extension Packs" > release-notes.md
+          echo "" >> release-notes.md
+          echo "This release includes the following extension packs:" >> release-notes.md
+          echo "" >> release-notes.md
+
+          for ide in vscode vscodium; do
+            echo "### $(echo $ide | sed 's/.*/\u&/')" >> release-notes.md
+            echo "" >> release-notes.md
+
+            find dist/$ide -name "*.vsix" -type f | sort | while read -r file; do
+              basename=$(basename "$file")
+              size=$(ls -lh "$file" | awk '{print $5}')
+              echo "- \`$basename\` ($size)" >> release-notes.md
+            done
+            echo "" >> release-notes.md
+          done
+
+          echo "" >> release-notes.md
+          echo "## Installation" >> release-notes.md
+          echo "" >> release-notes.md
+          echo "Download the appropriate \`.vsix\` file for your IDE and extension pack, then:" >> release-notes.md
+          echo "" >> release-notes.md
+          echo "**VS Code:**" >> release-notes.md
+          echo "\`\`\`bash" >> release-notes.md
+          echo "code --install-extension <file>.vsix" >> release-notes.md
+          echo "\`\`\`" >> release-notes.md
+          echo "" >> release-notes.md
+          echo "**VSCodium:**" >> release-notes.md
+          echo "\`\`\`bash" >> release-notes.md
+          echo "codium --install-extension <file>.vsix" >> release-notes.md
+          echo "\`\`\`" >> release-notes.md
+          echo "" >> release-notes.md
+          echo "Or install via the Extensions view in your IDE: \`Extensions: Install from VSIX...\`" >> release-notes.md
+
+          cat release-notes.md
+
+      - name: Create GitHub Release
+        id: create-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Get current date for release tag
+          RELEASE_TAG="release-$(date +'%Y%m%d-%H%M%S')"
+          echo "tag=$RELEASE_TAG" >> $GITHUB_OUTPUT
+
+          # Create release
+          gh release create "$RELEASE_TAG" \
+            --title "Extension Packs - $(date +'%Y-%m-%d %H:%M:%S')" \
+            --notes-file release-notes.md \
+            dist/**/*.vsix
+
+          echo "created=true" >> $GITHUB_OUTPUT
+          echo "Release created: $RELEASE_TAG"
 
       - name: Publish to VSCode Marketplace
         env:

@@ -157,6 +157,6 @@ dist/
 
 packages/**/*
 !packages/**/
-!packages/**/package.json
+!packages/*/*/package.json
 
 .task/
