@@ -300,7 +300,7 @@ export class MarketplacePublisher {
 
       this.logger.error({ err: error, vsixPath, marketplace: 'vscode' }, 'Failed to publish to VSCode Marketplace');
 
-      // Authentication errors
+      // Authentication errors - most specific check first
       if (
         errorMessage.includes('401') ||
         errorMessage.includes('Unauthorized') ||
@@ -343,11 +343,13 @@ export class MarketplacePublisher {
         });
       }
 
-      // Generic publish error
+      // All other errors are treated as validation/dependency errors
+      // This catches dependency resolution errors, malformed package errors, etc.
       throw new PublishError(`Failed to publish to VSCode Marketplace: ${errorMessage}`, {
         marketplace: 'vscode',
         vsixPath,
         cause: errorMessage,
+        hint: 'This may be a validation error. Check extension dependencies, package.json format, and marketplace requirements.',
       });
     }
   }
@@ -418,7 +420,7 @@ export class MarketplacePublisher {
 
       this.logger.error({ err: error, vsixPath, marketplace: 'openvsx' }, 'Failed to publish to Open VSX Registry');
 
-      // Authentication errors
+      // Authentication errors - most specific check first
       if (
         errorMessage.includes('401') ||
         errorMessage.includes('403') ||
@@ -468,11 +470,13 @@ export class MarketplacePublisher {
         });
       }
 
-      // Generic publish error
+      // All other errors are treated as validation/dependency errors
+      // This catches dependency resolution errors, malformed package errors, etc.
       throw new PublishError(`Failed to publish to Open VSX Registry: ${errorMessage}`, {
         marketplace: 'openvsx',
         vsixPath,
         cause: errorMessage,
+        hint: 'This may be a validation error. Check extension dependencies, package.json format, and marketplace requirements.',
       });
     }
   }

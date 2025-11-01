@@ -179,6 +179,23 @@ describe('MarketplacePublisher', () => {
         await expect(publisher.publish(validOptions)).rejects.toThrow(PublishError);
         await expect(publisher.publish(validOptions)).rejects.toThrow('Unknown error');
       });
+
+      it('should throw PublishError for dependency validation failure', async () => {
+        vi.mocked(publishVSIX).mockRejectedValue(new Error('Cannot resolve dependency: GregorBiswanger.json2ts'));
+
+        await expect(publisher.publish(validOptions)).rejects.toThrow(PublishError);
+        await expect(publisher.publish(validOptions)).rejects.toThrow('Failed to publish to VSCode Marketplace');
+
+        try {
+          await publisher.publish(validOptions);
+        } catch (error) {
+          expect(error).toBeInstanceOf(PublishError);
+          if (error instanceof PublishError) {
+            expect(error.message).toContain('GregorBiswanger.json2ts');
+            expect(error.context.hint).toContain('validation error');
+          }
+        }
+      });
     });
 
     describe('Open VSX', () => {
@@ -295,6 +312,23 @@ describe('MarketplacePublisher', () => {
 
         await expect(publisher.publish(openvsxOptions)).rejects.toThrow(PublishError);
         await expect(publisher.publish(openvsxOptions)).rejects.toThrow('Unknown error from Open VSX');
+      });
+
+      it('should throw PublishError for dependency validation failure', async () => {
+        vi.mocked(publishOVSX).mockRejectedValue(new Error('Cannot resolve dependency: GregorBiswanger.json2ts'));
+
+        await expect(publisher.publish(openvsxOptions)).rejects.toThrow(PublishError);
+        await expect(publisher.publish(openvsxOptions)).rejects.toThrow('Failed to publish to Open VSX Registry');
+
+        try {
+          await publisher.publish(openvsxOptions);
+        } catch (error) {
+          expect(error).toBeInstanceOf(PublishError);
+          if (error instanceof PublishError) {
+            expect(error.message).toContain('GregorBiswanger.json2ts');
+            expect(error.context.hint).toContain('validation error');
+          }
+        }
       });
     });
 
