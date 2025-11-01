@@ -2,7 +2,7 @@
   "name": "tpl-vscode-golang",
   "displayName": "Go Extension Pack for Vscode",
   "description": "Essential Go development environment for VSCode - comprehensive tooling for modern Go development",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "golang",
     "go",
@@ -40,8 +42,12 @@
     "neverik.go-critic",
     "quillaja.goasm"
   ],
-  "extensionDependencies": ["golang.go"],
-  "activationEvents": ["onStartupFinished"],
+  "extensionDependencies": [
+    "golang.go"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [

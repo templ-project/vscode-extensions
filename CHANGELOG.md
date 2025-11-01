@@ -1,5 +1,37 @@
 # Changelog
 
+## 1.3.1 (2025-11-01)
+
+### Child Workspaces
+
+The following workspaces are included in this release:
+
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/cpp` - v1.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/csharp` - v1.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/generic-essential` - v1.2.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/generic-extended` - v1.2.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/godot` - v1.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/golang` - v1.2.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/javascript` - v1.2.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/python` - v1.2.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/typescript` - v1.2.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/cpp` - v1.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/csharp` - v1.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/generic-essential` - v1.2.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/generic-extended` - v1.2.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/godot` - v1.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/golang` - v1.2.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/javascript` - v1.2.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/python` - v1.2.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/typescript` - v1.2.2
+
+
+### Bug Fixes
+
+* manually restoring old versions ([7d46e8e](https://github.com/templ-project/vscode-extensions/commit/7d46e8edf3144aa23e2ea68f47a690ee524fc6f6))
+* remove flaky test expectation for version check ([00f022f](https://github.com/templ-project/vscode-extensions/commit/00f022fb967d27c17c1383d04490e0544c775ec9))
+* serialize extension builds to prevent file contention ([b75f587](https://github.com/templ-project/vscode-extensions/commit/b75f587effa6674f89e52b8956c9f579582757e2))
+
 ## 1.3.0 (2025-11-01)
 
 ### Features

@@ -2,7 +2,7 @@
   "name": "tpl-vscode-cpp",
   "displayName": "C++ Extension Pack for Vscode",
   "description": "Essential C/C++ development environment for VSCode - modern tooling with clang-based language server, CMake/XMake build systems, and advanced debugging",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "cpp",
     "c++",
@@ -43,8 +45,14 @@
     "cschlosser.doxdocgen",
     "webfreak.debug"
   ],
-  "extensionDependencies": ["llvm-vs-code-extensions.vscode-clangd", "twxs.cmake", "xaver.clang-format"],
-  "activationEvents": ["onStartupFinished"],
+  "extensionDependencies": [
+    "llvm-vs-code-extensions.vscode-clangd",
+    "twxs.cmake",
+    "xaver.clang-format"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [

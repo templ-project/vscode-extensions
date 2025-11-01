@@ -2,7 +2,7 @@
   "name": "tpl-vscode-generic-essential",
   "displayName": "Generic Essential Extension Pack for Vscode",
   "description": "Essential productivity extensions for general development in VSCode",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "productivity",
     "general",
@@ -73,7 +75,9 @@
     "tamasfe.even-better-toml",
     "redhat.vscode-yaml"
   ],
-  "activationEvents": ["onStartupFinished"],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "keybindings": [

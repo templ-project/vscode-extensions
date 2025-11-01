@@ -2,7 +2,7 @@
   "name": "tpl-vscode-godot",
   "displayName": "Godot Extension Pack for Vscode",
   "description": "Essential extensions for Godot game development with GDScript support, debugging, and enhanced productivity tools",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "templ-project",
   "repository": {
     "type": "git",
@@ -17,7 +17,9 @@
     "color": "#007ACC",
     "theme": "dark"
   },
-  "categories": ["Extension Packs"],
+  "categories": [
+    "Extension Packs"
+  ],
   "keywords": [
     "godot",
     "gdscript",
@@ -40,8 +42,13 @@
     "wayou.vscode-todo-highlight",
     "2gua.rainbow-brackets"
   ],
-  "extensionDependencies": ["geequlim.godot-tools", "jjkim.gdscript"],
-  "activationEvents": ["onStartupFinished"],
+  "extensionDependencies": [
+    "geequlim.godot-tools",
+    "jjkim.gdscript"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "snippets": [
