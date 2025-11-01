@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.0 (2025-11-01)
+
+### Features
+
+* skip publishing when version already exists on marketplace ([78d742b](https://github.com/templ-project/vscode-extensions/commit/78d742bc27ff55a1554691112d4d116b9900ea0f))
 
 ## 1.2.2 (2025-11-01)
 
