@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.0 (2025-11-01)
+
+### Features
+
+* created 3 new extension packs for closure, rust and zig ([bc91156](https://github.com/templ-project/vscode-extensions/commit/bc9115676e7dc8af8f35dd6934917461509d1ceb))
+
 ## 1.5.2 (2025-11-01)
 
 ### Bug Fixes
