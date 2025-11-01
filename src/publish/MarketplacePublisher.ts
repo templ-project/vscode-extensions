@@ -52,54 +52,81 @@ export class MarketplacePublisher {
     version: string;
     extensionId: string;
   }> {
-    try {
-      // .vsix files are zip archives containing extension/package.json
-      const stream = createReadStream(vsixPath).pipe(unzip());
+    return new Promise((resolve, reject) => {
+      let found = false;
 
-      for await (const entry of stream) {
-        if (entry.path === 'extension/package.json') {
-          const content = await entry.buffer();
-          const packageJson = JSON.parse(content.toString('utf-8'));
-
-          const publisher = packageJson.publisher;
-          const name = packageJson.name;
-          const version = packageJson.version;
-
-          if (!publisher || !name || !version) {
-            throw new PublishError('Invalid package.json in .vsix file: missing publisher, name, or version', {
-              vsixPath,
-              publisher,
-              name,
-              version,
-            });
+      const stream = createReadStream(vsixPath)
+        .pipe(unzip())
+        .on('entry', async (entry) => {
+          if (found) {
+            entry.autodrain();
+            return;
           }
 
-          return {
-            publisher,
-            name,
-            version,
-            extensionId: `${publisher}.${name}`,
-          };
-        } else {
-          entry.autodrain();
-        }
-      }
+          if (entry.path === 'extension/package.json') {
+            found = true;
+            try {
+              const content = await entry.buffer();
+              const packageJson = JSON.parse(content.toString('utf-8'));
 
-      throw new PublishError('Could not find extension/package.json in .vsix file', {
-        vsixPath,
-      });
-    } catch (error) {
-      if (error instanceof PublishError) {
-        throw error;
-      }
-      throw new PublishError(
-        `Failed to extract metadata from .vsix file: ${error instanceof Error ? error.message : String(error)}`,
-        {
-          vsixPath,
-          cause: error instanceof Error ? error.message : String(error),
-        },
-      );
-    }
+              const publisher = packageJson.publisher;
+              const name = packageJson.name;
+              const version = packageJson.version;
+
+              if (!publisher || !name || !version) {
+                stream.destroy();
+                reject(
+                  new PublishError('Invalid package.json in .vsix file: missing publisher, name, or version', {
+                    vsixPath,
+                    publisher,
+                    name,
+                    version,
+                  }),
+                );
+                return;
+              }
+
+              stream.destroy();
+              resolve({
+                publisher,
+                name,
+                version,
+                extensionId: `${publisher}.${name}`,
+              });
+            } catch (error) {
+              stream.destroy();
+              reject(
+                new PublishError(
+                  `Failed to parse package.json from .vsix file: ${error instanceof Error ? error.message : String(error)}`,
+                  {
+                    vsixPath,
+                    cause: error instanceof Error ? error.message : String(error),
+                  },
+                ),
+              );
+            }
+          } else {
+            entry.autodrain();
+          }
+        })
+        .on('error', (error) => {
+          reject(
+            new PublishError(`Failed to read .vsix file: ${error instanceof Error ? error.message : String(error)}`, {
+              vsixPath,
+              cause: error instanceof Error ? error.message : String(error),
+            }),
+          );
+        })
+        .on('finish', () => {
+          if (!found) {
+            reject(
+              new PublishError('Could not find extension/package.json in .vsix file', {
+                vsixPath,
+              }),
+            );
+          }
+        });
+    });
   }
 
   /**
