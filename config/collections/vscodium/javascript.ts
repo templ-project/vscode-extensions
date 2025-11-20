@@ -1,12 +1,12 @@
 import {
-  vscodiumEslint as eslint,
-  vscodiumPrettier as prettier,
-  vscodiumJsDebugger as jsDebugger,
-  vscodiumImportCost as importCost,
-  vscodiumQuokka as quokka,
   vscodiumBabelSyntax as babelSyntax,
   bunVSCodium,
   denoVSCodium,
+  vscodiumEslint as eslint,
+  vscodiumImportCost as importCost,
+  vscodiumJsDebugger as jsDebugger,
+  vscodiumPrettier as prettier,
+  vscodiumQuokka as quokka,
 } from '../../extensions/javascript';
 import { Collection } from '../../shared/types';
 
@@ -27,7 +27,7 @@ export const javascript: Collection = {
 ## Quick Start
 1. Install all required extensions from Open VSX Registry
 2. Configure ESLint in your project
-3. Set up Prettier configuration 
+3. Set up Prettier configuration
 4. Restart VSCodium to ensure all settings are applied
 
 ## Extensions Included
@@ -52,7 +52,7 @@ export const javascript: Collection = {
 
 ## VSCodium Specific Notes
 
-This collection is optimized for VSCodium and uses only open-source extensions available through the Open VSX Registry. Microsoft's proprietary IntelliCode is excluded in favor of the built-in JavaScript language service which provides excellent IntelliSense capabilities.
+This collection is optimized for VSCodium and uses only open-source extensions available through the Open VSX Registry.
 
 Multi-language tools like Code Runner and SonarLint are available in the Generic Extended collection to avoid duplication across language-specific packs.
 
@@ -129,8 +129,8 @@ Add these helpful scripts to your \`package.json\`:
 - Set to: \`https://open-vsx.org/vscode/gallery\`
 - Some extensions may have different names or publishers compared to VSCode marketplace
 
-### IntelliCode not available
-- VSCodium excludes Microsoft's proprietary IntelliCode
+### Intelligent Suggestions
+- VSCodium relies on the built-in JavaScript language service for IntelliSense
 - The built-in JavaScript language service provides excellent IntelliSense
 - Consider enabling experimental features for enhanced suggestions
 

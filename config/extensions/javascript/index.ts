@@ -55,16 +55,6 @@ const baseBabelSyntax: Omit<Extension, 'marketplace_url'> = {
   why_required: 'Enhanced syntax highlighting for modern JavaScript features and JSX',
 };
 
-// VSCode-only extensions (not available on VSCodium/Open VSX)
-const baseIntelliCode: Omit<Extension, 'marketplace_url'> = {
-  id: 'VisualStudioExptTeam.vscodeintellicode',
-  name: 'IntelliCode',
-  description: 'AI-assisted development for JavaScript',
-  publisher: 'Microsoft',
-  license: 'MIT',
-  why_required: 'AI-powered code completion suggestions based on best practices',
-};
-
 // VSCode Extensions (Microsoft Marketplace URLs)
 export const eslint: Extension = {
   ...baseEslint,
@@ -74,11 +64,6 @@ export const eslint: Extension = {
 export const prettier: Extension = {
   ...basePrettier,
   marketplace_url: 'https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode',
-};
-
-export const intelliCode: Extension = {
-  ...baseIntelliCode,
-  marketplace_url: 'https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode',
 };
 
 export const jsDebugger: Extension = {
@@ -111,9 +96,6 @@ export const vscodiumPrettier: Extension = {
   ...basePrettier,
   marketplace_url: 'https://open-vsx.org/extension/esbenp/prettier-vscode',
 };
-
-// Note: IntelliCode is Microsoft proprietary and not available on Open VSX
-// VSCodium users rely on built-in TypeScript language service instead
 
 export const vscodiumJsDebugger: Extension = {
   ...baseJsDebugger,

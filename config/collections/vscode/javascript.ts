@@ -1,13 +1,12 @@
 import {
-  eslint,
-  prettier,
-  intelliCode,
-  jsDebugger,
-  importCost,
-  quokka,
   babelSyntax,
   bunVSCode,
   deno,
+  eslint,
+  importCost,
+  jsDebugger,
+  prettier,
+  quokka,
 } from '../../extensions/javascript';
 import { Collection } from '../../shared/types';
 
@@ -18,7 +17,7 @@ export const javascript: Collection = {
 
   required_extensions: [eslint, prettier, jsDebugger, babelSyntax],
 
-  optional_extensions: [intelliCode, importCost, quokka, bunVSCode, deno],
+  optional_extensions: [importCost, quokka, bunVSCode, deno],
 
   settings: {
     // JavaScript Language Settings
@@ -295,7 +294,7 @@ export const javascript: Collection = {
 ## Quick Start
 1. Install all required extensions
 2. Configure ESLint in your project
-3. Set up Prettier configuration 
+3. Set up Prettier configuration
 4. Restart VSCode to ensure all settings are applied
 
 ## Extensions Included
@@ -308,7 +307,6 @@ export const javascript: Collection = {
 
 ### Development Tools
 - **JavaScript (ES6) Snippets**: Comprehensive ES6+ code snippets
-- **IntelliCode**: AI-powered code completion suggestions
 - **JavaScript Debugger**: Built-in debugging capabilities
 
 ### Productivity Enhancers (Optional)
