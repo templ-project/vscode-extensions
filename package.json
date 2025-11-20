@@ -22,18 +22,10 @@
     "validate": "npm run typecheck && npm run lint:check && npm run format:check && npm test",
     "compile:packages": "npm run compile --workspaces --if-present"
   },
-  "keywords": [
-    "vscode",
-    "vscodium",
-    "extension-pack",
-    "development",
-    "tools"
-  ],
+  "keywords": ["vscode", "vscodium", "extension-pack", "development", "tools"],
   "author": "templ-project",
   "license": "MIT",
-  "workspaces": [
-    "packages/*/*"
-  ],
+  "workspaces": ["packages/*/*"],
   "engines": {
     "node": ">=20.0.0"
   },
@@ -48,6 +40,7 @@
     "@templ-project/tsconfig": "^0.4.2",
     "@templ-project/vitest": "^0.3.2",
     "@types/node": "^24.9.2",
+    "@types/unzipper": "^0.10.11",
     "@vitest/coverage-v8": "^4.0.5",
     "@vscode/vsce": "^3.2.1",
     "commander": "^14.0.2",
@@ -67,8 +60,5 @@
     "vitest": "^4.0.5",
     "yaml": "^2.8.1",
     "zod": "^4.1.12"
-  },
-  "devDependencies": {
-    "@types/unzipper": "^0.10.11"
   }
 }
