@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.2 (2025-11-20)
+
+### Bug Fixes
+
+* removed IntelliCode deprecatred extension ([3f2d552](https://github.com/templ-project/vscode-extensions/commit/3f2d552c7d3c49231a222b5be94a28f7652ccca0))
+
 ## 1.6.1 (2025-11-01)
 
 ### Bug Fixes
