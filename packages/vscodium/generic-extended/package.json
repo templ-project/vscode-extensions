@@ -2,7 +2,7 @@
   "name": "tpl-vscodium-generic-extended",
   "displayName": "Generic Extended Extension Pack for Vscodium",
   "description": "Extended developer tools for API development, containerization, and Git forge integration in VSCodium (Open VSX compatible)",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "templ-project",
   "__configHash": "5c7df5f4fdcb01e50be766491c2fa3baef41840993e6a387de5f272d1dc48acb",
   "repository": {

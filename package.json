@@ -1,6 +1,6 @@
 {
   "name": "vscode-extensions",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "type": "module",
   "description": "VSCode Extension Packs for different development environments",
   "main": "dist/index.js",
@@ -22,10 +22,18 @@
     "validate": "npm run typecheck && npm run lint:check && npm run format:check && npm test",
     "compile:packages": "npm run compile --workspaces --if-present"
   },
-  "keywords": ["vscode", "vscodium", "extension-pack", "development", "tools"],
+  "keywords": [
+    "vscode",
+    "vscodium",
+    "extension-pack",
+    "development",
+    "tools"
+  ],
   "author": "templ-project",
   "license": "MIT",
-  "workspaces": ["packages/*/*"],
+  "workspaces": [
+    "packages/*/*"
+  ],
   "engines": {
     "node": ">=20.0.0"
   },

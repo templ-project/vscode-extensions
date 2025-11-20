@@ -2,7 +2,7 @@
   "name": "tpl-vscode-cpp",
   "displayName": "C++ Extension Pack for Vscode",
   "description": "Essential C/C++ development environment for VSCode - modern tooling with clang-based language server, CMake/XMake build systems, and advanced debugging",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "templ-project",
   "__configHash": "4ecebf09b51e4736293f1d9288c8d8012da3adf69327ba0c90479feb7abd3821",
   "repository": {
