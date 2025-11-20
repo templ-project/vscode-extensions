@@ -2,7 +2,7 @@
   "name": "tpl-vscodium-csharp",
   "displayName": "C# Extension Pack for Vscodium",
   "description": "Essential C# development environment for VSCodium - comprehensive .NET tooling with IntelliSense, debugging, testing, and modern C# features",
-  "version": "1.1.0",
+  "version": "0.0.1",
   "publisher": "templ-project",
   "__configHash": "8be8b5b88a478d449cb4635e81d902a5458e33dd16e3052c40a9c1bb0b437a94",
   "repository": {

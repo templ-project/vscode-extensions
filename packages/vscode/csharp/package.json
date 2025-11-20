@@ -2,7 +2,7 @@
   "name": "tpl-vscode-csharp",
   "displayName": "C# Extension Pack for Vscode",
   "description": "Essential C# development environment for VSCode - comprehensive .NET tooling with IntelliSense, debugging, testing, and modern C# features",
-  "version": "1.1.0",
+  "version": "0.0.1",
   "publisher": "templ-project",
   "__configHash": "06f9b5de0b59157ac0d054b4201e07ff8415d0c7f115c8d9e14ed60748ee811b",
   "repository": {
