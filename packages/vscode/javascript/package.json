@@ -2,7 +2,7 @@
   "name": "tpl-vscode-javascript",
   "displayName": "JavaScript Extension Pack for Vscode",
   "description": "Essential JavaScript development environment for VSCode - runtime-agnostic tools for modern JavaScript development",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "templ-project",
   "__configHash": "e732f7e0571f31d3e20e9898ea89d1778b64354922b94db6e76626a808469605",
   "repository": {

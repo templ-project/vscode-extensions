@@ -2,7 +2,7 @@
   "name": "tpl-vscodium-javascript",
   "displayName": "JavaScript Extension Pack for Vscodium",
   "description": "Essential JavaScript development environment for VSCodium - runtime-agnostic tools using open-source alternatives",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "templ-project",
   "__configHash": "c5b4fe487f57c875168cad07c15280baca7a49f044b46ee4032ca2c4052b9692",
   "repository": {

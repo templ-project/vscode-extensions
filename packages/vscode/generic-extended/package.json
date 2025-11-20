@@ -2,7 +2,7 @@
   "name": "tpl-vscode-generic-extended",
   "displayName": "Generic Extended Extension Pack for Vscode",
   "description": "Extended developer tools for API development, containerization, and Git forge integration in VSCode",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "templ-project",
   "__configHash": "53661b687cf13bf297cb293b6eb431f22c4eea14641dd67af513834470a9b185",
   "repository": {

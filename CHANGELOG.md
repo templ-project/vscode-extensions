@@ -1,5 +1,35 @@
 # Changelog
 
+## 1.6.2 (2025-11-20)
+
+### Child Workspaces
+
+The following workspaces are included in this release:
+
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/cpp` - v0.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/csharp` - v0.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/generic-essential` - v0.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/generic-extended` - v0.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/godot` - v0.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/golang` - v0.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/javascript` - v0.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/python` - v0.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscode/typescript` - v0.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/cpp` - v0.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/csharp` - v0.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/generic-essential` - v0.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/generic-extended` - v0.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/godot` - v0.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/golang` - v0.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/javascript` - v0.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/python` - v0.0.2
+- 🔄 `/home/runner/work/vscode-extensions/vscode-extensions/packages/vscodium/typescript` - v0.0.2
+
+
+### Bug Fixes
+
+* removed IntelliCode deprecatred extension ([2e48400](https://github.com/templ-project/vscode-extensions/commit/2e48400b60bf9226fc6dd7d4f4a2ae87bddb557e))
+
 ## 1.6.1 (2025-11-01)
 
 ### Bug Fixes

@@ -2,7 +2,7 @@
   "name": "tpl-vscodium-typescript",
   "displayName": "TypeScript Extension Pack for Vscodium",
   "description": "Essential TypeScript development environment for VSCodium - comprehensive tooling for type-safe development using open-source alternatives",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "templ-project",
   "__configHash": "0bc88f7056cdacad4e12fc5c0b997e7d92b41e9e8fc922cdc6f8ae4e4dacdd7a",
   "repository": {

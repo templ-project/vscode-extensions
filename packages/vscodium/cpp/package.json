@@ -2,7 +2,7 @@
   "name": "tpl-vscodium-cpp",
   "displayName": "C++ Extension Pack for Vscodium",
   "description": "Essential C/C++ development environment for VSCodium - modern tooling with clang-based language server, CMake/XMake build systems, and advanced debugging",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "templ-project",
   "__configHash": "48c74d7e86f02609a54989dfa0370ebcdb36b31220843b78cd6263fc11c8ad25",
   "repository": {
